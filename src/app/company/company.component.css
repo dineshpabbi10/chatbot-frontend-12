@@ -1,0 +1,13 @@
+.container{
+    display: flex;
+}
+
+.left-pane{
+    width: 30%;
+    background-color: brown;
+}
+
+.right-pane{
+    width: 70%;
+    background-color: burlywood;
+}
