@@ -1,13 +1,9 @@
-.container{
-    display: flex;
+.whitesmoke{
+    background-color: whitesmoke;
+    height: 100%;
+    width: 100%;
 }
 
-.left-pane{
-    width: 30%;
-    background-color: brown;
-}
-
-.right-pane{
-    width: 70%;
-    background-color: burlywood;
+.row-container{
+    height: 100%;
 }
