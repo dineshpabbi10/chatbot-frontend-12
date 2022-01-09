@@ -7,9 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CompanyComponent implements OnInit {
 
+  public sidebarOpen = false;
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  toggleSidebar(){
+    this.sidebarOpen = !this.sidebarOpen;
   }
 
 }

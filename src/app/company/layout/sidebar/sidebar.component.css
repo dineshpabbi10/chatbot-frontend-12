@@ -1,7 +1,10 @@
 .sidebar-container{
-    width: 100%;
+    width: 250px;
     height: 100%;
     background-color: white;
+    position: absolute;
+    transition: all 0.5s;
+    transform: translateX(-260px);
 }
 
 .brand{
@@ -55,9 +58,14 @@
     transform: rotate(45deg);
     height: 15px;
     width: 15px;
-    right: 8px;
+    right: -7px;
     margin-top: 6px;
     background-color: whitesmoke;
+}
+
+.navbar-open{
+    transition: all 0.5s;
+    transform: translateX(0px);
 }
 
 

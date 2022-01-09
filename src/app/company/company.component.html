@@ -1,12 +1,12 @@
+<app-sidebar [sidebarOpen] = "sidebarOpen"></app-sidebar>
+<div class="whitesmoke" [ngClass]="{'navbar-open' : sidebarOpen}" >
 
-<div class="whitesmoke">
-    <div class="row row-container">
-        <div class="col-lg-2 col-md-4 col-xs-4">
-            <app-sidebar></app-sidebar>
-        </div>
-        <div class="col-lg-10 col-md-8 col-xs-8">
-            <router-outlet></router-outlet>
-        </div>
+    <div class="row-container">
+            <button class="navbar-toggle" (click)="toggleSidebar()"><i class="ic fa fa-bars"></i></button>
+            
+            <div style="padding: 10px;">
+                <router-outlet></router-outlet>
+            </div>
     </div>
     
     <app-footer></app-footer>
