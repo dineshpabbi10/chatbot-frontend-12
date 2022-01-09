@@ -39,33 +39,141 @@
                             when looking at its layout.</p>
                     </div>
                     <div class="col-lg-6 col-md-6 col-sm-12 r-mt3">
-                        <form>
+                        <form [formGroup]="registrationForm">
                             <div class="form-group">
-                                <label class="mb-0" for="exampleInputName">Name</label>
-                                <input type="text" class="form-control" id="exampleInputName" placeholder="Name">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label class="mb-0" for="exampleInputName">First Name *</label>
+                                        <input type="text" class="form-control" formControlName="first_name"
+                                            id="first_name" placeholder="First Name">
+                                        <div
+                                            *ngIf="registrationForm.controls['first_name'].status=='INVALID' && registrationForm.controls['first_name'].touched">
+                                            <p class="error-msg-ab" style="color: brown;"
+                                                *ngIf="registrationForm.controls['first_name'].errors.required">
+                                                Please Enter first name!
+                                            </p>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="mb-0" for="exampleInputName">Last Name *</label>
+                                        <input type="text" class="form-control" formControlName="last_name"
+                                            id="last_name" placeholder="Last Name">
+                                        <div
+                                            *ngIf="registrationForm.controls['last_name'].status=='INVALID' && registrationForm.controls['last_name'].touched">
+                                            <p class="error-msg-ab" style="color: brown;"
+                                                *ngIf="registrationForm.controls['last_name'].errors.required">
+                                                Please Enter Last Name!
+                                            </p>
+                                            <p class="error-msg-ab" style="color: brown;"
+                                                *ngIf="registrationForm.controls['last_name'].errors.pattern">
+                                                Only alphabets allowed!
+                                            </p>
+
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <div class="form-group">
-                                <label class="mb-0" for="exampleInputEmail">Email</label>
-                                <input type="email" class="form-control" id="exampleInputEmail" placeholder="Email">
+                                <label class="mb-0" for="exampleInputPassword1">Email</label>
+                                <input type="email" formControlName="email" class="form-control" id="email"
+                                    placeholder="Email">
+                                <div
+                                    *ngIf="registrationForm.controls['email'].status=='INVALID' && registrationForm.controls['email'].touched">
+                                    <p class="error-msg-ab" style="color: brown;"
+                                        *ngIf="registrationForm.controls['email'].errors.required">
+                                        Please Enter Email!
+                                    </p>
+                                    <p class="error-msg-ab" style="color: brown;"
+                                        *ngIf="registrationForm.controls['email'].errors.email">
+                                        Invalid Email
+                                    </p>
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label class="mb-0" for="exampleInputPassword1">Country Code</label>
+                                        <ng-multiselect-dropdown [settings]="dropdownSettings"
+                                            formControlName="country_code" [data]="countriesList"
+                                            (onSelect)="onItemSelect($event)">
+                                        </ng-multiselect-dropdown>
+                                        <div
+                                            *ngIf="registrationForm.controls['country_code'].status=='INVALID' && registrationForm.controls['country_code'].touched">
+                                            <p class="error-msg-ab" style="color: brown;"
+                                                *ngIf="registrationForm.controls['country_code'].errors.required">
+                                                Select Country Code!
+                                            </p>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="mb-0" for="exampleInputPassword1">Mobile No</label>
+                                        <input type="text" formControlName="mobile_no" class="form-control"
+                                            id="mobile_no" placeholder="Mobile Number">
+                                        <div
+                                            *ngIf="registrationForm.controls['mobile_no'].status=='INVALID' && registrationForm.controls['mobile_no'].touched">
+                                            <p class="error-msg-ab" style="color: brown;"
+                                                *ngIf="registrationForm.controls['mobile_no'].errors.required">
+                                                Enter Mobile Number!
+                                            </p>
+                                            <p class="error-msg-ab" style="color: brown;"
+                                                *ngIf="registrationForm.controls['mobile_no'].errors.pattern">
+                                                Only Numbers Allowed!
+                                            </p>
+
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label class="mb-0" for="exampleInputPassword1">Password</label>
-                                <input type="password" class="form-control" id="exampleInputPassword1"
+                                <input type="password" formControlName="password" class="form-control" id="password"
                                     placeholder="Password">
+                                <div
+                                    *ngIf="registrationForm.controls['password'].status=='INVALID' && registrationForm.controls['password'].touched">
+                                    <p class="error-msg-ab" style="color: brown;"
+                                        *ngIf="registrationForm.controls['password'].errors.required">
+                                        Enter Password!
+                                    </p>
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label class="mb-0" for="exampleInputPassword1">Confirm Password</label>
-                                <input type="password" class="form-control" id="exampleInputPassword2"
-                                    placeholder="Confirm Password">
+                                <input type="password" class="form-control" formControlName="confirm_password"
+                                    id="confirm_password" placeholder="Confirm Password">
+                                <div
+                                    *ngIf="registrationForm.controls['confirm_password'].status=='INVALID' && registrationForm.controls['confirm_password'].touched">
+                                    <p class="error-msg-ab" style="color: brown;"
+                                        *ngIf="registrationForm.controls['confirm_password'].errors.required">
+                                        Re-enter Password!
+                                    </p>
+
+                                    <p class="error-msg-ab" style="color: brown;"
+                                        *ngIf="registrationForm.controls['confirm_password'].errors.mustMatch">Password
+                                        must match
+                                    </p>
+
+                                </div>
                             </div>
                             <div class="form-check">
-                                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                <input type="checkbox" class="form-check-input" id="agree_on_terms"
+                                    formControlName="agree_on_terms">
                                 <label class="form-check-label" for="exampleCheck1">By signing up for Databox, you agree
                                     to
                                     our <a href="/terms-and-conditions">Terms of Service</a>
                                     and <a href="/privacy-policy">Privacy Policy.</a></label>
+                                <div
+                                    *ngIf="registrationForm.controls['agree_on_terms'].status=='INVALID' && registrationForm.controls['agree_on_terms'].touched">
+                                    <p class="error-msg-ab" style="color: brown;"
+                                        *ngIf="registrationForm.controls['agree_on_terms'].errors.required">
+                                        Please select the above box!
+                                    </p>
+                                </div>
                             </div>
-                            <button type="submit" class="button mt-2 mb-2 w-100">Register</button>
+                            <button type="submit" (click)="registerUser()"
+                                class="button mt-2 mb-2 w-100">Register</button>
                         </form>
                     </div>
                 </div>
