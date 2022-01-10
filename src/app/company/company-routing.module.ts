@@ -9,6 +9,7 @@ const routes:Routes = [
     component:CompanyComponent,
     children:[
       {path:'dashboard',loadChildren:()=>import("./dashboard/dashboard.module").then((m)=>m.DashboardModule)},
+      {path:'quicklinks',loadChildren:()=>import("./quicklinks/quicklinks.module").then((m)=>m.QuicklinksModule)},
       { path: '',   redirectTo: 'dashboard', pathMatch: 'full' }
     ]
   }
