@@ -4,9 +4,18 @@
     justify-content: space-around;
 }
 
+.row{
+    margin-left:0px;
+    margin-right: 0px;
+}
+
 .card{
     box-shadow: 0 6px 10px -4px rgb(0 0 0 / 15%);
     border-radius: 12px;
+}
+
+.card-text{
+    font-size: 1rem;
 }
 
 .card-title{
@@ -40,5 +49,10 @@
     .mini-card{
         width: 100%;
         margin: 0px 15px;
+    }
+
+    .card-body svg{
+        width: 82px !important;
+        height: 82px !important;
     }
 }

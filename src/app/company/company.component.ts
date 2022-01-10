@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 })
 export class CompanyComponent implements OnInit {
 
-  public sidebarOpen = false;
+  public sidebarOpen = true;
   constructor(private router:Router) { }
 
   ngOnInit(): void {

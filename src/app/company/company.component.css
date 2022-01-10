@@ -1,12 +1,17 @@
 .whitesmoke{
     background-color: whitesmoke;
-    width: 100%;
+    max-width: 100%;
     transition: transform 0.5s;
 }
 
 .navbar-open{
     transition: all 0.5s;
     transform: translateX(250px);
+}
+
+.navbar-container{
+    max-width: 1920px;
+    margin: auto;
 }
 
 .navbar-toggle{
@@ -42,6 +47,32 @@
     box-shadow: 0 6px 4px -4px rgb(0 0 0 / 15%);
 }
 
-.title-bar p{
-    height: 100%;
+.title-bar #logout-dropdown{
+    position: absolute;
+    right: 10px;
+}
+
+#dropdownMenuLink{
+    background-color: #a136bc;
+    outline: none;
+    border: none;
+}
+
+#dropdownMenuLink:active{
+    outline: none;
+    border: none;
+}
+
+#logout-dropdown .dropdown-menu{
+    left:-150px;
+}
+
+#dropdownMenuLink{
+    color: whitesmoke;
+}
+
+@media screen and (min-width:600px){
+    .navbar-open{
+        width: calc(100% - 250px);
+    }
 }
