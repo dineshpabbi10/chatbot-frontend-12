@@ -1,0 +1,36 @@
+.dashboard-container{
+    height: 800px;
+}
+.row-content{
+    padding: 10px;
+    justify-content: space-around;
+}
+
+.card{
+    box-shadow: 0 6px 10px -4px rgb(0 0 0 / 15%);
+    border-radius: 12px;
+}
+
+.card-title{
+    color: gray;
+}
+
+.card-icon-purple{
+    color: rgb(187, 136, 187);
+}
+
+.card-icon-yellow{
+    color: rgb(240, 232, 118);
+}
+
+.card-icon-orange{
+    color: rgb(206, 158, 131);
+}
+
+.card-icon-green{
+    color: rgb(136, 187, 144);
+}
+.mini-card{
+    width: 350px;
+    margin-bottom: 10px;
+}

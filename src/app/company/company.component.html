@@ -1,13 +1,13 @@
 <app-sidebar [sidebarOpen] = "sidebarOpen"></app-sidebar>
-<div class="whitesmoke">
+<div class="whitesmoke" [ngClass]="{'navbar-open' : sidebarOpen}" >
 
-    <div class="row-container">
+    <div>
             <button class="navbar-toggle" (click)="toggleSidebar()"><i class="ic fa fa-bars"></i></button>
             <div class="title-bar">{{getTitle()}}</div>
-            <div style="padding: 10px;">
+            <div >
                 <router-outlet></router-outlet>
             </div>
     </div>
-    
     <app-footer></app-footer>
 </div>
+
