@@ -1,9 +1,3 @@
-.row-content{
-    padding: 10px;
-    margin-bottom: 10px;
-    justify-content: space-around;
-}
-
 .card{
     box-shadow: 0 6px 10px -4px rgb(0 0 0 / 15%);
     border-radius: 12px;
@@ -27,18 +21,4 @@
 
 .card-icon-green{
     color: rgb(136, 187, 144);
-}
-.mini-card{
-    width: 350px;
-}
-
-.row-content .card{
-    margin-bottom: 10px;
-}
-
-@media screen and (max-width:600px) {
-    .mini-card{
-        width: 100%;
-        margin: 0px 15px;
-    }
 }
