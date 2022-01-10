@@ -23,6 +23,8 @@ export class CompanyComponent implements OnInit {
       return "Dashboard";
     }else if(this.router.url === "/company/quicklinks"){
       return "Quicklinks"
+    }else if (this.router.url ==="/company/domain"){
+      return "Domain"
     }
     return "Not Found";
   }
