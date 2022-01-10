@@ -1,5 +1,6 @@
 .row-content{
     padding: 10px;
+    margin-bottom: 10px;
     justify-content: space-around;
 }
 
@@ -29,5 +30,15 @@
 }
 .mini-card{
     width: 350px;
+}
+
+.row-content .card{
     margin-bottom: 10px;
+}
+
+@media screen and (max-width:600px) {
+    .mini-card{
+        width: 100%;
+        margin: 0px 15px;
+    }
 }

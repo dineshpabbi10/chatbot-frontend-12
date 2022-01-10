@@ -1,5 +1,5 @@
 .footer-container{
     height: 350px;
     width: 100%;
-    background-color: lightgray;
+    background: linear-gradient(to right, #7d4ac7 0%, #a733bb 100%);
 }
