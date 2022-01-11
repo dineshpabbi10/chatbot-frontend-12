@@ -11,6 +11,7 @@ const routes:Routes = [
       {path:'dashboard',loadChildren:()=>import("./dashboard/dashboard.module").then((m)=>m.DashboardModule)},
       {path:'quicklinks',loadChildren:()=>import("./quicklinks/quicklinks.module").then((m)=>m.QuicklinksModule)},
       {path:'domain',loadChildren:()=>import("./domain/domain.module").then(m=>m.DomainModule)},
+      {path:'reporting',loadChildren:()=>import("./reporting/reporting.module").then(m=>m.ReportingModule)},
       { path: '',   redirectTo: 'dashboard', pathMatch: 'full' }
     ]
   }
