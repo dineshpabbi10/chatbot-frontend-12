@@ -5,7 +5,7 @@ import { CompanyComponent } from './company.component';
 import { SidebarComponent } from './layout/sidebar/sidebar.component';
 import { HeaderComponent } from './layout/header/header.component';
 import { FooterComponent } from './layout/footer/footer.component';
-
+import { CommonImport } from '../common.imports';
 
 
 @NgModule({
@@ -17,7 +17,8 @@ import { FooterComponent } from './layout/footer/footer.component';
   ],
   imports: [
     CommonModule,
-    CompanyRoutingModule
+    CompanyRoutingModule,
+    CommonImport
   ]
 })
 export class CompanyModule { }

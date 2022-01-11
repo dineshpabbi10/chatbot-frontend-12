@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DomainComponent } from './domain.component';
 import { DomainRoutingModule } from './domain-routing.module';
-
+import { CommonImport } from '../../common.imports'
 
 
 @NgModule({
@@ -11,7 +11,8 @@ import { DomainRoutingModule } from './domain-routing.module';
   ],
   imports: [
     CommonModule,
-    DomainRoutingModule
+    DomainRoutingModule,
+    CommonImport
   ]
 })
 export class DomainModule { }
