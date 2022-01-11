@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 })
 export class CompanyComponent implements OnInit {
 
-  public sidebarOpen = false;
+  public sidebarOpen = true;
   constructor(private router:Router) { }
 
   ngOnInit(): void {
@@ -25,6 +25,8 @@ export class CompanyComponent implements OnInit {
       return "Quicklinks"
     }else if (this.router.url ==="/company/domain"){
       return "Domain"
+    }else if (this.router.url ==="/company/reporting"){
+      return "Reporting"
     }
     return "Not Found";
   }
