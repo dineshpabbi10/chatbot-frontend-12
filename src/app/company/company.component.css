@@ -1,7 +1,7 @@
 .whitesmoke{
     background-color: whitesmoke;
     max-width: 100%;
-    transition: transform 0.5s;
+    transition: all 0.5s;
 }
 
 .navbar-open{
@@ -73,6 +73,7 @@
 
 @media screen and (min-width:600px){
     .navbar-open{
+        transition: all 0.5s;
         width: calc(100% - 250px);
     }
 }
