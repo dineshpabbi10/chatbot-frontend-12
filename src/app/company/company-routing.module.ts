@@ -17,6 +17,7 @@ const routes: Routes = [
       { path: 'intents/create', loadChildren: () => import("./intents/create/create.module").then(m => m.CreateModule) },
       { path: 'entities', loadChildren: () => import("./entity/view/view.module").then(m => m.ViewModule) },
       { path: 'entities/view', loadChildren: () => import("./entity/view/view.module").then(m => m.ViewModule) },
+      { path: 'faq-upload',loadChildren:()=>import("./faq-upload/faq-upload.module").then(m=>m.FaqUploadModule)},
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' }
     ]
   }
