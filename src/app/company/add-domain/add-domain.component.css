@@ -45,3 +45,15 @@
   background: linear-gradient(to left, #7d4ac7 0%, #a733bb 100%);
   color: white;
 }
+
+.navigator-domain{
+  background: #a733bb;
+  margin-bottom: 10px;
+  color: white !important;
+  border: none;
+  outline: none;
+}
+
+.button-active {
+  background: #7d4ac7;
+}

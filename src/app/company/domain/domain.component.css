@@ -32,6 +32,18 @@
   color: rgb(136, 187, 144);
 }
 
+.navigator-domain{
+  background: #a733bb;
+  margin-bottom: 10px;
+  color: white !important;
+  border: none;
+  outline: none;
+}
+
+.button-active{
+  background: #7d4ac7;
+}
+
 .btn-padding {
   padding: 3px 9px 0px 0px;
 }

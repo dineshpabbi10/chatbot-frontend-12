@@ -1,4 +1,10 @@
 <div class="row">
+    <div class="btn-group" role="group" aria-label="Basic example">
+        <a [routerLinkActiveOptions]="{ exact: true }" [routerLink]="['/company/domain']" [routerLinkActive]="'button-active'" class="btn btn-secondary navigator-domain">View Domains</a>
+        <a [routerLinkActiveOptions]="{ exact: true }" [routerLink]="['/company/domain/create']" [routerLinkActive]="'button-active'" class="btn btn-secondary navigator-domain">Create Domain</a>
+        <a [routerLinkActiveOptions]="{ exact: true }" [routerLink]="['/company/intents/create']" [routerLinkActive]="'button-active'" class="btn btn-secondary navigator-domain">Create Intents</a>
+      </div>
+      
     <div class="col-md-11">
         <div class="card">
             <div class="card-body">
