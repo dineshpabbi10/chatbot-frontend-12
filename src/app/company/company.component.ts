@@ -39,6 +39,8 @@ export class CompanyComponent implements OnInit {
       return "Intents"
     } else if (this.router.url == "/company/intents/create") {
       return "Create Intents"
+    } else if(this.router.url == "/company/faq-upload"){
+      return "Upload FAQ"
     }
 
     return "Not Found";
