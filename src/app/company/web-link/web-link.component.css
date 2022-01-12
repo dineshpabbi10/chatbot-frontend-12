@@ -1,0 +1,17 @@
+.row {
+    margin: 10px;
+    justify-content: center;
+  }
+
+#sample{
+    margin-left: 10px;
+}
+
+.card {
+  box-shadow: 0 6px 10px -4px rgb(0 0 0 / 15%);
+  border-radius: 12px;
+}
+
+#infobar{
+    margin-top: 10px;
+}

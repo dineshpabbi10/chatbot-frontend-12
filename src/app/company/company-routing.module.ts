@@ -18,6 +18,7 @@ const routes: Routes = [
       { path: 'entities', loadChildren: () => import("./entity/view/view.module").then(m => m.ViewModule) },
       { path: 'entities/view', loadChildren: () => import("./entity/view/view.module").then(m => m.ViewModule) },
       { path: 'faq-upload',loadChildren:()=>import("./faq-upload/faq-upload.module").then(m=>m.FaqUploadModule)},
+      { path: 'web-link',loadChildren:()=>import("./web-link/web-link.module").then(m=>m.WebLinkModule)},
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' }
     ]
   }
