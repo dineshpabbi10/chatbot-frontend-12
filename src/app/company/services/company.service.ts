@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpEventType, HttpRequest, HttpErrorResponse, HttpEvent } from '@angular/common/http';
-import { environment } from '../../environments/environment.prod';
+import { environment } from '../../../environments/environment.prod';
 import { Observable, throwError } from 'rxjs';
 import { Router } from '@angular/router';
+
 
 @Injectable({
   providedIn: 'root'
 })
-export class CommonService {
+export class CompanyService {
 
   constructor(private httpClient: HttpClient) { }
 
@@ -34,21 +35,12 @@ export class CommonService {
       'Something bad happened; please try again later.');
   }
 
-  signup(data: any): Observable<any> {
-    return this.httpClient.post<any>(environment.endPoint + "registration/company/", data)
-      .pipe()
+  getDomainList(): Observable<any> {
+    return this.httpClient.get<any>(environment.endPoint + "domain").pipe()
   }
 
-  login(data: any): Observable<any> {
-    return this.httpClient.post<any>(environment.endPoint + "login", data).pipe()
-  }
-
-  countriesList(): Observable<any> {
-    return this.httpClient.get<any>(environment.endPoint + "api/country").pipe()
-  }
-
-  logout(data: any) {
-    return this.httpClient.post<any>(environment.endPoint + "api/logout/", data).pipe()
+  createDomain(data: any): Observable<any> {
+    return this.httpClient.post<any>(environment.endPoint + "domain", data).pipe()
   }
 
 

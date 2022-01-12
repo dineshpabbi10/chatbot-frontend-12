@@ -39,10 +39,12 @@ export class LoginComponent implements OnInit {
       if (data.status) {
         this.toastr.success(data.message, 'SUCCESS')
         if (data.data.role == "company") {
-          localStorage.setItem("company_token", JSON.stringify(data.data))
+          localStorage.setItem("data", JSON.stringify(data.data))
+          localStorage.setItem("company_token", data.data.access)
           this.router.navigate(['/company'])
         }
         else if (data.data.role == "agent") {
+          localStorage.set("data", JSON.stringify(data.data))
           localStorage.setItem("agent_token", JSON.stringify(data.data))
           this.router.navigate(['/agent'])
         }

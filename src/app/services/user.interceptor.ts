@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 @Injectable()
 export class UserInterceptor implements HttpInterceptor {
 
-  token: any = localStorage.getItem('user_token')
+  data = localStorage.getItem('data')
   constructor(private router: Router) { }
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
@@ -25,7 +25,8 @@ export class UserInterceptor implements HttpInterceptor {
       return next.handle(request);
     }
 
-    request = request.clone({ headers: request.headers.set('x-access-token', localStorage.getItem('tokenTullius') || '') });
+
+    request = request.clone({ headers: request.headers.set('Authorization', 'Bearer ' + localStorage.getItem('company_token')) });
 
 
     return next.handle(request);

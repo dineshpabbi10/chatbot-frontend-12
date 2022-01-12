@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CompanyService } from '../services/company.service'
 
 @Component({
   selector: 'app-domain',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DomainComponent implements OnInit {
 
-  constructor() { }
+  constructor(private CompanyService: CompanyService) { }
 
   ngOnInit(): void {
+    this.getDomainList()
+  }
+
+  getDomainList() {
+    this.CompanyService.getDomainList().subscribe(data => {
+      console.log(data)
+    })
   }
 
 }
