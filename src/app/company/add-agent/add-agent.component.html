@@ -1,0 +1,130 @@
+<div class="row">
+  <div class="col-md-11">
+    <div class="card" id="add-agent-card">
+      <div class="left">
+        <div id="btn-group-container">
+          <button type="button" class="btn btn-light selected">
+            New Agent
+          </button>
+          <button type="button" class="btn btn-light">All Agent</button>
+          <button type="button" class="btn btn-light">Invited Agent</button>
+        </div>
+      </div>
+
+      <div class="right">
+        <div class="card" id="container-card-right">
+          <div class="card-body">
+            <div class="card-title">
+              All Agents<br />
+              <a href="">Download Chat History</a>
+            </div>
+            <!-- Form -->
+            <div class="row">
+              <div class="col-lg-6 col-md-12 col-xs-12">
+                <div class="form-group">
+                  <label for="domain-select">From Date</label>
+                  <input
+                    type="date"
+                    class="form-control"
+                    id="message-input"
+                    aria-describedby="emailHelp"
+                    placeholder="Message"
+                  />
+                  <small id="emailHelp" class="form-text text-muted"
+                    >Select starting date of agent</small
+                  >
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-12 col-xs-12">
+                <div class="form-group">
+                  <label for="message-input">To Date</label>
+                  <input
+                    type="date"
+                    class="form-control"
+                    id="message-input"
+                    aria-describedby="emailHelp"
+                    placeholder="Message"
+                  />
+                  <small id="emailHelp" class="form-text text-muted"
+                    >Select end date of agent</small
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              <!-- Table -->
+              <div class="card">
+                <div class="card-body" id="table-container">
+                  <div class="card-title">View All Agents 
+                    <div class="form-group">
+                
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="message-input"
+                          aria-describedby="emailHelp"
+                          placeholder="Search Agent"
+                        />
+                       
+                      </div>
+                  </div>
+                  <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">First</th>
+                        <th scope="col">Last</th>
+                        <th scope="col">Handle</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row">1</th>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">2</th>
+                        <td>Jacob</td>
+                        <td>Thornton</td>
+                        <td>@fat</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">3</th>
+                        <td>Larry</td>
+                        <td>the Bird</td>
+                        <td>@twitter</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <nav aria-label="Page navigation example">
+                    <ul class="pagination">
+                      <li class="page-item">
+                        <a class="page-link" href="#">Previous</a>
+                      </li>
+                      <li class="page-item">
+                        <a class="page-link" href="#">1</a>
+                      </li>
+                      <li class="page-item">
+                        <a class="page-link" href="#">2</a>
+                      </li>
+                      <li class="page-item">
+                        <a class="page-link" href="#">3</a>
+                      </li>
+                      <li class="page-item">
+                        <a class="page-link" href="#">Next</a>
+                      </li>
+                    </ul>
+                  </nav>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
