@@ -31,3 +31,36 @@
 .card-icon-green {
   color: rgb(136, 187, 144);
 }
+
+.quicklinks-warning {
+  margin-top: 5px;
+}
+
+#quicklinks-list {
+  overflow-y: scroll;
+  height: 70px;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+#quicklinks-list > .quicklinks-list-item:nth-of-type(odd) {
+  background-color: #e9e9f9;
+}
+
+.quicklinks-list-item {
+  width: 100%;
+  background-color: white;
+  color: gray;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  margin: 0;
+}
+
+.quicklinks-list-item svg {
+  cursor: pointer;
+  color: red;
+}
