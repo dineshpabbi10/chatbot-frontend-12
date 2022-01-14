@@ -10,6 +10,9 @@ import { Router } from '@angular/router';
 })
 export class CompanyService {
 
+  // quicklinks array : to preserve entered values
+  private quickLinks: string[] = []
+
   constructor(private httpClient: HttpClient) { }
 
   httpOptions = {
@@ -42,6 +45,23 @@ export class CompanyService {
   createDomain(data: any): Observable<any> {
     return this.httpClient.post<any>(environment.endPoint + "domain", data).pipe()
   }
+
+  addQuickLink(link:string):void{
+    this.quickLinks.push(link);
+  }
+
+  getQuickLinks():string[]{
+    return this.quickLinks;
+  }
+
+  removeQuickLink(index:number):void{
+    this.quickLinks.splice(index,1);
+  }
+
+  clearQuickLink():void{
+    this.quickLinks = [];
+  }
+
 
 
 }
