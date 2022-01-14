@@ -32,11 +32,11 @@
   color: rgb(136, 187, 144);
 }
 
-.quicklinks-warning{
+.quicklinks-warning {
   margin-top: 5px;
 }
 
-#quicklinks-list{
+#quicklinks-list {
   overflow-y: scroll;
   height: 70px;
   border: 1px solid lightgray;
@@ -46,11 +46,11 @@
   flex-wrap: wrap;
 }
 
-#quicklinks-list > .quicklinks-list-item:nth-of-type(odd){
-  background-color: #e9e9f9 ;
+#quicklinks-list > .quicklinks-list-item:nth-of-type(odd) {
+  background-color: #e9e9f9;
 }
 
-.quicklinks-list-item{
+.quicklinks-list-item {
   width: 100%;
   background-color: white;
   color: gray;
@@ -60,7 +60,7 @@
   margin: 0;
 }
 
-.quicklinks-list-item svg{
+.quicklinks-list-item svg {
   cursor: pointer;
   color: red;
 }
