@@ -17,10 +17,12 @@ const routes: Routes = [
       { path: 'intents/create', loadChildren: () => import("./intents/create/create.module").then(m => m.CreateModule) },
       { path: 'entities', loadChildren: () => import("./entity/view/view.module").then(m => m.ViewModule) },
       { path: 'entities/view', loadChildren: () => import("./entity/view/view.module").then(m => m.ViewModule) },
-      { path: 'faq-upload',loadChildren:()=>import("./faq-upload/faq-upload.module").then(m=>m.FaqUploadModule)},
-      { path: 'web-link',loadChildren:()=>import("./web-link/web-link.module").then(m=>m.WebLinkModule)},
-      { path: 'add-agent',loadChildren:()=>import("./add-agent/add-agent.module").then(m=>m.AddAgentModule)},
-      { path: '', redirectTo: 'dashboard', pathMatch: 'full' }
+      { path: 'faq-upload', loadChildren: () => import("./faq-upload/faq-upload.module").then(m => m.FaqUploadModule) },
+      { path: 'web-link', loadChildren: () => import("./web-link/web-link.module").then(m => m.WebLinkModule) },
+      { path: 'add-agent', loadChildren: () => import("./add-agent/add-agent.module").then(m => m.AddAgentModule) },
+      { path: 'agents/add', loadChildren: () => import("./agents/add/add.module").then(m => m.AddModule) },
+      { path: 'agents', loadChildren: () => import("./agents/list/list.module").then(m => m.ListModule) },
+      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
     ]
   }
 ];
