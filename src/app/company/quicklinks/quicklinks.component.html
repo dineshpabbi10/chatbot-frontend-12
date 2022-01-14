@@ -32,7 +32,7 @@
                         <input type="text" class="form-control" id="quicklinks" [formControl] = "quickLinkText" aria-describedby="emailHelp" placeholder="Quicklink">
                         <small id="emailHelp" class="form-text text-muted">Example: how are glacier caves formed?</small>
                         <button [disabled]="quickLinkText.invalid" (click)="addQuickLink()" class="btn btn-success">Add</button>
-                        <button style="margin-left: 5px;" (click)="companyService.clearQuickLink()" class="btn btn-success">Clear</button>
+                        <button style="margin-left: 5px;" (click)="companyService.clearQuickLink()" class="btn btn-success">Clear All</button>
                       </div>
                      
                           
