@@ -9,7 +9,7 @@ export interface Environment {
 
 
 export const DEV: Environment = {
-  endPoint: 'http://49.50.97.8:8000/'
+  endPoint: 'http://34.131.139.183:8000/'
 }
 
 export const environment: Environment = DEV;

@@ -17,7 +17,9 @@ const routes: Routes = [
       { path: 'register', loadChildren: () => import('./register/register.module').then((m) => m.RegisterModule) },
       { path: 'terms-and-conditions', loadChildren: () => import('./terms-and-conditions/terms-and-conditions.module').then((m) => m.TermsAndConditionsModule) },
       { path: 'privacy-policy', loadChildren: () => import('./privacy-policy/privacy-policy.module').then((m) => m.PrivacyPolicyModule) },
-      { path: '', redirectTo:'home' }
+      { path: '', redirectTo: 'home' },
+      { path: 'password/forget', loadChildren: () => import('./forget-password/forget-password.module').then((m) => m.ForgetPasswordModule) },
+      { path: 'password/reset', loadChildren: () => import('./reset-password/reset-password.module').then((m) => m.ResetPasswordModule) }
     ],
   }
 ];
