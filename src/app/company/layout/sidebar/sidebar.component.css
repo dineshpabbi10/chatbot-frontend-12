@@ -47,9 +47,21 @@
     font-size: large;
 }
 
-.nav-container li:hover{
+.nav-container span{
+    transition: all 0.3s;
+}
+
+.nav-container span:hover{
     color: purple;
     opacity: 1;
+}
+
+.nav-container-child{
+    padding-left: 40px;
+}
+
+.nav-container-child li{
+    list-style-type: disc;
 }
 
 .active{
