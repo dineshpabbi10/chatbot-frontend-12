@@ -21,7 +21,7 @@ export class UserInterceptor implements HttpInterceptor {
     if (this.router.url == "/login") {
       return next.handle(request);
     }
-    if (this.router.url == "/signup") {
+    if (this.router.url == "/register") {
       return next.handle(request);
     }
 

@@ -22,20 +22,9 @@
     flex-wrap: wrap;
 }
 
-.left{
-    width: 200px;
-}
-
-#btn-group-container{
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    margin-top: 20px;
-}
-
 #btn-group-container button{
     margin-bottom: 10px;
-    background-color: transparent;
+    background: linear-gradient(to right, #7d4ac7 0%, #a733bb 100%);
 }
 
 .selected{
@@ -44,12 +33,10 @@
 }
 
 .right{
-    width: calc(100% - 200px);
+    width: calc(100%);
 }
 
 .right #container-card-right{
-    border-top-left-radius: 0px;
-    border-bottom-left-radius: 0px;
     box-shadow: none
 }
 
