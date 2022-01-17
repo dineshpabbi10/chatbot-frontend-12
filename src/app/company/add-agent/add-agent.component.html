@@ -1,56 +1,26 @@
 <div class="row">
   <div class="col-md-11">
     <div class="card" id="add-agent-card">
-      <div class="left">
-        <div id="btn-group-container">
-          <button type="button" class="btn btn-light selected">
-            New Agent
-          </button>
-          <button type="button" class="btn btn-light">All Agent</button>
-          <button type="button" class="btn btn-light">Invited Agent</button>
-        </div>
-      </div>
-
       <div class="right">
         <div class="card" id="container-card-right">
           <div class="card-body">
             <div class="card-title">
               All Agents<br />
               <a href="">Download Chat History</a>
+              <div id="btn-group-container">
+                <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Agent Type
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <a class="dropdown-item" href="#">New Agent</a>
+                  <a class="dropdown-item" href="#">All Agent</a>
+                  <a class="dropdown-item" href="#">Invited Agent</a>
+                </div>
+              </div>
+              </div>
             </div>
             <!-- Form -->
-            <div class="row">
-              <div class="col-lg-6 col-md-12 col-xs-12">
-                <div class="form-group">
-                  <label for="domain-select">From Date</label>
-                  <input
-                    type="date"
-                    class="form-control"
-                    id="message-input"
-                    aria-describedby="emailHelp"
-                    placeholder="Message"
-                  />
-                  <small id="emailHelp" class="form-text text-muted"
-                    >Select starting date of agent</small
-                  >
-                </div>
-              </div>
-              <div class="col-lg-6 col-md-12 col-xs-12">
-                <div class="form-group">
-                  <label for="message-input">To Date</label>
-                  <input
-                    type="date"
-                    class="form-control"
-                    id="message-input"
-                    aria-describedby="emailHelp"
-                    placeholder="Message"
-                  />
-                  <small id="emailHelp" class="form-text text-muted"
-                    >Select end date of agent</small
-                  >
-                </div>
-              </div>
-            </div>
           </div>
           <ul class="list-group list-group-flush">
             <li class="list-group-item">
