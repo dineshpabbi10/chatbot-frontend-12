@@ -51,5 +51,9 @@ export class CommonService {
     return this.httpClient.post<any>(environment.endPoint + "api/logout/", data).pipe()
   }
 
+  getAllPricingPlans() {
+    return this.httpClient.get<any>(environment.endPoint + "api/pricing").pipe()
+  }
+
 
 }
