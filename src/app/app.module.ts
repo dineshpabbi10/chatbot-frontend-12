@@ -5,6 +5,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {
+  NgxUiLoaderModule,
+  NgxUiLoaderConfig,
+  SPINNER,
+  POSITION,
+  PB_DIRECTION,
+} from "ngx-ui-loader";
 
 @NgModule({
   declarations: [
@@ -14,7 +21,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    NgxUiLoaderModule
   ],
   providers: [UserInterceptor, { provide: HTTP_INTERCEPTORS, useClass: UserInterceptor, multi: true }],
   bootstrap: [AppComponent]
