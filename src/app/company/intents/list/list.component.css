@@ -36,4 +36,7 @@
     background: linear-gradient(to left, #7d4ac7 0%, #a733bb 100%);
     color: white;
   }
-  
+
+#intent-table-container{
+    overflow-x:scroll
+}

@@ -49,6 +49,14 @@ export class CompanyService {
     return this.httpClient.post<any>(environment.endPoint + "domain", data).pipe()
   }
 
+  getIntentList(): Observable<any> {
+    return this.httpClient.get<any>(environment.endPoint+"intent");
+  }
+
+  createIntent(data:any): Observable<any> {
+    return this.httpClient.post<any>(environment.endPoint+"intent",data);
+  }
+
   addQuickLink(link:string):void{
     this.quickLinks.push(link);
   }
