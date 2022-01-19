@@ -1,0 +1,39 @@
+.row {
+    margin: 10px;
+    justify-content: center;
+  }
+  
+  .navigator-domain {
+    background: white;
+    margin-bottom: 10px;
+    color: black;
+    border: none;
+    outline: none;
+    box-shadow: 0 6px 10px -4px rgb(0 0 0 / 15%);
+    border-left: 0.5px solid lightgray;
+  }
+  
+  .button-active {
+    background: #7d4ac7;
+    color: white;
+  }
+  
+  .card {
+    box-shadow: 0 6px 10px -4px rgb(0 0 0 / 15%);
+    border-radius: 12px;
+  }
+  
+  .btn-padding {
+    padding: 3px 9px 0px 0px;
+  }
+  
+  .btn-style {
+    background: linear-gradient(to right, #7d4ac7 0%, #a733bb 100%);
+    color: white;
+  }
+  
+  .btn-style:hover {
+    background: linear-gradient(to left, #7d4ac7 0%, #a733bb 100%);
+    color: white;
+  }
+  

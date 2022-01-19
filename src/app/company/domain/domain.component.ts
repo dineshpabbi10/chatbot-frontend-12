@@ -20,7 +20,11 @@ export class DomainComponent implements OnInit {
 
   getDomainList() {
     this.domainsLoading = true;
-    this.CompanyService.getDomainList().subscribe(data => {
+    this.CompanyService.getDomainList()
+    .pipe(
+      
+    )
+    .subscribe(data => {
       this.domainsList = data.data;
       this.domainsLoading = false;
     })

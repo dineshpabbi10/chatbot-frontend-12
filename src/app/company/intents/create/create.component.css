@@ -3,14 +3,8 @@
   justify-content: center;
 }
 
-.navigator-domain {
-  background: white;
-  margin-bottom: 10px;
-  color: black;
-  border: none;
-  outline: none;
-  box-shadow: 0 6px 10px -4px rgb(0 0 0 / 15%);
-  border-left: 0.5px solid lightgray;
+#title-small-text{
+  color: gray;
 }
 
 .button-active {
@@ -35,4 +29,33 @@
 .btn-style:hover {
   background: linear-gradient(to left, #7d4ac7 0%, #a733bb 100%);
   color: white;
+}
+
+#quicklinks-list {
+  overflow-y: scroll;
+  height: 70px;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+#quicklinks-list > .quicklinks-list-item:nth-of-type(odd) {
+  background-color: #e9e9f9;
+}
+
+.quicklinks-list-item {
+  width: 100%;
+  background-color: white;
+  color: gray;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  margin: 0;
+}
+
+.quicklinks-list-item svg {
+  cursor: pointer;
+  color: red;
 }
