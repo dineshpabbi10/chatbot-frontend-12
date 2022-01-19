@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import { CommonImport } from '../../../common.imports';
 import { CreateRoutingModule } from './create-routing.module';
 import { CreateComponent } from './create.component';
 
@@ -11,7 +11,8 @@ import { CreateComponent } from './create.component';
   ],
   imports: [
     CommonModule,
-    CreateRoutingModule
+    CreateRoutingModule,
+    CommonImport
   ]
 })
 export class CreateModule { }
