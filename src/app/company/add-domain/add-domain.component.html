@@ -3,71 +3,39 @@
     <div class="card">
       <div class="card-body">
         <div class="card-title">Create Domains</div>
-        <!-- Form -->
-        <div class="row">
-          <div class="col-md-1"></div>
-          <div class="col-md-7">
-            <p
-              class="btn btn-secondary btn-style"
-              [routerLink]="['/company/intents/create']"
-              [routerLinkActive]="'active'"
-            >
-              <span class="fa fa-plus btn-padding"></span>Create Intents
-            </p>
 
-            <p class="btn btn-secondary btn-style" style="margin-left: 20px">
-              <span class="fa fa-eye btn-padding"></span>View Entity
-            </p>
-          </div>
+        <label for="basic-url">Enter Domain</label>
+        <div class="input-group mb-3">
+          <input
+            type="text"
+            class="form-control"
+            id="basic-url"
+            aria-describedby="basic-addon3"
+            placeholder="Example : Insurance, Health"
+            [formControl]="domainName"
+          />
+
+          <div class="input-group-append">
+          <button
+            [disabled]="domainName.invalid"
+            (click)="createDomain()"
+            type="button"
+            class="btn btn-success"
+          >
+            Submit
+          </button>
+        </div>
         </div>
 
-        <!-- Table -->
-        <div class="card">
-          <div class="card-body">
-            <div class="card-title">View Added Quicklinks</div>
-            <table class="table table-striped">
-              <thead>
-                <tr>
-                  <th scope="col">#</th>
-                  <th scope="col">First</th>
-                  <th scope="col">Last</th>
-                  <th scope="col">Handle</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <th scope="row">1</th>
-                  <td>Mark</td>
-                  <td>Otto</td>
-                  <td>@mdo</td>
-                </tr>
-                <tr>
-                  <th scope="row">2</th>
-                  <td>Jacob</td>
-                  <td>Thornton</td>
-                  <td>@fat</td>
-                </tr>
-                <tr>
-                  <th scope="row">3</th>
-                  <td>Larry</td>
-                  <td>the Bird</td>
-                  <td>@twitter</td>
-                </tr>
-              </tbody>
-            </table>
-            <nav aria-label="Page navigation example">
-              <ul class="pagination">
-                <li class="page-item">
-                  <a class="page-link" href="#">Previous</a>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item">
-                  <a class="page-link" href="#">Next</a>
-                </li>
-              </ul>
-            </nav>
+        <div
+          *ngIf="domainName.invalid && (domainName.dirty || domainName.touched)"
+          class="col-xs-12 col-md-12 alert alert-danger domainName-warning"
+        >
+          <div *ngIf="domainName.errors?.['required']">
+            Domain Name field is required
+          </div>
+          <div *ngIf="domainName.errors?.['whitespace']">
+            DomainName Input only has whitespace characters
           </div>
         </div>
       </div>

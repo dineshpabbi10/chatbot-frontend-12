@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { QuicklinksComponent } from './quicklinks.component';
 import { QuicklinksRoutingModule } from './quicklinks-routing.module';
-import { ReactiveFormsModule } from '@angular/forms';
+import { CommonImport } from 'src/app/common.imports';
 
 
 
@@ -13,7 +13,7 @@ import { ReactiveFormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     QuicklinksRoutingModule,
-    ReactiveFormsModule
+    CommonImport
   ]
 })
 export class QuicklinksModule { }

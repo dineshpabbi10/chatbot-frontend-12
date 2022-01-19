@@ -5,6 +5,7 @@ import { DomainRoutingModule } from './domain-routing.module';
 import { CommonImport } from '../../common.imports'
 import { AddDomainModule } from '../add-domain/add-domain.module';
 import { CreateModule } from '../entity/create/create.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -14,7 +15,7 @@ import { CreateModule } from '../entity/create/create.module';
   imports: [
     CommonModule,
     DomainRoutingModule,
-    CommonImport
+    CommonImport,
   ]
 })
 export class DomainModule { }
