@@ -13,9 +13,31 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class PricingComponent implements OnInit {
 
+  plans = []
+
   constructor(private formBuilder: FormBuilder, private CommonService: CommonService, private toastr: ToastrService, private ngxService: NgxUiLoaderService, public router: Router) { }
 
   ngOnInit(): void {
+    this.getPlans()
+  }
+
+  getPlans() {
+    this.ngxService.start()
+    this.CommonService.getAllPricingPlans().subscribe(data => {
+      if (data.status) {
+        this.plans = data.data
+
+        this.ngxService.stop()
+        return
+      }
+      this.ngxService.stop()
+      this.toastr.error(data.message, "ERROR")
+    })
+  }
+
+  choosePackage(planDetails: any) {
+    // console.log(planDetails)
+    return
   }
 
 }

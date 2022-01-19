@@ -24,6 +24,9 @@ export class UserInterceptor implements HttpInterceptor {
     if (this.router.url == "/register") {
       return next.handle(request);
     }
+    if (this.router.url == "/pricing") {
+      return next.handle(request)
+    }
 
 
 
