@@ -1,0 +1,18 @@
+#price-listing{
+    min-width: 0px;
+    text-align: start !important;
+}
+
+#price-listing-container{
+    display: flex;
+    justify-content: center;
+}
+
+.price{
+    text-align: center;
+}
+
+#choose-plan-button{
+    display: flex;
+    justify-content: center;
+}
