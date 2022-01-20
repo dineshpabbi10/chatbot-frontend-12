@@ -45,7 +45,11 @@ export class CompanyComponent implements OnInit {
       return "Web Link Integration"
     }else if(this.router.url == "/company/add-agent"){
       return "Add New Agent"
-    }
+    }else if (this.router.url == "/company/entities") {
+      return "View Entities"
+    } else if (this.router.url == "/company/entities/create") {
+      return "Create Entities"
+    } 
 
     return "Not Found";
   }

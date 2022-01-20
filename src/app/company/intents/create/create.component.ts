@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { CompanyService } from '../../services/company.service';
@@ -33,15 +34,17 @@ export class CreateComponent implements OnInit {
 
   constructor(
     public companyService: CompanyService,
-    private toaster: ToastrService
+    private toaster: ToastrService,
+    private loader : NgxUiLoaderService
   ) {}
 
   ngOnInit(): void {
+    this.loader.start("getDomainsList");
     this.companyService
       .getDomainList()
-      .pipe()
       .subscribe((data) => {
         this.domainsList = data.data;
+        this.loader.stop("getDomainsList");
       });
   }
 
@@ -92,12 +95,7 @@ export class CreateComponent implements OnInit {
   }
 
   submitForm() {
-    console.log({
-      "intent":this.intentName.value,
-      "user_say":this.companyService.getUserMessages(),
-      "response":this.companyService.getResponseMessages(),
-      "domain":this.selectedDomain.value
-    });
+    this.loader.start("submitForm");
     if (
       this.intentName.valid &&
       this.selectedDomain.valid &&
@@ -118,6 +116,7 @@ export class CreateComponent implements OnInit {
           this.companyService.clearResponseMessages();
           this.companyService.clearUserMessages();
         }
+        this.loader.stop("submitForm");
       })
     }else{
       this.toaster.error("Error sending request, Data entered in form invalid or missing");

@@ -15,6 +15,7 @@ export class CompanyService {
   private quickLinks: string[] = [];
   private userMessages: string[] = [];
   private responseMessages: string[] = [];
+  private entityWords : string [] = [];
 
   constructor(private httpClient: HttpClient) { }
 
@@ -55,6 +56,14 @@ export class CompanyService {
 
   createIntent(data:any): Observable<any> {
     return this.httpClient.post<any>(environment.endPoint+"intent",data);
+  }
+
+  getEntitiesList(): Observable<any> {
+    return this.httpClient.get<any>(environment.endPoint+"entity");
+  }
+
+  createEntity(data:any): Observable<any>{
+    return this.httpClient.post<any>(environment.endPoint+"entity",data);
   }
 
   addQuickLink(link:string):void{
@@ -104,6 +113,23 @@ export class CompanyService {
 
   clearUserMessages():void{
     this.userMessages = [];
+  }
+
+  //
+  addEntityWords(link:string):void{
+    this.entityWords.push(link);
+  }
+
+  getEntityWords():string[]{
+    return this.entityWords;
+  }
+
+  removeEntityWords(index:number):void{
+    this.entityWords.splice(index,1);
+  }
+
+  clearEntityWords():void{
+    this.entityWords = [];
   }
 
   checkDuplicateInArray(arrayVar:string[],valueVar:string){

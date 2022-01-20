@@ -43,21 +43,21 @@
             </div>
             <div class="row no-gutters mt-5">
                 <div class="col-lg-4 col-sm-12" *ngFor="let plan of plans">
-                    <div class="pricing-box text-center">
+                    <div class="pricing-box">
                         <div class="price-head mt-2 mb-2">{{ plan['subscription_name']}}</div>
                         <div class="price-blog pt-4 pb-4">
                             <div class="price"> <span class="currency">$</span><strong>{{ plan['price_monthly']
                                     }}/</strong><span class="month">month</span> </div>
                         </div>
-                        <div class="listing">
-                            <ul class="mt-5">
+                        <div id="price-listing-container" class="listing">
+                            <ul id="price-listing"class="mt-5">
                                 <li *ngFor="let planFeatures of plan['features']">
                                     <ng-container *ngIf="planFeatures['value']!=false;else elseTimes">
-                                        <span class="fa fa-check"></span>
+                                        <span class="fa fa-check"></span>&nbsp;
 
                                     </ng-container>
                                     <ng-template #elseTimes>
-                                        <span class="fa fa-times"></span>
+                                        <span class="fa fa-times"></span>&nbsp;
                                     </ng-template>
                                     <span class="time-of-year">
                                         {{ planFeatures['key']}}
@@ -141,8 +141,11 @@
                                 </li> -->
                             </ul>
                         </div>
-                        <a class="button grey mt-5" (click)="choosePackage(plan)">Choose
-                            Package</a>
+                        <div id="choose-plan-button">
+                            <a class="button grey mt-5 " (click)="choosePackage(plan)">Choose
+                                Package</a>
+                        </div>
+                       
                     </div>
                 </div>
                 <!-- <div class="col-lg-4 col-sm-12 r-mt3">

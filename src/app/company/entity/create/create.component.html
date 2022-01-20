@@ -1,1 +1,208 @@
-<p>create works!</p>
+<div class="row">
+  <div class="col-md-11">
+    <div class="card">
+      <div class="card-body">
+        <div class="card-title">
+          Creating New Entity<br />
+          <small id="title-small-text">
+            Entities are knowledge repositories used by the bot to provide
+            personalized and accurate responses
+          </small>
+          <br />
+          <button
+            type="button"
+            class="btn btn-primary"
+            data-toggle="modal"
+            data-target="#exampleModal"
+          >
+            Help
+          </button>
+        </div>
+
+        <!-- Form -->
+        <div class="row">
+          <!-- Intent Name -->
+          <div class="col-xs-12 col-md-12 col-lg-12">
+            <div class="form-group">
+              <label for="exampleInputEmail1">Entity Name</label>
+              <input
+                type="text"
+                class="form-control"
+                id="exampleInputEmail1"
+                aria-describedby="emailHelp"
+                placeholder="Enter Entity Name"
+                [formControl]="entityName"
+              />
+              <small id="emailHelp" class="form-text text-muted"
+                >Example of intents are underlined : Show me
+                <u>financial</u> news from <u>yesterday</u> .</small
+              >
+            </div>
+          </div>
+
+          <!-- User Messages List -->
+          <div class="col-xs-12 col-md-12 col-lg-6">
+            <div class="form-group">
+              <label for="exampleInputEmail1">Entity Words</label>
+              <div class="input-group">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Enter names for given entities"
+                  aria-label="Recipient's username"
+                  aria-describedby="basic-addon2"
+                  [formControl]="entityWord"
+                />
+                <div class="input-group-append">
+                  <button
+                    (click) ="addEntityWord()"
+                    [disabled]="entityWord.invalid"
+                    class="btn btn-success"
+                    type="button"
+                  >
+                    Add
+                  </button>
+                </div>
+              </div>
+
+              <small id="emailHelp" class="form-text text-muted"
+                >Click Add button to create new entity names.</small
+              >
+            </div>
+          </div>
+          <!-- List -->
+          <div class="col-xs-12 col-md-12 col-lg-6">
+            <div class="form-group">
+              <label for="message-input">Added Entity Words</label>
+              <div id="quicklinks-list">
+                <div
+                  class="quicklinks-list-item row"
+                  *ngFor="
+                    let message of companyService.getEntityWords();
+                    let i = index
+                  "
+                >
+                  <div class="col-md-11">{{ message }}</div>
+                  <div class="col-md-1">
+                    <svg
+                      (click)="companyService.removeEntityWords(i)"
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      fill="currentColor"
+                      class="bi bi-trash"
+                      viewBox="0 0 16 16"
+                    >
+                      <path
+                        d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"
+                      />
+                      <path
+                        fill-rule="evenodd"
+                        d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"
+                      />
+                      `
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Related Domain -->
+          <div class="col-xs-12 col-md-12 col-lg-6">
+            <div class="form-group">
+              <label for="exampleInputEmail1">User Message</label>
+              <input
+                type="text"
+                class="form-control"
+                id="exampleInputEmail1"
+                aria-describedby="emailHelp"
+                placeholder="Enter user message"
+                [formControl]="userMessage"
+              />
+              <small id="emailHelp" class="form-text text-muted"
+                >Example : Show me financial news from yesterday.</small
+              >
+            </div>
+          </div>
+
+          <!-- Response to User List -->
+          <div class="col-xs-12 col-md-12 col-lg-6">
+            <div class="form-group">
+              <label for="exampleInputEmail1">Response to User</label>
+              <div class="input-group">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Enter message to be used as response"
+                  aria-label="Recipient's username"
+                  aria-describedby="basic-addon2"
+                  [formControl]="responseMessage"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="col-xs-12 col-md-12 col-lg-12">
+            <div class="form-group">
+              <label>Select Related Intent</label>
+              <select
+                [formControl]="selectedIntent"
+                class="custom-select"
+                size="3"
+              >
+                <option
+                  *ngFor="let intentsVar of intentList"
+                  [ngValue]="intentsVar.intent"
+                >
+                  {{ intentsVar.intent }}
+                </option>
+              </select>
+            </div>
+          </div>
+
+          <div class="col-xs-4 col-md-3 col-lg-2">
+            <div class="form-group">
+              <button [disabled]="form.invalid" (click)="submitForm()" type="button" class="btn btn-success">Submit</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  data-backdrop="false"
+  id="exampleModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Help</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <img id="help-image" src="../../../../assets/images/entity.png" />
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-style" data-dismiss="modal">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
