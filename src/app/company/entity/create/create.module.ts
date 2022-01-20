@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { CreateRoutingModule } from './create-routing.module';
 import { CreateComponent } from './create.component';
+import { CommonImport } from 'src/app/common.imports';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { CreateComponent } from './create.component';
   ],
   imports: [
     CommonModule,
-    CreateRoutingModule
+    CreateRoutingModule,
+    CommonImport
   ]
 })
 export class CreateModule { }

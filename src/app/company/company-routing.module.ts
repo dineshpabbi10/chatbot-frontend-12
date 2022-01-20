@@ -16,7 +16,7 @@ const routes: Routes = [
       { path: 'intents', loadChildren: () => import("./intents/list/list.module").then(m => m.ListModule) },
       { path: 'intents/create', loadChildren: () => import("./intents/create/create.module").then(m => m.CreateModule) },
       { path: 'entities', loadChildren: () => import("./entity/view/view.module").then(m => m.ViewModule) },
-      { path: 'entities/view', loadChildren: () => import("./entity/view/view.module").then(m => m.ViewModule) },
+      { path: 'entities/create', loadChildren: () => import("./entity/create/create.module").then(m => m.CreateModule) },
       { path: 'faq-upload', loadChildren: () => import("./faq-upload/faq-upload.module").then(m => m.FaqUploadModule) },
       { path: 'web-link', loadChildren: () => import("./web-link/web-link.module").then(m => m.WebLinkModule) },
       { path: 'add-agent', loadChildren: () => import("./add-agent/add-agent.module").then(m => m.AddAgentModule) },

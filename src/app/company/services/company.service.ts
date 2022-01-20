@@ -57,6 +57,14 @@ export class CompanyService {
     return this.httpClient.post<any>(environment.endPoint+"intent",data);
   }
 
+  getEntitiesList(): Observable<any> {
+    return this.httpClient.get<any>(environment.endPoint+"entity");
+  }
+
+  createEntity(data:any): Observable<any>{
+    return this.httpClient.post<any>(environment.endPoint+"entity",data);
+  }
+
   addQuickLink(link:string):void{
     this.quickLinks.push(link);
   }

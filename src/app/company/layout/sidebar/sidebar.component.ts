@@ -57,7 +57,7 @@ export class SidebarComponent implements OnInit {
       this.domainClass = false;
       this.entityClass = false;
       this.intentsClass = true;
-    }else if(url.includes("company/entity")){
+    }else if(url.includes("company/entities")){
       this.domainClass = false;
       this.entityClass = true;
       this.intentsClass = false;

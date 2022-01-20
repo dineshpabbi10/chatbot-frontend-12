@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { ViewRoutingModule } from './view-routing.module';
 import { ViewComponent } from './view.component';
+import { CommonImport } from 'src/app/common.imports';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { ViewComponent } from './view.component';
   ],
   imports: [
     CommonModule,
-    ViewRoutingModule
+    ViewRoutingModule,
+    CommonImport
   ]
 })
 export class ViewModule { }
