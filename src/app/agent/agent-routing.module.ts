@@ -3,10 +3,15 @@ import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { AgentComponent } from './agent.component';
 
-const routes:Routes=[
+
+const routes: Routes = [
   {
     path: '',
-    component: AgentComponent
+    component: AgentComponent,
+    children: [
+      { path: 'dashboard', loadChildren: () => import('./dashboard/dashboard.module').then((m) => m.DashboardModule) },
+      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+    ]
   }
 ]
 
@@ -16,6 +21,6 @@ const routes:Routes=[
     CommonModule,
     RouterModule.forChild(routes)
   ],
-  exports:[RouterModule]
+  exports: [RouterModule]
 })
 export class AgentRoutingModule { }
