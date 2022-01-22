@@ -31,3 +31,7 @@
 .card-icon-green{
     color: rgb(136, 187, 144);
 }
+
+#scrollable-card{
+    overflow-x: scroll;
+}

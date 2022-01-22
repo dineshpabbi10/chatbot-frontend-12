@@ -64,6 +64,10 @@ export class CompanyService {
     return this.httpClient.get<any>(environment.endPoint+"quick?domain="+domain);
   }
 
+  getReport(data:any):Observable<any>{
+    return this.httpClient.post<any>(environment.endPoint+"conversation",data);
+  }
+
   getIntentList(): Observable<any> {
     return this.httpClient.get<any>(environment.endPoint + 'intent');
   }

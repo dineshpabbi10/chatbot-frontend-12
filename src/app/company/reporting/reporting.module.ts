@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReportingComponent } from './reporting.component';
 import { ReportingRoutingModule } from './reporting-routing.module';
+import { CommonImport } from 'src/app/common.imports';
 
 
 
@@ -11,7 +12,8 @@ import { ReportingRoutingModule } from './reporting-routing.module';
   ],
   imports: [
     CommonModule,
-    ReportingRoutingModule
+    ReportingRoutingModule,
+    CommonImport
   ]
 })
 export class ReportingModule { }
