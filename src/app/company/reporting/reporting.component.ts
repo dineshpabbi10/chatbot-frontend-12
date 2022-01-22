@@ -9,42 +9,41 @@ import { CompanyService } from '../services/company.service';
 @Component({
   selector: 'app-reporting',
   templateUrl: './reporting.component.html',
-  styleUrls: ['./reporting.component.css']
+  styleUrls: ['./reporting.component.css'],
 })
 export class ReportingComponent implements OnInit {
+  public reportData: any[] = [];
 
-  public reportData : any[] = [];
+  public fromDate: FormControl = new FormControl(null, [Validators.required]);
 
-  public fromDate:FormControl = new FormControl(null,[
-    Validators.required,
-  ])
+  public toDate: FormControl = new FormControl(null, [Validators.required]);
 
-  public toDate:FormControl = new FormControl(null,[
-    Validators.required,
-  ])
+  constructor(
+    private companyService: CompanyService,
+    private loader: NgxUiLoaderService,
+    private toast: ToastrService
+  ) {}
 
-  constructor(private companyService:CompanyService,private loader:NgxUiLoaderService,private toast: ToastrService) { }
+  ngOnInit(): void {}
 
-  ngOnInit(): void {
-  }
-
-  submitForm(){
+  submitForm() {
     this.loader.start();
-    this.companyService.getReport({
-      "startdate":this.fromDate.value,
-      "enddate":this.toDate.value
-    }).pipe(
-      catchError(err=>{
-        this.toast.error(err.message);
-        return of(err.message);
+    this.companyService
+      .getReport({
+        startdate: this.fromDate.value,
+        enddate: this.toDate.value,
       })
-    ).subscribe(res=>{
-      if(res.status){
-        this.reportData = res.data;
-      }
-      this.loader.stop();
-    })
-
+      .pipe(
+        catchError((err) => {
+          this.toast.error(err.message);
+          return of(err.message);
+        })
+      )
+      .subscribe((res) => {
+        if (res.status) {
+          this.reportData = res.data;
+        }
+        this.loader.stop();
+      });
   }
-
 }

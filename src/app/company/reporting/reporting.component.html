@@ -29,10 +29,11 @@
                 aria-describedby="emailHelp"
                 placeholder="User"
                 readonly
-                [value] = "reportData.length"
+                [value]="reportData.length"
               />
               <small id="emailHelp" class="form-text text-muted"
-                >This box will show total users found under searched report</small
+                >This box will show total users found under searched
+                report</small
               >
             </div>
           </div>
@@ -52,7 +53,14 @@
               >
             </div>
           </div>
-          <button [disabled]="fromDate.invalid || toDate.invalid" (click)="submitForm()" type="button" class="btn btn-success">Submit</button>
+          <button
+            [disabled]="fromDate.invalid || toDate.invalid"
+            (click)="submitForm()"
+            type="button"
+            class="btn btn-success"
+          >
+            Submit
+          </button>
         </div>
 
         <!-- Table -->
@@ -74,16 +82,16 @@
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let rowData of reportData; let i = index;">
-                  <th scope="row">{{i}}</th>
-                  <td>{{rowData.date}}</td>
-                  <td>{{rowData.feedback}}</td>
-                  <td>{{rowData.user_id}}</td>
-                  <td>{{rowData.username}}</td>
-                  <td>{{rowData.email}}</td>
-                  <td>{{rowData.country}}</td>
-                  <td>{{rowData.state}}</td>
-                  <td>{{rowData.mobile}}</td>
+                <tr *ngFor="let rowData of reportData; let i = index">
+                  <th scope="row">{{ i }}</th>
+                  <td>{{ rowData.date }}</td>
+                  <td>{{ rowData.feedback }}</td>
+                  <td>{{ rowData.user_id }}</td>
+                  <td>{{ rowData.username }}</td>
+                  <td>{{ rowData.email }}</td>
+                  <td>{{ rowData.country }}</td>
+                  <td>{{ rowData.state }}</td>
+                  <td>{{ rowData.mobile }}</td>
                 </tr>
               </tbody>
             </table>
