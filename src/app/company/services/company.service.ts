@@ -68,6 +68,14 @@ export class CompanyService {
     return this.httpClient.post<any>(environment.endPoint+"conversation",data);
   }
 
+  getHumanAgents():Observable<any>{
+    return this.httpClient.get<any>(environment.endPoint+"api/human-agents");
+  }
+
+  createAgent(data:any):Observable<any>{
+    return this.httpClient.post<any>(environment.endPoint+"registration/human/",data);
+  }
+
   getIntentList(): Observable<any> {
     return this.httpClient.get<any>(environment.endPoint + 'intent');
   }
@@ -164,5 +172,14 @@ export class CompanyService {
     let isValid = control.value.length > 0 ? true : false;
     console.log(isValid);
     return isValid ? null : { arraySize: true };
-  }}
+  }};
+
+  passwordMatchValidator():ValidatorFn {
+    return (form:AbstractControl)=>{
+      const password = form.get('password1');
+      const confirmPassword = form.get('password2');
+      let isValid = password?.value === confirmPassword?.value;
+      return isValid ? null : {confirmPasswordError:true};
+    }
+  }
 }

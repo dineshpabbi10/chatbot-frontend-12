@@ -43,8 +43,10 @@ export class CompanyComponent implements OnInit {
       return "Upload FAQ"
     } else if(this.router.url == "/company/web-link"){
       return "Web Link Integration"
-    }else if(this.router.url == "/company/add-agent"){
+    }else if(this.router.url == "/company/agents/add"){
       return "Add New Agent"
+    }else if(this.router.url == "/company/agents"){
+      return "View Agents"
     }else if (this.router.url == "/company/entities") {
       return "View Entities"
     } else if (this.router.url == "/company/entities/create") {
