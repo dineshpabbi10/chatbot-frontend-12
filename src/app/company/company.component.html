@@ -1,5 +1,5 @@
 <app-sidebar [sidebarOpen]="sidebarOpen"></app-sidebar>
-<div class="whitesmoke" [ngClass]="{'navbar-open-container' : sidebarOpen}">
+<div class="whitesmoke" [ngClass]="{'navbar-open' : sidebarOpen}">
   <div>
     <button id="navbar-toggle-sidebar" class="navbar-toggle" [ngClass]="{'navbar-open-button' : sidebarOpen}" (click)="toggleSidebar()"><i class="ic fa fa-bars"></i></button>
     <div class="title-bar">
