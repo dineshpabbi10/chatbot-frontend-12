@@ -8,9 +8,20 @@
           <div class="col-md-6">
             <div class="form-group">
               <label for="domain-select">Select Domain Name*</label>
-              <select [formControl] = "selectedDomain" class="custom-select" id="domain-select" size="3">
+              <select *ngIf="domains.length > 0 ; else showNoDomainsAdded" [formControl] = "selectedDomain" class="custom-select" id="domain-select" size="3">
                 <option *ngFor="let domain of domains" [ngValue]="domain.domain">{{domain.domain}}</option>
               </select>
+              <ng-template #showNoDomainsAdded>
+                <input
+                type="text"
+                class="form-control"
+                id="quicklinks"
+                aria-describedby="emailHelp"
+                placeholder="User"
+                readonly
+                value="You need to create Domain before adding quicklink !"
+              />
+              </ng-template>
               <small id="emailHelp" class="form-text text-muted">Select one domain from the domain dropdown*</small>
             </div>
 
