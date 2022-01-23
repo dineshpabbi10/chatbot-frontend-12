@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FaqUploadComponent } from './faq-upload.component';
 import { FaqUploadRoutingModule } from './faq-upload-routing.module';
+import { CommonImport } from 'src/app/common.imports';
 
 
 
@@ -11,7 +12,8 @@ import { FaqUploadRoutingModule } from './faq-upload-routing.module';
   ],
   imports: [
     CommonModule,
-    FaqUploadRoutingModule
+    FaqUploadRoutingModule,
+    CommonImport
   ]
 })
 export class FaqUploadModule { }
