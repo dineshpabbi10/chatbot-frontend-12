@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonService } from '../services/common.service';
 import { ToastrService } from 'ngx-toastr'
@@ -13,9 +13,11 @@ import { CompanyService } from './services/company.service'
 export class CompanyComponent implements OnInit {
 
   public sidebarOpen = true;
+  public smallScreen:boolean = false;
   constructor(private formBuilder: FormBuilder, private CommonService: CommonService, private toastr: ToastrService, private ngxService: NgxUiLoaderService, public router: Router, private CompanyService: CompanyService) { }
 
   ngOnInit(): void {
+    this.smallScreen = window.innerWidth < 500;
   }
 
   toggleSidebar() {
@@ -70,6 +72,11 @@ export class CompanyComponent implements OnInit {
       }
       this.ngxService.stop()
     })
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize() {
+    this.smallScreen = window.innerWidth < 500;
   }
 
 }

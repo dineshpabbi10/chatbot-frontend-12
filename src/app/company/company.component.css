@@ -9,21 +9,10 @@
     transform: translateX(250px);
 }
 
-/* .navbar-open-container::after{
-    content: "";
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    opacity: 0.3;
-    top: 0px;
-    left: 0px;
-    background-color: black;
-} */
-
-/* .navbar-open-button{
+.navbar-open-button{
     color: black !important;
     background-color: white !important;
-} */
+}
 
 
 .navbar-container{
@@ -99,5 +88,18 @@
     .navbar-open{
         transition: all 0.5s;
         width: calc(100% - 250px);
+    }
+}
+
+@media screen and (max-width:500px) {
+    .navbar-open-container::after{
+        content: "";
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        opacity: 0.3;
+        top: 0px;
+        left: 0px;
+        background-color: black;
     }
 }
