@@ -91,7 +91,7 @@
     }
 }
 
-@media screen and (max-width:500px) {
+@media screen and (max-width:600px) {
     .navbar-open-container::after{
         content: "";
         position: absolute;

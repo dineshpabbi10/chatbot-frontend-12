@@ -76,7 +76,7 @@ export class CompanyComponent implements OnInit {
 
   @HostListener('window:resize', ['$event'])
   onResize() {
-    this.smallScreen = window.innerWidth < 500;
+    this.smallScreen = window.innerWidth < 600;
   }
 
 }
