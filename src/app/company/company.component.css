@@ -9,7 +9,7 @@
     transform: translateX(250px);
 }
 
-.navbar-open-container::after{
+/* .navbar-open-container::after{
     content: "";
     position: absolute;
     height: 100%;
@@ -18,12 +18,12 @@
     top: 0px;
     left: 0px;
     background-color: black;
-}
+} */
 
-.navbar-open-button{
+/* .navbar-open-button{
     color: black !important;
     background-color: white !important;
-}
+} */
 
 
 .navbar-container{
