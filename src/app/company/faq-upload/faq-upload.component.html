@@ -9,7 +9,7 @@
           <div class="row">
                 <div class="col-md-6 col-xs-12">
                     <div class="form-group">
-                        <label for="domain-select">Select Domain Name</label>
+                        <label for="domain-select">Select Domain Name*</label>
                         <select formControlName="selectedDomain" class="custom-select" id="domain-select" size="3">
                             <option *ngFor="let domains of domainsList" [ngValue]="domains.domain">{{domains.domain}}</option>
                         </select>
@@ -17,7 +17,7 @@
                       </div>
                 </div>
                 <div class="col-md-6 col-xs-12">
-                    <label for="domain-select">Select FAQ file to Upload</label>
+                    <label for="domain-select">Select FAQ file to Upload*</label>
                     <div class="form-group mb-3">
                         <div class="custom-file">
                           <input (change)="onFileSelect($event)" id="csv" name="csv" class="custom-file-input" type="file" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" />  
