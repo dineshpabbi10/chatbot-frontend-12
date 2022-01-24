@@ -22,6 +22,6 @@ jobs:
           cd chatbot-frontend-12
           echo "INSTALLING PROJECT DEPENDENCIES"
           npm install
-          echo "INSTALLING ANGULAR CLI"
+          echo "======INSTALLING ANGULAR CLI======="
           npm install -g @angular/cli 
           ng build
