@@ -1,0 +1,30 @@
+name: Deploy Dev
+on:
+  push:
+    branches:
+      - dinesh
+jobs:
+  deploy-front-end:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Use ssh action to run linux commands
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        password: ${{ secrets.PASSWORD }}
+        timeout: 600s
+        command_timeout: 20m
+        script: |
+          ls -al
+          cd /var/www/html
+          rm -rf chatbot-frontend-12
+          git clone https://${{ secrets.USER_NAME }}:${{ secrets.USER_TOKEN }}@github.com/dineshpabbi10/chatbot-frontend-12.git
+          cd chatbot-frontend-12
+          npm install
+          npm install -g @angular/cli 
+          ng build
+          mv  -v ./dist/chatbot-frontend/* ../../
+          cd ../../
+          rm -rf chatbot-frontend-12
+          ls -al
