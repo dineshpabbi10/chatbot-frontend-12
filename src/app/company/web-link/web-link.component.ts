@@ -57,7 +57,7 @@ export class WebLinkComponent implements OnInit {
   onSubmit() {
     this.loader.start();
     const formData = new FormData();
-    formData.append('domain', this.uploadForm.get('website')?.value);
+    formData.append('domain', "https://" + this.uploadForm.get('website')?.value);
     formData.append("domain_name",this.uploadForm.get('selectedDomain')?.value);
 
       this.companyService.generateScript(formData).pipe(
