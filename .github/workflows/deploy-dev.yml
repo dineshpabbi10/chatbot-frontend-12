@@ -10,6 +10,10 @@ jobs:
     - name: checkout Repository
       uses: actions/checkout@v2
 
+    - name : checkout branch
+      run: |
+        git checkout dinesh
+
     - name: setup node 14
       uses: actions/setup-node@v2
       with:
@@ -19,7 +23,6 @@ jobs:
     - name: install node dependencies
       run: |
         npm install
-        npm test
         npm install -g @angular/cli
     
     - name: generate production build
