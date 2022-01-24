@@ -27,3 +27,4 @@ jobs:
           mv  -v ./dist/chatbot-frontend/* ../../
           cd ../../
           rm -rf chatbot-frontend-12
+          ls -al
