@@ -68,7 +68,7 @@ export class WebLinkComponent implements OnInit {
       ).subscribe(res=>{
         if(res.status === true){
           this.toast.success("Script Generated Successfully");
-          this.printDiv(res.token);
+          this.printDiv(res.data.token);
           this.uploadForm.get('website')?.setValue(null);
           this.uploadForm.get('selectedDomain')?.setValue(null)
         }
