@@ -32,7 +32,6 @@ jobs:
         username: ${{ secrets.USERNAME }}
         password: ${{ secrets.PASSWORD }}
         timeout: 600s
-        rm: true
         command_timeout: 20m
-        source: "dist/*"
+        source: "./dist/chatbot-frontend/*"
         target: "/var/www/html"
