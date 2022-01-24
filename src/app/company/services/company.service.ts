@@ -101,6 +101,10 @@ export class CompanyService {
     const headers = new HttpHeaders({ 'enctype': 'multipart/form-data' });
     return this.httpClient.post<any>(environment.endPoint+"domaintokens",data);
   }
+  
+  getWebsiteTokens():Observable<any>{
+    return this.httpClient.get<any>(environment.endPoint+"domaintokens");
+  }
 
   addQuickLink(link: string): void {
     this.quickLinks.push(link);

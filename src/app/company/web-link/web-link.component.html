@@ -75,6 +75,44 @@
           </div>
         </div>
       </div>
+          <!-- Table -->
+          <div class="card">
+            <div id="intent-table-container" class="card-body">
+              <div class="card-title">View Added Entities</div>
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Website</th>
+                    <th scope="col">Domain Name</th>
+                    <th scope="col">Users</th>
+                    <th scope="col">User Info</th>
+                    <th scope="col">Port</th>
+                    <th scope="col">View Script</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let websiteVar of websiteList; let i = index;">
+                    <th scope="row">{{i}}</th>
+                    <td>{{websiteVar.domain}}</td>
+                    <td>{{websiteVar.domain_name}}</td>
+                    <td>
+                        {{websiteVar.user}}
+                    </td>
+                    <td>
+                        {{websiteVar.user_info}}
+                    </td>
+                    <td>
+                        {{websiteVar.port}}
+                    </td>
+                    <td>
+                      <button class="btn btn-primary" (click)="printDiv(websiteVar.token)">View Script</button>
+                  </td>
+                  </tr> 
+                </tbody>
+              </table>
+            </div>
+          </div>
       </form>
     </div>
   </div>

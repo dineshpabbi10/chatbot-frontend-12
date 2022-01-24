@@ -14,6 +14,7 @@ import { CompanyService } from '../services/company.service';
 export class WebLinkComponent implements OnInit {
   public domainsList:any[] = [];
   public uploadForm:FormGroup;
+  public websiteList:any[] = [];
 
   constructor(
     private companyService: CompanyService,
@@ -33,6 +34,7 @@ export class WebLinkComponent implements OnInit {
 
   ngOnInit(): void {
     this.getDomainList();
+    this.getWebsiteList();
   }
 
   
@@ -54,6 +56,21 @@ export class WebLinkComponent implements OnInit {
       });
   }
 
+  getWebsiteList(){
+    this.loader.start();
+    this.companyService.getWebsiteTokens().pipe(
+      catchError(err=>{
+        this.toast.error(err.message);
+        return of(err.message);
+      })
+    ).subscribe(res=>{
+      if(res.status){
+        this.websiteList = res.data;
+      }
+      this.loader.stop();
+    })
+  }
+
   onSubmit() {
     this.loader.start();
     const formData = new FormData();
@@ -73,6 +90,7 @@ export class WebLinkComponent implements OnInit {
           this.uploadForm.get('selectedDomain')?.setValue(null)
         }
         this.loader.stop();
+        this.getWebsiteList();
       });
   }
 
