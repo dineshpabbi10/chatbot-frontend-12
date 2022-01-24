@@ -2,7 +2,7 @@ name: Deploy Dev
 on:
   push:
     branches:
-      - dinesh
+      - dev
 jobs:
   deploy-front-end:
     runs-on: ubuntu-latest
