@@ -97,6 +97,11 @@ export class CompanyService {
     return this.httpClient.post<any>(environment.endPoint+"file",data,{headers});
   }
 
+  generateScript(data:any):Observable<any>{
+    const headers = new HttpHeaders({ 'enctype': 'multipart/form-data' });
+    return this.httpClient.post<any>(environment.endPoint+"domaintokens",data);
+  }
+
   addQuickLink(link: string): void {
     this.quickLinks.push(link);
   }

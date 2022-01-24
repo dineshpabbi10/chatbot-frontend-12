@@ -83,7 +83,6 @@ export class FaqUploadComponent implements OnInit {
           return of(err);
         })
       ).subscribe(res=>{
-        console.log(res);
         if(res.status === true){
           this.toast.success("File Uploaded Successfully");
           this.uploadForm.get('file')?.setValue(null);
@@ -95,7 +94,7 @@ export class FaqUploadComponent implements OnInit {
       this.toast.error("Selected file should be of type csv or excel sheet");
       this.loader.stop();
     }
-
-
   }
+
+
 }

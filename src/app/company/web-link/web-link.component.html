@@ -8,16 +8,18 @@
         <div class="row">
           <div class="col-md-6 col-xs-12">
             <div class="form-group">
-              <label for="domain-select">Select Domain Name</label>
+              <label for="domain-select">Select Domain Name*</label>
               <select formControlName="selectedDomain" class="custom-select" id="domain-select" size="3">
                 <option *ngFor="let domains of domainsList" [ngValue]="domains.domain">{{domains.domain}}</option>
               </select>
               <small id="emailHelp" class="form-text text-muted"
                 >Select one domain from the domain dropdown</small
               >
-            </div>
-       
-              <label for="domain-select">Your Website domain</label>
+            </div>    
+          </div>
+
+          <div class="col-md-6 col-xs-12">
+            <label for="domain-select">Your Website domain*</label>
               <div class="input-group mb-3">
                 <div class="input-group-prepend">
                   <span class="input-group-text" id="basic-addon1">Website</span>
@@ -34,13 +36,6 @@
               <small id="emailHelp" class="form-text text-muted"
                 >Enter domain link for your website. Example : www.test.com</small
               >
-    
-          </div>
-
-          <!-- Script Box -->
-          <div class="col-md-6 col-xs-12">
-            <label for="domain-select">Generated Script : </label>
-            <textarea class="form-control" id="exampleFormControlTextarea1" style="height: 80%;margin-bottom: 60px;"></textarea>
           </div>
           
          
@@ -58,7 +53,7 @@
           </div>
 
           <div class="col-xs-12 col-md-12 col-lg-12">
-            <button class="btn btn-success">
+            <button [disabled]="uploadForm.invalid" (click)="onSubmit()" class="btn btn-success">
               Submit
               <svg
                 xmlns="http://www.w3.org/2000/svg"
