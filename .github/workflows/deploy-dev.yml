@@ -14,7 +14,6 @@ jobs:
         username: ${{ secrets.USERNAME }}
         password: ${{ secrets.PASSWORD }}
         script: |
-          whoami
           ls -al
           cd /var/www/html
           rm -rf chatbot-frontend-12
