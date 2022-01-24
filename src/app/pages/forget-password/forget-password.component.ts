@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { CommonService } from '../../services/common.service';
+import { ToastrService } from 'ngx-toastr'
+import { NgxUiLoaderService } from 'ngx-ui-loader';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { Router, ActivatedRoute } from '@angular/router';
+
 
 @Component({
   selector: 'app-forget-password',
@@ -8,9 +14,14 @@ import { Router } from '@angular/router';
 })
 export class ForgetPasswordComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  forgetPasswordForm: FormGroup | any
+
+  constructor(private formBuilder: FormBuilder, private CommonService: CommonService, private toastr: ToastrService, private ngxService: NgxUiLoaderService, public router: Router) { }
 
   ngOnInit(): void {
+    this.forgetPasswordForm = this.formBuilder.group({
+      email: ['', [Validators.required, Validators.email]]
+    })
   }
 
   submitForm() {
