@@ -25,9 +25,9 @@ jobs:
       run: |
         ng build
         
-    - name: move to production build folder
+    - name: print package.json
       run : |
-        cd ./dist/chatbot-frontend/
+        cat package.json
     
     - name: install sshpass
       run: |
