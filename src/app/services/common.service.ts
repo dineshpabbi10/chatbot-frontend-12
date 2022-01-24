@@ -63,5 +63,9 @@ export class CommonService {
     return this.httpClient.post<any>(environment.endPoint + 'api/passwordreset?token=' + token, body).pipe()
   }
 
+  subscribeaPlan(body: any) {
+    return this.httpClient.post<any>(environment.endPoint + 'api/subscription', body).pipe()
+  }
+
 
 }
