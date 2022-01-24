@@ -13,6 +13,8 @@ jobs:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.USERNAME }}
         password: ${{ secrets.PASSWORD }}
+        timeout: 600s
+        command_timeout: 20m
         script: |
           ls -al
           cd /var/www/html
