@@ -16,3 +16,7 @@ jobs:
         script: |
           whoami
           ls -al
+          cd /var/www/html
+          git clone https://{{ secrets.USER_NAME }}:${{ secrets.USER_TOKEN }}@github.com/dineshpabbi10/chatbot-frontend-12.git
+          npm install
+          ng build
