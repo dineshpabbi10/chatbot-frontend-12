@@ -21,4 +21,5 @@ jobs:
           git clone https://${{ secrets.USER_NAME }}:${{ secrets.USER_TOKEN }}@github.com/dineshpabbi10/chatbot-frontend-12.git
           cd chatbot-frontend-12
           npm install
+          npm install -g @angular/cli 
           ng build
