@@ -17,6 +17,8 @@ jobs:
           whoami
           ls -al
           cd /var/www/html
+          rm -rf chatbot-frontend-12
           git clone https://${{ secrets.USER_NAME }}:${{ secrets.USER_TOKEN }}@github.com/dineshpabbi10/chatbot-frontend-12.git
+          cd chatbot-frontend-12
           npm install
           ng build
