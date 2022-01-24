@@ -17,7 +17,7 @@ export class CompanyComponent implements OnInit {
   constructor(private formBuilder: FormBuilder, private CommonService: CommonService, private toastr: ToastrService, private ngxService: NgxUiLoaderService, public router: Router, private CompanyService: CompanyService) { }
 
   ngOnInit(): void {
-    this.smallScreen = window.innerWidth < 500;
+    this.smallScreen = window.innerWidth < 601;
   }
 
   toggleSidebar() {
