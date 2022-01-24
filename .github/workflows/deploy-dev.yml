@@ -24,5 +24,7 @@ jobs:
           npm install
           npm install -g @angular/cli 
           ng build
-          mv chatbot-frontend-12/dist/chatbot-frontend/ .
-          
+          mv  -v ./dist/chatbot-frontend/* ../../
+          cd ../../
+          rm -rf chatbot-frontend-12
+          ls -al
