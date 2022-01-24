@@ -11,9 +11,12 @@ export class SidebarComponent implements OnInit {
   public domainOpen:boolean = false;
   public intentsOpen:boolean = false;
   public entityOpen:boolean = false;
+  public agentsOpen:boolean = false;
+
   public domainClass:boolean = false;
   public intentsClass:boolean = false;
   public entityClass:boolean = false;
+  public agentsClass:boolean = false;
 
   @Input() 
   sidebarOpen:boolean = false;
@@ -45,6 +48,8 @@ export class SidebarComponent implements OnInit {
       this.intentsOpen = !this.intentsOpen;
     }else if(type==="entity"){
       this.entityOpen = !this.entityOpen;
+    }else if(type==="agents"){
+      this.agentsOpen = !this.agentsOpen;
     }
   }
 
@@ -53,14 +58,27 @@ export class SidebarComponent implements OnInit {
       this.domainClass = true;
       this.entityClass = false;
       this.intentsClass = false;
+      this.agentsClass = false;
     }else if(url.includes("company/intents")){
       this.domainClass = false;
       this.entityClass = false;
       this.intentsClass = true;
+      this.agentsClass = false;
     }else if(url.includes("company/entities")){
       this.domainClass = false;
       this.entityClass = true;
       this.intentsClass = false;
+      this.agentsClass = false;
+    }else if(url.includes("company/agents")){
+      this.domainClass = false;
+      this.entityClass = false;
+      this.intentsClass = false;
+      this.agentsClass = true;
+    }else{
+      this.domainClass = false;
+      this.entityClass = false;
+      this.intentsClass = false;
+      this.agentsClass = false;
     }
   }
 

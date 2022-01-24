@@ -9,9 +9,19 @@
     transform: translateX(250px);
 }
 
+.navbar-open-button{
+    color: black !important;
+    background-color: white !important;
+}
+
+
 .navbar-container{
     max-width: 1920px;
     margin: auto;
+}
+
+.dropdown-item{
+    cursor: pointer;
 }
 
 .navbar-toggle{
@@ -26,6 +36,9 @@
     position: absolute;
     color: whitesmoke;
     top: 7px;
+    z-index: 100;
+    transition: all 0.5s;
+    
 }
 .navbar-toggle i{
     transition: transform 0.3s;
@@ -75,5 +88,18 @@
     .navbar-open{
         transition: all 0.5s;
         width: calc(100% - 250px);
+    }
+}
+
+@media screen and (max-width:601px) {
+    .navbar-open-container::after{
+        content: "";
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        opacity: 0.3;
+        top: 0px;
+        left: 0px;
+        background-color: black;
     }
 }

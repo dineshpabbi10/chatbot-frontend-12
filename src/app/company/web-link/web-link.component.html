@@ -1,44 +1,59 @@
 <div class="row">
   <div class="col-md-11">
     <div class="card">
+      <form [formGroup]="uploadForm">
       <div class="card-body">
         <div class="card-title">Generate Chatbot Link</div>
         <!-- Form -->
         <div class="row">
           <div class="col-md-6 col-xs-12">
             <div class="form-group">
-              <label for="domain-select">Select Domain Name</label>
-              <select class="custom-select" id="domain-select" size="3">
-                <option selected>Open this select menu</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
+              <label for="domain-select">Select Domain Name*</label>
+              <select formControlName="selectedDomain" class="custom-select" id="domain-select" size="3">
+                <option *ngFor="let domains of domainsList" [ngValue]="domains.domain">{{domains.domain}}</option>
               </select>
               <small id="emailHelp" class="form-text text-muted"
                 >Select one domain from the domain dropdown</small
               >
-            </div>
+            </div>    
           </div>
+
           <div class="col-md-6 col-xs-12">
-            <label for="domain-select">Your Website domain</label>
-            <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <span class="input-group-text" id="basic-addon1">Website</span>
+            <label for="domain-select">Your Website domain*</label>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon1">Website</span>
+                </div>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="www.<domain>.com"
+                  aria-label="Username"
+                  aria-describedby="basic-addon1"
+                  formControlName="website"
+                />
               </div>
-              <input
-                type="text"
-                class="form-control"
-                placeholder="www.<domain>.com"
-                aria-label="Username"
-                aria-describedby="basic-addon1"
-              />
-            </div>
-            <small id="emailHelp" class="form-text text-muted"
-              >Enter domain link for your website. Example : www.test.com</small
-            >
+              <small id="emailHelp" class="form-text text-muted"
+                >Enter domain link for your website. Example : www.test.com</small
+              >
           </div>
-          <div class="col-xs-12 col-md-12">
-            <button class="btn btn-success">
+          
+         
+          <div id="infobar" class="col-xs-12 col-md-12">
+            <div class="alert alert-info" role="alert">
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
+                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                        <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                      </svg> 
+                     Select a domain to train a bot, in that particular domain. <br/>
+                    <b>Note :</b> Due to security ! You get script in Pop-up so please allow your browser for Pop-up
+                
+            </div>
+          </div>
+
+          <div class="col-xs-12 col-md-12 col-lg-12">
+            <button [disabled]="uploadForm.invalid" (click)="onSubmit()" class="btn btn-success">
               Submit
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -58,20 +73,47 @@
               </svg>
             </button>
           </div>
-          <div id="infobar" class="col-xs-12 col-md-12">
-            <div class="alert alert-info" role="alert">
-                
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
-                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                        <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
-                      </svg> 
-                     Select a domain to train a bot, in that particular domain. <br/>
-                    <b>Note :</b> Due to security ! You get script in Pop-up so please allow your browser for Pop-up
-                
-            </div>
-          </div>
         </div>
       </div>
+          <!-- Table -->
+          <div class="card">
+            <div id="intent-table-container" class="card-body">
+              <div class="card-title">View Added Chatbots</div>
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Website</th>
+                    <th scope="col">Domain Name</th>
+                    <th scope="col">Users</th>
+                    <th scope="col">User Info</th>
+                    <th scope="col">Port</th>
+                    <th scope="col">View Script</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let websiteVar of websiteList; let i = index;">
+                    <th scope="row">{{i}}</th>
+                    <td>{{websiteVar.domain}}</td>
+                    <td>{{websiteVar.domain_name}}</td>
+                    <td>
+                        {{websiteVar.user}}
+                    </td>
+                    <td>
+                        {{websiteVar.user_info}}
+                    </td>
+                    <td>
+                        {{websiteVar.port}}
+                    </td>
+                    <td>
+                      <button class="btn btn-primary" (click)="printDiv(websiteVar.token)">View Script</button>
+                  </td>
+                  </tr> 
+                </tbody>
+              </table>
+            </div>
+          </div>
+      </form>
     </div>
   </div>
 </div>
