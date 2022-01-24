@@ -74,6 +74,11 @@ export class SidebarComponent implements OnInit {
       this.entityClass = false;
       this.intentsClass = false;
       this.agentsClass = true;
+    }else{
+      this.domainClass = false;
+      this.entityClass = false;
+      this.intentsClass = false;
+      this.agentsClass = false;
     }
   }
 
