@@ -55,5 +55,6 @@ export class CommonService {
     return this.httpClient.get<any>(environment.endPoint + "api/pricing").pipe()
   }
 
+  
 
 }

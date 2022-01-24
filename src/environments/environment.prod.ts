@@ -5,13 +5,13 @@ export const env = {
 
 export interface Environment {
   endPoint: string;
-  production:boolean
+  production: boolean
 }
 
 
 export const DEV: Environment = {
   endPoint: 'http://34.131.139.183:8000/',
-  production:true
+  production: true
 }
 
 export const environment: Environment = DEV;
