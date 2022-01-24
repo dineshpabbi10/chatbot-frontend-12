@@ -36,5 +36,4 @@ jobs:
 
     - name: upload files
       run : |
-        sshpass -p ${{ secrets.PASSWORD }} scp * ${{ secrets.USERNAME }}@${{ secrets.HOST }}:/var/www/html
-        echo "Upload Successfull"
+        sshpass -p ${{ secrets.PASSWORD }} scp -r ./dist/chatbot-frontend/* ${{ secrets.USERNAME }}@${{ secrets.HOST }}:/var/www/html
