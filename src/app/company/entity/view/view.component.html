@@ -17,52 +17,8 @@
           </div>
   
           <!-- Table -->
-          <div class="card">
-            <div id="intent-table-container" class="card-body">
-              <div class="card-title">View Added Entities</div>
-              <table class="table table-striped">
-                <thead>
-                  <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Entity Name</th>
-                    <th scope="col">Entity Word</th>
-                    <th scope="col">Message</th>
-                    <th scope="col">Response</th>
-                    <th scope="col">Intent</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr *ngFor="let entityVar of entityList; let i = index;">
-                    <th scope="row">{{i}}</th>
-                    <td>{{entityVar.entity_name}}</td>
-                    <td>{{entityVar.entity_word}}</td>
-                    <td>
-                        {{entityVar.message}}
-                    </td>
-                    <td>
-                        {{entityVar.response}}
-                    </td>
-                    <td>
-                        {{entityVar.intent}}
-                    </td>
-                  </tr> 
-                </tbody>
-              </table>
-              <nav aria-label="Page navigation example">
-                <ul class="pagination">
-                  <li class="page-item">
-                    <a class="page-link" href="#">Previous</a>
-                  </li>
-                  <li class="page-item"><a class="page-link" href="#">1</a></li>
-                  <li class="page-item"><a class="page-link" href="#">2</a></li>
-                  <li class="page-item"><a class="page-link" href="#">3</a></li>
-                  <li class="page-item">
-                    <a class="page-link" href="#">Next</a>
-                  </li>
-                </ul>
-              </nav>
-            </div>
-          </div>
+          <app-generic-table [cols]="cols" [data]="entityList" ></app-generic-table>
+
         </div>
       </div>
     </div>

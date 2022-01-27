@@ -22,6 +22,9 @@ export class CompanyService {
   private responseMessages: string[] = [];
   private entityWords: string[] = [];
 
+  // Selected Records behavior
+  
+
   constructor(private httpClient: HttpClient) {}
 
   httpOptions = {

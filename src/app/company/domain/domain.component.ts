@@ -14,6 +14,10 @@ export class DomainComponent implements OnInit {
 
   public domainsList :any[] = [];
   public domainsLoading : boolean = false;
+  public cols = [
+    { field: 'domain', header: 'Domain' },
+    { field: 'client', header: 'Client' },
+];
 
   constructor(private CompanyService: CompanyService,private loader: NgxUiLoaderService, private toast : ToastrService) { }
 

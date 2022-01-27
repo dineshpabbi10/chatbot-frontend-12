@@ -27,41 +27,8 @@
         </div>
 
         <!-- Table -->
-        <div class="card">
-          <div id="table-card" class="card-body">
-            <div class="card-title">View Added Quicklinks</div>
-            <div *ngIf="domainsLoading" class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
-            <table *ngIf="!domainsLoading" class="table table-striped">
-              <thead>
-                <tr>
-                  <th scope="col">#</th>
-                  <th scope="col">Domain</th>
-                  <th scope="col">Client</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let domains of domainsList;let i = index">
-                  <th scope="row">{{i+1}}</th>
-                  <td>{{domains.domain}}</td>
-                  <td>{{domains.client}}</td>
-                </tr>
-              </tbody>
-            </table>
-            <nav aria-label="Page navigation example">
-              <ul class="pagination">
-                <li class="page-item">
-                  <a class="page-link" href="#">Previous</a>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item">
-                  <a class="page-link" href="#">Next</a>
-                </li>
-              </ul>
-            </nav>
-          </div>
-        </div>
+        <app-generic-table [cols]="cols" [data]="domainsList" ></app-generic-table>
+        
       </div>
     </div>
   </div>

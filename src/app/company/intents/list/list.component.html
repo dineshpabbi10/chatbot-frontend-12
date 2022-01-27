@@ -26,52 +26,7 @@
           </div>
   
           <!-- Table -->
-          <div class="card">
-            <div id="intent-table-container" class="card-body">
-              <div class="card-title">View Added Intents</div>
-              <table class="table table-striped">
-                <thead>
-                  <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Intent</th>
-                    <th scope="col">Domain</th>
-                    <th scope="col">User Message</th>
-                    <th scope="col">Response Message</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr *ngFor="let intentVar of intentList; let i = index;">
-                    <th scope="row">{{i}}</th>
-                    <td>{{intentVar.intent}}</td>
-                    <td>{{intentVar.domain}}</td>
-                    <td>
-                        <ul>
-                            <li *ngFor="let userMessage of intentVar.user_say.split(';')">{{userMessage}}</li>
-                        </ul>
-                    </td>
-                    <td>
-                        <ul>
-                            <li *ngFor="let userMessage of intentVar.response.split(';')">{{userMessage}}</li>
-                        </ul>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-              <nav aria-label="Page navigation example">
-                <ul class="pagination">
-                  <li class="page-item">
-                    <a class="page-link" href="#">Previous</a>
-                  </li>
-                  <li class="page-item"><a class="page-link" href="#">1</a></li>
-                  <li class="page-item"><a class="page-link" href="#">2</a></li>
-                  <li class="page-item"><a class="page-link" href="#">3</a></li>
-                  <li class="page-item">
-                    <a class="page-link" href="#">Next</a>
-                  </li>
-                </ul>
-              </nav>
-            </div>
-          </div>
+          <app-generic-table [cols]="cols" [data]="intentList" ></app-generic-table>
         </div>
       </div>
     </div>

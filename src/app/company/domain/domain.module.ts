@@ -6,6 +6,7 @@ import { CommonImport } from '../../common.imports'
 import { AddDomainModule } from '../add-domain/add-domain.module';
 import { CreateModule } from '../entity/create/create.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { GenericTableModule } from '../generic-table/generic-table.module';
 
 
 @NgModule({
@@ -16,6 +17,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     DomainRoutingModule,
     CommonImport,
+    GenericTableModule
   ]
 })
 export class DomainModule { }

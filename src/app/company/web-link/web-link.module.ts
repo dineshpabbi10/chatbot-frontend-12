@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { WebLinkComponent } from './web-link.component';
 import { WebLinkRoutingModule } from './web-link-routing.module';
 import { CommonImport } from 'src/app/common.imports';
+import { GenericTableModule } from '../generic-table/generic-table.module';
 
 
 
@@ -13,7 +14,8 @@ import { CommonImport } from 'src/app/common.imports';
   imports: [
     CommonModule,
     WebLinkRoutingModule,
-    CommonImport
+    CommonImport,
+    GenericTableModule
   ]
 })
 export class WebLinkModule { }
