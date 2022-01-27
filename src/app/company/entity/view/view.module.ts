@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { ViewRoutingModule } from './view-routing.module';
 import { ViewComponent } from './view.component';
 import { CommonImport } from 'src/app/common.imports';
+import { GenericTableModule } from '../../generic-table/generic-table.module';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { CommonImport } from 'src/app/common.imports';
   imports: [
     CommonModule,
     ViewRoutingModule,
-    CommonImport
+    CommonImport,
+    GenericTableModule
   ]
 })
 export class ViewModule { }

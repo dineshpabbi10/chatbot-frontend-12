@@ -15,6 +15,15 @@ export class WebLinkComponent implements OnInit {
   public domainsList:any[] = [];
   public uploadForm:FormGroup;
   public websiteList:any[] = [];
+  public cols = [
+    { field: 'domain_name', header: 'Domain' },
+    { field: 'domain', header: 'Website' },
+    { field: 'port', header: 'Port' },
+    { field: 'user', header: 'Total Users' },
+    { field: 'user_info', header: 'User Info' },
+    { field: 'expiry', header: 'Expiration' },
+    { field: 'token', header: 'View Script' },
+];
 
   constructor(
     private companyService: CompanyService,
