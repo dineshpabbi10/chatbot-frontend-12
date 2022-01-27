@@ -13,6 +13,12 @@ import { CompanyService } from '../../services/company.service';
 export class ListComponent implements OnInit {
 
   public intentList : any[] = []
+  public cols = [
+    { field: 'domain', header: 'Domain' },
+    { field: 'intent', header: 'Intent' },
+    { field: 'response', header: 'Response' },
+    { field: 'user_say', header: 'User Response' }
+];
 
   constructor(private companyService : CompanyService,private toast : ToastrService, private loader : NgxUiLoaderService) { }
 

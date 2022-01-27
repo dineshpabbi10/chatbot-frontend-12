@@ -13,6 +13,13 @@ import { CompanyService } from '../../services/company.service';
 export class ViewComponent implements OnInit {
 
   public entityList : any[] = [];
+  public cols = [
+    { field: 'entity_name', header: 'Entity Name' },
+    { field: 'entity_word', header: 'Entity Words' },
+    { field: 'intent', header: 'Intent' },
+    { field: 'message', header: 'User Message' },
+    { field: 'response', header: 'Bot Response' },
+];
   constructor(private companyService : CompanyService, private toast :ToastrService, private loader: NgxUiLoaderService) { }
 
   ngOnInit(): void {

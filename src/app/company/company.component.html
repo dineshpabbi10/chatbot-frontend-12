@@ -1,4 +1,5 @@
 <app-sidebar [sidebarOpen]="sidebarOpen"></app-sidebar>
+
 <div class="whitesmoke" [ngClass]="{'navbar-open' : !smallScreen && sidebarOpen,'navbar-open-container': smallScreen && sidebarOpen}">
   <div>
     <button id="navbar-toggle-sidebar" class="navbar-toggle" [ngClass]="{'navbar-open-button' : smallScreen && sidebarOpen}" (click)="toggleSidebar()"><i class="ic fa fa-bars"></i></button>
