@@ -5,6 +5,8 @@ import { ViewRoutingModule } from './view-routing.module';
 import { ViewComponent } from './view.component';
 import { CommonImport } from 'src/app/common.imports';
 import { GenericTableModule } from '../../generic-table/generic-table.module';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ConfirmationService } from 'primeng/api';
 
 
 @NgModule({
@@ -15,7 +17,11 @@ import { GenericTableModule } from '../../generic-table/generic-table.module';
     CommonModule,
     ViewRoutingModule,
     CommonImport,
-    GenericTableModule
+    GenericTableModule,
+    ConfirmDialogModule
+  ],
+  providers:[
+    ConfirmationService
   ]
 })
 export class ViewModule { }

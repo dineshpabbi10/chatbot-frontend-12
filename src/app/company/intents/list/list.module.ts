@@ -5,6 +5,8 @@ import { ListRoutingModule } from './list-routing.module';
 import { ListComponent } from './list.component';
 import { CommonImport } from 'src/app/common.imports';
 import { GenericTableModule } from '../../generic-table/generic-table.module';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ConfirmationService } from 'primeng/api';
 
 
 @NgModule({
@@ -15,7 +17,11 @@ import { GenericTableModule } from '../../generic-table/generic-table.module';
     CommonModule,
     ListRoutingModule,
     CommonImport,
-    GenericTableModule
+    GenericTableModule,
+    ConfirmDialogModule
+  ],
+  providers:[
+    ConfirmationService
   ]
 })
 export class ListModule { }

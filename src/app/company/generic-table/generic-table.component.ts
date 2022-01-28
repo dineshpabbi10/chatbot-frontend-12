@@ -20,6 +20,12 @@ export class GenericTableComponent implements OnInit {
   @Input('component')
   public component:string = '';
 
+  @Input('showDelete')
+  public showDelete:boolean = false;
+
+  @Input('showEdit')
+  public showEdit:boolean = false;
+
   constructor(private companyService:CompanyService, private toast:ToastrService) {
     this.cols = [];
     this.products = [];
@@ -31,9 +37,27 @@ export class GenericTableComponent implements OnInit {
   submitEditRecords(){
     if(this.selectedRows.length > 1){
       this.toast.error("Cannot edit more than 1 record at a time. Please select only one record");
+    }
+    else if(this.selectedRows.length === 0){
+      this.toast.error("No records selected for editing");
+    }
+    else{
+      // Use RxJs to communicate based on component
+      this.companyService.sendSelectedRecord(this.component,"edit",this.selectedRows);
+    }
+  }
+
+  submitDeleteRecords(){
+    if(this.selectedRows.length === 0){
+      this.toast.error("No records selected for deletion");
+    }
+    else if(this.selectedRows.length > 1){
+      this.toast.error("Cannot delete more than 1 record at a time. Please select only one record");
     }else{
       // Use RxJs to communicate based on component
+      this.companyService.sendSelectedRecord(this.component,"delete",this.selectedRows);
     }
+  
   }
 
 

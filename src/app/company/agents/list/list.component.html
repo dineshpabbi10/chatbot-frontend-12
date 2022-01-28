@@ -21,69 +21,10 @@
               </div>
               <!-- Form -->
             </div>
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item">
-                <!-- Table -->
-                <div class="card">
-                  <div class="card-body" id="table-container">
-                    <div class="card-title">View All Agents 
-                      <div class="form-group">
-                  
-                          <input
-                            type="text"
-                            class="form-control"
-                            id="message-input"
-                            aria-describedby="emailHelp"
-                            placeholder="Search Agent"
-                          />
-                         
-                        </div>
-                    </div>
-                    <table class="table table-striped">
-                      <thead>
-                        <tr>
-                          <th scope="col">#</th>
-                          <th scope="col">Name</th>
-                          <th scope="col">Company</th>
-                          <th scope="col">No Of Chats</th>
-                          <th scope="col">Online</th>
-                          <th scope="col">Chat History</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr *ngFor="let agent of agentList;let i = index">
-                          <th scope="row">{{i}}</th>
-                          <td>{{agent.human_agent}}</td>
-                          <td>{{agent.company}}</td>
-                          <td>{{agent.no_of_chats}}</td>
-                          <td>{{agent.online}}</td>
-                          <td>Null</td>
-                        </tr>
-                      </tbody>
-                    </table>
-                    <nav aria-label="Page navigation example">
-                      <ul class="pagination">
-                        <li class="page-item">
-                          <a class="page-link" href="#">Previous</a>
-                        </li>
-                        <li class="page-item">
-                          <a class="page-link" href="#">1</a>
-                        </li>
-                        <li class="page-item">
-                          <a class="page-link" href="#">2</a>
-                        </li>
-                        <li class="page-item">
-                          <a class="page-link" href="#">3</a>
-                        </li>
-                        <li class="page-item">
-                          <a class="page-link" href="#">Next</a>
-                        </li>
-                      </ul>
-                    </nav>
-                  </div>
-                </div>
-              </li>
-            </ul>
+
+            <!-- Table -->
+            <app-generic-table [cols]="cols" [data]="agentList" component="agents" ></app-generic-table>
+            <p-confirmDialog header="Do you want to delete selected records?" icon="pi pi-exclamation-triangle"></p-confirmDialog>
           </div>
         </div>
       </div>
