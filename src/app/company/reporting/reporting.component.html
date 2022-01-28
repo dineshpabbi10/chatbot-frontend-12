@@ -64,52 +64,9 @@
         </div>
 
         <!-- Table -->
-        <div class="card">
-          <div id="scrollable-card" class="card-body">
-            <div class="card-title">Report</div>
-            <table class="table table-striped">
-              <thead>
-                <tr>
-                  <th scope="col">#</th>
-                  <th scope="col">Date</th>
-                  <th scope="col">Feedback</th>
-                  <th scope="col">User Id</th>
-                  <th scope="col">User Name</th>
-                  <th scope="col">User Email</th>
-                  <th scope="col">Country</th>
-                  <th scope="col">State</th>
-                  <th scope="col">Phone No.</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let rowData of reportData; let i = index">
-                  <th scope="row">{{ i }}</th>
-                  <td>{{ rowData.date }}</td>
-                  <td>{{ rowData.feedback }}</td>
-                  <td>{{ rowData.user_id }}</td>
-                  <td>{{ rowData.username }}</td>
-                  <td>{{ rowData.email }}</td>
-                  <td>{{ rowData.country }}</td>
-                  <td>{{ rowData.state }}</td>
-                  <td>{{ rowData.mobile }}</td>
-                </tr>
-              </tbody>
-            </table>
-            <nav aria-label="Page navigation example">
-              <ul class="pagination">
-                <li class="page-item">
-                  <a class="page-link" href="#">Previous</a>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item">
-                  <a class="page-link" href="#">Next</a>
-                </li>
-              </ul>
-            </nav>
-          </div>
-        </div>
+        <div class="card-title">Added Records</div>
+        <app-generic-table [cols]="cols" [data]="reportData" component="agent" ></app-generic-table>
+
       </div>
     </div>
   </div>

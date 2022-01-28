@@ -13,6 +13,14 @@ import { CompanyService } from '../../services/company.service';
 export class ListComponent implements OnInit {
 
   public agentList: any[] = [];
+  public cols = [
+    { field: 'human_agent', header: 'Name' },
+    { field: 'company', header: 'Company' },
+    { field: 'no_of_chats', header: 'No. Of Chats' },
+    { field: 'online', header: 'Online' },
+    { field: 'chat_history', header: 'Chat History' },
+];
+
   constructor(
     private companyService: CompanyService,
     private loader: NgxUiLoaderService,

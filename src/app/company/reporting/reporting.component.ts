@@ -13,6 +13,16 @@ import { CompanyService } from '../services/company.service';
 })
 export class ReportingComponent implements OnInit {
   public reportData: any[] = [];
+  public cols = [
+    { field: 'date', header: 'Date' },
+    { field: 'feedback', header: 'Feedback' },
+    { field: 'user_id', header: 'User Id' },
+    { field: 'username', header: 'User Name' },
+    { field: 'email', header: 'User Email' },
+    { field: 'country', header: 'Country' },
+    { field: 'state', header: 'State' },
+    { field: 'mobile', header: 'Phone No.' },
+];
 
   public fromDate: FormControl = new FormControl(null, [Validators.required]);
 
