@@ -26,7 +26,9 @@
           </div>
   
           <!-- Table -->
-          <app-generic-table [cols]="cols" [data]="intentList" ></app-generic-table>
+          <app-generic-table [cols]="cols" [data]="intentList" component="intents"></app-generic-table>
+          <p-confirmDialog header="Do you want to delete selected records?" icon="pi pi-exclamation-triangle"></p-confirmDialog>
+          
         </div>
       </div>
     </div>

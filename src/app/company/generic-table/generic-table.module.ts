@@ -4,6 +4,7 @@ import { GenericTableComponent } from './generic-table.component';
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
+import { CommonImport } from 'src/app/common.imports';
 
 
 
@@ -19,6 +20,7 @@ import { InputTextModule } from 'primeng/inputtext';
   ],
   exports:[
     GenericTableComponent,
+    CommonImport
   ]
 })
 export class GenericTableModule { }

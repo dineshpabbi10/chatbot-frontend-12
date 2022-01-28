@@ -65,7 +65,8 @@
 
         <!-- Table -->
         <div class="card-title">Added Records</div>
-        <app-generic-table [cols]="cols" [data]="reportData" component="agent" ></app-generic-table>
+        <app-generic-table [cols]="cols" [data]="reportData" component="reporting" ></app-generic-table>
+        <p-confirmDialog header="Do you want to delete selected records?" icon="pi pi-exclamation-triangle"></p-confirmDialog>
 
       </div>
     </div>

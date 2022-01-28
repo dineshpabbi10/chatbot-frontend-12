@@ -4,6 +4,8 @@ import { WebLinkComponent } from './web-link.component';
 import { WebLinkRoutingModule } from './web-link-routing.module';
 import { CommonImport } from 'src/app/common.imports';
 import { GenericTableModule } from '../generic-table/generic-table.module';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ConfirmationService } from 'primeng/api';
 
 
 
@@ -15,7 +17,11 @@ import { GenericTableModule } from '../generic-table/generic-table.module';
     CommonModule,
     WebLinkRoutingModule,
     CommonImport,
-    GenericTableModule
+    GenericTableModule,
+    ConfirmDialogModule
+  ],
+  providers:[
+    ConfirmationService
   ]
 })
 export class WebLinkModule { }

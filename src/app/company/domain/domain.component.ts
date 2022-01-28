@@ -4,6 +4,7 @@ import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { CompanyService } from '../services/company.service'
+import {ConfirmationService} from 'primeng/api';
 
 @Component({
   selector: 'app-domain',
@@ -19,10 +20,23 @@ export class DomainComponent implements OnInit {
     { field: 'client', header: 'Client' },
 ];
 
-  constructor(private CompanyService: CompanyService,private loader: NgxUiLoaderService, private toast : ToastrService) { }
+  constructor(private CompanyService: CompanyService,private loader: NgxUiLoaderService, private toast : ToastrService,private confirmationService: ConfirmationService) { }
 
   ngOnInit(): void {
-    this.getDomainList()
+    this.getDomainList();
+
+    // Delete button clicked in generic table
+    this.CompanyService.selectedRecord$.subscribe(data=>{
+      if(data.component === "domain" && data.action === "delete"){
+          this.confirmationService.confirm({
+            message: 'Are you sure that you want to perform this action?',
+            accept: () => {
+                //Actual logic to perform a confirmation
+                console.log(data);
+              }
+          });
+      }
+    })
   }
 
   getDomainList() {

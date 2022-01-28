@@ -8,7 +8,7 @@ import {
   HttpEvent,
 } from '@angular/common/http';
 import { environment } from '../../../environments/environment.prod';
-import { Observable, throwError } from 'rxjs';
+import { Observable, Subject, throwError } from 'rxjs';
 import { Router } from '@angular/router';
 import { AbstractControl, FormControl, ValidatorFn } from '@angular/forms';
 
@@ -22,8 +22,12 @@ export class CompanyService {
   private responseMessages: string[] = [];
   private entityWords: string[] = [];
 
-  // Selected Records behavior
-  
+  // Selected Records Subject to emit values
+  private selectedRecord : Subject<any> = new Subject<any>();
+  public selectedRecord$ = this.selectedRecord.asObservable();
+
+
+
 
   constructor(private httpClient: HttpClient) {}
 
@@ -172,6 +176,14 @@ export class CompanyService {
 
   clearEntityWords(): void {
     this.entityWords = [];
+  }
+
+  sendSelectedRecord(component:string,action:string,payload:any):void{
+    this.selectedRecord.next({
+      component,
+      action,
+      payload
+    });
   }
 
   checkDuplicateInArray(arrayVar: string[], valueVar: string) {

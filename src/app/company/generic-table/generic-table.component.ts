@@ -33,7 +33,18 @@ export class GenericTableComponent implements OnInit {
       this.toast.error("Cannot edit more than 1 record at a time. Please select only one record");
     }else{
       // Use RxJs to communicate based on component
+      this.companyService.sendSelectedRecord(this.component,"edit",this.selectedRows);
     }
+  }
+
+  submitDeleteRecords(){
+    if(this.selectedRows.length === 0){
+      this.toast.error("No records selected for deletion");
+    }else{
+      // Use RxJs to communicate based on component
+      this.companyService.sendSelectedRecord(this.component,"delete",this.selectedRows);
+    }
+  
   }
 
 
