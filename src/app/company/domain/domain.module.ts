@@ -7,7 +7,10 @@ import { AddDomainModule } from '../add-domain/add-domain.module';
 import { CreateModule } from '../entity/create/create.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { GenericTableModule } from '../generic-table/generic-table.module';
-
+import {ConfirmDialogModule} from 'primeng/confirmdialog';
+import {ConfirmationService} from 'primeng/api';
+import { GenericEditModalModule } from '../generic-edit-modal/generic-edit-modal.module';
+import { InputTextModule } from 'primeng/inputtext';
 
 @NgModule({
   declarations: [
@@ -17,7 +20,13 @@ import { GenericTableModule } from '../generic-table/generic-table.module';
     CommonModule,
     DomainRoutingModule,
     CommonImport,
-    GenericTableModule
+    GenericTableModule,
+    ConfirmDialogModule,
+    GenericEditModalModule,
+    InputTextModule
+  ],
+  providers:[
+    ConfirmationService
   ]
 })
 export class DomainModule { }

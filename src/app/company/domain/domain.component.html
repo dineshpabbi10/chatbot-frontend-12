@@ -27,8 +27,18 @@
         </div>
 
         <!-- Table -->
-        <app-generic-table [cols]="cols" [data]="domainsList" ></app-generic-table>
-        
+        <app-generic-table [cols]="cols" [data]="domainsList" component="domain" [showDelete]="true" [showEdit]="true"></app-generic-table>
+        <p-confirmDialog header="Do you want to delete selected records?" icon="pi pi-exclamation-triangle"></p-confirmDialog>
+        <app-generic-edit-modal header="Update Domain" [data]="updatePayload" component="domain" >
+          <span style="margin-top: 20px;" class="p-float-label">
+            <input id="float-input" type="text" [value]="selectedRow.domain" pInputText readonly> 
+            <label for="float-input">Old Domain Name</label>
+          </span>
+          <span style="margin-top: 20px;" class="p-float-label">
+            <input id="float-input" [formControl]="newDomainName" type="text" pInputText> 
+            <label for="float-input">New Domain Name</label>
+          </span>
+        </app-generic-edit-modal>
       </div>
     </div>
   </div>

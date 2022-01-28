@@ -8,7 +8,7 @@ import {
   HttpEvent,
 } from '@angular/common/http';
 import { environment } from '../../../environments/environment.prod';
-import { Observable, throwError } from 'rxjs';
+import { Observable, Subject, throwError } from 'rxjs';
 import { Router } from '@angular/router';
 import { AbstractControl, FormControl, ValidatorFn } from '@angular/forms';
 
@@ -22,8 +22,12 @@ export class CompanyService {
   private responseMessages: string[] = [];
   private entityWords: string[] = [];
 
-  // Selected Records behavior
-  
+  // Selected Records Subject to emit values
+  private selectedRecord : Subject<any> = new Subject<any>();
+  public selectedRecord$ = this.selectedRecord.asObservable();
+
+
+
 
   constructor(private httpClient: HttpClient) {}
 
@@ -109,6 +113,40 @@ export class CompanyService {
     return this.httpClient.get<any>(environment.endPoint+"domaintokens");
   }
 
+  deleteDomain(data:any):Observable<any>{
+    return this.httpClient.delete<any>(environment.endPoint+"domain",{body:data});
+  }
+
+  deleteEntity(data:any):Observable<any>{
+    delete data["id"];
+    return this.httpClient.delete<any>(environment.endPoint+"entity",{body:data});
+  }
+
+  submitUpdate(component:string,data:any){
+    if(component==="domain"){
+      return this.httpClient.put<any>(environment.endPoint+"domain",{body:data});
+    }else if(component === "entity"){
+      return this.httpClient.put<any>(environment.endPoint+"entity",{body:data});
+    }else if(component ==="intents"){
+      return this.httpClient.put<any>(environment.endPoint+"intent",{body:data});
+    }else if(component === "web-link"){
+      return this.httpClient.put<any>(environment.endPoint+"domainTokens",{body:data});
+    }
+    return null;
+  }
+
+  deleteIntent(data:any):Observable<any>{
+    delete data["id"];
+    return this.httpClient.delete<any>(environment.endPoint+"intent",{body:data});
+  }
+
+  deleteWebLinToken(token:string):Observable<any>{
+    return this.httpClient.delete<any>(environment.endPoint+"domainTokens/"+token);
+  }
+
+
+
+
   addQuickLink(link: string): void {
     this.quickLinks.push(link);
   }
@@ -157,7 +195,6 @@ export class CompanyService {
     this.userMessages = [];
   }
 
-  //
   addEntityWords(link: string): void {
     this.entityWords.push(link);
   }
@@ -172,6 +209,14 @@ export class CompanyService {
 
   clearEntityWords(): void {
     this.entityWords = [];
+  }
+
+  sendSelectedRecord(component:string,action:string,payload:any):void{
+    this.selectedRecord.next({
+      component,
+      action,
+      payload
+    });
   }
 
   checkDuplicateInArray(arrayVar: string[], valueVar: string) {

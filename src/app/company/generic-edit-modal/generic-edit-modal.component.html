@@ -1,0 +1,10 @@
+<p-dialog [(visible)]="display">
+    <ng-template pTemplate="header">
+        {{header}}
+    </ng-template>
+    <ng-content></ng-content>
+    <ng-template pTemplate="footer">
+        <button (click)="closeDisplay()" icon="pi pi-times" type="button" class="p-button-sm p-button-help" pButton>Close&nbsp;</button>
+        <button (click)="submitUpdate()" icon="pi pi-check" class="p-button-sm p-button-help" type="button" pButton>Submit&nbsp;</button>
+    </ng-template>
+</p-dialog>
