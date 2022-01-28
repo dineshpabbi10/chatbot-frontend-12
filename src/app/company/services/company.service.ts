@@ -113,6 +113,27 @@ export class CompanyService {
     return this.httpClient.get<any>(environment.endPoint+"domaintokens");
   }
 
+  deleteDomain(data:any):Observable<any>{
+    return this.httpClient.delete<any>(environment.endPoint+"domain",{body:data});
+  }
+
+  deleteEntity(data:any):Observable<any>{
+    delete data["id"];
+    return this.httpClient.delete<any>(environment.endPoint+"entity",{body:data});
+  }
+
+  deleteIntent(data:any):Observable<any>{
+    delete data["id"];
+    return this.httpClient.delete<any>(environment.endPoint+"intent",{body:data});
+  }
+
+  deleteWebLinToken(token:string):Observable<any>{
+    return this.httpClient.delete<any>(environment.endPoint+"domainTokens/"+token);
+  }
+
+
+
+
   addQuickLink(link: string): void {
     this.quickLinks.push(link);
   }
@@ -161,7 +182,6 @@ export class CompanyService {
     this.userMessages = [];
   }
 
-  //
   addEntityWords(link: string): void {
     this.entityWords.push(link);
   }

@@ -35,7 +35,18 @@ export class ViewComponent implements OnInit {
           message: 'Are you sure that you want to perform this action?',
           accept: () => {
             //Actual logic to perform a confirmation
-            console.log(data);
+            console.log(data.payload[0]);
+            this.companyService.deleteEntity(data.payload[0]).
+            pipe(catchError(err=>{
+              this.toast.error(err.message);
+              return of(err.message)
+            }))
+            .subscribe((res)=>{
+              if(res.status){
+                this.toast.success("Record successfully deleted");
+              } 
+              this.getEntityList();
+            });
           },
         });
       }
@@ -54,6 +65,11 @@ export class ViewComponent implements OnInit {
       }
     });
 
+    this.getEntityList();
+    
+  }
+
+  getEntityList(){
     this.loader.start('getEntitiesList');
     this.companyService
       .getEntitiesList()

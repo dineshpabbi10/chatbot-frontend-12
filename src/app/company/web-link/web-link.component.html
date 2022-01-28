@@ -76,9 +76,9 @@
         </div>
       </div>
           <!-- Table -->
-          <app-generic-table [cols]="cols" [data]="websiteList" component="web-link" ></app-generic-table>
+          <app-generic-table [cols]="cols" [data]="websiteList" component="web-link" [showDelete]="true" [showEdit]="true"></app-generic-table>
           <p-confirmDialog header="Do you want to delete selected records?" icon="pi pi-exclamation-triangle"></p-confirmDialog>
-          
+
       </form>
     </div>
   </div>

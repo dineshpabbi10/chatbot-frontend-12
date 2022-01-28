@@ -49,7 +49,17 @@ export class DomainComponent implements OnInit {
           message: 'Are you sure that you want to perform insert action?',
           accept: () => {
             //Actual logic to perform a confirmation
-            console.log(data);
+            this.CompanyService.deleteDomain(data.payload[0]).
+            pipe(catchError(err=>{
+              this.toast.error(err.message);
+              return of(err.message)
+            }))
+            .subscribe((res)=>{
+              if(res.status){
+                this.toast.success("Record successfully deleted");
+              } 
+              this.getDomainList();
+            })
           },
         });
       }
