@@ -9,6 +9,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { GenericTableModule } from '../generic-table/generic-table.module';
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
 import {ConfirmationService} from 'primeng/api';
+import { GenericEditModalModule } from '../generic-edit-modal/generic-edit-modal.module';
+import { InputTextModule } from 'primeng/inputtext';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,9 @@ import {ConfirmationService} from 'primeng/api';
     DomainRoutingModule,
     CommonImport,
     GenericTableModule,
-    ConfirmDialogModule
+    ConfirmDialogModule,
+    GenericEditModalModule,
+    InputTextModule
   ],
   providers:[
     ConfirmationService

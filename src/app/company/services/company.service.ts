@@ -122,6 +122,19 @@ export class CompanyService {
     return this.httpClient.delete<any>(environment.endPoint+"entity",{body:data});
   }
 
+  submitUpdate(component:string,data:any){
+    if(component==="domain"){
+      return this.httpClient.put<any>(environment.endPoint+"domain",{body:data});
+    }else if(component === "entity"){
+      return this.httpClient.put<any>(environment.endPoint+"entity",{body:data});
+    }else if(component ==="intents"){
+      return this.httpClient.put<any>(environment.endPoint+"intent",{body:data});
+    }else if(component === "web-link"){
+      return this.httpClient.put<any>(environment.endPoint+"domainTokens",{body:data});
+    }
+    return null;
+  }
+
   deleteIntent(data:any):Observable<any>{
     delete data["id"];
     return this.httpClient.delete<any>(environment.endPoint+"intent",{body:data});

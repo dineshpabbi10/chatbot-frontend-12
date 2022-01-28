@@ -5,6 +5,7 @@ import { of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { CompanyService } from '../services/company.service';
 import { ConfirmationService } from 'primeng/api';
+import { FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-domain',
@@ -18,6 +19,10 @@ export class DomainComponent implements OnInit {
     { field: 'domain', header: 'Domain' },
     { field: 'client', header: 'Client' },
   ];
+
+  public selectedRow : any = {};
+  public newDomainName : FormControl = new FormControl('',[Validators.required,this.CompanyService.noWhitespaceValidator])
+  public updatePayload:any = {};
 
   constructor(
     private CompanyService: CompanyService,
@@ -36,19 +41,6 @@ export class DomainComponent implements OnInit {
           message: 'Are you sure that you want to perform this action?',
           accept: () => {
             //Actual logic to perform a confirmation
-            console.log(data);
-          },
-        });
-      }
-    });
-
-    // Edit button clicked in generic table
-    this.CompanyService.selectedRecord$.subscribe((data) => {
-      if (data.component === 'domain' && data.action === 'edit') {
-        this.confirmationService.confirm({
-          message: 'Are you sure that you want to perform insert action?',
-          accept: () => {
-            //Actual logic to perform a confirmation
             this.CompanyService.deleteDomain(data.payload[0]).
             pipe(catchError(err=>{
               this.toast.error(err.message);
@@ -64,6 +56,21 @@ export class DomainComponent implements OnInit {
         });
       }
     });
+
+    // Edit button clicked in generic table
+    this.CompanyService.selectedRecord$.subscribe((data) => {
+      if (data.component === 'domain' && data.action === 'edit') {
+        this.selectedRow = data.payload[0];
+      }
+    });
+
+    // Update payload for edit
+    this.newDomainName.valueChanges.subscribe(value=>{
+      this.updatePayload = {
+        "newdomain":this.selectedRow.domain,
+        "domain":value
+      }
+    })
   }
 
   getDomainList() {
