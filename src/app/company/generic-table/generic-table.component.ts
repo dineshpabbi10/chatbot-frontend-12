@@ -31,7 +31,11 @@ export class GenericTableComponent implements OnInit {
   submitEditRecords(){
     if(this.selectedRows.length > 1){
       this.toast.error("Cannot edit more than 1 record at a time. Please select only one record");
-    }else{
+    }
+    else if(this.selectedRows.length === 0){
+      this.toast.error("No records selected for editing");
+    }
+    else{
       // Use RxJs to communicate based on component
       this.companyService.sendSelectedRecord(this.component,"edit",this.selectedRows);
     }

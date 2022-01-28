@@ -24,7 +24,7 @@ export class ViewComponent implements OnInit {
     private companyService: CompanyService,
     private toast: ToastrService,
     private loader: NgxUiLoaderService,
-    private confirmationService:ConfirmationService
+    private confirmationService: ConfirmationService
   ) {}
 
   ngOnInit(): void {
@@ -33,6 +33,19 @@ export class ViewComponent implements OnInit {
       if (data.component === 'entity' && data.action === 'delete') {
         this.confirmationService.confirm({
           message: 'Are you sure that you want to perform this action?',
+          accept: () => {
+            //Actual logic to perform a confirmation
+            console.log(data);
+          },
+        });
+      }
+    });
+
+    // Edit button clicked in generic table
+    this.companyService.selectedRecord$.subscribe((data) => {
+      if (data.component === 'entity' && data.action === 'edit') {
+        this.confirmationService.confirm({
+          message: 'Are you sure that you want to perform insert action?',
           accept: () => {
             //Actual logic to perform a confirmation
             console.log(data);

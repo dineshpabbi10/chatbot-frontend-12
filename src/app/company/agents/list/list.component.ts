@@ -33,7 +33,20 @@ export class ListComponent implements OnInit {
     this.companyService.selectedRecord$.subscribe((data) => {
       if (data.component === 'agents' && data.action === 'delete') {
         this.confirmationService.confirm({
-          message: 'Are you sure that you want to perform this action?',
+          message: 'Are you sure that you want to delete this record?',
+          accept: () => {
+            //Actual logic to perform a confirmation
+            console.log(data);
+          },
+        });
+      }
+    });
+
+    // Edit button clicked in generic table
+    this.companyService.selectedRecord$.subscribe((data) => {
+      if (data.component === 'agents' && data.action === 'edit') {
+        this.confirmationService.confirm({
+          message: 'Are you sure that you want to perform insert action?',
           accept: () => {
             //Actual logic to perform a confirmation
             console.log(data);

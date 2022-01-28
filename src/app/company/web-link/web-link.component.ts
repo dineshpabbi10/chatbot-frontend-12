@@ -58,6 +58,19 @@ export class WebLinkComponent implements OnInit {
       }
     });
 
+    // Edit button clicked in generic table
+    this.companyService.selectedRecord$.subscribe((data) => {
+      if (data.component === 'web-link' && data.action === 'edit') {
+        this.confirmationService.confirm({
+          message: 'Are you sure that you want to perform insert action?',
+          accept: () => {
+            //Actual logic to perform a confirmation
+            console.log(data);
+          },
+        });
+      }
+    });
+
     this.getDomainList();
     this.getWebsiteList();
   }
