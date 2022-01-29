@@ -36,7 +36,26 @@ export class PricingComponent implements OnInit {
   }
 
   choosePackage(planDetails: any) {
+
     // console.log(planDetails)
+    this.ngxService.start()
+
+    const body = new HttpParams({
+      fromObject: {
+        "subscription_name": planDetails.subscription_name
+      }
+    });
+    this.ngxService.stop()
+    this.CommonService.subscribeaPlan(body).subscribe(data => {
+      if (data.status) {
+        this.toastr.success(data.message, 'SUCCESS')
+        this.router.navigate(['/company'])
+      }
+      else {
+        this.toastr.error(data.message, 'ERROR')
+      }
+      this.ngxService.stop()
+    })
     return
   }
 

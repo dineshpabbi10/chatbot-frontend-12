@@ -49,7 +49,9 @@ export class HeaderComponent implements OnInit {
         this.toastr.success(data.message, 'SUCCESS')
         // this.router.navigateByUrl('/')
         this.router.navigateByUrl('/', { skipLocationChange: true }).then(() =>
-          this.router.navigate(['/login'])
+          this.router.navigate(['/login']).then(() => {
+            window.location.reload()
+          })
         );
       }
       else {

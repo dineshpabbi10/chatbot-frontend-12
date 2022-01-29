@@ -41,13 +41,21 @@ export class LoginComponent implements OnInit {
         if (data.data.role == "company") {
           localStorage.setItem("data", JSON.stringify(data.data))
           localStorage.setItem("company_token", data.data.access)
-          if (data.data.valid && data.data.subscribed) {
+          if (!data.data.valid && data.data.subscribed) {
 
+            this.router.navigate(['/company/payment'])
+          }
+          else if (data.data.valid && data.data.subscribed) {
             this.router.navigate(['/company'])
           }
-          this.router.navigateByUrl('/', { skipLocationChange: true }).then(() =>
-            this.router.navigate(['/pricing'])
-          );
+          else {
+            this.router.navigateByUrl('/', { skipLocationChange: true }).then(() =>
+              this.router.navigate(['/pricing']).then(() => {
+                // window.location.reload()
+              })
+            );
+
+          }
         }
         else if (data.data.role == "agent") {
           localStorage.set("data", JSON.stringify(data.data))
