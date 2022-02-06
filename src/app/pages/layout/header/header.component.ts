@@ -39,7 +39,7 @@ export class HeaderComponent implements OnInit {
   }
 
   logout() {
-    console.log('helo')
+    // console.log('helo')
     this.ngxService.start()
     this.CommonService.logout(null).subscribe(data => {
       console.log(data)

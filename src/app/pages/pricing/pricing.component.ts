@@ -37,17 +37,45 @@ export class PricingComponent implements OnInit {
 
   choosePackage(planDetails: any) {
 
-    // console.log(planDetails)
+
+
+
     this.ngxService.start()
+    var userLoggedIn: any
+    userLoggedIn = localStorage.getItem('data')
+    userLoggedIn = JSON.parse(userLoggedIn)
+
+    // console.log(userLoggedIn?.subscribed)
+    // this.ngxService.stop()
+    // return
+
+    if (!userLoggedIn) {
+      this.toastr.warning('are you registered with us?', 'WARNING')
+      this.router.navigate(['/register'])
+      this.ngxService.stop()
+      return
+    }
+    // userLoggedIn.s
+    // this.ngxService.stop()
+    // userLoggedIn.
 
     const body = new HttpParams({
       fromObject: {
         "subscription_name": planDetails.subscription_name
       }
     });
-    this.ngxService.stop()
+    // this.ngxService.stop()
     this.CommonService.subscribeaPlan(body).subscribe(data => {
       if (data.status) {
+        console.log(data)
+        userLoggedIn.subscribed = data.data.valid
+        userLoggedIn.valid = data.data.valid
+        if (data.data.is_trial) {
+          userLoggedIn.trial = data.data.is_trial
+        }
+
+        console.log(userLoggedIn)
+        localStorage.setItem('data', JSON.stringify(userLoggedIn))
         this.toastr.success(data.message, 'SUCCESS')
         this.router.navigate(['/company'])
       }

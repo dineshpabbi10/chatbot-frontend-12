@@ -6,8 +6,9 @@ import { SidebarComponent } from './layout/sidebar/sidebar.component';
 import { HeaderComponent } from './layout/header/header.component';
 import { FooterComponent } from './layout/footer/footer.component';
 import { CommonImport } from '../common.imports';
-import {TableModule} from 'primeng/table';
+import { TableModule } from 'primeng/table';
 import { GenericTableModule } from './generic-table/generic-table.module';
+import { ProfileComponent } from './profile/profile.component';
 
 
 @NgModule({

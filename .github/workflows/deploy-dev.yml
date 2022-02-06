@@ -7,37 +7,37 @@ jobs:
   deploy-front-end:
     runs-on: ubuntu-latest
     steps:
-    - name: checkout Repository
-      uses: actions/checkout@v2
+      - name: checkout Repository
+        uses: actions/checkout@v2
 
-    - name: setup node 14
-      uses: actions/setup-node@v2
-      with:
-        node-version: '14'
-        cache: 'npm'
-    
-    - name: install node dependencies
-      run: |
-        npm install
-        npm install -g @angular/cli
-    
-    - name: generate production build
-      run: |
-        ng build
-        
-    - name: print package.json
-      run : |
-        cat package.json
-    
-    - name: copy file via ssh password
-      uses: appleboy/scp-action@master
-      with:
-        host: ${{ secrets.HOST }}
-        username: ${{ secrets.USERNAME }}
-        password: ${{ secrets.PASSWORD }}
-        timeout: 600s
-        rm: true
-        command_timeout: 20m
-        source: "./dist/chatbot-frontend/*"
-        target: "/var/www/html"
-        strip_components: 2
+      - name: setup node 14
+        uses: actions/setup-node@v2
+        with:
+          node-version: "14"
+          cache: "npm"
+
+      - name: install node dependencies
+        run: |
+          npm install
+          npm install -g @angular/cli
+
+      - name: generate production build
+        run: |
+          ng build
+
+      - name: print package.json
+        run: |
+          cat package.json
+
+      - name: copy file via ssh password
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          timeout: 600s
+          rm: true
+          command_timeout: 20m
+          source: "./dist/chatbot-frontend/browser/*"
+          target: "/var/www/html/chatbot"
+          strip_components: 2
