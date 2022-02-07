@@ -1,8 +1,11 @@
 <app-sidebar [sidebarOpen]="sidebarOpen"></app-sidebar>
 
-<div class="whitesmoke" [ngClass]="{'navbar-open' : !smallScreen && sidebarOpen,'navbar-open-container': smallScreen && sidebarOpen}">
+<div class="whitesmoke"
+  [ngClass]="{'navbar-open' : !smallScreen && sidebarOpen,'navbar-open-container': smallScreen && sidebarOpen}">
   <div>
-    <button id="navbar-toggle-sidebar" class="navbar-toggle" [ngClass]="{'navbar-open-button' : smallScreen && sidebarOpen}" (click)="toggleSidebar()"><i class="ic fa fa-bars"></i></button>
+    <button id="navbar-toggle-sidebar" class="navbar-toggle"
+      [ngClass]="{'navbar-open-button' : smallScreen && sidebarOpen}" (click)="toggleSidebar()"><i
+        class="ic fa fa-bars"></i></button>
     <div class="title-bar">
       <span>{{getTitle()}}</span>
       <div class="dropdown show" id="logout-dropdown">
@@ -18,7 +21,8 @@
 
         <div class="dropdown-menu dropdown-menu-left" aria-labelledby="dropdownMenuLink">
           <a class="dropdown-item" [routerLink]="['/company/dashboard']">Dashboard</a>
-          <a class="dropdown-item" href="#">Your Account</a>
+          <a class="dropdown-item" [routerLink]="['/company/settings']">Settings</a>
+          <a class="dropdown-item" [routerLink]="['/company/profile']">Your Profile</a>
           <a class="dropdown-item" (click)="logout()">Logout</a>
         </div>
       </div>
