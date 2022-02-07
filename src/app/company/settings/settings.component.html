@@ -1,0 +1,83 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="card" id="add-agent-card">
+      <div class="right">
+        <div class="card" id="container-card-right">
+          <div class="card-body">
+            <div class="card-title">
+              <h5>Change Password</h5>
+            </div>
+          </div>
+
+          <!-- Form -->
+          <form [formGroup]="settingForm">
+            <div class="row">
+
+              <!-- Current Password -->
+              <div class="col-xs-12 col-md-6 form-group">
+                <label for="exampleFormControlInput1">Current Password*</label>
+                <input type="password" class="form-control" placeholder="Current Password"
+                  formControlName="current_password">
+                <div
+                  *ngIf="settingForm.controls['current_password'].status=='INVALID' && settingForm.controls['current_password'].touched">
+                  <p class="error-msg-ab" style="color: brown;"
+                    *ngIf="settingForm.controls['current_password'].errors.required">
+                    Enter current password
+                  </p>
+
+
+                </div>
+              </div>
+              <div class="col-md-6"></div>
+
+              <!-- Password -->
+              <div class="col-xs-12 col-md-6 form-group">
+                <label for="exampleFormControlInput1">New Password*</label>
+                <input type="password" class="form-control" placeholder="New Password" formControlName="password">
+                <div
+                  *ngIf="settingForm.controls['password'].status=='INVALID' && settingForm.controls['password'].touched">
+                  <p class="error-msg-ab" style="color: brown;"
+                    *ngIf="settingForm.controls['password'].errors.required">
+                    Enter password
+                  </p>
+                  <p class="error-msg-ab" style="color: brown;" *ngIf="settingForm.controls['password'].errors.pattern">
+                    Password must contain at least 8 characters in length (Lowercase letters, Uppercase letters,Numbers
+                    & Special characters)
+                  </p>
+                </div>
+              </div>
+              <div class="col-md-6"></div>
+
+              <!-- Confirm Password -->
+              <div class="col-xs-12 col-md-6 form-group">
+                <label for="exampleFormControlInput1">Confirm Password*</label>
+                <input type="password" class="form-control" placeholder="Confirm Password"
+                  formControlName="confirm_password">
+                <div
+                  *ngIf="settingForm.controls['confirm_password'].status=='INVALID' && settingForm.controls['confirm_password'].touched">
+                  <p class="error-msg-ab" style="color: hsl(0, 59%, 41%);"
+                    *ngIf="settingForm.controls['confirm_password'].errors.required">
+                    Re-enter password
+                  </p>
+                  <p class="error-msg-ab" style="color: brown;"
+                    *ngIf="settingForm.controls['confirm_password'].errors.mustMatch">Password
+                    must match
+                  </p>
+                </div>
+              </div>
+
+
+              <div class="col-xs-12 col-md-12 col-sm-12">
+                <button type="button" class="btn btn-success" [disabled]="settingForm.invalid"
+                  (click)="changePassword()">Change Password</button>
+                <!-- <button type="button" class="btn btn-secondary">Cancel</button> -->
+              </div>
+            </div>
+          </form>
+          <!-- Form Ends -->
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

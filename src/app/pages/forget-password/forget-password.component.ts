@@ -28,6 +28,7 @@ export class ForgetPasswordComponent implements OnInit {
     this.ngxService.start()
     if (this.forgetPasswordForm.status == "INVALID") {
       this.toastr.error('Invalid form!', 'ERROR')
+      this.ngxService.stop()
       return;
     }
     this.CommonService.forgetPassword(this.forgetPasswordForm.value).subscribe(data => {

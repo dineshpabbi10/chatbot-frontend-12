@@ -6,7 +6,7 @@ import { HeaderComponent } from './layout/header/header.component';
 import { FooterComponent } from './layout/footer/footer.component';
 import { ForgetPasswordComponent } from './forget-password/forget-password.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
-
+import { CommonImport } from '../common.imports';
 
 @NgModule({
   declarations: [
@@ -16,7 +16,8 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
   ],
   imports: [
     CommonModule,
-    PagesRoutingModule
+    PagesRoutingModule,
+    CommonImport
   ]
 })
 export class PagesModule { }

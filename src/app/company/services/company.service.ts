@@ -23,13 +23,13 @@ export class CompanyService {
   private entityWords: string[] = [];
 
   // Selected Records Subject to emit values
-  private selectedRecord : Subject<any> = new Subject<any>();
+  private selectedRecord: Subject<any> = new Subject<any>();
   public selectedRecord$ = this.selectedRecord.asObservable();
 
 
 
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient) { }
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -63,24 +63,24 @@ export class CompanyService {
       .pipe();
   }
 
-  createQuickLink(data:any): Observable<any>{
-    return this.httpClient.post<any>(environment.endPoint+"quick",data);
+  createQuickLink(data: any): Observable<any> {
+    return this.httpClient.post<any>(environment.endPoint + "quick", data);
   }
 
-  getQuickLinkFromBackend(domain:string): Observable<any>{
-    return this.httpClient.get<any>(environment.endPoint+"quick?domain="+domain);
+  getQuickLinkFromBackend(domain: string): Observable<any> {
+    return this.httpClient.get<any>(environment.endPoint + "quick?domain=" + domain);
   }
 
-  getReport(data:any):Observable<any>{
-    return this.httpClient.post<any>(environment.endPoint+"conversation",data);
+  getReport(data: any): Observable<any> {
+    return this.httpClient.post<any>(environment.endPoint + "conversation", data);
   }
 
-  getHumanAgents():Observable<any>{
-    return this.httpClient.get<any>(environment.endPoint+"api/human-agents");
+  getHumanAgents(): Observable<any> {
+    return this.httpClient.get<any>(environment.endPoint + "api/human-agents");
   }
 
-  createAgent(data:any):Observable<any>{
-    return this.httpClient.post<any>(environment.endPoint+"registration/human/",data);
+  createAgent(data: any): Observable<any> {
+    return this.httpClient.post<any>(environment.endPoint + "registration/human/", data);
   }
 
   getIntentList(): Observable<any> {
@@ -99,49 +99,53 @@ export class CompanyService {
     return this.httpClient.post<any>(environment.endPoint + 'entity', data);
   }
 
-  uploadFile(data:any):Observable<any>{
+  uploadFile(data: any): Observable<any> {
     const headers = new HttpHeaders({ 'enctype': 'multipart/form-data' });
-    return this.httpClient.post<any>(environment.endPoint+"file",data,{headers});
+    return this.httpClient.post<any>(environment.endPoint + "file", data, { headers });
   }
 
-  generateScript(data:any):Observable<any>{
+  generateScript(data: any): Observable<any> {
     const headers = new HttpHeaders({ 'enctype': 'multipart/form-data' });
-    return this.httpClient.post<any>(environment.endPoint+"domaintokens",data);
-  }
-  
-  getWebsiteTokens():Observable<any>{
-    return this.httpClient.get<any>(environment.endPoint+"domaintokens");
+    return this.httpClient.post<any>(environment.endPoint + "domaintokens", data);
   }
 
-  deleteDomain(data:any):Observable<any>{
-    return this.httpClient.delete<any>(environment.endPoint+"domain",{body:data});
+  getWebsiteTokens(): Observable<any> {
+    return this.httpClient.get<any>(environment.endPoint + "domaintokens");
   }
 
-  deleteEntity(data:any):Observable<any>{
+  deleteDomain(data: any): Observable<any> {
+    return this.httpClient.delete<any>(environment.endPoint + "domain", { body: data });
+  }
+
+  deleteEntity(data: any): Observable<any> {
     delete data["id"];
-    return this.httpClient.delete<any>(environment.endPoint+"entity",{body:data});
+    return this.httpClient.delete<any>(environment.endPoint + "entity", { body: data });
   }
 
-  submitUpdate(component:string,data:any){
-    if(component==="domain"){
-      return this.httpClient.put<any>(environment.endPoint+"domain",{body:data});
-    }else if(component === "entity"){
-      return this.httpClient.put<any>(environment.endPoint+"entity",{body:data});
-    }else if(component ==="intents"){
-      return this.httpClient.put<any>(environment.endPoint+"intent",{body:data});
-    }else if(component === "web-link"){
-      return this.httpClient.put<any>(environment.endPoint+"domainTokens",{body:data});
+  submitUpdate(component: string, data: any) {
+    if (component === "domain") {
+      return this.httpClient.put<any>(environment.endPoint + "domain", { body: data });
+    } else if (component === "entity") {
+      return this.httpClient.put<any>(environment.endPoint + "entity", { body: data });
+    } else if (component === "intents") {
+      return this.httpClient.put<any>(environment.endPoint + "intent", { body: data });
+    } else if (component === "web-link") {
+      return this.httpClient.put<any>(environment.endPoint + "domainTokens", { body: data });
     }
     return null;
   }
 
-  deleteIntent(data:any):Observable<any>{
+  deleteIntent(data: any): Observable<any> {
     delete data["id"];
-    return this.httpClient.delete<any>(environment.endPoint+"intent",{body:data});
+    return this.httpClient.delete<any>(environment.endPoint + "intent", { body: data });
   }
 
-  deleteWebLinToken(token:string):Observable<any>{
-    return this.httpClient.delete<any>(environment.endPoint+"domainTokens/"+token);
+  deleteWebLinToken(token: string): Observable<any> {
+    return this.httpClient.delete<any>(environment.endPoint + "domainTokens/" + token);
+  }
+
+  changePassword(body: any): Observable<any> {
+    return this.httpClient.post<any>(environment.endPoint + "changepass", body);
   }
 
 
@@ -211,7 +215,7 @@ export class CompanyService {
     this.entityWords = [];
   }
 
-  sendSelectedRecord(component:string,action:string,payload:any):void{
+  sendSelectedRecord(component: string, action: string, payload: any): void {
     this.selectedRecord.next({
       component,
       action,
@@ -229,19 +233,22 @@ export class CompanyService {
     return isValid ? null : { whitespace: true };
   }
 
-  arraySizeValidator() : ValidatorFn{
+  arraySizeValidator(): ValidatorFn {
     return (control: AbstractControl) => {
-    let isValid = control.value.length > 0 ? true : false;
-    console.log(isValid);
-    return isValid ? null : { arraySize: true };
-  }};
+      let isValid = control.value.length > 0 ? true : false;
+      console.log(isValid);
+      return isValid ? null : { arraySize: true };
+    }
+  };
 
-  passwordMatchValidator():ValidatorFn {
-    return (form:AbstractControl)=>{
+  passwordMatchValidator(): ValidatorFn {
+    return (form: AbstractControl) => {
       const password = form.get('password1');
       const confirmPassword = form.get('password2');
       let isValid = password?.value === confirmPassword?.value;
-      return isValid ? null : {confirmPasswordError:true};
+      return isValid ? null : { confirmPasswordError: true };
     }
   }
+
+
 }
