@@ -14,6 +14,7 @@ export class CommonService {
   httpOptions = {
     headers: new HttpHeaders({
       // 'Content-Type': 'application/json'
+      'Authorization': 'Bearer ' + localStorage.getItem('company_token')
     })
   }
 
@@ -48,7 +49,8 @@ export class CommonService {
   }
 
   logout(data: any) {
-    return this.httpClient.post<any>(environment.endPoint + "api/logout/", data).pipe()
+    console.log(this.httpOptions)
+    return this.httpClient.post<any>(environment.endPoint + "api/logout/", data, this.httpOptions).pipe()
   }
 
   getAllPricingPlans() {
@@ -64,7 +66,11 @@ export class CommonService {
   }
 
   subscribeaPlan(body: any) {
-    return this.httpClient.post<any>(environment.endPoint + 'api/subscription', body).pipe()
+    return this.httpClient.post<any>(environment.endPoint + 'api/subscription', body, this.httpOptions).pipe()
+  }
+
+  contactUs(body: any) {
+    return this.httpClient.post<any>(environment.endPoint + 'contactus', body).pipe()
   }
 
 

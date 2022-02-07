@@ -8,25 +8,27 @@ import { NavigationEnd, Router, RouterEvent } from '@angular/router';
 })
 export class SidebarComponent implements OnInit {
 
-  public domainOpen:boolean = false;
-  public intentsOpen:boolean = false;
-  public entityOpen:boolean = false;
-  public agentsOpen:boolean = false;
+  public domainOpen: boolean = false;
+  public intentsOpen: boolean = false;
+  public entityOpen: boolean = false;
+  public agentsOpen: boolean = false;
+  public paymentsOpen: boolean = false
 
-  public domainClass:boolean = false;
-  public intentsClass:boolean = false;
-  public entityClass:boolean = false;
-  public agentsClass:boolean = false;
+  public domainClass: boolean = false;
+  public intentsClass: boolean = false;
+  public entityClass: boolean = false;
+  public agentsClass: boolean = false;
+  public paymentClass: boolean = false
 
-  @Input() 
-  sidebarOpen:boolean = false;
+  @Input()
+  sidebarOpen: boolean = false;
 
-  constructor(private router:Router) { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
 
     this.checkRouteForClass(this.router.url);
-    
+
     // subscribe to router navigation
     this.router.events.subscribe(event => {
       // filter `NavigationEnd` events
@@ -40,41 +42,58 @@ export class SidebarComponent implements OnInit {
     });
   }
 
-  toggleDomainOpen(event:MouseEvent,type:string){
+  toggleDomainOpen(event: MouseEvent, type: string) {
     event.preventDefault();
-    if(type==="domain"){
+    if (type === "domain") {
       this.domainOpen = !this.domainOpen;
-    }else if(type==="intents"){
+    } else if (type === "intents") {
       this.intentsOpen = !this.intentsOpen;
-    }else if(type==="entity"){
+    } else if (type === "entity") {
       this.entityOpen = !this.entityOpen;
-    }else if(type==="agents"){
+    } else if (type === "agents") {
       this.agentsOpen = !this.agentsOpen;
+    } else if (type == "payments") {
+      this.paymentsOpen = !this.paymentsOpen
     }
+
   }
 
-  checkRouteForClass(url:string){
-    if(url.includes("company/domain")){
+  checkRouteForClass(url: string) {
+    if (url.includes("company/domain")) {
       this.domainClass = true;
       this.entityClass = false;
       this.intentsClass = false;
       this.agentsClass = false;
-    }else if(url.includes("company/intents")){
+      this.paymentClass = false
+
+    } else if (url.includes("company/intents")) {
       this.domainClass = false;
       this.entityClass = false;
       this.intentsClass = true;
       this.agentsClass = false;
-    }else if(url.includes("company/entities")){
+      this.paymentClass = false
+
+    } else if (url.includes("company/entities")) {
       this.domainClass = false;
       this.entityClass = true;
       this.intentsClass = false;
       this.agentsClass = false;
-    }else if(url.includes("company/agents")){
+      this.paymentClass = false
+
+    } else if (url.includes("company/agents")) {
       this.domainClass = false;
       this.entityClass = false;
       this.intentsClass = false;
       this.agentsClass = true;
-    }else{
+      this.paymentClass = false
+    } else if (url.includes("company/payments")) {
+      this.paymentClass = true
+      this.domainClass = false;
+      this.entityClass = false;
+      this.intentsClass = false;
+      this.agentsClass = false
+    } else {
+      this.paymentClass = false
       this.domainClass = false;
       this.entityClass = false;
       this.intentsClass = false;

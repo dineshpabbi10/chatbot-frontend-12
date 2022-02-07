@@ -40,12 +40,16 @@ export class ResetPasswordComponent implements OnInit {
 
     this.CommonService.resetPassword(this.resetPasswordForm.value, this.token).subscribe(data => {
       if (data.status) {
+
         this.toastr.success(data.message, "SUCCESS")
         this.ngxService.stop()
-        // this.router.navigate(['/login'])
+        this.router.navigate(['/login'])
       }
-      this.toastr.error(data.message, "ERROR")
-      this.ngxService.stop()
+      else {
+        this.toastr.error(data.message, "ERROR")
+        this.ngxService.stop()
+
+      }
     })
 
 
