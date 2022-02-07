@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { ForgetPasswordRoutingModule } from './forget-password-routing.module';
 import { ForgetPasswordComponent } from './forget-password.component';
-
+import { CommonImport } from '../../common.imports'
 
 @NgModule({
   declarations: [
@@ -11,7 +11,8 @@ import { ForgetPasswordComponent } from './forget-password.component';
   ],
   imports: [
     CommonModule,
-    ForgetPasswordRoutingModule
+    ForgetPasswordRoutingModule,
+    CommonImport
   ]
 })
 export class ForgetPasswordModule { }

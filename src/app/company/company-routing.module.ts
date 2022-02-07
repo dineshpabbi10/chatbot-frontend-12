@@ -22,6 +22,8 @@ const routes: Routes = [
       { path: 'agents', loadChildren: () => import("./agents/list/list.module").then(m => m.ListModule) },
       { path: 'agents/add', loadChildren: () => import("./agents/add/add.module").then(m => m.AddModule) },
       { path: 'agents', loadChildren: () => import("./agents/list/list.module").then(m => m.ListModule) },
+      { path: 'payment', loadChildren: () => import("./payments/payment/payment.module").then(m => m.PaymentModule) },
+      { path: 'invoices', loadChildren: () => import("./payments/invoices/invoices.module").then(m => m.InvoicesModule) },
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
     ]
   }
