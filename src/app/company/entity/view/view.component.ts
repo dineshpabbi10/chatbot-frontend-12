@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { ConfirmationService } from 'primeng/api';
@@ -13,13 +14,25 @@ import { CompanyService } from '../../services/company.service';
 })
 export class ViewComponent implements OnInit {
   public entityList: any[] = [];
+  public updatePayload : any = {};
+  public selectedRow:any = {};
   public cols = [
     { field: 'entity_name', header: 'Entity Name' },
     { field: 'entity_word', header: 'Entity Words' },
     { field: 'intent', header: 'Intent' },
     { field: 'message', header: 'User Message' },
     { field: 'response', header: 'Bot Response' },
+    { field: 'intent_id', header: 'Intent Id' },
   ];
+
+  public form : FormGroup = new FormGroup({
+    newEntityName : new FormControl('',[Validators.required,this.companyService.noWhitespaceValidator]),
+    newEntityWords : new FormControl('',[Validators.required,this.companyService.noWhitespaceValidator]),
+    newMessage : new FormControl('',[Validators.required,this.companyService.noWhitespaceValidator]),
+    newReponse : new FormControl('',[Validators.required,this.companyService.noWhitespaceValidator]),
+  });
+
+
   constructor(
     private companyService: CompanyService,
     private toast: ToastrService,
@@ -55,15 +68,24 @@ export class ViewComponent implements OnInit {
     // Edit button clicked in generic table
     this.companyService.selectedRecord$.subscribe((data) => {
       if (data.component === 'entity' && data.action === 'edit') {
-        this.confirmationService.confirm({
-          message: 'Are you sure that you want to perform insert action?',
-          accept: () => {
-            //Actual logic to perform a confirmation
-            console.log(data);
-          },
-        });
+        this.selectedRow = data.payload[0];
       }
     });
+
+    this.form.valueChanges.subscribe(data=>{
+      this.updatePayload = {
+        "entity_name":this.selectedRow.entity_name,
+        "entity_word":this.selectedRow.entity_word,
+        "message":this.selectedRow.message,
+        "response":this.selectedRow.response,
+        "newentity_name":this.form.get('newEntityName')?.value,
+        "newentity_word":this.form.get('newEntityWords')?.value,
+        "newmessage":this.form.get('newEntityMessage')?.value,
+        "newresponse":this.form.get('newEntityResponse')?.value,
+        "intent":this.selectedRow.intent,
+        "intent_id":this.selectedRow.intent_id
+    }
+    })
 
     this.getEntityList();
     

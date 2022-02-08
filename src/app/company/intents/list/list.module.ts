@@ -7,6 +7,8 @@ import { CommonImport } from 'src/app/common.imports';
 import { GenericTableModule } from '../../generic-table/generic-table.module';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmationService } from 'primeng/api';
+import { GenericEditModalModule } from '../../generic-edit-modal/generic-edit-modal.module';
+import { InputTextModule } from 'primeng/inputtext';
 
 
 @NgModule({
@@ -18,7 +20,9 @@ import { ConfirmationService } from 'primeng/api';
     ListRoutingModule,
     CommonImport,
     GenericTableModule,
-    ConfirmDialogModule
+    ConfirmDialogModule,
+    GenericEditModalModule,
+    InputTextModule
   ],
   providers:[
     ConfirmationService

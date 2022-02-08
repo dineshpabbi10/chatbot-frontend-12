@@ -27,7 +27,9 @@ export class GenericEditModalComponent implements OnInit {
 
   ngOnInit(): void {
     this.companyService.selectedRecord$.subscribe(data=>{
-      this.openDisplay();
+      if(data.action==="edit"){
+        this.openDisplay();
+      }
     })
   }
 
