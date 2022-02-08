@@ -24,4 +24,55 @@
       </div>
     </div>
   </div>
+
+  <app-generic-edit-modal header="Update Entity" [data]="updatePayload" component="entity" >
+    <div id="edit-container">
+      <div id="left-container-edit">
+        <span style="margin-top: 20px;" class="p-float-label">
+          <input id="float-input" type="text" [value]="selectedRow?.intent" pInputText readonly> 
+          <label for="float-input">Old Entity Name</label> <br/>
+        </span>
+  
+        <span style="margin-top: 20px;" class="p-float-label">
+          <input id="float-usersay" type="text" [value]="selectedRow?.user_say" pInputText readonly> 
+          <label for="float-usersay">Old Entity Word</label> <br/>
+        </span>
+  
+        <span style="margin-top: 20px;" class="p-float-label">
+          <input id="float-response" type="text" [value]="selectedRow?.response" pInputText readonly> 
+          <label for="float-response">Old Message</label> <br/>
+        </span>
+  
+        <span style="margin-top: 20px;" class="p-float-label">
+          <input id="float-domain" type="text" [value]="selectedRow?.domain" pInputText readonly> 
+          <label for="float-domain">Old Response</label> <br/>
+        </span>
+      </div>
+
+      <div id="right-container-edit">
+        <form id="edit-form" [formGroup]="form">
+          <span style="margin-top: 20px;" class="p-float-label">
+            <input id="float-input" type="text" formControlName="newIntent" pInputText> 
+            <label for="float-input">New Entity Name</label> <br/>
+          </span>
+    
+          <span style="margin-top: 20px;" class="p-float-label">
+            <input id="float-usersay" type="text" formControlName="newUserSay"  pInputText> 
+            <label for="float-usersay">New Entity Words (separated by semicolon)</label> <br/>
+          </span>
+    
+          <span style="margin-top: 20px;" class="p-float-label">
+            <input id="float-response" type="text" formControlName="newResponse" pInputText> 
+            <label for="float-response">New Message</label> <br/>
+          </span>
+
+          <span style="margin-top: 20px;" class="p-float-label">
+            <input id="float-response" type="text" formControlName="newResponse" pInputText> 
+            <label for="float-response">New Response</label> <br/>
+          </span>
+        </form>
+      </div>
+    </div>
+    
+  </app-generic-edit-modal>
   

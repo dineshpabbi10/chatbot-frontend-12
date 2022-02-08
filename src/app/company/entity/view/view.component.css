@@ -40,3 +40,12 @@
 #intent-table-container{
     overflow-x:scroll
 }
+
+#edit-container{
+  display: flex;
+}
+
+#edit-form{
+  outline: none;
+  border: none;
+}

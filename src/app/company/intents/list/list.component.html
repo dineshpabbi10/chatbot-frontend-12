@@ -27,10 +27,58 @@
   
           <!-- Table -->
           <app-generic-table [cols]="cols" [data]="intentList" component="intents" [showDelete]="true" [showEdit]="true"></app-generic-table>
-          <p-confirmDialog header="Do you want to delete selected records?" icon="pi pi-exclamation-triangle"></p-confirmDialog>
+          <p-confirmDialog header="Do you want to delete selected records?" icon="pi pi-exclamation-triangle"></p-confirmDialog>        
 
         </div>
       </div>
     </div>
   </div>
+
+
+    <!-- Update Popup -->
+    <app-generic-edit-modal header="Update Intents" [data]="updatePayload" component="intents" >
+      <div id="edit-container">
+        <div id="left-container-edit">
+          <span style="margin-top: 20px;" class="p-float-label">
+            <input id="float-input" type="text" [value]="selectedRow?.intent" pInputText readonly> 
+            <label for="float-input">Old Intent</label> <br/>
+          </span>
+    
+          <span style="margin-top: 20px;" class="p-float-label">
+            <input id="float-usersay" type="text" [value]="selectedRow?.user_say" pInputText readonly> 
+            <label for="float-usersay">Old User Response</label> <br/>
+          </span>
+    
+          <span style="margin-top: 20px;" class="p-float-label">
+            <input id="float-response" type="text" [value]="selectedRow?.response" pInputText readonly> 
+            <label for="float-response">Old Bot Response</label> <br/>
+          </span>
+    
+          <span style="margin-top: 20px;" class="p-float-label">
+            <input id="float-domain" type="text" [value]="selectedRow?.domain" pInputText readonly> 
+            <label for="float-domain">Domain</label> <br/>
+          </span>
+        </div>
+
+        <div id="right-container-edit">
+          <form id="edit-form" [formGroup]="form">
+            <span style="margin-top: 20px;" class="p-float-label">
+              <input id="float-input" type="text" formControlName="newIntent" pInputText> 
+              <label for="float-input">New Intent</label> <br/>
+            </span>
+      
+            <span style="margin-top: 20px;" class="p-float-label">
+              <input id="float-usersay" type="text" formControlName="newUserSay"  pInputText> 
+              <label for="float-usersay">New User Response</label> <br/>
+            </span>
+      
+            <span style="margin-top: 20px;" class="p-float-label">
+              <input id="float-response" type="text" formControlName="newResponse" pInputText> 
+              <label for="float-response">New Bot Response</label> <br/>
+            </span>
+          </form>
+        </div>
+      </div>
+      
+    </app-generic-edit-modal>
   
