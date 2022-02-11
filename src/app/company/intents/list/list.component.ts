@@ -60,6 +60,12 @@ export class ListComponent implements OnInit {
       }
     });
 
+    this.companyService.sendSuccess$.subscribe((data)=>{
+      if(data==="intents"){
+        this.getIntentList();
+      }   
+    });
+
     // subscribe to edit change
     this.form.valueChanges.subscribe((data)=>{
       this.updatePayload = 

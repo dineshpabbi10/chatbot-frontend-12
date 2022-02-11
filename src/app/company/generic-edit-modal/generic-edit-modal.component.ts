@@ -51,6 +51,8 @@ export class GenericEditModalComponent implements OnInit {
     ).subscribe(res=>{
       if(res.status){
         this.toast.success(res.message);
+        this.companyService.sendSuccessMessage(this.component);
+        this.closeDisplay();
       }
       this.loader.stop();
     })

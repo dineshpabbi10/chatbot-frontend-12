@@ -65,6 +65,12 @@ export class ViewComponent implements OnInit {
       }
     });
 
+    this.companyService.sendSuccess$.subscribe((data)=>{
+      if(data==="entity"){
+        this.getEntityList();
+      }
+    });
+
     // Edit button clicked in generic table
     this.companyService.selectedRecord$.subscribe((data) => {
       if (data.component === 'entity' && data.action === 'edit') {
