@@ -64,6 +64,11 @@
 }
 
 ::-webkit-scrollbar {
-    width: 0px;  /* Remove scrollbar space */
-    background: transparent;  /* Optional: just make scrollbar invisible */
+    width: 5px;  /* Remove scrollbar space */
+    background: white;  /* Optional: just make scrollbar invisible */
 }
+
+  
+::-webkit-scrollbar-thumb {
+    background: gray;
+  }
