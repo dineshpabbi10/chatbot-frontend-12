@@ -11,6 +11,8 @@ import {DividerModule} from 'primeng/divider';
 import {BadgeModule} from 'primeng/badge';
 import { ChatListComponent } from './layout/chat-list/chat-list.component';
 import {InputTextModule} from 'primeng/inputtext';
+import { ChatBoxComponent } from './layout/chat-box/chat-box.component';
+import {ButtonModule} from 'primeng/button';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,8 @@ import {InputTextModule} from 'primeng/inputtext';
     HeaderComponent,
     SidebarComponent,
     FooterComponent,
-    ChatListComponent
+    ChatListComponent,
+    ChatBoxComponent
   ],
   imports: [
     CommonModule,
@@ -27,7 +30,8 @@ import {InputTextModule} from 'primeng/inputtext';
     MenuModule,
     DividerModule,
     BadgeModule,
-    InputTextModule
+    InputTextModule,
+    ButtonModule
   ]
 })
 export class AgentModule { }
