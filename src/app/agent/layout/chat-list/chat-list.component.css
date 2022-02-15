@@ -1,0 +1,69 @@
+.chat-list-container{
+    width: 300px;
+    background-color: rgb(235, 235, 235);
+    height: 100%;
+    overflow-y: scroll;
+}
+
+.chat-list-search{
+    font-weight: 600;
+    -webkit-user-select: none;
+    user-select: none;
+    padding: 1rem 0 0.5rem;
+    font-size: 1rem;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.chat-list-chats{
+    padding: 10px;
+}
+
+.card-active{
+    background: #ffffff;
+    color: #495057;
+    box-shadow: 0 2px 1px -1px rgb(0 0 0 / 20%), 0 1px 1px 0 rgb(0 0 0 / 14%), 0 1px 3px 0 rgb(0 0 0 / 12%);
+    border-radius: 3px;
+    padding: 10px;
+    margin: 3px;
+}
+
+.card{
+    background: transparent;
+    color: #495057;
+    padding: 10px;
+    border: none;
+    margin: 3px;
+    cursor: pointer;
+}
+
+.message-header{
+    display: flex;
+}
+
+.message-header-message{
+    display: flex;
+    flex-direction: column;
+}
+
+.chat-category{
+    color: white;
+    font-size: 0.7rem;
+    background-color: purple;
+    padding: 2px;
+    margin: 0px;
+    margin-left: 10px;
+    margin-right: 5px;
+    border-radius: 5px;
+}
+
+.chat-person{
+    font-size: 0.7rem;
+    padding: 0px;
+    margin: 0px;
+}
+
+::-webkit-scrollbar {
+    width: 0px;  /* Remove scrollbar space */
+    background: transparent;  /* Optional: just make scrollbar invisible */
+}
