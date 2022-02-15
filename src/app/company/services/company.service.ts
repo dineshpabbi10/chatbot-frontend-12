@@ -26,6 +26,10 @@ export class CompanyService {
   private selectedRecord: Subject<any> = new Subject<any>();
   public selectedRecord$ = this.selectedRecord.asObservable();
 
+  // Send message for reload
+  private sendSuccess: Subject<any> = new Subject<any>();
+  public sendSuccess$ = this.sendSuccess.asObservable();
+
 
 
 
@@ -124,13 +128,13 @@ export class CompanyService {
 
   submitUpdate(component: string, data: any) {
     if (component === "domain") {
-      return this.httpClient.put<any>(environment.endPoint + "domain", { body: data });
+      return this.httpClient.put<any>(environment.endPoint + "domain", data);
     } else if (component === "entity") {
-      return this.httpClient.put<any>(environment.endPoint + "entity", { body: data });
+      return this.httpClient.put<any>(environment.endPoint + "entity", data);
     } else if (component === "intents") {
-      return this.httpClient.put<any>(environment.endPoint + "intent", { body: data });
+      return this.httpClient.put<any>(environment.endPoint + "intent", data);
     } else if (component === "web-link") {
-      return this.httpClient.put<any>(environment.endPoint + "domainTokens", { body: data });
+      return this.httpClient.put<any>(environment.endPoint + "domainTokens", data);
     }
     return null;
   }
@@ -221,6 +225,10 @@ export class CompanyService {
       action,
       payload
     });
+  }
+
+  sendSuccessMessage(message : any):void{
+    this.sendSuccess.next(message);
   }
 
   checkDuplicateInArray(arrayVar: string[], valueVar: string) {

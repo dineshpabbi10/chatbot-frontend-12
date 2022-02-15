@@ -64,11 +64,16 @@ export class DomainComponent implements OnInit {
       }
     });
 
+    // reload on success
+    this.CompanyService.sendSuccess$.subscribe((data)=>{
+      this.getDomainList();
+    });
+
     // Update payload for edit
     this.newDomainName.valueChanges.subscribe(value=>{
       this.updatePayload = {
-        "newdomain":this.selectedRow.domain,
-        "domain":value
+        "newdomain":value,
+        "domain":this.selectedRow.domain
       }
     })
   }
