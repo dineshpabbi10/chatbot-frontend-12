@@ -2,10 +2,13 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AgentComponent } from './agent.component';
 import { AgentRoutingModule } from './agent-routing.module';
-import { DashboardComponent } from './dashboard/dashboard.component';
 import { HeaderComponent } from './layout/header/header.component';
 import { SidebarComponent } from './layout/sidebar/sidebar.component';
 import { FooterComponent } from './layout/footer/footer.component';
+import {AvatarModule} from 'primeng/avatar';
+import {MenuModule} from 'primeng/menu';
+import {DividerModule} from 'primeng/divider';
+import {BadgeModule} from 'primeng/badge';
 
 
 
@@ -18,7 +21,11 @@ import { FooterComponent } from './layout/footer/footer.component';
   ],
   imports: [
     CommonModule,
-    AgentRoutingModule
+    AgentRoutingModule,
+    AvatarModule,
+    MenuModule,
+    DividerModule,
+    BadgeModule
   ]
 })
 export class AgentModule { }

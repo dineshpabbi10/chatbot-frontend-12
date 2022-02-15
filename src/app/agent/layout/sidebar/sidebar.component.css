@@ -1,0 +1,59 @@
+.agent-sidebar{
+    width: 250px;
+    height: 100%;
+    float: left;
+    padding: 10px;
+}
+
+.agent-name{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.agent-name h3{
+    color: rgb(100, 98, 98);
+}
+
+.avatar-label{
+    height: 1.5rem !important;
+    width: 1.5rem !important;
+}
+
+.menu-items{
+    padding: 0 10px;
+}
+
+.menu-item{
+    padding: 0 0 1rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.menu-item a{
+    padding-left: 15px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    color: lightslategray;
+    cursor: pointer;
+}
+
+.menu-active{
+    background-color: purple;
+    color: white !important;
+    border-radius: 5px;
+}
+
+.menu-item a svg{
+    margin-right: 5px;
+}
+
+.menu-category{
+    display: block;
+    color: var(--text-color-secondary);
+    font-weight: 600;
+    user-select: none;
+    padding: 1rem 0 0.5rem;
+    font-size: .857rem;
+    text-transform: uppercase;
+}
