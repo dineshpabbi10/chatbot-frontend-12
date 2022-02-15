@@ -62,7 +62,7 @@
   }
   
   .imessage p {
-    border-radius: 1.15rem;
+    border-radius: 0.3rem;
     line-height: 1.25;
     max-width: 75%;
     padding: 0.5rem .875rem;
@@ -80,13 +80,13 @@
   
   p.from-me {
     align-self: flex-end;
-    background-color: #248bf5;
+    background-color: purple;
     color: #fff; 
   }
   
   p.from-me::before {
     border-bottom-left-radius: 0.8rem 0.7rem;
-    border-right: 1rem solid #248bf5;
+    border-right: 1rem solid purple;
     right: -0.35rem;
     transform: translate(0, -0.1rem);
   }
