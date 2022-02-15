@@ -57,3 +57,12 @@
     font-size: .857rem;
     text-transform: uppercase;
 }
+
+.bottom-actions{
+    position: absolute;
+    bottom: 10px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    width: 230px;
+}
