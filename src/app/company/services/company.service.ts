@@ -2,14 +2,10 @@ import { Injectable } from '@angular/core';
 import {
   HttpClient,
   HttpHeaders,
-  HttpEventType,
-  HttpRequest,
   HttpErrorResponse,
-  HttpEvent,
 } from '@angular/common/http';
 import { environment } from '../../../environments/environment.prod';
 import { Observable, Subject, throwError } from 'rxjs';
-import { Router } from '@angular/router';
 import { AbstractControl, FormControl, ValidatorFn } from '@angular/forms';
 
 @Injectable({

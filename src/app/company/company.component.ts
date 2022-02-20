@@ -3,8 +3,7 @@ import { Router } from '@angular/router';
 import { CommonService } from '../services/common.service';
 import { ToastrService } from 'ngx-toastr'
 import { NgxUiLoaderService } from 'ngx-ui-loader';
-import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
-import { CompanyService } from './services/company.service'
+
 @Component({
   selector: 'app-company',
   templateUrl: './company.component.html',
@@ -14,7 +13,7 @@ export class CompanyComponent implements OnInit {
 
   public sidebarOpen = true;
   public smallScreen:boolean = false;
-  constructor(private formBuilder: FormBuilder, private CommonService: CommonService, private toastr: ToastrService, private ngxService: NgxUiLoaderService, public router: Router, private CompanyService: CompanyService) { }
+  constructor(private CommonService: CommonService, private toastr: ToastrService, private ngxService: NgxUiLoaderService, public router: Router) { }
 
   ngOnInit(): void {
     this.smallScreen = window.innerWidth < 601;

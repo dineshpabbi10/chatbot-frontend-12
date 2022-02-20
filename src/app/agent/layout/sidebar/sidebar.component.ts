@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {MenuItem} from 'primeng/api';
+import { AgentServiceService } from '../../services/agent-service.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -9,10 +10,16 @@ import {MenuItem} from 'primeng/api';
 export class SidebarComponent implements OnInit {
 
   public items: MenuItem[] = [];
+  public activeSection : string = "";
 
-  constructor() { }
+  constructor(private agentService: AgentServiceService) { }
 
   ngOnInit(): void {
+
+    // listen for page changes
+    this.agentService.chatSubject$.subscribe((page)=>{
+      this.activeSection = page;
+    })
 
     this.items = [{
       label: 'Inbox',
@@ -30,6 +37,10 @@ export class SidebarComponent implements OnInit {
       }];
 
 
+  }
+
+  sendSelectedPage(page:string):void{
+    this.agentService.sendChatPageInfo(page);
   }
 
 }

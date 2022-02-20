@@ -13,6 +13,7 @@ import { ChatListComponent } from './layout/chat-list/chat-list.component';
 import {InputTextModule} from 'primeng/inputtext';
 import { ChatBoxComponent } from './layout/chat-box/chat-box.component';
 import {ButtonModule} from 'primeng/button';
+import { CommonImport } from '../common.imports';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import {ButtonModule} from 'primeng/button';
     DividerModule,
     BadgeModule,
     InputTextModule,
-    ButtonModule
+    ButtonModule,
+    CommonImport
   ]
 })
 export class AgentModule { }
