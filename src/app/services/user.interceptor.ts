@@ -22,8 +22,12 @@ export class UserInterceptor implements HttpInterceptor {
       return next.handle(request);
     }
 
-
-    request = request.clone({ headers: request.headers.set('Authorization', 'Bearer ' + localStorage.getItem('company_token')) });
+    if(localStorage.getItem('company_token') !== null){
+      request = request.clone({ headers: request.headers.set('Authorization', 'Bearer ' + localStorage.getItem('company_token')) });
+    }else if(localStorage.getItem('agent_token') !== null){
+      request = request.clone({ headers: request.headers.set('Authorization', 'Bearer ' + localStorage.getItem('agent_token')) });
+    }
+    
 
 
     return next.handle(request);

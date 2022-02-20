@@ -58,8 +58,8 @@ export class LoginComponent implements OnInit {
           }
         }
         else if (data.data.role == "agent") {
-          localStorage.set("data", JSON.stringify(data.data))
-          localStorage.setItem("agent_token", JSON.stringify(data.data))
+          localStorage.setItem("data", JSON.stringify(data.data))
+          localStorage.setItem("agent_token", data.data.access)
           this.router.navigate(['/agent'])
         }
       }
