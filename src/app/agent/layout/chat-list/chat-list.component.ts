@@ -13,13 +13,13 @@ import { AgentServiceService } from '../../services/agent-service.service';
 export class ChatListComponent implements OnInit {
 
   public chatlist : any[] = [];
-  private selectedChatList:string  = "";
+  public selectedChatList:string  = "";
+  public selectedChat : number | string  = 0;
 
   constructor(private agentService: AgentServiceService,private loader:NgxUiLoaderService,private toast : ToastrService) { }
 
   ngOnInit(): void {
     this.agentService.chatSubject$.subscribe((selectedChatList)=>{
-      this.selectedChatList = selectedChatList;
       this.getChatList(selectedChatList);
     })
   }
@@ -37,6 +37,7 @@ export class ChatListComponent implements OnInit {
         if(response.status){
           this.chatlist = response.data;
         }
+        this.setPage(chatType);
         this.loader.stop();
       });
 
@@ -51,6 +52,7 @@ export class ChatListComponent implements OnInit {
         if(response.status){
           this.chatlist = response.data;
         }
+        this.setPage(chatType);
         this.loader.stop();
       });
 
@@ -65,6 +67,7 @@ export class ChatListComponent implements OnInit {
         if(response.status){
           this.chatlist = response.data;
         }
+        this.setPage(chatType);
         this.loader.stop();
       });
 
@@ -79,10 +82,27 @@ export class ChatListComponent implements OnInit {
         if(response.status){
           this.chatlist = response.data;
         }
+        this.setPage(chatType);
         this.loader.stop();
       });
 
     }
+  }
+
+  setPage(selectedChatList:string){
+    if(selectedChatList === "live-chats"){
+      this.selectedChatList = "Live Chat";
+    }else if(selectedChatList === "incoming-chats"){
+      this.selectedChatList = "Incoming Chat"
+    }else if(selectedChatList === "resolved-chats"){
+      this.selectedChatList = "Resolved Chat"
+    }else if(selectedChatList === "unresolved-chats"){
+      this.selectedChatList = "Unresolved Chat"
+    }
+  }
+
+  setSelectedChat(id:number | string){
+    this.selectedChat = id;
   }
 
 }
