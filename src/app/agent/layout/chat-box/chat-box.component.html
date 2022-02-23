@@ -32,7 +32,7 @@
 </div>
 <div class="input-chat">
     <div class="p-inputgroup">
-        <input type="text" pInputText placeholder="Keyword"> 
-        <button type="button" style="background-color: purple;" pButton pRipple label="Send" icon="pi pi-check"></button>        
+        <input type="text" [formControl] = "chatInput" pInputText placeholder="Keyword"> 
+        <button type="button" (click)="sendSocketMessage()" style="background-color: purple;" pButton pRipple label="Send" icon="pi pi-check"></button>        
     </div>
 </div>
