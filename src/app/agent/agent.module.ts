@@ -14,6 +14,7 @@ import {InputTextModule} from 'primeng/inputtext';
 import { ChatBoxComponent } from './layout/chat-box/chat-box.component';
 import {ButtonModule} from 'primeng/button';
 import { CommonImport } from '../common.imports';
+import {ProgressSpinnerModule} from 'primeng/progressspinner';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { CommonImport } from '../common.imports';
     BadgeModule,
     InputTextModule,
     ButtonModule,
-    CommonImport
+    CommonImport,
+    ProgressSpinnerModule
   ]
 })
 export class AgentModule { }

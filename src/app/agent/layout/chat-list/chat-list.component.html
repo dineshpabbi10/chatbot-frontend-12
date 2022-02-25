@@ -8,7 +8,7 @@
 
     <div *ngIf="selectedChatList !== 'Incoming Chat' else incomingChatDiv" class="chat-list-chats">
 
-        <div (click)="setSelectedChat(chat.id)" *ngFor="let chat of chatlist" [ngClass]="{'card-active':chat.id === selectedChat,'card':chat.id !== selectedChat}">
+        <div (click)="setSelectedChat(chat.id);setSelectedRoom(chat.user_id)" *ngFor="let chat of chatlist" [ngClass]="{'card-active':chat.id === selectedChat,'card':chat.id !== selectedChat}">
             <div class="message-header">
                 <p-avatar [label]="chat.client.substring(0,1)" shape="circle"></p-avatar>
                 <div class="message-header-message">

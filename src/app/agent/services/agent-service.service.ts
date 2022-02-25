@@ -10,6 +10,8 @@ export class AgentServiceService {
 
   public chatSubject = new BehaviorSubject("live-chats");
   public chatSubject$ = this.chatSubject.asObservable();
+  public selectedChat = new Subject();
+  public selectedChat$ = this.selectedChat.asObservable();
 
   constructor(private httpClient : HttpClient) { }
 

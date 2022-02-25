@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
+import { NgxUiLoaderService } from 'ngx-ui-loader';
+import { AgentServiceService } from '../../services/agent-service.service';
 import { WebSocketService } from '../../services/web-socket.service';
 
 @Component({
@@ -8,19 +10,61 @@ import { WebSocketService } from '../../services/web-socket.service';
   styleUrls: ['./chat-box.component.css']
 })
 export class ChatBoxComponent implements OnInit {
-
-  private SOCKET_URL = "wss://34.131.139.183:4444/ws/chatroom/1/";
+  public chat_id = "";
+  public SOCKET_URL_BASE = "wss://34.131.139.183:4444/ws/chatroom/"
+  public SOCKET_URL = "wss://34.131.139.183:4444/ws/chatroom/6147cd55-a7ee-45d0-8cd1-e35e687a225b/";
   public chatInput = new FormControl('',[Validators.required])
+  public chatList :any[] | null =  null;
+  @ViewChild('target') private chatListContainer: ElementRef;
 
-  constructor(public socketService: WebSocketService) { 
-    this.socketService.openWebSocketConnection(this.SOCKET_URL);
+  constructor(public socketService: WebSocketService, public agentService : AgentServiceService ,public loader : NgxUiLoaderService) { 
   }
 
   ngOnInit(): void {
-    this.getChatHistory();
-    this.socketService.socketResponseSubject$.subscribe((res)=>{
-      console.log("Hello res",res);
+    this.loader.start();
+    
+    this.agentService.selectedChat$.subscribe((index:any)=>{
+      // this.socketService.closeWebSocket();
+      this.chatList = null;
+      this.chat_id = index;
+      this.SOCKET_URL = this.SOCKET_URL_BASE+this.chat_id+"/";
+      console.log(this.SOCKET_URL);
+      this.socketService.openWebSocketConnection(this.SOCKET_URL);
     })
+
+    this.socketService.socketResponseSubject$.subscribe((res:any)=>{
+      if(res.type==="chat_history"){
+        this.chatList = res.payload.data;
+        this.scrollToElement();
+      }else if(res.type ==="chat_message" || res.type ==="botquery"){
+        
+        if(res.from === "agent"){
+          this.chatList?.push(
+            {
+              "agent":res.payload.msg,
+              "user": null
+            }
+          )
+        }else{
+          this.chatList?.push({
+            "user":res.payload.msg,
+            "agent": null
+          })
+        }
+
+        this.scrollToElement();
+
+      }else{
+        console.log(res);
+        this.scrollToElement();
+      }
+      this.loader.stop();
+    });
+
+    this.socketService.socketConnectionSubject$.subscribe((data:any)=>{
+      console.log("getting history");
+      this.getChatHistory();
+    });
   }
 
   sendSocketMessage(){
@@ -43,10 +87,24 @@ export class ChatBoxComponent implements OnInit {
       "payload": {
           "data": []
       },
-      "from": "user",
-      "to": "agent"
+      "from": "agent",
+      "to": "user"
     }
     this.socketService.sendWebSocketMessage(data);
+  }
+
+  scrollToElement(): void {
+    this.chatListContainer.nativeElement.scroll({
+      top: this.chatListContainer.nativeElement.scrollHeight,
+      left: 0,
+      behavior: 'smooth'
+    });
+  }
+
+  checkEnterKey(event:any):void{
+    if(event && event.keyCode == 13) {
+      this.sendSocketMessage();
+    }
   }
 
 }

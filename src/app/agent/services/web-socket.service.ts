@@ -9,6 +9,10 @@ export class WebSocketService {
   public webSocket : WebSocket | null = null;
   public socketResponseSubject = new Subject();
   public socketResponseSubject$ =  this.socketResponseSubject.asObservable();
+  public socketConnectionSubject = new Subject();
+  public socketConnectionSubject$ =  this.socketConnectionSubject.asObservable();
+  public socketCloseSubject = new Subject();
+  public socketCloseSubject$ =  this.socketCloseSubject.asObservable();
 
   constructor() { }
 
@@ -16,7 +20,10 @@ export class WebSocketService {
     this.webSocket = new WebSocket(SOCKET_URL);
 
     this.webSocket.onopen = (event)=>{
-      console.log("Connection Established with Socket");
+      this.socketConnectionSubject.next({
+        status:200,
+        message:"Success"
+      });
     }
 
     this.webSocket.close = (event)=>{
