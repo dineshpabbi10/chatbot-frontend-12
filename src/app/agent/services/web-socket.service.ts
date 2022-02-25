@@ -17,6 +17,7 @@ export class WebSocketService {
   constructor() { }
 
   public openWebSocketConnection(SOCKET_URL : string){
+    this.closeWebSocket();
     this.webSocket = new WebSocket(SOCKET_URL);
 
     this.webSocket.onopen = (event)=>{
@@ -35,6 +36,11 @@ export class WebSocketService {
     }
 
     this.webSocket.onerror = (event)=>{
+      this.socketCloseSubject.next({
+        status:404,
+        message:"Success"
+      });
+
       console.log("Error occured while processing Socket Request");
     }
   }

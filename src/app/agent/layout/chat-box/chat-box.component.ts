@@ -22,9 +22,12 @@ export class ChatBoxComponent implements OnInit {
 
   ngOnInit(): void {
     this.loader.start();
+
+    this.socketService.socketCloseSubject$.subscribe((error)=>{
+      this.socketService.openWebSocketConnection(this.SOCKET_URL);
+    })
     
     this.agentService.selectedChat$.subscribe((index:any)=>{
-      // this.socketService.closeWebSocket();
       this.chatList = null;
       this.chat_id = index;
       this.SOCKET_URL = this.SOCKET_URL_BASE+this.chat_id+"/";
@@ -62,8 +65,8 @@ export class ChatBoxComponent implements OnInit {
     });
 
     this.socketService.socketConnectionSubject$.subscribe((data:any)=>{
-      console.log("getting history");
-      this.getChatHistory();
+      this.chatList = null;
+      setTimeout(()=>this.getChatHistory(),1000)
     });
   }
 

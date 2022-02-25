@@ -104,11 +104,11 @@ export class ChatListComponent implements OnInit {
   }
 
   setSelectedChat(id:number | string){
-    this.selectedChat = id;
+      this.selectedChat = id;
   }
 
   setSelectedRoom(id:any){
-    this.agentService.selectedChat.next(id.split("-").join(""));
+      this.agentService.selectedChat.next(id.split("-").join(""));
   }
 
 }
