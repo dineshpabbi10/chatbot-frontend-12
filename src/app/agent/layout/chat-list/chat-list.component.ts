@@ -36,6 +36,8 @@ export class ChatListComponent implements OnInit {
       .subscribe((response)=>{
         if(response.status){
           this.chatlist = response.data;
+          this.setSelectedChat(this.chatlist[0].id);
+          this.setSelectedRoom(this.chatlist[0].user_id);
         }
         this.setPage(chatType);
         this.loader.stop();
