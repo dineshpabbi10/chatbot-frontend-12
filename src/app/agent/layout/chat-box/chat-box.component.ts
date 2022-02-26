@@ -44,15 +44,8 @@ export class ChatBoxComponent implements OnInit {
         this.chatList = res.payload.data;
         this.scrollToElement();
       } else if (res.type === 'chat_message' || res.type === 'botquery') {
-        console.log(res);
-
-        if (res.from === 'agent') {
           this.getChatHistory();
-        } else {
-          this.getChatHistory();
-        }
-
-        this.scrollToElement();
+          this.scrollToElement();
       } else {
         console.log(res);
         this.scrollToElement();
