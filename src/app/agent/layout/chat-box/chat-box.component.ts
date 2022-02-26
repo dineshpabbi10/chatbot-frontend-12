@@ -7,92 +7,133 @@ import { WebSocketService } from '../../services/web-socket.service';
 @Component({
   selector: 'app-chat-box',
   templateUrl: './chat-box.component.html',
-  styleUrls: ['./chat-box.component.css']
+  styleUrls: ['./chat-box.component.css'],
 })
 export class ChatBoxComponent implements OnInit {
-  public chat_id = "";
-  public SOCKET_URL_BASE = "wss://34.131.139.183:4444/ws/chatroom/"
-  public SOCKET_URL = "wss://34.131.139.183:4444/ws/chatroom/6147cd55-a7ee-45d0-8cd1-e35e687a225b/";
-  public chatInput = new FormControl('',[Validators.required])
-  public chatList :any[] | null =  null;
+  public chat_id = '';
+  public SOCKET_URL_BASE = 'wss://34.131.139.183:4444/ws/chatroom/';
+  public SOCKET_URL =
+    'wss://34.131.139.183:4444/ws/chatroom/6147cd55-a7ee-45d0-8cd1-e35e687a225b/';
+  public chatInput = new FormControl('', [Validators.required]);
+  public chatList: any[] | null = null;
   @ViewChild('target') private chatListContainer: ElementRef;
 
-  constructor(public socketService: WebSocketService, public agentService : AgentServiceService ,public loader : NgxUiLoaderService) { 
-  }
+  constructor(
+    public socketService: WebSocketService,
+    public agentService: AgentServiceService,
+    public loader: NgxUiLoaderService
+  ) {}
 
   ngOnInit(): void {
     this.loader.start();
 
-    this.socketService.socketCloseSubject$.subscribe((error)=>{
+    this.socketService.socketCloseSubject$.subscribe((error) => {
       this.socketService.openWebSocketConnection(this.SOCKET_URL);
-    })
-    
-    this.agentService.selectedChat$.subscribe((index:any)=>{
+    });
+
+    this.agentService.selectedChat$.subscribe((index: any) => {
       this.chatList = null;
       this.chat_id = index;
-      this.SOCKET_URL = this.SOCKET_URL_BASE+this.chat_id+"/";
+      this.SOCKET_URL = this.SOCKET_URL_BASE + this.chat_id + '/';
       console.log(this.SOCKET_URL);
       this.socketService.openWebSocketConnection(this.SOCKET_URL);
-    })
+    });
 
-    this.socketService.socketResponseSubject$.subscribe((res:any)=>{
-      if(res.type==="chat_history"){
+    this.socketService.socketResponseSubject$.subscribe((res: any) => {
+      if (res.type === 'chat_history') {
         this.chatList = res.payload.data;
         this.scrollToElement();
-      }else if(res.type ==="chat_message" || res.type ==="botquery"){
-        
-        if(res.from === "agent"){
-          this.chatList?.push(
-            {
-              "agent":res.payload.msg,
-              "user": null
-            }
-          )
-        }else{
+      } else if (res.type === 'chat_message' || res.type === 'botquery') {
+        if (res.from === 'agent') {
           this.chatList?.push({
-            "user":res.payload.msg,
-            "agent": null
-          })
+            agent: res.payload.msg,
+            user: null,
+          });
+        } else {
+          this.chatList?.push({
+            user: res.payload.msg,
+            agent: null,
+          });
         }
 
         this.scrollToElement();
-
-      }else{
+      } else {
         console.log(res);
         this.scrollToElement();
       }
       this.loader.stop();
     });
 
-    this.socketService.socketConnectionSubject$.subscribe((data:any)=>{
+    this.socketService.socketConnectionSubject$.subscribe((data: any) => {
       this.chatList = null;
-      setTimeout(()=>this.getChatHistory(),1000)
+      setTimeout(() => this.getChatHistory(), 1000);
     });
   }
 
-  sendSocketMessage(){
+  sendSocketMessage() {
     let data = {
-      "payload": {
-          "msg": this.chatInput.value,
-          "username": this.chatInput.value.substring(0,4)
+      payload: {
+        msg: this.chatInput.value,
+        agent: '',
       },
-      "type": "chat_message",
-      "from": "agent"
-    }
+      type: 'botquery',
+      from: 'agent',
+    };
 
     this.socketService.sendWebSocketMessage(data);
-    this.chatInput.setValue("");
+    this.chatInput.setValue('');
   }
 
-  getChatHistory(){
+  getChatHistory() {
     let data = {
-      "type": "chat_history",
-      "payload": {
-          "data": []
+      type: 'chat_history',
+      payload: {
+        data: [],
       },
-      "from": "agent",
-      "to": "user"
-    }
+      from: 'agent',
+      to: 'user',
+    };
+    this.socketService.sendWebSocketMessage(data);
+  }
+
+  closeChat() {
+    let data = {
+      payload: {},
+      type: 'chat_close',
+      from: 'agent',
+    };
+    this.socketService.sendWebSocketMessage(data);
+  }
+
+  sendAttachment() {
+    let data = {
+      payload: {
+        attachment: this.SOCKET_URL,
+        agent: '',
+      },
+      type: 'botattachment',
+      from: 'agent',
+    };
+
+    this.socketService.sendWebSocketMessage(data);
+  }
+
+  createHold() {
+    let data = {
+      payload: {
+        msg: this.chatInput.value,
+        agent: '',
+      },
+      type: 'botquery',
+      from: 'agent',
+    };
+
+    this.socketService.sendWebSocketMessage(data);
+  }
+
+  banUser() {
+    let data = { type: 'banuser', payload: { msg: '' }, from: 'agent' };
+
     this.socketService.sendWebSocketMessage(data);
   }
 
@@ -100,14 +141,13 @@ export class ChatBoxComponent implements OnInit {
     this.chatListContainer.nativeElement.scroll({
       top: this.chatListContainer.nativeElement.scrollHeight,
       left: 0,
-      behavior: 'smooth'
+      behavior: 'smooth',
     });
   }
 
-  checkEnterKey(event:any):void{
-    if(event && event.keyCode == 13) {
+  checkEnterKey(event: any): void {
+    if (event && event.keyCode == 13) {
       this.sendSocketMessage();
     }
   }
-
 }
