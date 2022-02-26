@@ -12,6 +12,8 @@ export class AgentServiceService {
   public chatSubject$ = this.chatSubject.asObservable();
   public selectedChat = new Subject();
   public selectedChat$ = this.selectedChat.asObservable();
+  public selectedClient = new Subject();
+  public selectedClient$ = this.selectedClient.asObservable();
 
   constructor(private httpClient : HttpClient) { }
 

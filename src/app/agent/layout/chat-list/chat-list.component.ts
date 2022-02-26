@@ -38,6 +38,7 @@ export class ChatListComponent implements OnInit {
           this.chatlist = response.data;
           this.setSelectedChat(this.chatlist[0].id);
           this.setSelectedRoom(this.chatlist[0].user_id);
+          this.setSelectedClient(this.chatlist[0].client)
         }
         this.setPage(chatType);
         this.loader.stop();
@@ -109,6 +110,10 @@ export class ChatListComponent implements OnInit {
 
   setSelectedRoom(id:any){
       this.agentService.selectedChat.next(id.split("-").join(""));
+  }
+
+  setSelectedClient(name:string){
+      this.agentService.selectedClient.next(name);
   }
 
 }

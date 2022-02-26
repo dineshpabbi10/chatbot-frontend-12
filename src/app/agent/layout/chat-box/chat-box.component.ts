@@ -16,7 +16,9 @@ export class ChatBoxComponent implements OnInit {
     'wss://34.131.139.183:4444/ws/chatroom/6147cd55-a7ee-45d0-8cd1-e35e687a225b/';
   public chatInput = new FormControl('', [Validators.required]);
   public chatList: any[] | null = null;
+  public clientName:any = "";
   @ViewChild('target') private chatListContainer: ElementRef;
+  public selectedChatList: string = "";
 
   constructor(
     public socketService: WebSocketService,
@@ -26,6 +28,14 @@ export class ChatBoxComponent implements OnInit {
 
   ngOnInit(): void {
     this.loader.start();
+
+    this.agentService.chatSubject$.subscribe((selectedChatList)=>{
+      this.setPage(selectedChatList);
+    })
+
+    this.agentService.selectedClient$.subscribe((data:any)=>{
+      this.clientName = data;
+    })
 
     this.socketService.socketCloseSubject$.subscribe((error) => {
       this.socketService.openWebSocketConnection(this.SOCKET_URL);
@@ -139,4 +149,17 @@ export class ChatBoxComponent implements OnInit {
       this.sendSocketMessage();
     }
   }
+
+  setPage(selectedChatList:string){
+    if(selectedChatList === "live-chats"){
+      this.selectedChatList = "Live Chat";
+    }else if(selectedChatList === "incoming-chats"){
+      this.selectedChatList = "Incoming Chat"
+    }else if(selectedChatList === "resolved-chats"){
+      this.selectedChatList = "Resolved Chat"
+    }else if(selectedChatList === "unresolved-chats"){
+      this.selectedChatList = "Unresolved Chat"
+    }
+  }
+
 }
