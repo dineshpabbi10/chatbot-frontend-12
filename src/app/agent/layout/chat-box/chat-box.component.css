@@ -5,6 +5,16 @@
     overflow-y: scroll;
 }
 
+.chat-time{
+  font-size: x-small;
+}
+
+.chat-time-agent{
+  position: absolute;
+  right: 5px;
+  bottom: 3px;
+}
+
 #customer-name{
     font-size: 24px;
     font-weight: bold;
@@ -77,11 +87,17 @@
     height: 1rem;
     position: absolute;
   }
+
+  .message-chat{
+    width: 100%;
+  }
   
   p.from-me {
     align-self: flex-end;
     background-color: purple;
     color: #fff; 
+    margin-left: auto !important;
+    padding-bottom: 20px !important;
   }
   
   p.from-me::before {
@@ -173,7 +189,7 @@
   .container {
     margin: 0 auto;
     padding: 1rem;
-    padding-top: 70px;
+    padding-top: 100px;
   }
   
   h1 {

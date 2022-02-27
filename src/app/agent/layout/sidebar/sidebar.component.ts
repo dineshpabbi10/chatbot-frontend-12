@@ -11,10 +11,16 @@ export class SidebarComponent implements OnInit {
 
   public items: MenuItem[] = [];
   public activeSection : string = "";
+  public agentName = "";
 
   constructor(private agentService: AgentServiceService) { }
 
   ngOnInit(): void {
+    if(localStorage.getItem("data") !== null){
+      let name : any = JSON.parse(localStorage.getItem("data") || "{}");
+      this.agentName = name.name;
+    }
+    
 
     // listen for page changes
     this.agentService.chatSubject$.subscribe((page)=>{

@@ -6,212 +6,36 @@
         </span>
     </div>
 
-    <div class="chat-list-chats">
-        <div class="card">
-            <div class="message-header">
-                <p-avatar label="P" shape="circle"></p-avatar>
-                <div class="message-header-message">
-                    <span> <span class="chat-category">Live Chat</span> <span class="chat-person">Parveen Singh</span></span>
-                </div>
-            </div>
-            <div class="message-message">
-                Hi how are you ? Is this ...
-            </div>
-        </div>
+    <div *ngIf="selectedChatList !== 'Incoming Chat' else incomingChatDiv" class="chat-list-chats">
 
-        <div class="card-active">
+        <div (click)="setSelectedChat(chat.id);setSelectedRoom(chat.user_id);setSelectedClient(chat.client)" *ngFor="let chat of chatlist" [ngClass]="{'card-active':chat.id === selectedChat,'card':chat.id !== selectedChat}">
             <div class="message-header">
-                <p-avatar label="P" shape="circle"></p-avatar>
+                <p-avatar [label]="chat.client.substring(0,1)" shape="circle"></p-avatar>
                 <div class="message-header-message">
-                    <span> <span class="chat-category">Live Chat</span> <span class="chat-person">Parveen Singh</span></span>
+                    <span> <span class="chat-category">{{selectedChatList}}</span> <span class="chat-person">{{chat.client}}</span></span>
                 </div>
             </div>
             <div class="message-message">
-                Hi how are you ? Is this ...
+                {{chat.datetime}}
             </div>
         </div>
-        
-        <div class="card">
-            <div class="message-header">
-                <p-avatar label="P" shape="circle"></p-avatar>
-                <div class="message-header-message">
-                    <span> <span class="chat-category">Live Chat</span> <span class="chat-person">Parveen Singh</span></span>
-                </div>
-            </div>
-            <div class="message-message">
-                Hi how are you ? Is this ...
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="message-header">
-                <p-avatar label="P" shape="circle"></p-avatar>
-                <div class="message-header-message">
-                    <span> <span class="chat-category">Live Chat</span> <span class="chat-person">Parveen Singh</span></span>
-                </div>
-            </div>
-            <div class="message-message">
-                Hi how are you ? Is this ...
-            </div>
-        </div>
-        
-        <div class="card">
-            <div class="message-header">
-                <p-avatar label="P" shape="circle"></p-avatar>
-                <div class="message-header-message">
-                    <span> <span class="chat-category">Live Chat</span> <span class="chat-person">Parveen Singh</span></span>
-                </div>
-            </div>
-            <div class="message-message">
-                Hi how are you ? Is this ...
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="message-header">
-                <p-avatar label="P" shape="circle"></p-avatar>
-                <div class="message-header-message">
-                    <span> <span class="chat-category">Live Chat</span> <span class="chat-person">Parveen Singh</span></span>
-                </div>
-            </div>
-            <div class="message-message">
-                Hi how are you ? Is this ...
-            </div>
-        </div>
-          
-        <div class="card">
-            <div class="message-header">
-                <p-avatar label="P" shape="circle"></p-avatar>
-                <div class="message-header-message">
-                    <span> <span class="chat-category">Live Chat</span> <span class="chat-person">Parveen Singh</span></span>
-                </div>
-            </div>
-            <div class="message-message">
-                Hi how are you ? Is this ...
-            </div>
-        </div>
-          
-        <div class="card">
-            <div class="message-header">
-                <p-avatar label="P" shape="circle"></p-avatar>
-                <div class="message-header-message">
-                    <span> <span class="chat-category">Live Chat</span> <span class="chat-person">Parveen Singh</span></span>
-                </div>
-            </div>
-            <div class="message-message">
-                Hi how are you ? Is this ...
-            </div>
-        </div>
-          
-        <div class="card">
-            <div class="message-header">
-                <p-avatar label="P" shape="circle"></p-avatar>
-                <div class="message-header-message">
-                    <span> <span class="chat-category">Live Chat</span> <span class="chat-person">Parveen Singh</span></span>
-                </div>
-            </div>
-            <div class="message-message">
-                Hi how are you ? Is this ...
-            </div>
-        </div>
-          
-        <div class="card">
-            <div class="message-header">
-                <p-avatar label="P" shape="circle"></p-avatar>
-                <div class="message-header-message">
-                    <span> <span class="chat-category">Live Chat</span> <span class="chat-person">Parveen Singh</span></span>
-                </div>
-            </div>
-            <div class="message-message">
-                Hi how are you ? Is this ...
-            </div>
-        </div>
-            
-        <div class="card">
-            <div class="message-header">
-                <p-avatar label="P" shape="circle"></p-avatar>
-                <div class="message-header-message">
-                    <span> <span class="chat-category">Live Chat</span> <span class="chat-person">Parveen Singh</span></span>
-                </div>
-            </div>
-            <div class="message-message">
-                Hi how are you ? Is this ...
-            </div>
-        </div>
-            
-        <div class="card">
-            <div class="message-header">
-                <p-avatar label="P" shape="circle"></p-avatar>
-                <div class="message-header-message">
-                    <span> <span class="chat-category">Live Chat</span> <span class="chat-person">Parveen Singh</span></span>
-                </div>
-            </div>
-            <div class="message-message">
-                Hi how are you ? Is this ...
-            </div>
-        </div>
-            
-        <div class="card">
-            <div class="message-header">
-                <p-avatar label="P" shape="circle"></p-avatar>
-                <div class="message-header-message">
-                    <span> <span class="chat-category">Live Chat</span> <span class="chat-person">Parveen Singh</span></span>
-                </div>
-            </div>
-            <div class="message-message">
-                Hi how are you ? Is this ...
-            </div>
-        </div>
-            
-        <div class="card">
-            <div class="message-header">
-                <p-avatar label="P" shape="circle"></p-avatar>
-                <div class="message-header-message">
-                    <span> <span class="chat-category">Live Chat</span> <span class="chat-person">Parveen Singh</span></span>
-                </div>
-            </div>
-            <div class="message-message">
-                Hi how are you ? Is this ...
-            </div>
-        </div>
-            
-        <div class="card">
-            <div class="message-header">
-                <p-avatar label="P" shape="circle"></p-avatar>
-                <div class="message-header-message">
-                    <span> <span class="chat-category">Live Chat</span> <span class="chat-person">Parveen Singh</span></span>
-                </div>
-            </div>
-            <div class="message-message">
-                Hi how are you ? Is this ...
-            </div>
-        </div>
-            
-        <div class="card">
-            <div class="message-header">
-                <p-avatar label="P" shape="circle"></p-avatar>
-                <div class="message-header-message">
-                    <span> <span class="chat-category">Live Chat</span> <span class="chat-person">Parveen Singh</span></span>
-                </div>
-            </div>
-            <div class="message-message">
-                Hi how are you ? Is this ...
-            </div>
-        </div>
-            
-        <div class="card">
-            <div class="message-header">
-                <p-avatar label="P" shape="circle"></p-avatar>
-                <div class="message-header-message">
-                    <span> <span class="chat-category">Live Chat</span> <span class="chat-person">Parveen Singh</span></span>
-                </div>
-            </div>
-            <div class="message-message">
-                Hi how are you ? Is this ...
-            </div>
-        </div>
-        
         
     </div>
+
+    <ng-template #incomingChatDiv>
+        <div class="chat-list-chats">
+            <div (click)="setSelectedChat(chat.mobile)" *ngFor="let chat of chatlist" [ngClass]="{'card-active':chat.mobile === selectedChat,'card':chat.mobile !== selectedChat}">
+                <div class="message-header">
+                    <p-avatar [label]="chat.username.substring(0,1)" shape="circle"></p-avatar>
+                    <div class="message-header-message">
+                        <span> <span class="chat-category">{{selectedChatList}}</span> <span class="chat-person">{{chat.username}}</span></span>
+                    </div>
+                </div>
+                <div class="message-message">
+                    {{chat.mobile_no}}
+                </div>
+            </div>
+        </div>
+    </ng-template>
     
 </div>

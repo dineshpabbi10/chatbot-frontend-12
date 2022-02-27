@@ -1,38 +1,44 @@
-<div class="chat-box-container">
+<div #target class="chat-box-container">
     <div class ="sticky-header">
-        <span id="customer-name">Parveen Singh</span>
-        <span id="chat-id">#1007</span>
-        <span id="chat-type">Live Chat</span>
+        <span id="customer-name">{{clientName}}</span>
+        <!-- <span id="chat-id">#1007</span> -->
+        <span id="chat-type">{{selectedChatList}}</span>
+        <button pButton type="button" (click)="banUser()" pTooltip="Ban User For inappropriate behavior" style="background-color: purple; padding: 2px; margin-left: 5px;" icon="pi pi-ban"></button>
+        <button pButton type="button" (click)="createHold()" pTooltip="Put User On Hold" style="background-color: purple; padding: 2px; margin-left: 5px;" icon="pi pi-pause"></button>
+        <button pButton type="button" (click)="closeChat()" pTooltip="Close Chat" style="background-color: purple; padding: 2px; margin-left: 5px;" icon="pi pi-stop"></button>
     </div>
 
     <div class="container">
         <div class="imessage">
-          <p class="from-them">It was loud. We just laid there and said &ldquo;is this an earthquake? I think this is an earthquake.&rdquo;</p>
-          <p class="from-me">Like is this an earthquake just go back to sleep</p>
-          <p class="from-them">It&rsquo;s more like &ldquo;this is an earthquake. Check the Internet. Yup. Earthquake. This is the size. This is the epicenter. Check social media. Make sure the East Coast knows I&rsquo;m alive. Okay, try and go back to sleep.&rdquo;</p>
-          <p class="from-me">👍🏻</p>
-          <p class="from-me">Glad you&rsquo;re safe</p>
-          <p class="from-them">It was loud. We just laid there and said &ldquo;is this an earthquake? I think this is an earthquake.&rdquo;</p>
-          <p class="from-me">Like is this an earthquake just go back to sleep</p>
-          <p class="from-them">It&rsquo;s more like &ldquo;this is an earthquake. Check the Internet. Yup. Earthquake. This is the size. This is the epicenter. Check social media. Make sure the East Coast knows I&rsquo;m alive. Okay, try and go back to sleep.&rdquo;</p>
-          <p class="from-me">👍🏻</p>
-          <p class="from-me">Glad you&rsquo;re safe</p>
-          <p class="from-them">It was loud. We just laid there and said &ldquo;is this an earthquake? I think this is an earthquake.&rdquo;</p>
-          <p class="from-me">Like is this an earthquake just go back to sleep</p>
-          <p class="from-them">It&rsquo;s more like &ldquo;this is an earthquake. Check the Internet. Yup. Earthquake. This is the size. This is the epicenter. Check social media. Make sure the East Coast knows I&rsquo;m alive. Okay, try and go back to sleep.&rdquo;</p>
-          <p class="from-me">👍🏻</p>
-          <p class="from-me">Glad you&rsquo;re safe</p>
-          <p class="from-them">It was loud. We just laid there and said &ldquo;is this an earthquake? I think this is an earthquake.&rdquo;</p>
-          <p class="from-me">Like is this an earthquake just go back to sleep</p>
-          <p class="from-them">It&rsquo;s more like &ldquo;this is an earthquake. Check the Internet. Yup. Earthquake. This is the size. This is the epicenter. Check social media. Make sure the East Coast knows I&rsquo;m alive. Okay, try and go back to sleep.&rdquo;</p>
-          <p class="from-me">👍🏻</p>
-          <p class="from-me">Glad you&rsquo;re safe</p>
+            <p *ngIf="chatList === null">Loading ...</p>
+            <p *ngIf="chatList?.length === 0">No messaged found. Send a new Message to begin</p>
+            <div class="message-chat" *ngFor="let chat of chatList" >
+                <p *ngIf="chat.user" [ngClass]="{'from-them':chat.user !==null}">{{chat.user}}<br/><span class="chat-time">{{chat.time}}</span></p>
+                <p *ngIf="chat.agent" [ngClass]="{'from-me':chat.agent !==null}">{{chat.agent}}<br/><span class="chat-time chat-time-agent">{{chat.time}}</span></p>
+            </div>
         </div>
     </div>
 </div>
+
 <div class="input-chat">
     <div class="p-inputgroup">
-        <input type="text" pInputText placeholder="Keyword"> 
-        <button type="button" style="background-color: purple;" pButton pRipple label="Send" icon="pi pi-check"></button>        
+        <input type="text" (keydown)="checkEnterKey($event)" [formControl] = "chatInput" pInputText placeholder="Keyword"> 
+        <span class="p-buttonset">
+            <button pButton type="button" pTooltip="Send Message" (click)="sendSocketMessage()" label="Send" style="background-color: purple;" icon="pi pi-check"></button>
+            <button pButton type="button" pTooltip="Upload Files" (click)="openDialog()" label="Upload File" style="background-color: purple;" icon="pi pi-file"></button>
+        </span> 
     </div>
+    
 </div>
+
+
+<p-dialog [(visible)]="display">
+    <ng-template pTemplate="header">
+        Upload File
+    </ng-template>
+    <p-fileUpload [showCancelButton]="false" #form [fileLimit]="1" name="myfile[]" [customUpload]="true" (uploadHandler)="myUploader($event,form)"></p-fileUpload>
+    <ng-template pTemplate="footer">
+        <button pButton type="button" (click)="closeDialog()" label="Cancel" style="background-color: purple;" icon="pi pi-check"></button>
+    </ng-template>
+</p-dialog>
+
