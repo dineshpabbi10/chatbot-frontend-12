@@ -3,6 +3,9 @@
         <span id="customer-name">{{clientName}}</span>
         <!-- <span id="chat-id">#1007</span> -->
         <span id="chat-type">{{selectedChatList}}</span>
+        <button pButton type="button" (click)="banUser()" pTooltip="Ban User For inappropriate behavior" style="background-color: purple; padding: 2px; margin-left: 5px;" icon="pi pi-ban"></button>
+        <button pButton type="button" (click)="createHold()" pTooltip="Put User On Hold" style="background-color: purple; padding: 2px; margin-left: 5px;" icon="pi pi-pause"></button>
+        <button pButton type="button" (click)="closeChat()" pTooltip="Close Chat" style="background-color: purple; padding: 2px; margin-left: 5px;" icon="pi pi-stop"></button>
     </div>
 
     <div class="container">
@@ -20,6 +23,22 @@
 <div class="input-chat">
     <div class="p-inputgroup">
         <input type="text" (keydown)="checkEnterKey($event)" [formControl] = "chatInput" pInputText placeholder="Keyword"> 
-        <button type="button" (click)="sendSocketMessage()" style="background-color: purple;" pButton pRipple label="Send" icon="pi pi-check"></button>        
+        <span class="p-buttonset">
+            <button pButton type="button" pTooltip="Send Message" (click)="sendSocketMessage()" label="Send" style="background-color: purple;" icon="pi pi-check"></button>
+            <button pButton type="button" pTooltip="Upload Files" (click)="openDialog()" label="Upload File" style="background-color: purple;" icon="pi pi-file"></button>
+        </span> 
     </div>
+    
 </div>
+
+
+<p-dialog [(visible)]="display">
+    <ng-template pTemplate="header">
+        Upload File
+    </ng-template>
+    <p-fileUpload #form [fileLimit]="1" name="myfile[]" [customUpload]="true" (uploadHandler)="myUploader($event,form)"></p-fileUpload>
+    <ng-template pTemplate="footer">
+        <button pButton type="button" (click)="closeDialog()" label="Cancel" style="background-color: purple;" icon="pi pi-check"></button>
+    </ng-template>
+</p-dialog>
+

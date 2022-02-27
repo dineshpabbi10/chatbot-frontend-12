@@ -19,6 +19,8 @@ export class ChatBoxComponent implements OnInit {
   public clientName:any = "";
   @ViewChild('target') private chatListContainer: ElementRef;
   public selectedChatList: string = "";
+  public file : File | null = null;
+  public display = false;
 
   constructor(
     public socketService: WebSocketService,
@@ -104,10 +106,11 @@ export class ChatBoxComponent implements OnInit {
     this.socketService.sendWebSocketMessage(data);
   }
 
-  sendAttachment() {
+  sendAttachment(file:any) {
+    console.log(file);
     let data = {
       payload: {
-        attachment: this.SOCKET_URL,
+        attachment: file,
         agent: '',
       },
       type: 'botattachment',
@@ -160,6 +163,20 @@ export class ChatBoxComponent implements OnInit {
     }else if(selectedChatList === "unresolved-chats"){
       this.selectedChatList = "Unresolved Chat"
     }
+  }
+
+  myUploader(event:any,form:any) {
+    console.log(event.files);
+    this.sendAttachment(event.files[0]);
+    form.clear();
+  }
+
+  openDialog(){
+    this.display = true;
+  }
+
+  closeDialog(){
+    this.display = false;
   }
 
 }
