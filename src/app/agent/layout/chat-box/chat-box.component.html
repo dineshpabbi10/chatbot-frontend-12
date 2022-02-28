@@ -3,9 +3,7 @@
         <span id="customer-name">{{clientName}}</span>
         <!-- <span id="chat-id">#1007</span> -->
         <span id="chat-type">{{selectedChatList}}</span>
-        <button pButton type="button" (click)="banUser()" pTooltip="Ban User For inappropriate behavior" style="background-color: purple; padding: 2px; margin-left: 5px;" icon="pi pi-ban"></button>
-        <button pButton type="button" (click)="createHold()" pTooltip="Put User On Hold" style="background-color: purple; padding: 2px; margin-left: 5px;" icon="pi pi-pause"></button>
-        <button pButton type="button" (click)="closeChat()" pTooltip="Close Chat" style="background-color: purple; padding: 2px; margin-left: 5px;" icon="pi pi-stop"></button>
+        <button *ngIf="chatList !== null && selectedChatList !== 'Resolved Chat'" (click)="openActionDisplay()" type="button" style="padding: 2px; margin-left: 5px; background-color: purple;" pButton icon="pi pi-ellipsis-v"></button>
     </div>
 
     <div class="container">
@@ -41,5 +39,16 @@
     <ng-template pTemplate="footer">
         <button pButton type="button" (click)="closeDialog()" label="Cancel" style="background-color: purple;" icon="pi pi-check"></button>
     </ng-template>
+</p-dialog>
+
+
+<p-dialog header="Actions" [(visible)]="actionsDisplay">
+    <div style="display: flex; flex-direction: column;">
+        <button pButton type="button" (click)="banUser()" label="Ban User" pTooltip="Ban User For inappropriate behavior" style="background-color: purple; padding: 2px; margin: 2px;" icon="pi pi-ban"></button>
+        <button pButton type="button" (click)="createHold()" label="Hold Chat" pTooltip="Put User On Hold" style="background-color: purple; padding: 2px; margin: 2px;" icon="pi pi-pause"></button>
+        <button pButton type="button" (click)="createUnHold()" label="Un-Hold Chat" pTooltip="Remove User from Hold" style="background-color: purple; padding: 2px; margin: 2px;" icon="pi pi-play"></button>
+        <button pButton type="button" (click)="closeChat()" label="Close Chat" pTooltip="Close Chat" style="background-color: purple; padding: 2px; margin: 2px;" icon="pi pi-stop"></button>
+    </div>
+  
 </p-dialog>
 

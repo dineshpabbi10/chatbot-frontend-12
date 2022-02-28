@@ -1,6 +1,8 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
+import { MenuItem } from 'primeng/api';
 import { AgentServiceService } from '../../services/agent-service.service';
 import { WebSocketService } from '../../services/web-socket.service';
 
@@ -22,11 +24,13 @@ export class ChatBoxComponent implements OnInit {
   public file: File | null = null;
   public display = false;
   public agentEmail = "";
+  public actionsDisplay = false;
 
   constructor(
     public socketService: WebSocketService,
     public agentService: AgentServiceService,
-    public loader: NgxUiLoaderService
+    public loader: NgxUiLoaderService,
+    public toast : ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -70,7 +74,12 @@ export class ChatBoxComponent implements OnInit {
         this.scrollToElement();
       }else if(res.type === "live_chats") {
         
-      } else {
+      }else if(res.type==="hold"){
+        this.toast.success(res?.payload?.msg)
+      }else if(res.type === "banuser"){
+        this.toast.success(res?.payload?.msg);
+      }
+      else {
         console.log(res);
         this.scrollToElement();
       }
@@ -140,6 +149,13 @@ export class ChatBoxComponent implements OnInit {
     setTimeout(() => this.getChatListBySocket(), 3000);
   }
 
+  createUnHold() {
+    let data = { type: 'hold', payload: { msg: 'unhold' }, from: 'agent' };
+
+    this.socketService.sendWebSocketMessage(data);
+    setTimeout(() => this.getChatListBySocket(), 3000);
+  }
+
   banUser() {
     let data = { type: 'banuser', payload: { msg: '' }, from: 'agent' };
 
@@ -195,6 +211,10 @@ export class ChatBoxComponent implements OnInit {
     };
     console.log("SENDING LIVE CHAT MESSAGE");
     this.socketService.sendWebSocketMessage(data);
+  }
+
+  openActionDisplay(){
+    this.actionsDisplay = true;
   }
 
 }
