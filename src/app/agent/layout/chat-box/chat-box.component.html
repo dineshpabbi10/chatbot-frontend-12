@@ -10,8 +10,9 @@
 
     <div class="container">
         <div class="imessage">
-            <p *ngIf="chatList === null">Loading ...</p>
-            <p *ngIf="chatList?.length === 0">No messaged found. Send a new Message to begin</p>
+            <p *ngIf="chatList === null && selectedChatList !==''" >Loading ...</p>
+            <p *ngIf="chatList === null && selectedChatList ==='';else noMessage">No Chat Selected</p>
+            <ng-template #noMessage><p *ngIf="chatList?.length === 0 && selectedChatList !==''">No messaged found. Send a new Message to begin</p></ng-template>
             <div class="message-chat" *ngFor="let chat of chatList" >
                 <p *ngIf="chat.user" [ngClass]="{'from-them':chat.user !==null}">{{chat.user}}<br/><span class="chat-time">{{chat.time}}</span></p>
                 <p *ngIf="chat.agent" [ngClass]="{'from-me':chat.agent !==null}">{{chat.agent}}<br/><span class="chat-time chat-time-agent">{{chat.time}}</span></p>
@@ -20,7 +21,7 @@
     </div>
 </div>
 
-<div class="input-chat">
+<div *ngIf="selectedChatList !== 'Resolved Chat'" class="input-chat">
     <div class="p-inputgroup">
         <input type="text" (keydown)="checkEnterKey($event)" [formControl] = "chatInput" pInputText placeholder="Keyword"> 
         <span class="p-buttonset">

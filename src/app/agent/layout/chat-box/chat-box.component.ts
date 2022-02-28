@@ -21,6 +21,7 @@ export class ChatBoxComponent implements OnInit {
   public selectedChatList: string = '';
   public file: File | null = null;
   public display = false;
+  public agentEmail = "";
 
   constructor(
     public socketService: WebSocketService,
@@ -29,6 +30,12 @@ export class ChatBoxComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+
+    if(localStorage.getItem("data") !== null){
+      let name : any = JSON.parse(localStorage.getItem("data") || "{}");
+      this.agentEmail = name.email;
+    };
+
     this.loader.start();
 
     this.agentService.chatSubject$.subscribe((selectedChatList) => {
@@ -58,7 +65,6 @@ export class ChatBoxComponent implements OnInit {
     this.socketService.socketResponseSubject$.subscribe((res: any) => {
       if (res.type === 'chat_history') {
         this.chatList = res.payload.data;
-        this.scrollToElement();
       } else if (res.type === 'chat_message' || res.type === 'botquery') {
         this.getChatHistory();
         this.scrollToElement();
@@ -73,7 +79,7 @@ export class ChatBoxComponent implements OnInit {
 
     this.socketService.socketConnectionSubject$.subscribe((data: any) => {
       this.chatList = null;
-      setTimeout(() => this.getChatHistory(), 3000);
+      setTimeout(() => this.getChatHistory(), 4000);
     });
   }
 
@@ -111,6 +117,7 @@ export class ChatBoxComponent implements OnInit {
       from: 'agent',
     };
     this.socketService.sendWebSocketMessage(data);
+    setTimeout(() => this.getChatListBySocket(), 3000);
   }
 
   sendAttachment(file: any) {
@@ -130,6 +137,7 @@ export class ChatBoxComponent implements OnInit {
     let data = { type: 'hold', payload: { msg: 'hold' }, from: 'agent' };
 
     this.socketService.sendWebSocketMessage(data);
+    setTimeout(() => this.getChatListBySocket(), 3000);
   }
 
   banUser() {
@@ -177,6 +185,16 @@ export class ChatBoxComponent implements OnInit {
 
   closeDialog() {
     this.display = false;
+  }
+
+  getChatListBySocket() {
+    let data = {
+      type: 'live_chats',
+      payload: { agent_email: this.agentEmail },
+      from: 'agent',
+    };
+    console.log("SENDING LIVE CHAT MESSAGE");
+    this.socketService.sendWebSocketMessage(data);
   }
 
 }

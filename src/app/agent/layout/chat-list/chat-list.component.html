@@ -15,9 +15,9 @@
                     <span> <span class="chat-category">{{selectedChatList}}</span> <span class="chat-person">{{chat?.username}}</span></span>
                 </div>
             </div>
-            <!-- <div class="message-message">
-                {{chat.datetime}}
-            </div> -->
+            <div *ngIf="chat.hold" class="message-message">
+                <span>Chat On Hold</span>
+            </div>
         </div>
         
     </div>
