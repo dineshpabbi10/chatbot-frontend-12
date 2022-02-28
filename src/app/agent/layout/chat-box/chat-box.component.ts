@@ -13,13 +13,13 @@ export class ChatBoxComponent implements OnInit {
   public chat_id = '';
   public SOCKET_URL_BASE = 'wss://34.131.139.183:4444/ws/chatroom/';
   public SOCKET_URL =
-    'wss://34.131.139.183:4444/ws/chatroom/6147cd55-a7ee-45d0-8cd1-e35e687a225b/';
+    'wss://34.131.139.183:4444/ws/chatroom/';
   public chatInput = new FormControl('', [Validators.required]);
   public chatList: any[] | null = null;
-  public clientName:any = "";
+  public clientName: any = '';
   @ViewChild('target') private chatListContainer: ElementRef;
-  public selectedChatList: string = "";
-  public file : File | null = null;
+  public selectedChatList: string = '';
+  public file: File | null = null;
   public display = false;
 
   constructor(
@@ -31,23 +31,27 @@ export class ChatBoxComponent implements OnInit {
   ngOnInit(): void {
     this.loader.start();
 
-    this.agentService.chatSubject$.subscribe((selectedChatList)=>{
+    this.agentService.chatSubject$.subscribe((selectedChatList) => {
       this.setPage(selectedChatList);
-    })
+    });
 
-    this.agentService.selectedClient$.subscribe((data:any)=>{
+    this.agentService.selectedClient$.subscribe((data: any) => {
       this.clientName = data;
-    })
+    });
 
     this.socketService.socketCloseSubject$.subscribe((error) => {
-      this.socketService.openWebSocketConnection(this.SOCKET_URL);
+      console.log("RECONNECTING");
+      setTimeout(()=>{
+        this.socketService.openWebSocketConnection(this.SOCKET_URL);
+      },10000)
+      
     });
 
     this.agentService.selectedChat$.subscribe((index: any) => {
       this.chatList = null;
       this.chat_id = index;
       this.SOCKET_URL = this.SOCKET_URL_BASE + this.chat_id + '/';
-      console.log(this.SOCKET_URL);
+      console.log("OPENING CONNECTION AT ",this.SOCKET_URL);
       this.socketService.openWebSocketConnection(this.SOCKET_URL);
     });
 
@@ -56,8 +60,10 @@ export class ChatBoxComponent implements OnInit {
         this.chatList = res.payload.data;
         this.scrollToElement();
       } else if (res.type === 'chat_message' || res.type === 'botquery') {
-          this.getChatHistory();
-          this.scrollToElement();
+        this.getChatHistory();
+        this.scrollToElement();
+      }else if(res.type === "live_chats") {
+        
       } else {
         console.log(res);
         this.scrollToElement();
@@ -67,7 +73,7 @@ export class ChatBoxComponent implements OnInit {
 
     this.socketService.socketConnectionSubject$.subscribe((data: any) => {
       this.chatList = null;
-      setTimeout(() => this.getChatHistory(), 1000);
+      setTimeout(() => this.getChatHistory(), 3000);
     });
   }
 
@@ -80,7 +86,7 @@ export class ChatBoxComponent implements OnInit {
       type: 'botquery',
       from: 'agent',
     };
-
+    console.log("GETTING MESSAGE");
     this.socketService.sendWebSocketMessage(data);
     this.chatInput.setValue('');
   }
@@ -94,6 +100,7 @@ export class ChatBoxComponent implements OnInit {
       from: 'agent',
       to: 'user',
     };
+    console.log("GETTING HISTORY");
     this.socketService.sendWebSocketMessage(data);
   }
 
@@ -106,8 +113,7 @@ export class ChatBoxComponent implements OnInit {
     this.socketService.sendWebSocketMessage(data);
   }
 
-  sendAttachment(file:any) {
-    console.log(file);
+  sendAttachment(file: any) {
     let data = {
       payload: {
         attachment: file,
@@ -121,14 +127,7 @@ export class ChatBoxComponent implements OnInit {
   }
 
   createHold() {
-    let data = {
-      payload: {
-        msg: this.chatInput.value,
-        agent: '',
-      },
-      type: 'botquery',
-      from: 'agent',
-    };
+    let data = { type: 'hold', payload: { msg: 'hold' }, from: 'agent' };
 
     this.socketService.sendWebSocketMessage(data);
   }
@@ -153,29 +152,30 @@ export class ChatBoxComponent implements OnInit {
     }
   }
 
-  setPage(selectedChatList:string){
-    if(selectedChatList === "live-chats"){
-      this.selectedChatList = "Live Chat";
-    }else if(selectedChatList === "incoming-chats"){
-      this.selectedChatList = "Incoming Chat"
-    }else if(selectedChatList === "resolved-chats"){
-      this.selectedChatList = "Resolved Chat"
-    }else if(selectedChatList === "unresolved-chats"){
-      this.selectedChatList = "Unresolved Chat"
+  setPage(selectedChatList: string) {
+    if (selectedChatList === 'live-chats') {
+      this.selectedChatList = 'Live Chat';
+    } else if (selectedChatList === 'incoming-chats') {
+      this.selectedChatList = 'Incoming Chat';
+    } else if (selectedChatList === 'resolved-chats') {
+      this.selectedChatList = 'Resolved Chat';
+    } else if (selectedChatList === 'unresolved-chats') {
+      this.selectedChatList = 'Unresolved Chat';
     }
   }
 
-  myUploader(event:any,form:any) {
+  myUploader(event: any, form: any) {
     console.log(event.files);
     this.sendAttachment(event.files[0]);
     form.clear();
+    this.closeDialog();
   }
 
-  openDialog(){
+  openDialog() {
     this.display = true;
   }
 
-  closeDialog(){
+  closeDialog() {
     this.display = false;
   }
 
