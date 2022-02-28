@@ -23,8 +23,8 @@
     <div class="p-inputgroup">
         <input type="text" (keydown)="checkEnterKey($event)" [formControl] = "chatInput" pInputText placeholder="Keyword"> 
         <span class="p-buttonset">
-            <button pButton type="button" pTooltip="Send Message" (click)="sendSocketMessage()" label="Send" style="background-color: purple;" icon="pi pi-check"></button>
-            <button pButton type="button" pTooltip="Upload Files" (click)="openDialog()" label="Upload File" style="background-color: purple;" icon="pi pi-file"></button>
+            <button [disabled]="chatList === null " pButton type="button" pTooltip="Send Message" (click)="sendSocketMessage()" label="Send" style="background-color: purple;" icon="pi pi-check"></button>
+            <button [disabled]="chatList === null " pButton type="button" pTooltip="Upload Files" (click)="openDialog()" label="Upload File" style="background-color: purple;" icon="pi pi-file"></button>
         </span> 
     </div>
     

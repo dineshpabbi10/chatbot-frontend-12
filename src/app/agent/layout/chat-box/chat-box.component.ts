@@ -71,7 +71,7 @@ export class ChatBoxComponent implements OnInit {
         this.chatList = res.payload.data;
       } else if (res.type === 'chat_message' || res.type === 'botquery') {
         this.getChatHistory();
-        this.scrollToElement();
+        setTimeout(()=>this.scrollToElement(),1000);
       }else if(res.type === "live_chats") {
         
       }else if(res.type==="hold"){
