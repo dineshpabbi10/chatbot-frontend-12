@@ -20,6 +20,7 @@ import {FileUploadModule} from 'primeng/fileupload';
 import {DialogModule} from 'primeng/dialog';
 import { DropdownModule } from 'primeng/dropdown';
 import {OverlayPanelModule} from 'primeng/overlaypanel';
+import { ChipModule } from 'primeng/chip';
 
 
 @NgModule({
@@ -46,7 +47,8 @@ import {OverlayPanelModule} from 'primeng/overlaypanel';
     FileUploadModule,
     DialogModule,
     DropdownModule,
-    OverlayPanelModule
+    OverlayPanelModule,
+    ChipModule
   ]
 })
 export class AgentModule { }

@@ -1,10 +1,10 @@
 <div class="chat-list-container p-grid">
-    <div class="p-col-12 chat-list-search">
+    <!-- <div class="p-col-12 chat-list-search">
         <span class="p-input-icon-left">
             <i class="pi pi-search"></i>
             <input type="text" class="p-inputtext-sm" pInputText placeholder="Search">         
         </span>
-    </div>
+    </div> -->
 
     <div *ngIf="selectedChatList !== 'Resolved Chat' else incomingChatDiv" class="chat-list-chats">
 
@@ -16,7 +16,7 @@
                 </div>
             </div>
             <div *ngIf="chat.hold" class="message-message">
-                <span>Chat On Hold</span>
+                <p-chip label="On Hold"></p-chip>
             </div>
         </div>
         

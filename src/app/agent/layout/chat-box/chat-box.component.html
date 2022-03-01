@@ -4,7 +4,7 @@
         <!-- <span id="chat-id">#1007</span> -->
         <span id="chat-type">{{selectedChatList}}</span>
         <button pTooltip="Transfer Chat" *ngIf="chatList !== null && selectedChatList !== 'Resolved Chat'" (click)="openTransferAgent()" label="Transfer Chat" type="button" style="padding: 2px; margin-left: 5px; background-color: purple;" pButton icon="pi pi-directions"></button>
-        <button pTooltip="Open Agent Actions" *ngIf="chatList !== null && selectedChatList !== 'Resolved Chat'" (click)="op.toggle($event)" type="button" style="padding: 2px; margin-left: 5px; background-color: purple;position: absolute;right: 10px;" pButton icon="pi pi-ellipsis-v"></button>
+        <button pTooltip="Open Agent Actions" *ngIf="chatList !== null && selectedChatList !== 'Resolved Chat'" (click)="op.toggle($event)" type="button" style="padding: 2px; margin-left: 5px; background-color: white;border: none;outline: none;color: black;position: absolute;right: 10px;" pButton icon="pi pi-ellipsis-v"></button>
     </div>
 
     <div class="container">

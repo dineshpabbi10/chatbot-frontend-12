@@ -252,5 +252,5 @@ export class ChatBoxComponent implements OnInit {
     };
     this.agentService.transferChat(data);
   }
-  
+
 }

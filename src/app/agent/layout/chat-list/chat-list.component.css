@@ -66,6 +66,10 @@
     margin: 0px;
 }
 
+.message-message{
+    margin-top: 5px;
+}
+
 ::-webkit-scrollbar {
     width: 5px;  /* Remove scrollbar space */
     background: white;  /* Optional: just make scrollbar invisible */
