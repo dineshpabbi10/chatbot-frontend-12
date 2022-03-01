@@ -153,14 +153,14 @@ export class ChatBoxComponent implements OnInit {
     let data = { type: 'hold', payload: { msg: 'hold' }, from: 'agent' };
 
     this.socketService.sendWebSocketMessage(data);
-    setTimeout(() => this.getChatListBySocket(), 3000);
+    setTimeout(() => this.getChatListBySocket(), 1000);
   }
 
   createUnHold() {
     let data = { type: 'hold', payload: { msg: 'unhold' }, from: 'agent' };
 
     this.socketService.sendWebSocketMessage(data);
-    setTimeout(() => this.getChatListBySocket(), 3000);
+    setTimeout(() => this.getChatListBySocket(), 1000);
   }
 
   banUser() {

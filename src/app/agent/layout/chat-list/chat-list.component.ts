@@ -40,14 +40,8 @@ export class ChatListComponent implements OnInit {
       }else {
         if(selectedChatList === "live-chats"){
           this.chatlist = this.allChats.live_chats;
-          this.setSelectedRoom(this.chatlist[0]?.room_code);
-          this.sendSelectedRoom(this.chatlist[0]?.room_code);
-          this.setSelectedClient(this.chatlist[0]?.username);
         }else if(selectedChatList === "incoming-chats"){
           console.log(this.allChats);
-          this.setSelectedRoom(this.chatlist[0]?.room_code);
-          this.sendSelectedRoom(this.chatlist[0]?.room_code);
-          this.setSelectedClient(this.chatlist[0]?.username);
           this.chatlist = this.allChats.incomming_chats;
         }else if(selectedChatList ==="resolved-chats"){
           console.log("RESOLVED CHATS");
@@ -63,25 +57,28 @@ export class ChatListComponent implements OnInit {
     this.socketService.socketResponseSubject$.subscribe((res: any) => {
       if (res.type === 'live_chats') {
         if(this.selectedChatList === "Live Chat"){
-          console.log("SETTING LIVE CHATS",res);
-            this.chatlist = res.payload.live_chats;
+          console.log("SETTING LIVE CHATS",res); 
             if(this.allChats === null){
+              this.allChats = res.payload;
+              this.chatlist = this.allChats.live_chats;
               this.setSelectedRoom(this.chatlist[0]?.room_code);
               this.sendSelectedRoom(this.chatlist[0]?.room_code);
               this.setSelectedClient(this.chatlist[0]?.username);
             }
             this.allChats = res.payload;
+            this.chatlist = this.allChats.live_chats;
          
         }else if(this.selectedChatList === "Incoming Chat"){
           console.log("SETTING INCOMING CHATS",res);
-          this.chatlist = res.payload.incoming_chats;
           if(this.allChats === null){
+            this.allChats = res.payload;
+            this.chatlist = this.allChats.live_chats;
             this.setSelectedRoom(this.chatlist[0]?.room_code);
             this.sendSelectedRoom(this.chatlist[0]?.room_code);
             this.setSelectedClient(this.chatlist[0]?.username);
           }
           this.allChats = res.payload;
-          
+          this.chatlist = this.allChats.incomming_chats;
         }
       }
     });
