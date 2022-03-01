@@ -3,6 +3,8 @@ import { FormControl, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { MenuItem } from 'primeng/api';
+import { of } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 import { AgentServiceService } from '../../services/agent-service.service';
 import { WebSocketService } from '../../services/web-socket.service';
 
@@ -25,6 +27,9 @@ export class ChatBoxComponent implements OnInit {
   public display = false;
   public agentEmail = "";
   public actionsDisplay = false;
+  public agentList :any[] = [];
+  public agentTransferDisplay = false;
+  public selectedAgent:any  = null;
 
   constructor(
     public socketService: WebSocketService,
@@ -34,6 +39,8 @@ export class ChatBoxComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+
+    this.getAllAgentsList();
 
     if(localStorage.getItem("data") !== null){
       let name : any = JSON.parse(localStorage.getItem("data") || "{}");
@@ -217,4 +224,33 @@ export class ChatBoxComponent implements OnInit {
     this.actionsDisplay = true;
   }
 
+  getAllAgentsList(){
+    this.agentService.getAllAgentsList()
+    .pipe(catchError(err=>{
+      this.toast.error(err.message);
+      return of(err.message);
+    }))
+    .subscribe((res)=>{
+      if(res.status){
+        this.agentList = res?.data?.online.map((elem:any)=>{
+          return {name: elem?.name, code: elem?.username}
+        });
+        console.log(this.agentList);
+      }
+    })
+  }
+
+  openTransferAgent(){
+    this.agentTransferDisplay = true;
+  }
+
+  transferChat(){
+    let data = {
+      "mobile":this.chat_id,
+      "new_agent":this.selectedAgent?.username,
+      "message":"transfer msg by agent"
+    };
+    this.agentService.transferChat(data);
+  }
+  
 }

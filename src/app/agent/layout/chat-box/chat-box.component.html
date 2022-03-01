@@ -3,7 +3,8 @@
         <span id="customer-name">{{clientName}}</span>
         <!-- <span id="chat-id">#1007</span> -->
         <span id="chat-type">{{selectedChatList}}</span>
-        <button pTooltip="Open Agent Actions" *ngIf="chatList !== null && selectedChatList !== 'Resolved Chat'" (click)="openActionDisplay()" type="button" style="padding: 2px; margin-left: 5px; background-color: purple;" pButton icon="pi pi-ellipsis-v"></button>
+        <button pTooltip="Transfer Chat" *ngIf="chatList !== null && selectedChatList !== 'Resolved Chat'" (click)="openTransferAgent()" label="Transfer Chat" type="button" style="padding: 2px; margin-left: 5px; background-color: purple;" pButton icon="pi pi-directions"></button>
+        <button pTooltip="Open Agent Actions" *ngIf="chatList !== null && selectedChatList !== 'Resolved Chat'" (click)="op.toggle($event)" type="button" style="padding: 2px; margin-left: 5px; background-color: purple;position: absolute;right: 10px;" pButton icon="pi pi-ellipsis-v"></button>
     </div>
 
     <div class="container">
@@ -41,14 +42,22 @@
     </ng-template>
 </p-dialog>
 
+<p-overlayPanel #op>
+    <ng-template pTemplate>
+        <div style="display: flex; flex-direction: column;">
+            <button pButton type="button" (click)="banUser()" label="Ban User" pTooltip="Ban User For inappropriate behavior" style="outline: none;border: none;background-color: white;color: black; padding: 4px; margin: 3px;" icon="pi pi-ban"></button>
+            <button pButton type="button" (click)="createHold()" label="Hold Chat" pTooltip="Put User On Hold" style="outline: none;border: none;background-color: white; padding: 4px;color: black; margin: 3px;" icon="pi pi-pause"></button>
+            <button pButton type="button" (click)="createUnHold()" label="Un-Hold Chat" pTooltip="Remove User from Hold" style="outline: none;border: none;background-color: white;color: black; padding: 4px; margin: 3px;" icon="pi pi-play"></button>
+            <button pButton type="button" (click)="closeChat()" label="Close Chat" pTooltip="Close Chat" style="outline: none;border: none;background-color: white;color: black; padding: 4px; margin: 3px;" icon="pi pi-stop"></button>
+        </div>
+    </ng-template>
+</p-overlayPanel>
 
-<p-dialog header="Agent Actions" [(visible)]="actionsDisplay">
-    <div style="display: flex; flex-direction: column;">
-        <button pButton type="button" (click)="banUser()" label="Ban User" pTooltip="Ban User For inappropriate behavior" style="background-color: purple; padding: 4px; margin: 3px;" icon="pi pi-ban"></button>
-        <button pButton type="button" (click)="createHold()" label="Hold Chat" pTooltip="Put User On Hold" style="background-color: purple; padding: 4px; margin: 3px;" icon="pi pi-pause"></button>
-        <button pButton type="button" (click)="createUnHold()" label="Un-Hold Chat" pTooltip="Remove User from Hold" style="background-color: purple; padding: 4px; margin: 3px;" icon="pi pi-play"></button>
-        <button pButton type="button" (click)="closeChat()" label="Close Chat" pTooltip="Close Chat" style="background-color: purple; padding: 4px; margin: 3px;" icon="pi pi-stop"></button>
+<!-- Agent Transfer -->
+<p-dialog header="Transfer Chat" [(visible)]="agentTransferDisplay">
+    <div style="min-height: 150px;">
+        <p-dropdown [options]="agentList" [(ngModel)]="selectedAgent" optionLabel="name"></p-dropdown>
     </div>
-  
+    <button [disabled]="selectedAgent === null" style="background-color: purple;" pButton type="button" (click)="transferChat()" label="Transfer Chat" pTooltip="Transfer Chat To Selected Agent"></button>
 </p-dialog>
 

@@ -33,8 +33,16 @@ export class AgentServiceService {
     return this.httpClient.get(environment.endPoint+"api/agentchats");
   }
 
+  getAllAgentsList():Observable<any>{
+    return this.httpClient.get(environment.endPoint+"api/human-agents");
+  }
+
   sendChatPageInfo(page:string){
     this.chatSubject.next(page);
+  }
+
+  transferChat(data:any):Observable<any>{
+    return this.httpClient.post(environment.endPoint+"api/transfer",data);
   }
 
 }
