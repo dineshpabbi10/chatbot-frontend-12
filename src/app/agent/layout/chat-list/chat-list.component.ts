@@ -39,15 +39,15 @@ export class ChatListComponent implements OnInit {
       } else {
         if (selectedChatList === 'live-chats') {
           this.chatlist = this.allChats.live_chats;
-          this.setSelectedRoom(this.chatlist[0]?.room_code);
-          this.sendSelectedRoom(this.chatlist[0]?.room_code);
-          this.setSelectedClient(this.chatlist[0]?.username);
+          this.setSelectedRoom(this.chatlist[this.chatlist?.length-1]?.room_code);
+          this.sendSelectedRoom(this.chatlist[this.chatlist?.length-1]?.room_code);
+          this.setSelectedClient(this.chatlist[this.chatlist?.length-1]?.username);
         } else if (selectedChatList === 'incoming-chats') {
           console.log(this.allChats);
           this.chatlist = this.allChats.incomming_chats;
-          this.setSelectedRoom(this.chatlist[0]?.room_code);
-          this.sendSelectedRoom(this.chatlist[0]?.room_code);
-          this.setSelectedClient(this.chatlist[0]?.username);
+          this.setSelectedRoom(this.chatlist[this.chatlist?.length-1]?.room_code);
+          this.sendSelectedRoom(this.chatlist[this.chatlist?.length-1]?.room_code);
+          this.setSelectedClient(this.chatlist[this.chatlist?.length-1]?.username);
         } else if (selectedChatList === 'resolved-chats') {
           console.log('RESOLVED CHATS');
           this.getChatList(selectedChatList);
@@ -68,9 +68,9 @@ export class ChatListComponent implements OnInit {
           if (this.allChats === null) {
             this.allChats = res.payload;
             this.chatlist = this.allChats.live_chats;
-            this.setSelectedRoom(this.chatlist[0]?.room_code);
-            this.sendSelectedRoom(this.chatlist[0]?.room_code);
-            this.setSelectedClient(this.chatlist[0]?.username);
+            this.setSelectedRoom(this.chatlist[this.chatlist?.length-1]?.room_code);
+            this.sendSelectedRoom(this.chatlist[this.chatlist?.length-1]?.room_code);
+            this.setSelectedClient(this.chatlist[this.chatlist?.length-1]?.username);
           }
           this.allChats = res.payload;
           this.chatlist = this.allChats.live_chats;
@@ -79,9 +79,9 @@ export class ChatListComponent implements OnInit {
           if (this.allChats === null) {
             this.allChats = res.payload;
             this.chatlist = this.allChats.live_chats;
-            this.setSelectedRoom(this.chatlist[0]?.room_code);
-            this.sendSelectedRoom(this.chatlist[0]?.room_code);
-            this.setSelectedClient(this.chatlist[0]?.username);
+            this.setSelectedRoom(this.chatlist[this.chatlist?.length-1]?.room_code);
+            this.sendSelectedRoom(this.chatlist[this.chatlist?.length-1]?.room_code);
+            this.setSelectedClient(this.chatlist[this.chatlist?.length-1]?.username);
           }
           this.allChats = res.payload;
           this.chatlist = this.allChats.incomming_chats;
@@ -104,11 +104,11 @@ export class ChatListComponent implements OnInit {
         .subscribe((response) => {
           if (response.status) {
             this.chatlist = response.data;
-            this.setSelectedRoom(this.chatlist[0].id);
+            this.setSelectedRoom(this.chatlist[this.chatlist?.length-1].id);
             this.sendSelectedRoom(
               this.chatlist[0]?.user_id?.split('-')?.join('')
             );
-            this.setSelectedClient(this.chatlist[0].client);
+            this.setSelectedClient(this.chatlist[this.chatlist?.length-1].client);
           }
           this.setPage(chatType);
           this.loader.stop();
@@ -125,11 +125,11 @@ export class ChatListComponent implements OnInit {
         .subscribe((response) => {
           if (response.status) {
             this.chatlist = response.data;
-            this.setSelectedRoom(this.chatlist[0].id);
+            this.setSelectedRoom(this.chatlist[this.chatlist?.length-1].id);
             this.sendSelectedRoom(
               this.chatlist[0]?.user_id?.split('-')?.join('')
             );
-            this.setSelectedClient(this.chatlist[0].client);
+            this.setSelectedClient(this.chatlist[this.chatlist?.length-1].client);
           }
           this.setPage(chatType);
           this.loader.stop();
