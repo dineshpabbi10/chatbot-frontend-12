@@ -3,15 +3,14 @@
         <span id="customer-name">{{clientName}}</span>
         <!-- <span id="chat-id">#1007</span> -->
         <span id="chat-type">{{selectedChatList}}</span>
-        <button pButton type="button" (click)="banUser()" pTooltip="Ban User For inappropriate behavior" style="background-color: purple; padding: 2px; margin-left: 5px;" icon="pi pi-ban"></button>
-        <button pButton type="button" (click)="createHold()" pTooltip="Put User On Hold" style="background-color: purple; padding: 2px; margin-left: 5px;" icon="pi pi-pause"></button>
-        <button pButton type="button" (click)="closeChat()" pTooltip="Close Chat" style="background-color: purple; padding: 2px; margin-left: 5px;" icon="pi pi-stop"></button>
+        <button pTooltip="Open Agent Actions" *ngIf="chatList !== null && selectedChatList !== 'Resolved Chat'" (click)="openActionDisplay()" type="button" style="padding: 2px; margin-left: 5px; background-color: purple;" pButton icon="pi pi-ellipsis-v"></button>
     </div>
 
     <div class="container">
         <div class="imessage">
-            <p *ngIf="chatList === null">Loading ...</p>
-            <p *ngIf="chatList?.length === 0">No messaged found. Send a new Message to begin</p>
+            <p *ngIf="chatList === null && selectedChatList !==''" >Loading ...</p>
+            <p *ngIf="chatList === null && selectedChatList ==='';else noMessage">No Chat Selected</p>
+            <ng-template #noMessage><p *ngIf="chatList?.length === 0 && selectedChatList !==''">No messaged found. Send a new Message to begin</p></ng-template>
             <div class="message-chat" *ngFor="let chat of chatList" >
                 <p *ngIf="chat.user" [ngClass]="{'from-them':chat.user !==null}">{{chat.user}}<br/><span class="chat-time">{{chat.time}}</span></p>
                 <p *ngIf="chat.agent" [ngClass]="{'from-me':chat.agent !==null}">{{chat.agent}}<br/><span class="chat-time chat-time-agent">{{chat.time}}</span></p>
@@ -20,12 +19,12 @@
     </div>
 </div>
 
-<div class="input-chat">
+<div *ngIf="selectedChatList !== 'Resolved Chat'" class="input-chat">
     <div class="p-inputgroup">
         <input type="text" (keydown)="checkEnterKey($event)" [formControl] = "chatInput" pInputText placeholder="Keyword"> 
         <span class="p-buttonset">
-            <button pButton type="button" pTooltip="Send Message" (click)="sendSocketMessage()" label="Send" style="background-color: purple;" icon="pi pi-check"></button>
-            <button pButton type="button" pTooltip="Upload Files" (click)="openDialog()" label="Upload File" style="background-color: purple;" icon="pi pi-file"></button>
+            <button [disabled]="chatList === null " pButton type="button" pTooltip="Send Message" (click)="sendSocketMessage()" label="Send" style="background-color: purple;" icon="pi pi-check"></button>
+            <button [disabled]="chatList === null " pButton type="button" pTooltip="Upload Files" (click)="openDialog()" label="Upload File" style="background-color: purple;" icon="pi pi-file"></button>
         </span> 
     </div>
     
@@ -40,5 +39,16 @@
     <ng-template pTemplate="footer">
         <button pButton type="button" (click)="closeDialog()" label="Cancel" style="background-color: purple;" icon="pi pi-check"></button>
     </ng-template>
+</p-dialog>
+
+
+<p-dialog header="Agent Actions" [(visible)]="actionsDisplay">
+    <div style="display: flex; flex-direction: column;">
+        <button pButton type="button" (click)="banUser()" label="Ban User" pTooltip="Ban User For inappropriate behavior" style="background-color: purple; padding: 4px; margin: 3px;" icon="pi pi-ban"></button>
+        <button pButton type="button" (click)="createHold()" label="Hold Chat" pTooltip="Put User On Hold" style="background-color: purple; padding: 4px; margin: 3px;" icon="pi pi-pause"></button>
+        <button pButton type="button" (click)="createUnHold()" label="Un-Hold Chat" pTooltip="Remove User from Hold" style="background-color: purple; padding: 4px; margin: 3px;" icon="pi pi-play"></button>
+        <button pButton type="button" (click)="closeChat()" label="Close Chat" pTooltip="Close Chat" style="background-color: purple; padding: 4px; margin: 3px;" icon="pi pi-stop"></button>
+    </div>
+  
 </p-dialog>
 

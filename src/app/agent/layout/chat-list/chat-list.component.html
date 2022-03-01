@@ -6,34 +6,32 @@
         </span>
     </div>
 
-    <div *ngIf="selectedChatList !== 'Incoming Chat' else incomingChatDiv" class="chat-list-chats">
+    <div *ngIf="selectedChatList !== 'Resolved Chat' else incomingChatDiv" class="chat-list-chats">
 
-        <div (click)="setSelectedChat(chat.id);setSelectedRoom(chat.user_id);setSelectedClient(chat.client)" *ngFor="let chat of chatlist" [ngClass]="{'card-active':chat.id === selectedChat,'card':chat.id !== selectedChat}">
+        <div (click)="setSelectedRoom(chat?.room_code);sendSelectedRoom(chat?.room_code);setSelectedClient(chat?.username)" *ngFor="let chat of chatlist" [ngClass]="{'card-active':chat.room_code === selectedChat,'card':chat.room_code !== selectedChat}">
             <div class="message-header">
-                <p-avatar [label]="chat.client.substring(0,1)" shape="circle"></p-avatar>
+                <p-avatar [label]="chat?.username?.substring(0,1)" shape="circle"></p-avatar>
                 <div class="message-header-message">
-                    <span> <span class="chat-category">{{selectedChatList}}</span> <span class="chat-person">{{chat.client}}</span></span>
+                    <span> <span class="chat-category">{{selectedChatList}}</span> <span class="chat-person">{{chat?.username}}</span></span>
                 </div>
             </div>
-            <div class="message-message">
-                {{chat.datetime}}
+            <div *ngIf="chat.hold" class="message-message">
+                <span>Chat On Hold</span>
             </div>
         </div>
         
     </div>
 
     <ng-template #incomingChatDiv>
-        <div class="chat-list-chats">
-            <div (click)="setSelectedChat(chat.mobile)" *ngFor="let chat of chatlist" [ngClass]="{'card-active':chat.mobile === selectedChat,'card':chat.mobile !== selectedChat}">
-                <div class="message-header">
-                    <p-avatar [label]="chat.username.substring(0,1)" shape="circle"></p-avatar>
-                    <div class="message-header-message">
-                        <span> <span class="chat-category">{{selectedChatList}}</span> <span class="chat-person">{{chat.username}}</span></span>
-                    </div>
+      <div (click)="setSelectedRoom(chat?.id);sendSelectedRoom(chat?.user_id.split('-').join(''));setSelectedClient(chat?.client)" *ngFor="let chat of chatlist" [ngClass]="{'card-active':chat.id === selectedChat,'card':chat.id !== selectedChat}">
+            <div class="message-header">
+                <p-avatar [label]="chat?.client?.substring(0,1)" shape="circle"></p-avatar>
+                <div class="message-header-message">
+                    <span> <span class="chat-category">{{selectedChatList}}</span> <span class="chat-person">{{chat?.client}}</span></span>
                 </div>
-                <div class="message-message">
-                    {{chat.mobile_no}}
-                </div>
+            </div>
+            <div class="message-message">
+                {{chat?.datetime}}
             </div>
         </div>
     </ng-template>

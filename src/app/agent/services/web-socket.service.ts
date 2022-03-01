@@ -6,7 +6,7 @@ import { Subject } from 'rxjs';
 })
 export class WebSocketService {
 
-  public webSocket : WebSocket | null = null;
+  public webSocket : WebSocket | null = this.openWebSocketConnection('wss://34.131.139.183:4444/ws/chatroom/123/');
   public socketResponseSubject = new Subject();
   public socketResponseSubject$ =  this.socketResponseSubject.asObservable();
   public socketConnectionSubject = new Subject();
@@ -17,7 +17,6 @@ export class WebSocketService {
   constructor() { }
 
   public openWebSocketConnection(SOCKET_URL : string){
-    this.closeWebSocket();
     this.webSocket = new WebSocket(SOCKET_URL);
 
     this.webSocket.onopen = (event)=>{
@@ -25,6 +24,7 @@ export class WebSocketService {
         status:200,
         message:"Success"
       });
+      console.log("CONNECTION OPENED");
     }
 
     this.webSocket.close = (event)=>{
@@ -40,9 +40,10 @@ export class WebSocketService {
         status:404,
         message:"Success"
       });
-
       console.log("Error occured while processing Socket Request");
     }
+
+    return this.webSocket;
   }
 
   public sendWebSocketMessage(data : any){
