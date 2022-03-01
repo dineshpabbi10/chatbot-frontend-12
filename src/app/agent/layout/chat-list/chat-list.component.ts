@@ -15,9 +15,8 @@ export class ChatListComponent implements OnInit {
   public chatlist: any[] = [];
   public selectedChatList: string = '';
   public selectedChat: number | string = 0;
-  public agentEmail = "";
-  public allChats:any = null; 
-
+  public agentEmail = '';
+  public allChats: any = null;
 
   constructor(
     private agentService: AgentServiceService,
@@ -27,50 +26,57 @@ export class ChatListComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    if(localStorage.getItem("data") !== null){
-      let name : any = JSON.parse(localStorage.getItem("data") || "{}");
+    if (localStorage.getItem('data') !== null) {
+      let name: any = JSON.parse(localStorage.getItem('data') || '{}');
       this.agentEmail = name.email;
-    };
+    }
 
     this.agentService.chatSubject$.subscribe((selectedChatList) => {
       this.getChatList(selectedChatList);
       console.log(selectedChatList);
-      if(this.allChats === null){
+      if (this.allChats === null) {
         setTimeout(() => this.getChatListBySocket(), 3000);
-      }else {
-        if(selectedChatList === "live-chats"){
+      } else {
+        if (selectedChatList === 'live-chats') {
           this.chatlist = this.allChats.live_chats;
-        }else if(selectedChatList === "incoming-chats"){
+          this.setSelectedRoom(this.chatlist[0]?.room_code);
+          this.sendSelectedRoom(this.chatlist[0]?.room_code);
+          this.setSelectedClient(this.chatlist[0]?.username);
+        } else if (selectedChatList === 'incoming-chats') {
           console.log(this.allChats);
           this.chatlist = this.allChats.incomming_chats;
-        }else if(selectedChatList ==="resolved-chats"){
-          console.log("RESOLVED CHATS");
+          this.setSelectedRoom(this.chatlist[0]?.room_code);
+          this.sendSelectedRoom(this.chatlist[0]?.room_code);
+          this.setSelectedClient(this.chatlist[0]?.username);
+        } else if (selectedChatList === 'resolved-chats') {
+          console.log('RESOLVED CHATS');
           this.getChatList(selectedChatList);
         }
       }
     });
 
-    this.socketService.socketConnectionSubject$.pipe(take(1)).subscribe((data: any) => {
-      setTimeout(() => this.getChatListBySocket(), 3000);
-    });
+    this.socketService.socketConnectionSubject$
+      .pipe(take(1))
+      .subscribe((data: any) => {
+        setTimeout(() => this.getChatListBySocket(), 3000);
+      });
 
     this.socketService.socketResponseSubject$.subscribe((res: any) => {
       if (res.type === 'live_chats') {
-        if(this.selectedChatList === "Live Chat"){
-          console.log("SETTING LIVE CHATS",res); 
-            if(this.allChats === null){
-              this.allChats = res.payload;
-              this.chatlist = this.allChats.live_chats;
-              this.setSelectedRoom(this.chatlist[0]?.room_code);
-              this.sendSelectedRoom(this.chatlist[0]?.room_code);
-              this.setSelectedClient(this.chatlist[0]?.username);
-            }
+        if (this.selectedChatList === 'Live Chat') {
+          console.log('SETTING LIVE CHATS', res);
+          if (this.allChats === null) {
             this.allChats = res.payload;
             this.chatlist = this.allChats.live_chats;
-         
-        }else if(this.selectedChatList === "Incoming Chat"){
-          console.log("SETTING INCOMING CHATS",res);
-          if(this.allChats === null){
+            this.setSelectedRoom(this.chatlist[0]?.room_code);
+            this.sendSelectedRoom(this.chatlist[0]?.room_code);
+            this.setSelectedClient(this.chatlist[0]?.username);
+          }
+          this.allChats = res.payload;
+          this.chatlist = this.allChats.live_chats;
+        } else if (this.selectedChatList === 'Incoming Chat') {
+          console.log('SETTING INCOMING CHATS', res);
+          if (this.allChats === null) {
             this.allChats = res.payload;
             this.chatlist = this.allChats.live_chats;
             this.setSelectedRoom(this.chatlist[0]?.room_code);
@@ -82,14 +88,11 @@ export class ChatListComponent implements OnInit {
         }
       }
     });
-
-    
-
   }
 
   getChatList(chatType: string) {
     this.loader.start();
-     if (chatType === 'resolved-chats') {
+    if (chatType === 'resolved-chats') {
       this.agentService
         .getOldConversations()
         .pipe(
@@ -102,8 +105,10 @@ export class ChatListComponent implements OnInit {
           if (response.status) {
             this.chatlist = response.data;
             this.setSelectedRoom(this.chatlist[0].id);
-            this.sendSelectedRoom(this.chatlist[0]?.user_id?.split("-")?.join(""));
-            this.setSelectedClient(this.chatlist[0].client)
+            this.sendSelectedRoom(
+              this.chatlist[0]?.user_id?.split('-')?.join('')
+            );
+            this.setSelectedClient(this.chatlist[0].client);
           }
           this.setPage(chatType);
           this.loader.stop();
@@ -121,8 +126,10 @@ export class ChatListComponent implements OnInit {
           if (response.status) {
             this.chatlist = response.data;
             this.setSelectedRoom(this.chatlist[0].id);
-            this.sendSelectedRoom(this.chatlist[0]?.user_id?.split("-")?.join(""));
-            this.setSelectedClient(this.chatlist[0].client)
+            this.sendSelectedRoom(
+              this.chatlist[0]?.user_id?.split('-')?.join('')
+            );
+            this.setSelectedClient(this.chatlist[0].client);
           }
           this.setPage(chatType);
           this.loader.stop();
@@ -163,8 +170,7 @@ export class ChatListComponent implements OnInit {
       payload: { agent_email: this.agentEmail },
       from: 'agent',
     };
-    console.log("SENDING LIVE CHAT MESSAGE");
+    console.log('SENDING LIVE CHAT MESSAGE');
     this.socketService.sendWebSocketMessage(data);
   }
-
 }
