@@ -13,26 +13,21 @@
             </div>
 
             <!-- Form -->
-            <div class="row">
-              <!-- First Name -->
+            <div class="">
 
-              <div class="col-xs-12 col-md-6 form-group">
-                <label for="exampleFormControlInput1">Card Number*</label>
-                <input type="text" class="form-control" placeholder="**** **** **** 4547">
-              </div>
+              <form novalidate (ngSubmit)="createToken()" [formGroup]="stripeTest">
+                <div class="form-group">
+                  <input type="text" formControlName="name" placeholder="Jane Doe">
 
-              <!-- Last Name -->
-              <div class="col-xs-12 col-md-6 form-group">
-                <label for="exampleFormControlInput1">Name on card*</label>
-                <input type="text" class="form-control" placeholder="Name on card">
-              </div>
+                </div>
+                <div class="form-group">
 
-              <!-- User Name -->
-              <div class="col-xs-12 col-md-6 form-group">
-                <label for="exampleFormControlInput1">Expiry Date*</label>
-                <input type="text" class="form-control" placeholder="02/2056">
-              </div>
-
+                  <ngx-stripe-card [options]="cardOptions" [elementsOptions]="elementsOptions"></ngx-stripe-card>
+                </div>
+                <button type="submit">
+                  Submit
+                </button>
+              </form>
               <!--               
               <div class="col-xs-12 col-md-6 form-group">
                 <label for="exampleFormControlInput1">Email address*</label>
@@ -65,7 +60,7 @@
 
 
               <!-- Phone -->
-              <button type="button" class="btn btn-success">Submit</button>
+
             </div>
           </form>
           <!-- Form Ends -->
