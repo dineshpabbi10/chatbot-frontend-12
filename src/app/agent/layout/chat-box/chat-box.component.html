@@ -57,8 +57,8 @@
 <!-- Agent Transfer -->
 <p-dialog header="Transfer Chat" [(visible)]="agentTransferDisplay">
     <div style="min-height: 150px;">
-        <p-dropdown [options]="agentList" [(ngModel)]="selectedAgent" optionLabel="name"></p-dropdown>
+        <p-dropdown [options]="agentList" [formControl]="selectedAgent" optionLabel="name"></p-dropdown>
     </div>
-    <button [disabled]="selectedAgent === null" style="background-color: purple;" pButton type="button" (click)="transferChat()" label="Transfer Chat" pTooltip="Transfer Chat To Selected Agent"></button>
+    <button [disabled]="selectedAgent.value === null" style="background-color: purple;" pButton type="button" (click)="transferChat()" label="Transfer Chat" pTooltip="Transfer Chat To Selected Agent"></button>
 </p-dialog>
 

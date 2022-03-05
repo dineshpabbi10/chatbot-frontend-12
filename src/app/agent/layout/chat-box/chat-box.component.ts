@@ -28,7 +28,7 @@ export class ChatBoxComponent implements OnInit {
   public actionsDisplay = false;
   public agentList: any[] = [];
   public agentTransferDisplay = false;
-  public selectedAgent: any = null;
+  public selectedAgent = new FormControl(null,Validators.required);
 
   constructor(
     public socketService: WebSocketService,
@@ -198,6 +198,17 @@ export class ChatBoxComponent implements OnInit {
     this.closeDialog();
   }
 
+  // {
+  //   "user": null,
+  //   "agent": null,
+  //   "user_attachment": "http://34.131.139.183:8000/media/files/eadf9092-8442-475e-9325-4d45ed1b0a5ad6b79287-7616-42eb-978c-e751b023f281.pdf",
+  //   "agent_attachment": null,
+  //   "agent_media_type": null,
+  //   "user_media_type": "document",
+  //   "notification": null,
+  //   "time": "10:10:55"
+  // }
+
   openDialog() {
     this.display = true;
   }
@@ -246,9 +257,21 @@ export class ChatBoxComponent implements OnInit {
   transferChat() {
     let data = {
       mobile: this.chat_id,
-      new_agent: this.selectedAgent?.username,
+      new_agent: this.selectedAgent.value?.code,
       message: 'transfer msg by agent',
     };
-    this.agentService.transferChat(data);
+    console.log(data);
+    this.agentService.transferChat(data).
+    pipe(
+      catchError(err=>{
+        this.toast.error(err.msg);
+        return of(err.message);
+      })
+    )
+    .subscribe(res=>{
+      if(res.status){
+        this.toast.success(res.message);
+      }
+    });
   }
 }
