@@ -86,8 +86,12 @@ export class ChatBoxComponent implements OnInit {
       } else if (res.type === 'live_chats') {
       } else if (res.type === 'hold') {
         this.toast.success(res?.payload?.msg);
+        this.agentService.transferSuccess.next({
+          msg:'success'
+        });
       } else if (res.type === 'banuser') {
         this.toast.success(res?.payload?.msg);
+        this.closeChat();
       } else {
         console.log(res);
         this.scrollToElement();
@@ -135,7 +139,10 @@ export class ChatBoxComponent implements OnInit {
       from: 'agent',
     };
     this.socketService.sendWebSocketMessage(data);
-    setTimeout(() => this.getChatListBySocket(), 3000);
+    setTimeout(() =>   this.agentService.transferSuccess.next({
+      msg:'success'
+    }), 2000);
+    this.agentService.selectedChat.next(undefined);
   }
 
   sendAttachment(file: any,form:any) {
@@ -167,14 +174,18 @@ export class ChatBoxComponent implements OnInit {
     let data = { type: 'hold', payload: { msg: 'hold' }, from: 'agent' };
 
     this.socketService.sendWebSocketMessage(data);
-    setTimeout(() => this.getChatListBySocket(), 1000);
+    setTimeout(() =>   this.agentService.transferSuccess.next({
+      msg:'success'
+    }), 1000);
   }
 
   createUnHold() {
     let data = { type: 'hold', payload: { msg: 'unhold' }, from: 'agent' };
 
     this.socketService.sendWebSocketMessage(data);
-    setTimeout(() => this.getChatListBySocket(), 1000);
+    setTimeout(() =>   this.agentService.transferSuccess.next({
+      msg:'success'
+    }), 1000);
   }
 
   banUser() {
