@@ -65,9 +65,13 @@ export class ChatBoxComponent implements OnInit {
     this.agentService.selectedChat$.subscribe((index: any) => {
       this.chatList = null;
       this.chat_id = index;
-      this.SOCKET_URL = this.SOCKET_URL_BASE + this.chat_id + '/';
-      console.log('OPENING CONNECTION AT ', this.SOCKET_URL);
-      this.socketService.openWebSocketConnection(this.SOCKET_URL);
+      if(index !== undefined){
+        this.SOCKET_URL = this.SOCKET_URL_BASE + this.chat_id + '/';
+        console.log('OPENING CONNECTION AT ', this.SOCKET_URL);
+        this.socketService.openWebSocketConnection(this.SOCKET_URL);
+      }else{
+        this.chatList = [];
+      }
     });
 
     this.socketService.socketResponseSubject$.subscribe((res: any) => {
