@@ -76,7 +76,9 @@ export class ChatBoxComponent implements OnInit {
 
     this.socketService.socketResponseSubject$.subscribe((res: any) => {
       if (res.type === 'chat_history') {
-        this.chatList = res.payload.data;
+        if(this.chat_id !== undefined){
+          this.chatList = res.payload.data;
+        }
         setTimeout(() => this.scrollToElement(), 500);
       } else if (res.type === 'chat_message' || res.type === 'botquery') {
         this.getChatHistory();
