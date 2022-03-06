@@ -21,8 +21,8 @@ export class AgentServiceService {
     return this.httpClient.get(environment.endPoint+"api/agentchats");
   }
 
-  getAllAssignedChats():Observable<any>{
-    return this.httpClient.get(environment.endPoint+"api/smsalert");
+  getAllAssignedChats(type:string):Observable<any>{
+    return this.httpClient.get(environment.endPoint+"api/smsalert?type="+type);
   }
 
   getMessageOfConversation():Observable<any>{

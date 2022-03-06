@@ -4,7 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { MenuItem } from 'primeng/api';
 import { of } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { catchError, takeLast } from 'rxjs/operators';
 import { AgentServiceService } from '../../services/agent-service.service';
 import { WebSocketService } from '../../services/web-socket.service';
 
@@ -73,6 +73,7 @@ export class ChatBoxComponent implements OnInit {
     this.socketService.socketResponseSubject$.subscribe((res: any) => {
       if (res.type === 'chat_history') {
         this.chatList = res.payload.data;
+        setTimeout(() => this.scrollToElement(), 1000);
       } else if (res.type === 'chat_message' || res.type === 'botquery') {
         this.getChatHistory();
         setTimeout(() => this.scrollToElement(), 1000);
@@ -90,7 +91,7 @@ export class ChatBoxComponent implements OnInit {
 
     this.socketService.socketConnectionSubject$.subscribe((data: any) => {
       this.chatList = null;
-      setTimeout(() => this.getChatHistory(), 4000);
+      setTimeout(() => this.getChatHistory(), 2000);
     });
   }
 
@@ -131,17 +132,29 @@ export class ChatBoxComponent implements OnInit {
     setTimeout(() => this.getChatListBySocket(), 3000);
   }
 
-  sendAttachment(file: any) {
-    let data = {
-      payload: {
-        attachment: file,
-        agent: '',
-      },
-      type: 'botattachment',
-      from: 'agent',
-    };
-
-    this.socketService.sendWebSocketMessage(data);
+  sendAttachment(file: any,form:any) {
+    var fr = new FileReader();
+    let component = this;
+    fr.addEventListener("loadend", function () {
+        let [type, extension] = file.type.split('/');
+        // send the file over web sockets
+        let data = {
+            type: 'botattachment',
+            from: 'agent',
+            payload: {
+                name: file.name,
+                attachment: fr.result,
+                type: type == 'application' ? 'document' : type,
+                extension: extension,
+            }
+        }
+        // console.log('Sending message on socket', data);
+        // chatSocket.send(JSON.stringify(data));
+        component.socketService.sendWebSocketMessage(data);
+        // setTimeout(()=>component.getChatHistory(),5000);
+        form.clear();
+    });
+    fr.readAsDataURL(file);
   }
 
   createHold() {
@@ -193,21 +206,10 @@ export class ChatBoxComponent implements OnInit {
   myUploader(event: any, form: any) {
     console.log(event.files);
     let file = event.files[0];
-    form.clear();
-    this.sendAttachment(file);
+    this.sendAttachment(file,form);
+    // form.clear();
     this.closeDialog();
   }
-
-  // {
-  //   "user": null,
-  //   "agent": null,
-  //   "user_attachment": "http://34.131.139.183:8000/media/files/eadf9092-8442-475e-9325-4d45ed1b0a5ad6b79287-7616-42eb-978c-e751b023f281.pdf",
-  //   "agent_attachment": null,
-  //   "agent_media_type": null,
-  //   "user_media_type": "document",
-  //   "notification": null,
-  //   "time": "10:10:55"
-  // }
 
   openDialog() {
     this.display = true;

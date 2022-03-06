@@ -4,7 +4,6 @@
         <!-- <span id="chat-id">#1007</span> -->
         <span id="chat-type">{{selectedChatList}}</span>
         <button pTooltip="Transfer Chat to other Agents" *ngIf="chatList !== null && selectedChatList !== 'Resolved Chat'" (click)="openTransferAgent()" label="Transfer Chat" type="button" style="padding: 2px; margin-left: 5px; background-color: purple;" pButton icon="pi pi-directions"></button>
-        <button pTooltip="Scroll to bottom of the chat" *ngIf="chatList !== null && selectedChatList !== 'Resolved Chat'" (click)="scrollToElement()" label="Scroll Bottom" type="button" style="padding: 2px; margin-left: 5px; background-color: purple;" pButton icon="pi pi-angle-double-down"></button>
         <button pTooltip="Open Agent Actions" *ngIf="chatList !== null && selectedChatList !== 'Resolved Chat'" (click)="op.toggle($event)" type="button" style="padding: 2px; margin-left: 5px; background-color: white;border: none;outline: none;color: black;position: absolute;right: 10px;" pButton icon="pi pi-ellipsis-v"></button>
     </div>
 
@@ -16,6 +15,24 @@
             <div class="message-chat" *ngFor="let chat of chatList" >
                 <p *ngIf="chat.user" [ngClass]="{'from-them':chat.user !==null}">{{chat.user}}<br/><span class="chat-time">{{chat.time}}</span></p>
                 <p *ngIf="chat.agent" [ngClass]="{'from-me':chat.agent !==null}">{{chat.agent}}<br/><span class="chat-time chat-time-agent">{{chat.time}}</span></p>
+                <!-- Files -->
+                <p *ngIf="chat.agent_attachment" [ngClass]="{'from-me':chat.agent_attachment !==null}">
+                    <a pTooltip="View Attachment" tooltipPosition="left" [href]="chat.agent_attachment" target="_blank">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-file-earmark" viewBox="0 0 16 16">
+                        <path d="M14 4.5V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5L14 4.5zm-3 0A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h-2z"/>
+                    </svg>
+                    </a><br/>
+                    <span class="chat-time chat-time-agent">{{chat.time}}</span>
+                </p>
+
+                <p *ngIf="chat.user_attachment" class="from-them-attachment" [ngClass]="{'from-them':chat.user_attachment !==null}">
+                    <a pTooltip="View Attachment" tooltipPosition="left" [href]="chat.user_attachment" target="_blank">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-file-earmark" viewBox="0 0 16 16">
+                            <path d="M14 4.5V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5L14 4.5zm-3 0A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h-2z"/>
+                        </svg>
+                    </a><br/>
+                    <span class="chat-time chat-time-agent">{{chat.time}}</span>
+                </p>
             </div>
         </div>
     </div>
@@ -50,6 +67,7 @@
             <button pButton type="button" (click)="createHold()" label="Hold Chat" pTooltip="Put User On Hold" style="outline: none;border: none;background-color: white; padding: 4px;color: black; margin: 3px;" icon="pi pi-pause"></button>
             <button pButton type="button" (click)="createUnHold()" label="Un-Hold Chat" pTooltip="Remove User from Hold" style="outline: none;border: none;background-color: white;color: black; padding: 4px; margin: 3px;" icon="pi pi-play"></button>
             <button pButton type="button" (click)="closeChat()" label="Close Chat" pTooltip="Close Chat" style="outline: none;border: none;background-color: white;color: black; padding: 4px; margin: 3px;" icon="pi pi-stop"></button>
+            <button pTooltip="Scroll to bottom of the chat" (click)="scrollToElement()" label="Scroll Bottom" type="button" style="outline: none;border: none;background-color: white;color: black; padding: 4px; margin: 3px;" pButton icon="pi pi-angle-double-down"></button>
         </div>
     </ng-template>
 </p-overlayPanel>
