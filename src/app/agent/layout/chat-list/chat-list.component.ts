@@ -17,6 +17,7 @@ export class ChatListComponent implements OnInit {
   public selectedChat: number | string = 0;
   public agentEmail = '';
   public allChats: any = null;
+  public selectedChatCode = '';
 
   constructor(
     private agentService: AgentServiceService,
@@ -32,21 +33,27 @@ export class ChatListComponent implements OnInit {
     }
 
     this.agentService.chatSubject$.subscribe((selectedChatList) => {
-      this.getChatList(selectedChatList);
       console.log(selectedChatList);
       
         if (selectedChatList === 'live-chats') {
-          this.getChatList(selectedChatList);
+          this.getChatList(selectedChatList,true);
         } else if (selectedChatList === 'incoming-chats') {
-          this.getChatList(selectedChatList);
+          this.getChatList(selectedChatList,true);
         } else if (selectedChatList === 'resolved-chats') {
-          this.getChatList(selectedChatList);
+          this.getChatList(selectedChatList,true);
         }
+        this.selectedChatCode = selectedChatList;
     });
+
+    this.agentService.transferSuccess$.subscribe(data=>{
+      console.log(data);
+      this.getChatList(this.selectedChatCode,false);
+    })
 
   }
 
-  getChatList(chatType: string) {
+  getChatList(chatType: string,withChatSelect:boolean) {
+    console.log("CALLING",chatType);
     this.loader.start();
     if (chatType === 'resolved-chats') {
       this.agentService
@@ -60,11 +67,13 @@ export class ChatListComponent implements OnInit {
         .subscribe((response) => {
           if (response.status) {
             this.chatlist = response.data;
+            if(withChatSelect){
             this.setSelectedRoom(this.chatlist[0].id);
             this.sendSelectedRoom(
               this.chatlist[0]?.user_id?.split('-')?.join('')
             );
             this.setSelectedClient(this.chatlist[0].client);
+            }
           }
           this.setPage(chatType);
           this.loader.stop();
@@ -81,11 +90,13 @@ export class ChatListComponent implements OnInit {
         .subscribe((response) => {
           if (response.status) {
             this.chatlist = response.data;
+            if(withChatSelect){
             this.setSelectedRoom(this.chatlist[0].id);
             this.sendSelectedRoom(
               this.chatlist[0]?.user_id?.split('-')?.join('')
             );
             this.setSelectedClient(this.chatlist[0].client);
+            }
           }
           this.setPage(chatType);
           this.loader.stop();
@@ -102,9 +113,11 @@ export class ChatListComponent implements OnInit {
         .subscribe((response) => {
           if (response.status) {
             this.chatlist = response.data;
+            if(withChatSelect){
             this.setSelectedRoom(this.chatlist[0]?.room_code);
             this.sendSelectedRoom(this.chatlist[0]?.room_code);
             this.setSelectedClient(this.chatlist[0]?.username);
+            }
           }
           this.setPage(chatType);
           this.loader.stop();

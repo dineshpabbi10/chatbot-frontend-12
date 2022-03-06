@@ -73,10 +73,10 @@ export class ChatBoxComponent implements OnInit {
     this.socketService.socketResponseSubject$.subscribe((res: any) => {
       if (res.type === 'chat_history') {
         this.chatList = res.payload.data;
-        setTimeout(() => this.scrollToElement(), 1000);
+        setTimeout(() => this.scrollToElement(), 500);
       } else if (res.type === 'chat_message' || res.type === 'botquery') {
         this.getChatHistory();
-        setTimeout(() => this.scrollToElement(), 1000);
+        setTimeout(() => this.scrollToElement(), 500);
       } else if (res.type === 'live_chats') {
       } else if (res.type === 'hold') {
         this.toast.success(res?.payload?.msg);
@@ -273,6 +273,10 @@ export class ChatBoxComponent implements OnInit {
     .subscribe(res=>{
       if(res.status){
         this.toast.success(res.message);
+        this.agentService.transferSuccess.next({
+          msg:'success'
+        });
+        this.agentTransferDisplay = false;
       }
     });
   }
