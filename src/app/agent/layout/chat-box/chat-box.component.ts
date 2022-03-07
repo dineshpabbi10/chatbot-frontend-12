@@ -3,6 +3,8 @@ import { FormControl, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { MenuItem } from 'primeng/api';
+import { of } from 'rxjs';
+import { catchError, takeLast } from 'rxjs/operators';
 import { AgentServiceService } from '../../services/agent-service.service';
 import { WebSocketService } from '../../services/web-socket.service';
 
@@ -14,8 +16,7 @@ import { WebSocketService } from '../../services/web-socket.service';
 export class ChatBoxComponent implements OnInit {
   public chat_id = '';
   public SOCKET_URL_BASE = 'wss://34.131.139.183:4444/ws/chatroom/';
-  public SOCKET_URL =
-    'wss://34.131.139.183:4444/ws/chatroom/';
+  public SOCKET_URL = 'wss://34.131.139.183:4444/ws/chatroom/';
   public chatInput = new FormControl('', [Validators.required]);
   public chatList: any[] | null = null;
   public clientName: any = '';
@@ -23,22 +24,26 @@ export class ChatBoxComponent implements OnInit {
   public selectedChatList: string = '';
   public file: File | null = null;
   public display = false;
-  public agentEmail = "";
+  public agentEmail = '';
   public actionsDisplay = false;
+  public agentList: any[] = [];
+  public agentTransferDisplay = false;
+  public selectedAgent = new FormControl(null,Validators.required);
 
   constructor(
     public socketService: WebSocketService,
     public agentService: AgentServiceService,
     public loader: NgxUiLoaderService,
-    public toast : ToastrService
+    public toast: ToastrService
   ) {}
 
   ngOnInit(): void {
+    this.getAllAgentsList();
 
-    if(localStorage.getItem("data") !== null){
-      let name : any = JSON.parse(localStorage.getItem("data") || "{}");
+    if (localStorage.getItem('data') !== null) {
+      let name: any = JSON.parse(localStorage.getItem('data') || '{}');
       this.agentEmail = name.email;
-    };
+    }
 
     this.loader.start();
 
@@ -51,35 +56,43 @@ export class ChatBoxComponent implements OnInit {
     });
 
     this.socketService.socketCloseSubject$.subscribe((error) => {
-      console.log("RECONNECTING");
-      setTimeout(()=>{
+      console.log('RECONNECTING');
+      setTimeout(() => {
         this.socketService.openWebSocketConnection(this.SOCKET_URL);
-      },10000)
-      
+      }, 10000);
     });
 
     this.agentService.selectedChat$.subscribe((index: any) => {
       this.chatList = null;
       this.chat_id = index;
-      this.SOCKET_URL = this.SOCKET_URL_BASE + this.chat_id + '/';
-      console.log("OPENING CONNECTION AT ",this.SOCKET_URL);
-      this.socketService.openWebSocketConnection(this.SOCKET_URL);
+      if(index !== undefined){
+        this.SOCKET_URL = this.SOCKET_URL_BASE + this.chat_id + '/';
+        console.log('OPENING CONNECTION AT ', this.SOCKET_URL);
+        this.socketService.openWebSocketConnection(this.SOCKET_URL);
+      }else{
+        this.chatList = [];
+      }
     });
 
     this.socketService.socketResponseSubject$.subscribe((res: any) => {
       if (res.type === 'chat_history') {
-        this.chatList = res.payload.data;
+        if(this.chat_id !== undefined){
+          this.chatList = res.payload.data;
+        }
+        setTimeout(() => this.scrollToElement(), 500);
       } else if (res.type === 'chat_message' || res.type === 'botquery') {
         this.getChatHistory();
-        setTimeout(()=>this.scrollToElement(),1000);
-      }else if(res.type === "live_chats") {
-        
-      }else if(res.type==="hold"){
-        this.toast.success(res?.payload?.msg)
-      }else if(res.type === "banuser"){
+        setTimeout(() => this.scrollToElement(), 500);
+      } else if (res.type === 'live_chats') {
+      } else if (res.type === 'hold') {
         this.toast.success(res?.payload?.msg);
-      }
-      else {
+        this.agentService.transferSuccess.next({
+          msg:'success'
+        });
+      } else if (res.type === 'banuser') {
+        this.toast.success(res?.payload?.msg);
+        this.closeChat();
+      } else {
         console.log(res);
         this.scrollToElement();
       }
@@ -88,7 +101,7 @@ export class ChatBoxComponent implements OnInit {
 
     this.socketService.socketConnectionSubject$.subscribe((data: any) => {
       this.chatList = null;
-      setTimeout(() => this.getChatHistory(), 4000);
+      setTimeout(() => this.getChatHistory(), 2000);
     });
   }
 
@@ -101,7 +114,7 @@ export class ChatBoxComponent implements OnInit {
       type: 'botquery',
       from: 'agent',
     };
-    console.log("GETTING MESSAGE");
+    console.log('GETTING MESSAGE');
     this.socketService.sendWebSocketMessage(data);
     this.chatInput.setValue('');
   }
@@ -115,7 +128,7 @@ export class ChatBoxComponent implements OnInit {
       from: 'agent',
       to: 'user',
     };
-    console.log("GETTING HISTORY");
+    console.log('GETTING HISTORY');
     this.socketService.sendWebSocketMessage(data);
   }
 
@@ -126,34 +139,53 @@ export class ChatBoxComponent implements OnInit {
       from: 'agent',
     };
     this.socketService.sendWebSocketMessage(data);
-    setTimeout(() => this.getChatListBySocket(), 3000);
+    setTimeout(() =>   this.agentService.transferSuccess.next({
+      msg:'success'
+    }), 2000);
+    this.agentService.selectedChat.next(undefined);
   }
 
-  sendAttachment(file: any) {
-    let data = {
-      payload: {
-        attachment: file,
-        agent: '',
-      },
-      type: 'botattachment',
-      from: 'agent',
-    };
-
-    this.socketService.sendWebSocketMessage(data);
+  sendAttachment(file: any,form:any) {
+    var fr = new FileReader();
+    let component = this;
+    fr.addEventListener("loadend", function () {
+        let [type, extension] = file.type.split('/');
+        // send the file over web sockets
+        let data = {
+            type: 'botattachment',
+            from: 'agent',
+            payload: {
+                name: file.name,
+                attachment: fr.result,
+                type: type == 'application' ? 'document' : type,
+                extension: extension,
+            }
+        }
+        // console.log('Sending message on socket', data);
+        // chatSocket.send(JSON.stringify(data));
+        component.socketService.sendWebSocketMessage(data);
+        // setTimeout(()=>component.getChatHistory(),5000);
+        form.clear();
+    });
+    fr.readAsDataURL(file);
   }
 
   createHold() {
     let data = { type: 'hold', payload: { msg: 'hold' }, from: 'agent' };
 
     this.socketService.sendWebSocketMessage(data);
-    setTimeout(() => this.getChatListBySocket(), 3000);
+    setTimeout(() =>   this.agentService.transferSuccess.next({
+      msg:'success'
+    }), 1000);
   }
 
   createUnHold() {
     let data = { type: 'hold', payload: { msg: 'unhold' }, from: 'agent' };
 
     this.socketService.sendWebSocketMessage(data);
-    setTimeout(() => this.getChatListBySocket(), 3000);
+    setTimeout(() =>   this.agentService.transferSuccess.next({
+      msg:'success'
+    }), 1000);
   }
 
   banUser() {
@@ -190,8 +222,9 @@ export class ChatBoxComponent implements OnInit {
 
   myUploader(event: any, form: any) {
     console.log(event.files);
-    this.sendAttachment(event.files[0]);
-    form.clear();
+    let file = event.files[0];
+    this.sendAttachment(file,form);
+    // form.clear();
     this.closeDialog();
   }
 
@@ -209,12 +242,59 @@ export class ChatBoxComponent implements OnInit {
       payload: { agent_email: this.agentEmail },
       from: 'agent',
     };
-    console.log("SENDING LIVE CHAT MESSAGE");
+    console.log('SENDING LIVE CHAT MESSAGE');
     this.socketService.sendWebSocketMessage(data);
   }
 
-  openActionDisplay(){
+  openActionDisplay() {
     this.actionsDisplay = true;
   }
 
+  getAllAgentsList() {
+    this.agentService
+      .getAllAgentsList()
+      .pipe(
+        catchError((err) => {
+          this.toast.error(err.message);
+          return of(err.message);
+        })
+      )
+      .subscribe((res) => {
+        if (res.status) {
+          this.agentList = res?.data?.online.map((elem: any) => {
+            return { name: elem?.name, code: elem?.username };
+          });
+          console.log(this.agentList);
+        }
+      });
+  }
+
+  openTransferAgent() {
+    this.agentTransferDisplay = true;
+  }
+
+  transferChat() {
+    let data = {
+      mobile: this.chat_id,
+      new_agent: this.selectedAgent.value?.code,
+      message: 'transfer msg by agent',
+    };
+    console.log(data);
+    this.agentService.transferChat(data).
+    pipe(
+      catchError(err=>{
+        this.toast.error(err.msg);
+        return of(err.message);
+      })
+    )
+    .subscribe(res=>{
+      if(res.status){
+        this.toast.success(res.message);
+        this.agentService.transferSuccess.next({
+          msg:'success'
+        });
+        this.agentTransferDisplay = false;
+      }
+    });
+  }
 }

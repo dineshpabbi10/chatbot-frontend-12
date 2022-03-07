@@ -15,6 +15,14 @@
   bottom: 3px;
 }
 
+.chat-time-agent-attachment{
+  margin-top: 20px;
+}
+
+.from-them-attachment{
+  padding-bottom: 20px !important;
+}
+
 #customer-name{
     font-size: 24px;
     font-weight: bold;

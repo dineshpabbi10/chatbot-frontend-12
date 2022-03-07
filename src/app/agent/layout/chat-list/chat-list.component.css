@@ -64,6 +64,28 @@
     font-size: 0.7rem;
     padding: 0px;
     margin: 0px;
+    margin-left: 5px;
+    font-weight: bold;
+    text-transform: capitalize;
+}
+
+.user-avatar::after{
+    content: "";
+    position: absolute;
+    height: 5px;
+    width: 5px;
+    border-radius: 2px;
+    background-color: red;
+}
+
+::ng-deep .p-badge{
+    min-height: 6px !important;
+    min-width: 6px !important;
+    height: 8px !important;
+}
+
+.message-message{
+    margin-top: 5px;
 }
 
 ::-webkit-scrollbar {

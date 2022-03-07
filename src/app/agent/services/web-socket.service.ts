@@ -6,7 +6,11 @@ import { Subject } from 'rxjs';
 })
 export class WebSocketService {
 
+<<<<<<< HEAD
   public webSocket: WebSocket | null = this.openWebSocketConnection('wss://34.131.139.183:4444/ws/chatroom/123/');
+=======
+  public webSocket : WebSocket | null = null;
+>>>>>>> f3a32a85bd313cc4b39034fa3f94a0e8d075b795
   public socketResponseSubject = new Subject();
   public socketResponseSubject$ = this.socketResponseSubject.asObservable();
   public socketConnectionSubject = new Subject();

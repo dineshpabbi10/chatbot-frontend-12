@@ -18,6 +18,9 @@ import {ProgressSpinnerModule} from 'primeng/progressspinner';
 import {TooltipModule} from 'primeng/tooltip';
 import {FileUploadModule} from 'primeng/fileupload';
 import {DialogModule} from 'primeng/dialog';
+import { DropdownModule } from 'primeng/dropdown';
+import {OverlayPanelModule} from 'primeng/overlaypanel';
+import { ChipModule } from 'primeng/chip';
 
 
 @NgModule({
@@ -42,7 +45,10 @@ import {DialogModule} from 'primeng/dialog';
     ProgressSpinnerModule,
     TooltipModule,
     FileUploadModule,
-    DialogModule
+    DialogModule,
+    DropdownModule,
+    OverlayPanelModule,
+    ChipModule
   ]
 })
 export class AgentModule { }
