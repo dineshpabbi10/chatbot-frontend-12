@@ -14,6 +14,8 @@ export class AgentServiceService {
   public selectedChat$ = this.selectedChat.asObservable();
   public selectedClient = new Subject();
   public selectedClient$ = this.selectedClient.asObservable();
+  public transferSuccess = new Subject();
+  public transferSuccess$ = this.transferSuccess.asObservable();
 
   constructor(private httpClient : HttpClient) { }
 
@@ -21,8 +23,8 @@ export class AgentServiceService {
     return this.httpClient.get(environment.endPoint+"api/agentchats");
   }
 
-  getAllAssignedChats():Observable<any>{
-    return this.httpClient.get(environment.endPoint+"api/smsalert");
+  getAllAssignedChats(type:string):Observable<any>{
+    return this.httpClient.get(environment.endPoint+"api/smsalert?type="+type);
   }
 
   getMessageOfConversation():Observable<any>{
@@ -33,8 +35,16 @@ export class AgentServiceService {
     return this.httpClient.get(environment.endPoint+"api/agentchats");
   }
 
+  getAllAgentsList():Observable<any>{
+    return this.httpClient.get(environment.endPoint+"api/human-agents");
+  }
+
   sendChatPageInfo(page:string){
     this.chatSubject.next(page);
+  }
+
+  transferChat(data:any):Observable<any>{
+    return this.httpClient.post(environment.endPoint+"api/transfer",data);
   }
 
 }

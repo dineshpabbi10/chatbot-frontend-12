@@ -10,13 +10,19 @@
 
         <div (click)="setSelectedRoom(chat?.room_code);sendSelectedRoom(chat?.room_code);setSelectedClient(chat?.username)" *ngFor="let chat of chatlist" [ngClass]="{'card-active':chat.room_code === selectedChat,'card':chat.room_code !== selectedChat}">
             <div class="message-header">
+            <div  pBadge
+            style="font-size: 0.1rem"
+            [severity]="selectedChatList !== 'Resolved Chat' ? 'success' : 'warning'">
                 <p-avatar [label]="chat?.username?.substring(0,1)" shape="circle"></p-avatar>
+            </div>
                 <div class="message-header-message">
-                    <span> <span class="chat-category">{{selectedChatList}}</span> <span class="chat-person">{{chat?.username}}</span></span>
+                    <span>
+                         <!-- <span class="chat-category">{{selectedChatList}}</span> -->
+                     <span class="chat-person">{{chat?.username}}</span></span>
                 </div>
             </div>
             <div *ngIf="chat.hold" class="message-message">
-                <span>Chat On Hold</span>
+                <p-chip label="On Hold"></p-chip>
             </div>
         </div>
         
@@ -25,9 +31,18 @@
     <ng-template #incomingChatDiv>
       <div (click)="setSelectedRoom(chat?.id);sendSelectedRoom(chat?.user_id.split('-').join(''));setSelectedClient(chat?.client)" *ngFor="let chat of chatlist" [ngClass]="{'card-active':chat.id === selectedChat,'card':chat.id !== selectedChat}">
             <div class="message-header">
-                <p-avatar [label]="chat?.client?.substring(0,1)" shape="circle"></p-avatar>
+                <div
+                    pBadge
+                    style="font-size: 0.1rem"
+                    [severity]="selectedChatList !== 'Resolved Chat' ? 'success' : 'warning'"
+                >
+                 <p-avatar [label]="chat?.client?.substring(0,1)" shape="circle"></p-avatar>
+                </div>
+                
                 <div class="message-header-message">
-                    <span> <span class="chat-category">{{selectedChatList}}</span> <span class="chat-person">{{chat?.client}}</span></span>
+                    <span> 
+                        <!-- <span class="chat-category">{{selectedChatList}}</span>  -->
+                        <span class="chat-person">{{chat?.client}}</span></span>
                 </div>
             </div>
             <div class="message-message">
