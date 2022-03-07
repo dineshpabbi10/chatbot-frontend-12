@@ -1,10 +1,12 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { StripeService, StripeCardComponent } from 'ngx-stripe';
-import {
-  StripeCardElementOptions,
-  StripeElementsOptions
-} from '@stripe/stripe-js';
+import { StripeCardElementOptions, StripeElementsOptions } from '@stripe/stripe-js';
+import { CommonService } from '../../../services/common.service';
+import { NgxUiLoaderService } from 'ngx-ui-loader';
+import { ToastrService } from 'ngx-toastr'
+
+
 
 @Component({
   selector: 'app-payment',
@@ -12,7 +14,12 @@ import {
   styleUrls: ['./payment.component.css']
 })
 export class PaymentComponent implements OnInit {
+
   @ViewChild(StripeCardComponent) card: StripeCardComponent;
+  countryData: any
+  indiaPayment: Boolean = false
+  nonIndianPayment: Boolean = false
+  plans: any
 
   cardOptions: StripeCardElementOptions = {
     iconStyle: 'solid',
@@ -38,14 +45,16 @@ export class PaymentComponent implements OnInit {
     locale: 'en'
   };
 
-  stripeTest: FormGroup;
+  stripeTest: FormGroup | any;
 
-  constructor(private fb: FormBuilder, private stripeService: StripeService) { }
+  constructor(private fb: FormBuilder, private stripeService: StripeService, private commonService: CommonService, private toastr: ToastrService, private ngxService: NgxUiLoaderService,) {
+
+  }
 
   ngOnInit(): void {
-    this.stripeTest = this.fb.group({
-      name: ['Vikas Arora', [Validators.required]]
-    });
+    this.formInitalization()
+    this.getCountryDetails()
+    // this.getPlans()
   }
 
   createToken(): void {
@@ -63,5 +72,42 @@ export class PaymentComponent implements OnInit {
       });
   }
 
+  getCountryDetails(): void {
+    this.commonService.getCountryUsingIp().subscribe(data => {
+      // console.log(data)
+      if (data.country_name == 'India') {
+        this.indiaPayment = true
+        this.nonIndianPayment = false
+      }
+      else {
+        this.nonIndianPayment = true
+        this.indiaPayment = false
+
+      }
+
+    })
+  }
+
+  getPlans() {
+    this.ngxService.start()
+    this.commonService.getAllPricingPlans().subscribe(data => {
+      if (data.status) {
+        this.plans = data.data
+
+        this.ngxService.stop()
+        return
+      }
+      this.ngxService.stop()
+      this.toastr.error(data.message, "ERROR")
+    })
+  }
+
+  formInitalization() {
+    this.stripeTest = this.fb.group({
+      name: ['', [Validators.required]],
+      amount: ['', [Validators.required]],
+      recurring: [false, []]
+    });
+  }
 
 }
