@@ -6,10 +6,21 @@
         <div class="card">
           <div class="row">
 
+            <p>
+              Your current plan: starter, end in 6 days.<br />
+              Subscribe now to keep on using chatbot without interruption.
+            </p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="row">
+
             <div class="col-md-3" style="border: 1px solid black; text-align: center;">
+
               <span>Started</span>
               <h4>$42</h4>
               <span>12000 chats/year</span>
+
             </div>
             <div class="col-md-3" style="border: 1px solid black; text-align: center;">
               <span>Started</span>
@@ -29,46 +40,41 @@
           </div>
         </div>
         <div class="card" id="container-card-right">
-          <form>
-            <div class="card-body">
 
-              <!-- <div class="card-title">
+          <div class="card-body">
+
+            <!-- <div class="card-title">
                 Payment
               </div> -->
-              <!-- Form -->
-            </div>
-            <h2></h2>
             <!-- Form -->
+          </div>
+          <h2></h2>
 
-            <!-- <div class="" *ngIf="nonIndianPayment"> -->
-            <form novalidate (ngSubmit)="createToken()" [formGroup]="stripeTest">
-              <div class="form-group">
-                <input type="text" formControlName="name" placeholder="Jane Doe">
+          <!-- <div class="" *ngIf="nonIndianPayment"> -->
+          <form novalidate (ngSubmit)="createToken()" [formGroup]="stripeTest">
+            <div class="form-group">
+              <input type="text" formControlName="name" placeholder="Jane Doe">
 
-              </div>
-              <div class="form-group">
-                <input type="text" formControlName="name" placeholder="1000">
+            </div>
+            <div class="form-group">
+              <input type="text" formControlName="name" placeholder="1000">
 
-              </div>
-              <div class="form-group">
+            </div>
+            <div class="form-group">
 
-                <ngx-stripe-card [options]="cardOptions" [elementsOptions]="elementsOptions"></ngx-stripe-card>
-              </div>
-              <div class="form-group">
-                <input type="checkbox" formControlName="recurring" /> Recurring payment
+              <ngx-stripe-card [options]="cardOptions" [elementsOptions]="elementsOptions"></ngx-stripe-card>
+            </div>
+            <div class="form-group">
+              <input type="checkbox" formControlName="recurring" /> Recurring payment
 
-              </div>
-              <button type="submit">
-                Submit
-              </button>
-            </form>
-            <!-- </div>
-            <div class="" *ngIf="indiaPayment">
-              <h2>For India</h2>
-            </div> -->
-
+            </div>
+            <button type="submit">
+              Submit
+            </button>
           </form>
-          <!-- Form Ends -->
+          <!-- </div>
+                   
+          Form Ends -->
 
         </div>
       </div>
