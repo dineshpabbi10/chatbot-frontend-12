@@ -6,7 +6,7 @@ import { of } from 'rxjs';
 import { catchError, take } from 'rxjs/operators';
 import { AgentServiceService } from '../../services/agent-service.service';
 import { environment } from 'src/environments/environment.prod';
-import { FileUpload } from 'primeng/fileupload';
+import { NgxUiLoaderService } from 'ngx-ui-loader';
 
 @Component({
   selector: 'app-sidebar',
@@ -30,11 +30,12 @@ export class SidebarComponent implements OnInit {
     }
   );
   public baseUrl = environment.endPoint;
+  public hasFileSelected = false;
   
   @ViewChild("profilePicUpload")
   private profilePicUpload : any;
 
-  constructor(private agentService: AgentServiceService,private toast: ToastrService) { }
+  constructor(private agentService: AgentServiceService,private toast: ToastrService,private loader:NgxUiLoaderService) { }
 
   ngOnInit(): void {
     if(localStorage.getItem("data") !== null){
@@ -87,7 +88,6 @@ export class SidebarComponent implements OnInit {
     }))
     .subscribe((res)=>{
       if(res.status){
-        this.toast.success(res.message);
         this.agentDetails = res.data;
         this.agentDetailForm.setValue(this.agentDetails);
       }
@@ -99,9 +99,15 @@ export class SidebarComponent implements OnInit {
       ...this.agentDetailForm.value,
       profile_pic : event.files[0]
     });
+    this.hasFileSelected = true;
+  }
+
+  onClearFile(){
+    this.hasFileSelected = false;
   }
 
   updateAgentData(){
+    this.loader.start();
     this.agentService.updateAgentDetails(this.agentDetailForm.value)
     .pipe(catchError(err=>{
       this.toast.error(err.message);
@@ -114,6 +120,7 @@ export class SidebarComponent implements OnInit {
         this.closeEditPopup();
         this.profilePicUpload.clear();
       }
+      this.loader.stop();
     })
   }
 

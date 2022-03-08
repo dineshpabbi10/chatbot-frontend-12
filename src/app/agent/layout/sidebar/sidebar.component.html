@@ -83,10 +83,10 @@
         <br/>
 
         <!-- Profile Pic -->
-        <p-fileUpload #profilePicUpload [multiple]="false" [showUploadButton]="false" [showCancelButton]="false" name="myfile[]" [customUpload]="true" (onSelect)="setFile($event)"></p-fileUpload>
+        <p-fileUpload #profilePicUpload [multiple]="false" [showUploadButton]="false" [showCancelButton]="false" name="myfile[]" [customUpload]="true" (onClear)="onClearFile()" (onRemove)="onClearFile()" (onSelect)="setFile($event)"></p-fileUpload>
         <br/>
 
-        <button type="button" (click)="updateAgentData()" pButton label="Submit"></button>
+        <button [disabled]="!hasFileSelected" type="button" (click)="updateAgentData()" pButton label="Submit"></button>
     </form>
 
 </p-dialog>
