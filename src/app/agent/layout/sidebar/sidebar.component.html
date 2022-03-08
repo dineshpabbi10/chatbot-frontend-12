@@ -4,7 +4,7 @@
         <h3 class="p-col-9 p-md-9 header-info-container">
             <p-avatar *ngIf="agentDetails === null" label="PT" shape="circle" styleClass="avatar-label"></p-avatar>
             <p-avatar *ngIf="agentDetails !== null" [image]="baseUrl + agentDetails?.profile_pic?.substring(1)" shape="circle"></p-avatar>
-            &nbsp;{{agentName}} 
+            &nbsp;{{agentDetails?.first_name}} {{agentDetails?.last_name}} 
             &nbsp; <button class="notification-button" pButton icon="pi pi-bell"></button>
             <br/>
             <button pButton class="edit-header-button" (click)="openEditPopup()" label="Edit" ></button>
