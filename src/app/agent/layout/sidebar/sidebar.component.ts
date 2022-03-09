@@ -1,23 +1,14 @@
-<<<<<<< HEAD
-import { Component, OnInit } from '@angular/core';
-import { MenuItem } from 'primeng/api';
-import { AgentServiceService } from '../../services/agent-service.service';
-import { ToastrService } from 'ngx-toastr'
-import { NgxUiLoaderService } from 'ngx-ui-loader'
-import { CommonService } from '../../../services/common.service';
-import { Router, ActivatedRoute } from '@angular/router';
-
-=======
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import {MenuItem} from 'primeng/api';
+import { MenuItem } from 'primeng/api';
 import { of } from 'rxjs';
 import { catchError, take } from 'rxjs/operators';
 import { AgentServiceService } from '../../services/agent-service.service';
 import { environment } from 'src/environments/environment.prod';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
->>>>>>> 939fe80103cd1b6e6b4c086d6316ea97f0962ad3
+import { Router, ActivatedRoute } from '@angular/router';
+import { CommonService } from '../../../services/common.service'
 
 @Component({
   selector: 'app-sidebar',
