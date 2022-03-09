@@ -46,6 +46,7 @@ export class HeaderComponent implements OnInit {
       if (data.status) {
         localStorage.removeItem('company_token')
         localStorage.removeItem('data')
+        localStorage.removeItem('agent_token')
         this.toastr.success(data.message, 'SUCCESS')
         // this.router.navigateByUrl('/')
         this.router.navigateByUrl('/', { skipLocationChange: true }).then(() =>
