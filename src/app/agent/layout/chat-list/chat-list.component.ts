@@ -3,6 +3,7 @@ import { ToastrService } from 'ngx-toastr';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { of } from 'rxjs';
 import { catchError, take } from 'rxjs/operators';
+import { CommonService } from 'src/app/services/common.service';
 import { AgentServiceService } from '../../services/agent-service.service';
 import { WebSocketService } from '../../services/web-socket.service';
 
@@ -23,7 +24,8 @@ export class ChatListComponent implements OnInit {
     private agentService: AgentServiceService,
     public socketService: WebSocketService,
     private loader: NgxUiLoaderService,
-    private toast: ToastrService
+    private toast: ToastrService,
+    private commonService : CommonService
   ) {}
 
   ngOnInit(): void {
@@ -33,7 +35,6 @@ export class ChatListComponent implements OnInit {
     }
 
     this.agentService.chatSubject$.subscribe((selectedChatList) => {
-      console.log(selectedChatList);
       
         if (selectedChatList === 'live-chats') {
           this.getChatList(selectedChatList,true);
@@ -43,6 +44,10 @@ export class ChatListComponent implements OnInit {
           this.getChatList(selectedChatList,true);
         }
         this.selectedChatCode = selectedChatList;
+    });
+
+    this.commonService.notificationSubject$.subscribe(()=>{
+      this.getChatList(this.selectedChatList,false);
     });
 
     this.agentService.transferSuccess$.subscribe(data=>{
