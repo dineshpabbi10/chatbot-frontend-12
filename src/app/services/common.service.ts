@@ -76,5 +76,9 @@ export class CommonService {
     return this.httpClient.post<any>(environment.endPoint + 'contactus', body).pipe()
   }
 
+  getCountryUsingIp(): Observable<any> {
+    return this.httpClient.get<any>('https://ipapi.co/json/');
+  }
+
 
 }

@@ -148,6 +148,7 @@ export class CompanyService {
     return this.httpClient.post<any>(environment.endPoint + "changepass", body);
   }
 
+  
 
 
 
@@ -223,7 +224,7 @@ export class CompanyService {
     });
   }
 
-  sendSuccessMessage(message : any):void{
+  sendSuccessMessage(message: any): void {
     this.sendSuccess.next(message);
   }
 
