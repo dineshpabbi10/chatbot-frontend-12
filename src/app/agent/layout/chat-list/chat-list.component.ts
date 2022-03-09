@@ -47,7 +47,7 @@ export class ChatListComponent implements OnInit {
     });
 
     this.commonService.notificationSubject$.subscribe(()=>{
-      this.getChatList(this.selectedChatList,false);
+      this.getChatList(this.selectedChatCode,false);
     });
 
     this.agentService.transferSuccess$.subscribe(data=>{
