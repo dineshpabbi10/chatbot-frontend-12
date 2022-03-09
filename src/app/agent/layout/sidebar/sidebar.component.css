@@ -15,6 +15,40 @@
     color: rgb(100, 98, 98);
 }
 
+.notification-button{
+    background: transparent;
+    padding: 0px;
+    outline: none;
+    border: none;
+    color: black;
+}
+
+.edit-header-button{
+    height: 30px;
+    margin-top: 5px;
+    background: transparent;
+    color: black;
+    outline: none;
+    border: none;
+}
+
+.header-info-container{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: space-around;
+}
+
+.edit-header-button:hover{
+    background: transparent;
+    color: blueviolet;
+}
+
+.edit-header-button:active{
+    outline: none;
+    border: none;
+}
+
 .avatar-label{
     height: 1.5rem !important;
     width: 1.5rem !important;

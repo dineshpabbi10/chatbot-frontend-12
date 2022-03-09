@@ -1,8 +1,19 @@
 <div class="agent-sidebar p-grid">
     <div class="p-col-12 agent-name">
+<<<<<<< HEAD
 
         <h3 class="p-col-9 p-md-9">
             <p-avatar label="PT" shape="circle" styleClass="avatar-label"></p-avatar>&nbsp;{{agentName}}
+=======
+        
+        <h3 class="p-col-9 p-md-9 header-info-container">
+            <p-avatar *ngIf="agentDetails === null" label="PT" shape="circle" styleClass="avatar-label"></p-avatar>
+            <p-avatar *ngIf="agentDetails !== null" [image]="baseUrl + agentDetails?.profile_pic?.substring(1)" shape="circle"></p-avatar>
+            &nbsp;{{agentDetails?.first_name}} {{agentDetails?.last_name}} 
+            &nbsp; <button class="notification-button" pButton icon="pi pi-bell"></button>
+            <br/>
+            <button pButton class="edit-header-button" (click)="openEditPopup()" label="Edit" ></button>
+>>>>>>> 939fe80103cd1b6e6b4c086d6316ea97f0962ad3
         </h3>
     </div>
 
@@ -62,5 +73,43 @@
     </div>
 
 
+<<<<<<< HEAD
 
 </div>
+=======
+</div>
+
+
+<!-- Edit Image Popup -->
+<p-dialog header="Edit Details" [(visible)]="editImagePopup">
+    <form [formGroup] = "agentDetailForm">
+        <!-- first name -->
+        <div class="p-inputgroup">
+            <span class="p-inputgroup-addon">First Name</span>
+            <input formControlName="first_name" type="text" pInputText>       
+        </div>
+        <br/>
+
+        <!-- last name -->
+        <div class="p-inputgroup">
+            <span class="p-inputgroup-addon">Last Name</span>
+            <input formControlName="last_name" type="text" pInputText>     
+        </div>
+        <br/>
+
+        <!-- mobile number -->
+        <div class="p-inputgroup">
+            <span class="p-inputgroup-addon">Mobile No.</span>
+            <input formControlName="mobile_no" type="text" pInputText placeholder="Price"> 
+        </div>
+        <br/>
+
+        <!-- Profile Pic -->
+        <p-fileUpload #profilePicUpload [multiple]="false" [showUploadButton]="false" [showCancelButton]="false" name="myfile[]" [customUpload]="true" (onClear)="onClearFile()" (onRemove)="onClearFile()" (onSelect)="setFile($event)"></p-fileUpload>
+        <br/>
+
+        <button [disabled]="!hasFileSelected" type="button" (click)="updateAgentData()" pButton label="Submit"></button>
+    </form>
+
+</p-dialog>
+>>>>>>> 939fe80103cd1b6e6b4c086d6316ea97f0962ad3
