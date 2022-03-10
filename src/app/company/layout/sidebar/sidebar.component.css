@@ -8,6 +8,7 @@
     transition: all 0.5s;
     transform: translateX(-260px);
     z-index: 10;
+    background-color: #162137;
 }
 
 .brand{
@@ -33,43 +34,71 @@
 }
 
 .nav-container{
-    margin-top: 30px;
-    width: 70%;
-    margin-left: 15%;
+  /*  margin-top: 30px;*/
+   /* width: 70%;*/
+   /* margin-left: 15%;*/
     font-weight: lighter;
     list-style-type: none;
-    color: #66615b;
-    opacity: 0.8;
+   /* color: #66615b;
+    opacity: 0.8;*/
+    margin-top: 20px;
 }
 
 .nav-container li{
     text-decoration: none;
     transition: all 0.3s;
     cursor:pointer;
-    margin-bottom: 10px;
+   
     font-size: large;
 }
 
 .nav-container span{
     transition: all 0.3s;
+    color: #fff;
+    display: block;
+    width: 100%;
+    padding:10px 15px;
+    opacity: 0.5;
+    font-size: 16px;
+    font-weight: initial;
+    border-left:4px solid transparent;
 }
-
 .nav-container span:hover{
-    color: purple;
-    opacity: 1;
+    transition: all 0.3s;
+    color:  #fff;
+   opacity: 1;
+  border-left:4px solid #a733bb;
+
+}
+.nav-container span svg{
+    margin-right: 15px;
+}
+.nav-container span.active{
+      transition: all 0.3s;
+    color:  #fff;
+   opacity: 1;
+  border-left:4px solid #a733bb;
 }
 
 .nav-container-child{
-    padding-left: 40px;
+    padding-left: 70px;
 }
 
 .nav-container-child li{
     list-style-type: disc;
+    color: #fff;
+    opacity: 0.5;
 }
 
-.active{
-    color:purple;
+.nav-container-child li:hover{
+    opacity: 1;
 }
+.nav-container-child li.active{
+    list-style-type: disc;
+    color: #fff;
+    opacity: 1;
+}
+
 .active::after{
     content: "";
     position: absolute;
@@ -78,7 +107,7 @@
     width: 15px;
     right: -7px;
     margin-top: 6px;
-    background-color: whitesmoke;
+    background-color: #a733bb;
 }
 
 .navbar-open{

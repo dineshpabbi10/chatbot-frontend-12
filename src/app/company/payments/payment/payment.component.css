@@ -1,5 +1,35 @@
-.card .row p {
+ p.text-center{
     text-align: center;
     margin-left: 150px;
     padding: 10px;
+}
+p.pt{
+	font-size: 14px;
+}
+.wrappwer{
+	padding: 20px;
+}
+.card{
+	border: 1px solid rgba(0, 0, 0, 0.29);
+}
+.d-flex{
+	display: flex;
+	
+	justify-content: space-between;
+}
+.pr-flexer div{
+	border: 1px solid rgba(0, 0, 0, 0.29);
+	background: #fff;
+	text-align: center;
+	width: 100%;
+}
+#cr-1{
+	border-bottom: none;
+	border-bottom-right-radius: 0px;
+	border-bottom-left-radius: 0px;
+}
+#cr-2{
+	border-top: none;
+	border-top-right-radius: 0px;
+	border-top-left-radius: 0px;
 }
