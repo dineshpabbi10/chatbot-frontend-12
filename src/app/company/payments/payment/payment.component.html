@@ -10,60 +10,52 @@
             </p>
         </div>
         <div class="d-flex pr-flexer">
-            <div class="">
-              <span>Started</span>
-              <h4>$42</h4>
+            <div class="c-flex plan-1">
+              <span class="info-1">Starter</span>
+              <h4 class="prce"><sup>$</sup>50</h4>
               <span>12000 chats/year</span>
             </div>
-            <div class="">
-              <span>Started</span>
-              <h4>$42</h4>
+            <div class="c-flex plan-1">
+              <span class="info-1">Team</span>
+              <h4 class="prce"><sup>$</sup>42</h4>
               <span>12000 chats/year</span>
             </div>
-            <div class="">
-              <span>Started</span>
-              <h4>$42</h4>
+            <div class="c-flex plan-1">
+              <span class="info-1">Business</span>
+              <h4 class="prce"><sup>$</sup>42</h4>
               <span>12000 chats/year</span>
             </div>
-            <div class="">
-              <span>Started</span>
-              <h4>$42</h4>
+            <div class="c-flex">
+              <span class="info-1">Enterprise</span>
+              <h4 class="prce"><sup>$</sup>42</h4>
               <span>12000 chats/year</span>
             </div>
         </div>
         <div class="card" id="container-card-right" id="cr-2">
-
-          <div class="card-body">
-
-            <!-- <div class="card-title">
-                Payment
-              </div> -->
-            <!-- Form -->
-          </div>
-          <h2></h2>
-
           <!-- <div class="" *ngIf="nonIndianPayment"> -->
-          <form novalidate (ngSubmit)="createToken()" [formGroup]="stripeTest">
-            <div class="form-group">
-              <input type="text" formControlName="name" placeholder="Jane Doe">
+          <div class="form-cstm">
+            <form novalidate (ngSubmit)="createToken()" [formGroup]="stripeTest">
+              <div class="form-group">
+                <input type="text" formControlName="name" placeholder="Jane Doe" class="inpt">
 
-            </div>
-            <div class="form-group">
-              <input type="text" formControlName="name" placeholder="1000">
+              </div>
+              <div class="form-group">
+                <input type="text" formControlName="name" placeholder="1000" class="inpt">
 
-            </div>
-            <div class="form-group">
+              </div>
+              <div class="form-group">
 
-              <ngx-stripe-card [options]="cardOptions" [elementsOptions]="elementsOptions"></ngx-stripe-card>
-            </div>
-            <div class="form-group">
-              <input type="checkbox" formControlName="recurring" /> Recurring payment
+                <ngx-stripe-card [options]="cardOptions" [elementsOptions]="elementsOptions"></ngx-stripe-card>
+              </div>
+              <div class="form-group">
+                <input type="checkbox" formControlName="recurring" /> Recurring payment
 
-            </div>
-            <button type="submit">
-              Submit
-            </button>
-          </form>
+              </div>
+              <button type="submit" class="button">
+                Submit
+              </button>
+            </form>
+          </div>
           <!-- </div>
                    
           Form Ends -->
