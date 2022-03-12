@@ -93,3 +93,32 @@ margin-bottom: 18px;
 	border-color:#a733bb;
 	outline: 0;
 }
+.points {
+  padding: 25px;
+  padding-left: 25px;
+  padding-left: 45px;
+}
+.points ul{
+	list-style-type: none;
+}
+.points svg{
+	fill: #a435bc;
+width: 15px;
+margin-right: 10px;
+}
+.custom-control-label::before{
+	top:8px;
+}
+.custom-control-label::after {
+  position: absolute;
+  top: 8px;
+  }
+  .custom-radio .custom-control-input:checked ~ .custom-control-label::before {
+  background-color: #a335bc;
+}
+.clr{
+	color:#000;
+}
+.no-brdr{
+	border-top: transparent;
+}
