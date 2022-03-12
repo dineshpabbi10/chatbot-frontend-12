@@ -54,7 +54,7 @@ export class PaymentComponent implements OnInit {
   ngOnInit(): void {
     this.formInitalization()
     this.getCountryDetails()
-    // this.getPlans()
+    this.getPlans()
   }
 
   createToken(): void {
@@ -91,6 +91,7 @@ export class PaymentComponent implements OnInit {
   getPlans() {
     this.ngxService.start()
     this.commonService.getAllPricingPlans().subscribe(data => {
+      console.log(data)
       if (data.status) {
         this.plans = data.data
 

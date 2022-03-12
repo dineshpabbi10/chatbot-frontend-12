@@ -15,14 +15,14 @@
         <div class="card">
           <div class="row">
 
-            <div class="col-md-3" style="border: 1px solid black; text-align: center;">
+            <div class="col-md-3" *ngFor="let plan of plans" style="border: 1px solid black; text-align: center;">
 
-              <span>Started</span>
-              <h4>$42</h4>
+              <span>{{ plan.subscription_name }}</span>
+              <h4>{{ plan.price_monthly }}</h4>
               <span>12000 chats/year</span>
 
             </div>
-            <div class="col-md-3" style="border: 1px solid black; text-align: center;">
+            <!-- <div class="col-md-3" style="border: 1px solid black; text-align: center;">
               <span>Started</span>
               <h4>$42</h4>
               <span>12000 chats/year</span>
@@ -36,7 +36,7 @@
               <span>Started</span>
               <h4>$42</h4>
               <span>12000 chats/year</span>
-            </div>
+            </div> -->
           </div>
         </div>
         <div class="card" id="container-card-right">
