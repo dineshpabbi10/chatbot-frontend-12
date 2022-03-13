@@ -6,8 +6,6 @@ import { CommonImport } from 'src/app/common.imports';
 import { PaymentComponent } from './payment.component';
 import { NgxStripeModule } from 'ngx-stripe';
 
-
-
 @NgModule({
   declarations: [
     PaymentComponent
@@ -17,6 +15,7 @@ import { NgxStripeModule } from 'ngx-stripe';
     PaymentRoutingModule,
     CommonImport,
     NgxStripeModule.forRoot('pk_test_xQpTjJhKEWFzEvoqVVxgNO95'),
+
   ]
 })
 export class PaymentModule { }

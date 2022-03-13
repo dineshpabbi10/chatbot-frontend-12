@@ -1,82 +1,189 @@
-<div class="row">
-  <div class="col-md-12">
+<div class="wrappwer">
 
-    <div class="card" id="add-agent-card">
-      <div class="right">
-        <div class="card">
-          <div class="row">
+  <div class="" id="add-agent-card">
+    <div class="right">
+      <!-- <div class="card" id="cr-1">
+        <p class="text-center pt">
+          Your current plan: <b>Starter</b>, end in <b>6 days</b>.<br />
+          Subscribe now to keep on using chatbot without interruption.
+        </p>
+      </div> -->
+      <div class="d-flex pr-flexer">
+        <div class="c-flex plan-1" *ngFor="let plan of plans" (click)="changePlan()">
+          <span style="background-color: azure;">current plan</span>
+          <span class="info-1">{{ plan.subscription_name }}</span>
+          <ng-container *ngIf="plan.price_monthly==0; else otherPlans">
+            Individual contract with included custom bot building process
+            <a>Contact Us</a>
+          </ng-container>
+          <ng-template #otherPlans>
+            <h4 class="prce">
 
-            <p>
-              Your current plan: starter, end in 6 days.<br />
-              Subscribe now to keep on using chatbot without interruption.
-            </p>
-          </div>
+              <sup *ngIf="indiaPayment">
+                ₹
+              </sup>
+              <sup *ngIf="nonIndianPayment">
+                $
+              </sup>
+
+              {{plan.price_monthly}}
+            </h4>
+            <span>per month</span>
+
+            <span>
+              <sup *ngIf="indiaPayment">
+                ₹
+              </sup>
+              <sup *ngIf="nonIndianPayment">
+                $
+              </sup>
+              {{plan.price_yearly}} per year
+            </span>
+
+          </ng-template>
         </div>
-        <div class="card">
-          <div class="row">
-
-            <div class="col-md-3" *ngFor="let plan of plans" style="border: 1px solid black; text-align: center;">
-
-              <span>{{ plan.subscription_name }}</span>
-              <h4>{{ plan.price_monthly }}</h4>
-              <span>12000 chats/year</span>
-
-            </div>
-            <!-- <div class="col-md-3" style="border: 1px solid black; text-align: center;">
-              <span>Started</span>
-              <h4>$42</h4>
-              <span>12000 chats/year</span>
-            </div>
-            <div class="col-md-3" style="border: 1px solid black; text-align: center;">
-              <span>Started</span>
-              <h4>$42</h4>
-              <span>12000 chats/year</span>
-            </div>
-            <div class="col-md-3" style="border: 1px solid black; text-align: center;">
-              <span>Started</span>
-              <h4>$42</h4>
-              <span>12000 chats/year</span>
-            </div> -->
-          </div>
+        <!-- <div class="c-flex plan-1">
+          <span class="info-1">Team</span>
+          <h4 class="prce"><sup>$</sup>42</h4>
+          <span>12000 chats/year</span>
         </div>
-        <div class="card" id="container-card-right">
+        <div class="c-flex plan-1">
+          <span class="info-1">Business</span>
+          <h4 class="prce"><sup>$</sup>42</h4>
+          <span>12000 chats/year</span>
+        </div>-->
+        <!-- <div class="c-flex">
+          <span class="info-1">Enterprise</span>
+          <h4 class="prce"></h4>
+          <span>Individual contract with included custom bot building process</span>
+        </div> -->
+      </div>
+      <div class="card" id="container-card-right" id="cr-2">
+        <!-- <div class="" *ngIf="nonIndianPayment"> -->
+        <div class="row">
+          <div class="col-lg-5">
+            <div class="points">
 
-          <div class="card-body">
 
-            <!-- <div class="card-title">
-                Payment
-              </div> -->
-            <!-- Form -->
+
+              <!-- <mat-icon>pie_chart</mat-icon> -->
+              <b>WHAT YOU HAVE:</b>
+              <ul>
+                <li>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                    <path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z" />
+                  </svg>
+                  5000 free chats/mo
+                </li>
+                <li>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                    <path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z" />
+                  </svg>
+                  5 active chatbots
+                </li>
+                <li>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                    <path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z" />
+                  </svg>
+                  All integrations
+                </li>
+                <li>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                    <path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z" />
+                  </svg>
+                  Data security
+                </li>
+                <li>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                    <path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z" />
+                  </svg>
+                  Unlimited training history
+                </li>
+                <li>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                    <path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z" />
+                  </svg>
+                  Advanced reporting
+                </li>
+                <li>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                    <path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z" />
+                  </svg>
+                  Team collaboration
+                </li>
+                <li>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                    <path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z" />
+                  </svg>
+                  Button actions
+                </li>
+              </ul>
+            </div>
           </div>
-          <h2></h2>
+          <div class="col-lg-7">
+            <table class="table">
+              <tr>
+                <td>Billing Cycle</td>
+                <td class="text-right">
+                  <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" class="custom-control-input" id="customRadio1" selected="true" name="example1">
+                    <label class="custom-control-label" for="customRadio1">Monthly</label>
+                  </div>
+                  <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" class="custom-control-input" id="customRadio2" name="example1">
+                    <label class="custom-control-label" for="customRadio2">Annual (Save 15%)</label>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  Total Price
+                </td>
+                <td class="text-right">
+                  <h3 class="clr">$1512</h3>
+                </td>
+              </tr>
+              <tr>
+                <td class="no-brdr">
+                  <button type="submit" class="button" (click)="initializePayment(.2)" *ngIf="nonIndianPayment">
+                    Go to checkout
+                  </button>
 
-          <!-- <div class="" *ngIf="nonIndianPayment"> -->
-          <form novalidate (ngSubmit)="createToken()" [formGroup]="stripeTest">
-            <div class="form-group">
-              <input type="text" formControlName="name" placeholder="Jane Doe">
+                  <button type="submit" class="button" id="rzp-button1" (click)="payWithRazorpay()"
+                    *ngIf="indiaPayment">
+                    Pay
+                  </button>
+                </td>
 
-            </div>
-            <div class="form-group">
-              <input type="text" formControlName="name" placeholder="1000">
+              </tr>
+            </table>
+          </div>
+          <!--  <form novalidate (ngSubmit)="createToken()" [formGroup]="stripeTest">
+              <div class="form-group">
+                <input type="text" formControlName="name" placeholder="Jane Doe" class="inpt">
 
-            </div>
-            <div class="form-group">
+              </div>
+              <div class="form-group">
+                <input type="text" formControlName="name" placeholder="1000" class="inpt">
 
-              <ngx-stripe-card [options]="cardOptions" [elementsOptions]="elementsOptions"></ngx-stripe-card>
-            </div>
-            <div class="form-group">
-              <input type="checkbox" formControlName="recurring" /> Recurring payment
+              </div>
+              <div class="form-group">
 
-            </div>
-            <button type="submit">
-              Submit
-            </button>
-          </form>
-          <!-- </div>
+                <ngx-stripe-card [options]="cardOptions" [elementsOptions]="elementsOptions"></ngx-stripe-card>
+              </div>
+              <div class="form-group">
+                <input type="checkbox" formControlName="recurring" /> Recurring payment
+
+              </div>
+              <button type="submit" class="button">
+                Submit
+              </button>
+            </form> -->
+        </div>
+        <!-- </div>
                    
           Form Ends -->
 
-        </div>
       </div>
     </div>
   </div>

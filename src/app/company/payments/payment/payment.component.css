@@ -1,5 +1,149 @@
-.card .row p {
-    text-align: center;
-    margin-left: 150px;
-    padding: 10px;
-}
+ p.text-center {
+ 	text-align: center;
+ 	margin-left: 150px;
+ 	padding: 10px;
+ }
+
+ p.pt {
+ 	font-size: 14px;
+ }
+
+ .wrappwer {
+ 	padding: 20px;
+ }
+
+ .card {
+ 	border: 1px solid rgba(0, 0, 0, 0.29);
+ }
+
+ .d-flex {
+ 	display: flex;
+
+ 	justify-content: space-between;
+ }
+
+ .pr-flexer div {
+ 	border: 1px solid rgba(0, 0, 0, 0.29);
+ 	background: #fff;
+ 	text-align: center;
+ 	flex: 1 0;
+ 	height: 220px;
+ 	transition: 300ms ease-in;
+ }
+
+ #cr-1 {
+ 	border-bottom: none;
+ 	border-bottom-right-radius: 0px;
+ 	border-bottom-left-radius: 0px;
+ }
+
+ #cr-2 {
+ 	border-top: none;
+ 	border-top-right-radius: 0px;
+ 	border-top-left-radius: 0px;
+ }
+
+ .c-flex {
+ 	display: flex;
+ 	flex-direction: column;
+ 	align-items: center;
+ 	justify-content: center;
+ 	cursor: pointer;
+ }
+
+ .pr-flexer div.plan-1 {
+ 	border-right: 1px solid transparent;
+ }
+
+ .pr-flexer div:hover {
+ 	border: 1.5px solid #a733bb;
+ 	transition: 300ms ease-in;
+ }
+
+ .info-1 {
+ 	font-weight: bold;
+ 	text-transform: uppercase;
+ }
+
+ .prce {
+ 	color: #000;
+ 	font-weight: bold;
+ 	font-size: 35px;
+ 	margin: 20px 0px;
+ }
+
+ .prce sup {
+ 	color: #535353;
+ 	font-size: 19px;
+ 	font-weight: normal;
+ }
+
+ form {
+ 	padding: 0px 0px;
+ 	background-position: left center;
+ 	background-attachment: static;
+ 	background-repeat: repeat;
+ 	border: none;
+ 	border-radius: 6px;
+ }
+
+ .form-cstm {
+ 	padding: 15px;
+ 	border: 1px solid rgba(0, 0, 0, 0.29);
+ 	margin: 15px;
+ 	width: 50%;
+ 	margin: 0 auto;
+ 	margin-top: 0px;
+ 	margin-bottom: 0px;
+ 	margin-top: 18px;
+ 	margin-bottom: 18px;
+ }
+
+ .form-cstm .form-group input.inpt {
+ 	width: 100%;
+ 	padding-left: 5px;
+ }
+
+ .form-cstm input.inpt:focus,
+ .form-cstm input.inpt:focus-within {
+ 	box-shadow: none !important;
+ 	border-color: #a733bb;
+ 	outline: 0;
+ }
+
+ .points {
+ 	padding: 25px;
+ 	padding-left: 25px;
+ 	padding-left: 45px;
+ }
+
+ .points ul {
+ 	list-style-type: none;
+ }
+
+ .points svg {
+ 	fill: #a435bc;
+ 	width: 15px;
+ 	margin-right: 10px;
+ }
+
+ .custom-control-label::before {
+ 	top: 8px;
+ }
+
+ .custom-control-label::after {
+ 	position: absolute;
+ 	top: 8px;
+ }
+
+ .custom-radio .custom-control-input:checked~.custom-control-label::before {
+ 	background-color: #a335bc;
+ }
+
+ .clr {
+ 	color: #000;
+ }
+
+ .no-brdr {
+ 	border-top: transparent;
+ }
