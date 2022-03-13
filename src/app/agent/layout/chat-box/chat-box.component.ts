@@ -29,6 +29,10 @@ export class ChatBoxComponent implements OnInit {
   public agentList: any[] = [];
   public agentTransferDisplay = false;
   public selectedAgent = new FormControl(null,Validators.required);
+  public selectedFile:any = null;
+
+  @ViewChild("form")
+  private picUpload: any;
 
   constructor(
     public socketService: WebSocketService,
@@ -145,7 +149,7 @@ export class ChatBoxComponent implements OnInit {
     this.agentService.selectedChat.next(undefined);
   }
 
-  sendAttachment(file: any,form:any) {
+  sendAttachment(file: any) {
     var fr = new FileReader();
     let component = this;
     fr.addEventListener("loadend", function () {
@@ -164,8 +168,9 @@ export class ChatBoxComponent implements OnInit {
         // console.log('Sending message on socket', data);
         // chatSocket.send(JSON.stringify(data));
         component.socketService.sendWebSocketMessage(data);
+        component.picUpload.clear();
+        component.closeDialog();
         // setTimeout(()=>component.getChatHistory(),5000);
-        form.clear();
     });
     fr.readAsDataURL(file);
   }
@@ -220,12 +225,23 @@ export class ChatBoxComponent implements OnInit {
     }
   }
 
-  myUploader(event: any, form: any) {
+  myUploader(event: any) {
     console.log(event.files);
     let file = event.files[0];
-    this.sendAttachment(file,form);
+    this.selectedFile = file;
+    // this.sendAttachment(file,form);
     // form.clear();
-    this.closeDialog();
+    // this.closeDialog();
+  }
+
+  uploadFile(){
+    if(this.selectedFile){
+      this.sendAttachment(this.selectedFile);
+    } 
+  }
+
+  clearFile(){
+    this.selectedFile = null;
   }
 
   openDialog() {
@@ -233,6 +249,8 @@ export class ChatBoxComponent implements OnInit {
   }
 
   closeDialog() {
+    this.selectedFile = null;
+    this.picUpload.clear();
     this.display = false;
   }
 
