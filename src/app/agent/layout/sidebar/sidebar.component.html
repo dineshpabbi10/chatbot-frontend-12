@@ -5,7 +5,7 @@
             <p-avatar *ngIf="agentDetails === null" label="PT" shape="circle" styleClass="avatar-label"></p-avatar>
             <p-avatar *ngIf="agentDetails !== null" [image]="baseUrl + agentDetails?.profile_pic?.substring(1)" shape="circle"></p-avatar>
             &nbsp;{{agentDetails?.first_name}} {{agentDetails?.last_name}} 
-            &nbsp; <button class="notification-button" (click)="op.toggle($event)" pButton icon="pi pi-bell"></button>
+            &nbsp; <button class="notification-button"  pBadge [value]="notificationsList.length.toString()" (click)="op.toggle($event)" pButton icon="pi pi-bell"></button>
             <br/>
             <button pButton class="edit-header-button" (click)="openEditPopup()" label="Edit" ></button>
         </h3>

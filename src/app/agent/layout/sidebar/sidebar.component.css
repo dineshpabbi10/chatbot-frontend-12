@@ -25,6 +25,12 @@
     outline: none;
     border: none;
     color: black;
+    overflow: initial;
+}
+
+.notification-button:hover{
+    background-color: transparent !important;
+    color: purple !important;
 }
 
 .edit-header-button{

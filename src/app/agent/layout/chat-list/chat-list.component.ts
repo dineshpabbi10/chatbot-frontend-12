@@ -47,7 +47,7 @@ export class ChatListComponent implements OnInit {
     });
 
     this.commonService.notificationSubject$.subscribe(()=>{
-      this.getChatList(this.selectedChatCode,false);
+      this.getChatListWithoutLoader(this.selectedChatCode,false);
     });
 
     this.agentService.transferSuccess$.subscribe(data=>{
@@ -126,6 +126,77 @@ export class ChatListComponent implements OnInit {
           }
           this.setPage(chatType);
           this.loader.stop();
+        });
+    }
+
+    this.setPage(chatType);
+    this.loader.stop();
+  }
+
+  getChatListWithoutLoader(chatType: string,withChatSelect:boolean) {
+    if (chatType === 'resolved-chats') {
+      this.agentService
+        .getOldConversations()
+        .pipe(
+          catchError((err) => {
+            this.toast.error(err.message);
+            return of(err);
+          })
+        )
+        .subscribe((response) => {
+          if (response.status) {
+            this.chatlist = response.data;
+            if(withChatSelect){
+            this.setSelectedRoom(this.chatlist[0].id);
+            this.sendSelectedRoom(
+              this.chatlist[0]?.user_id?.split('-')?.join('')
+            );
+            this.setSelectedClient(this.chatlist[0].client);
+            }
+          }
+          this.setPage(chatType);
+        });
+    } else if (chatType === 'unresolved-chats') {
+      this.agentService
+        .getOldConversations()
+        .pipe(
+          catchError((err) => {
+            this.toast.error(err.message);
+            return of(err);
+          })
+        )
+        .subscribe((response) => {
+          if (response.status) {
+            this.chatlist = response.data;
+            if(withChatSelect){
+            this.setSelectedRoom(this.chatlist[0].id);
+            this.sendSelectedRoom(
+              this.chatlist[0]?.user_id?.split('-')?.join('')
+            );
+            this.setSelectedClient(this.chatlist[0].client);
+            }
+          }
+          this.setPage(chatType);
+        });
+    } else{
+        this.agentService
+        .getAllAssignedChats(chatType === "live-chats" ? "live" : "incomming")
+        .pipe(
+          catchError((err) => {
+            this.toast.error(err.message);
+            return of(err);
+          })
+        )
+        .subscribe((response) => {
+          if (response.status) {
+            this.chatlist = response.data;
+            if(withChatSelect){
+            this.setSelectedRoom(this.chatlist[0]?.room_code);
+            this.sendSelectedRoom(this.chatlist[0]?.room_code);
+            this.setSelectedClient(this.chatlist[0]?.username);
+            }
+          }
+          this.setPage(chatType);
         });
     }
 

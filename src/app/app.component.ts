@@ -21,14 +21,5 @@ export class AppComponent implements OnInit{
         (token) => { console.log('Permission granted! Save to the server!', token); },
         (error) => { console.error(error); },  
       );
-
-    this.afMessaging.messages.subscribe((_messaging:any) => {
-      _messaging.onBackgroundMessage = _messaging?.onBackgroundMessage?.bind(_messaging); 
-      
-      // Send A message using a subject to refetch chatlist and notification
-      this.commonService.notificationSubject.next({
-        received:true
-      });
-  })
   }
 }

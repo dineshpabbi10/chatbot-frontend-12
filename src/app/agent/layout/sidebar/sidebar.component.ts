@@ -9,6 +9,7 @@ import { environment } from 'src/environments/environment.prod';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CommonService } from '../../../services/common.service'
+import { AngularFireMessaging } from '@angular/fire/compat/messaging';
 
 @Component({
   selector: 'app-sidebar',
@@ -43,7 +44,8 @@ export class SidebarComponent implements OnInit {
     public loader: NgxUiLoaderService,
     public toast: ToastrService,
     public CommonService: CommonService,
-    public router: Router
+    public router: Router,
+    private afMessaging:AngularFireMessaging
   ) { }
 
   ngOnInit(): void {
@@ -53,6 +55,18 @@ export class SidebarComponent implements OnInit {
     }
 
     this.fetchAgentDetails();
+
+    // Check for notifications from firebase
+    this.afMessaging.messages.subscribe((_messaging:any) => {
+      _messaging.onBackgroundMessage = _messaging?.onBackgroundMessage?.bind(_messaging); 
+      
+      // Send A message using a subject to refetch chatlist and notification
+      this.CommonService.notificationSubject.next({
+        received:true
+      });
+
+      this.fetchNotifications(false);
+  })
 
     // listen for page changes
     this.agentService.chatSubject$.subscribe((page) => {
@@ -156,8 +170,11 @@ export class SidebarComponent implements OnInit {
     })
   }
 
-  fetchNotifications(){
-    this.loader.start();
+  fetchNotifications(withLoader:Boolean){
+    if(withLoader){
+      this.loader.start();
+    }
+
     this.agentService.getNotifications().pipe(catchError(err => {
       this.toast.error(err.message);
       return of(err.message);
@@ -166,7 +183,9 @@ export class SidebarComponent implements OnInit {
       if (res.status) {
         this.notificationsList = res.data;
       }
-      this.loader.stop();
+      if(withLoader){
+        this.loader.stop();
+      }
     })
   }
 
@@ -179,7 +198,7 @@ export class SidebarComponent implements OnInit {
     .subscribe(res => {
       if (res.status) {
         this.toast.success(res.message);
-        this.fetchNotifications();
+        this.fetchNotifications(true);
       }
       this.loader.stop();
     })
@@ -194,7 +213,7 @@ export class SidebarComponent implements OnInit {
     .subscribe(res => {
       if (res.status) {
         this.toast.success(res.message);
-        this.fetchNotifications();
+        this.fetchNotifications(true);
       }
       this.loader.stop();
     })
