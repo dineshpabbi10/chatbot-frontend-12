@@ -33,6 +33,7 @@ export class SidebarComponent implements OnInit {
   );
   public baseUrl = environment.endPoint;
   public hasFileSelected = false;
+  public notificationsList : any[] = [];
 
   @ViewChild("profilePicUpload")
   private profilePicUpload: any;
@@ -119,7 +120,7 @@ export class SidebarComponent implements OnInit {
     this.agentService.updateAgentDetails(this.agentDetailForm.value)
       .pipe(catchError(err => {
         this.toast.error(err.message);
-        return of(err);
+        return of(err.message);
       }))
       .subscribe(res => {
         if (res.status) {
@@ -152,6 +153,50 @@ export class SidebarComponent implements OnInit {
         this.toast.error(data.message, 'ERROR')
       }
       this.loader.stop()
+    })
+  }
+
+  fetchNotifications(){
+    this.loader.start();
+    this.agentService.getNotifications().pipe(catchError(err => {
+      this.toast.error(err.message);
+      return of(err.message);
+    }))
+    .subscribe(res => {
+      if (res.status) {
+        this.notificationsList = res.data;
+      }
+      this.loader.stop();
+    })
+  }
+
+  markAllRead(){
+    this.loader.start();
+    this.agentService.clearAllNotification().pipe(catchError(err => {
+      this.toast.error(err.message);
+      return of(err.message);
+    }))
+    .subscribe(res => {
+      if (res.status) {
+        this.toast.success(res.message);
+        this.fetchNotifications();
+      }
+      this.loader.stop();
+    })
+  }
+
+  markAsRead(id:any){
+    this.loader.start();
+    this.agentService.clearNotificationById(id).pipe(catchError(err => {
+      this.toast.error(err.message);
+      return of(err.message);
+    }))
+    .subscribe(res => {
+      if (res.status) {
+        this.toast.success(res.message);
+        this.fetchNotifications();
+      }
+      this.loader.stop();
     })
   }
 
