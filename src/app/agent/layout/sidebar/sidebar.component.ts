@@ -97,7 +97,7 @@ export class SidebarComponent implements OnInit {
       .subscribe((res) => {
         if (res.status) {
           this.agentDetails = res.data;
-          this.agentDetailForm.setValue(this.agentDetails);
+          this.agentDetailForm.setValue({...this.agentDetails,'profile_pic':null});
         }
       })
   }

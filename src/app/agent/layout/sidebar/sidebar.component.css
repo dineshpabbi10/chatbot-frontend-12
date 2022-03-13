@@ -26,6 +26,7 @@
 .edit-header-button{
     height: 30px;
     margin-top: 5px;
+    width: 100%;
     background: transparent;
     color: black;
     outline: none;
@@ -40,6 +41,7 @@
 }
 
 .edit-header-button:hover{
+    width: 100%;
     background: transparent;
     color: blueviolet;
 }
