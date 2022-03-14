@@ -111,10 +111,7 @@
         <div class="notif-container">
             <div class="notif-cards">
                 <p-card [title]="notitication?.notification_head" *ngFor="let notitication of notificationsList">
-                    {{notitication?.notification_message}} <i (click)="markAsRead(notitication?.id)" class="pi pi-check"></i>
-                    <div (click)="markAsRead(notitication?.id)" class="notif-actions">
-                        <i class="pi pi-check"></i>
-                    </div>
+                    {{notitication?.notification_message}} <i pTooltip="Mark as read" (click)="markAsRead(notitication?.id)" class="pi pi-check notif-actions"></i>
                 </p-card>
             </div>
         </div>

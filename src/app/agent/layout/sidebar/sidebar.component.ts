@@ -55,6 +55,7 @@ export class SidebarComponent implements OnInit {
     }
 
     this.fetchAgentDetails();
+    this.fetchNotifications(true);
 
     // Check for notifications from firebase
     this.afMessaging.messages.subscribe((_messaging:any) => {
