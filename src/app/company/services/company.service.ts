@@ -8,6 +8,9 @@ import { environment } from '../../../environments/environment.prod';
 import { Observable, Subject, throwError } from 'rxjs';
 import { AbstractControl, FormControl, ValidatorFn } from '@angular/forms';
 
+function _window(): any {
+  return window;
+}
 @Injectable({
   providedIn: 'root',
 })
@@ -51,6 +54,12 @@ export class CompanyService {
     }
     // Return an observable with a user-facing error message.
     return throwError('Something bad happened; please try again later.');
+  }
+
+
+
+  get nativeWindow(): any {
+    return _window();
   }
 
   getDomainList(): Observable<any> {
@@ -148,7 +157,7 @@ export class CompanyService {
     return this.httpClient.post<any>(environment.endPoint + "changepass", body);
   }
 
-  
+
 
 
 
@@ -254,6 +263,7 @@ export class CompanyService {
       return isValid ? null : { confirmPasswordError: true };
     }
   }
+
 
 
 }
