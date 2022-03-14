@@ -3,10 +3,15 @@ import {
   HttpRequest,
   HttpHandler,
   HttpEvent,
-  HttpInterceptor
+  HttpResponse,
+  HttpInterceptor,
+  HttpErrorResponse
 } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, of, throwError } from 'rxjs';
 import { Router } from '@angular/router';
+import { catchError, tap, retry } from 'rxjs/operators';
+import { ToastrService } from 'ngx-toastr';
+
 
 
 @Injectable()
@@ -15,6 +20,11 @@ export class UserInterceptor implements HttpInterceptor {
   data = localStorage.getItem('data')
   constructor(private router: Router) { }
 
+  handleError(error: HttpErrorResponse) {
+    console.log(error);
+    return throwError(error);
+  }
+
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
 
     // console.log(this.router.url)
@@ -22,14 +32,33 @@ export class UserInterceptor implements HttpInterceptor {
       return next.handle(request);
     }
 
-    if(localStorage.getItem('company_token') !== null){
+    if (localStorage.getItem('company_token') !== null) {
       request = request.clone({ headers: request.headers.set('Authorization', 'Bearer ' + localStorage.getItem('company_token')) });
-    }else if(localStorage.getItem('agent_token') !== null){
+    } else if (localStorage.getItem('agent_token') !== null) {
       request = request.clone({ headers: request.headers.set('Authorization', 'Bearer ' + localStorage.getItem('agent_token')) });
     }
-    
 
 
-    return next.handle(request);
+
+    return next.handle(request).pipe(
+      retry(2),
+      catchError((error: HttpErrorResponse) => {
+        // console.log(error)
+        if (error.status === 401) {
+
+          localStorage.removeItem('company_token')
+          localStorage.removeItem('agent_token')
+          localStorage.removeItem('data')
+          this.router.navigateByUrl('/login');
+        }
+        return throwError(error);
+      })
+      // if (evt.status == 401) {
+      //   localStorage.removeItem('company_token')
+      //   localStorage.removeItem('agent_token')
+      //   localStorage.removeItem('data')
+      //   this.router.navigateByUrl('/login');
+      // }
+    )
   }
 }
