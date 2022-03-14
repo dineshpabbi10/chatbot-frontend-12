@@ -41,28 +41,33 @@
           </div>
         </div>
       </div>
-      <div class="row no-gutters mt-5">
-        <div class="col-lg-4 col-sm-12" *ngFor="let plan of plans">
+      <div class="row no-gutters">
+        <div class="col-lg-3 col-sm-12" *ngFor="let plan of plans">
           <div class="pricing-box">
-            <div class="price-head mt-2 mb-2">{{ plan['subscription_name']}}</div>
+            <div class="price-head">{{ plan['subscription_name']}}</div>
             <div class="price-blog pt-4 pb-4">
               <div class="price"> <span class="currency">$</span><strong>{{ plan['price_monthly']
                                     }}/</strong><span class="month">month</span> </div>
             </div>
             <div id="price-listing-container" class="listing">
-              <ul id="price-listing" class="mt-5">
+              <ul id="price-listing" class="ul-list">
                 <li *ngFor="let planFeatures of plan['features']">
                   <ng-container *ngIf="planFeatures['value']!=false;else elseTimes">
-                    <span class="fa fa-check"></span>&nbsp;
+                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z"/></svg>
 
                   </ng-container>
                   <ng-template #elseTimes>
-                    <span class="fa fa-times"></span>&nbsp;
+                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z"/></svg>
                   </ng-template>
                   <span class="time-of-year">
                     {{ planFeatures['key']}}
                     <span class="tooltip">
-                      {{ planFeatures['description'] }}
+                      {{ planFeatures['description'] }} Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                      quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                      consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                      cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                      proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                     </span>
                     <i class="ion-information-circled"></i>
                   </span>
@@ -71,7 +76,7 @@
               </ul>
             </div>
             <div id="choose-plan-button">
-              <span class="button grey mt-5" (click)="choosePackage(plan)">Choose
+              <span class="button grey" (click)="choosePackage(plan)">Choose
                 Package</span>
             </div>
 

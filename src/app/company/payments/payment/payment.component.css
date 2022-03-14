@@ -22,7 +22,7 @@ p.pt{
 	background: #fff;
 	text-align: center;
 	flex: 1 0;
-	height: 220px;
+	height: 250px;
 	transition: 300ms ease-in;
 }
 #cr-1{
@@ -65,23 +65,23 @@ font-weight: normal;
 }
 
 form{
-padding: 0px 0px;
-background-position: left center;
-background-attachment: static;
-background-repeat: repeat;
-border: none;
-border-radius: 6px;
+	padding: 0px 0px;
+	background-position: left center;
+	background-attachment: static;
+	background-repeat: repeat;
+	border: none;
+	border-radius: 6px;
 }
 .form-cstm{
 	padding: 15px;
-border: 1px solid rgba(0, 0, 0, 0.29);
-margin: 15px;
-width: 50%;
-margin: 0 auto;
-  margin-top: 0px;
-  margin-bottom: 0px;
-margin-top: 18px;
-margin-bottom: 18px;
+	border: 1px solid rgba(0, 0, 0, 0.29);
+	margin: 15px;
+	width: 50%;
+	margin: 0 auto;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	margin-top: 18px;
+	margin-bottom: 18px;
 }
 .form-cstm .form-group input.inpt{
 	width: 100%;
@@ -121,4 +121,19 @@ margin-right: 10px;
 }
 .no-brdr{
 	border-top: transparent;
+}
+div.plan-active{
+	border:1.5px solid #a733bb!important;
+	position: relative;
+}
+div.plan-active::after{
+	content:"Current Plan";
+	top:0;
+	left:0;
+	width: 100%;
+	background: #a733bb;
+	z-index: 1;
+	position: absolute;
+	color:#fff;
+	padding: 4px 0px;
 }

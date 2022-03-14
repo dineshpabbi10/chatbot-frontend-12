@@ -16,3 +16,41 @@
     display: flex;
     justify-content: center;
 }
+.price-head{
+	margin: 0px !important;
+	padding: 10px;
+	text-align: center;
+	text-transform: uppercase;
+	border: 3px solid #a534bb;
+	border-bottom:transparent;
+}
+.listing{
+	border: 1px solid #aaa;
+  border-top-color: rgb(170, 170, 170);
+  border-top-style: solid;
+  border-top-width: 1px;
+border-top: transparent;
+}
+.pricing-box{
+	transition: 300ms;
+	  transform: scale(0.90);
+}
+.pricing-box:hover{
+	transition: 300ms;
+	box-shadow: -1px 7px 20px -7px rgba(0,0,0,0.75);
+-webkit-box-shadow: -1px 7px 20px -7px rgba(0,0,0,0.75);
+-moz-box-shadow: -1px 7px 20px -7px rgba(0,0,0,0.75);
+ transform: scale(0.92);
+}
+.ul-list{
+	width: 100%;
+	margin:15px 0px;
+}
+.ul-list svg{
+	width: 15px;
+	height: 15px;
+	fill: #a534bb;
+}
+.button.grey{
+	margin-top: 15px;
+}
