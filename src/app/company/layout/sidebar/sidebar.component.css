@@ -114,3 +114,21 @@
     transition: all 0.5s;
     transform: translateX(0px);
 }
+
+.nav-container svg{
+    fill:#fff;
+    width: 22px;
+}
+.svg-up{
+    width: 10px;
+    height: 10px;
+    float: right;
+margin-top: 12px;
+}
+.svg-down{
+     width: 10px;
+    height: 10px;
+    transform: rotate(182deg);
+    float: right;
+margin-top: 12px;
+}
