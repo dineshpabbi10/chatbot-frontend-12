@@ -9,12 +9,13 @@
         </p>
       </div> -->
       <div class="d-flex pr-flexer ">
-        <div class="c-flex plan-1 plan-active" *ngFor="let plan of plans" (click)="changePlan()">
-          <!-- <span>current plan</span> -->
+
+        <div class="c-flex plan-1" *ngFor="let plan of plans" (click)="changePlan()">
+          <span class="plan-active" *ngIf="activePlan==plan.subscription_name">current plan</span>
           <span class="info-1">{{ plan.subscription_name }}</span>
           <ng-container *ngIf="plan.price_monthly==0; else otherPlans">
             Individual contract with included custom bot building process
-            <a>Contact Us</a>
+            <a class="button" [routerLink]="['/contact-us']">Contact Us</a>
           </ng-container>
           <ng-template #otherPlans>
             <h4 class="prce">
@@ -68,55 +69,20 @@
 
               <!-- <mat-icon>pie_chart</mat-icon> -->
               <b>WHAT YOU HAVE:</b>
-              <ul>
-                <li>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                    <path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z" />
-                  </svg>
-                  5000 free chats/mo
+              <ul *ngIf="activePlan">
+                <li *ngFor="let feature of subscribedPackage[0].features">
+                  <ng-container *ngIf="feature.value">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                      <path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z" />
+                    </svg>
+                    <!-- <span *ngIf="feature.value === 'int'">
+                      {{feature.value}}
+                    </span> -->
+                    {{feature.key}}
+
+                  </ng-container>
                 </li>
-                <li>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                    <path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z" />
-                  </svg>
-                  5 active chatbots
-                </li>
-                <li>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                    <path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z" />
-                  </svg>
-                  All integrations
-                </li>
-                <li>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                    <path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z" />
-                  </svg>
-                  Data security
-                </li>
-                <li>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                    <path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z" />
-                  </svg>
-                  Unlimited training history
-                </li>
-                <li>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                    <path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z" />
-                  </svg>
-                  Advanced reporting
-                </li>
-                <li>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                    <path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z" />
-                  </svg>
-                  Team collaboration
-                </li>
-                <li>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                    <path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z" />
-                  </svg>
-                  Button actions
-                </li>
+
               </ul>
             </div>
           </div>

@@ -16,6 +16,7 @@ import { CompanyService } from '../../../company/services/company.service'
 export class PaymentComponent implements OnInit {
 
   subscribedPackage: any
+  activePlan: string = ''
   rzp1: any
   options = {
     "key": "rzp_test_5uyAHqJ3Z953zX", // Enter the Key ID generated from the Dashboard
@@ -25,7 +26,10 @@ export class PaymentComponent implements OnInit {
     "description": "Test Transaction",
     "image": "https://example.com/your_logo",
     "order_id": "", //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
-    "callback_url": "https://eneqd3r9zrjok.x.pipedream.net/",
+    // "callback_url": "https://eneqd3r9zrjok.x.pipedream.net/",
+    "handler": function (response: any) {
+      console.log(response)
+    },
     "prefill": {
       "name": "Gaurav Kumar",
       "email": "gaurav.kumar@example.com",
@@ -101,7 +105,7 @@ export class PaymentComponent implements OnInit {
   // }
 
   getCountryDetails(): void {
-    // console.log(this.subscribedPackage[0]?.currency)
+
     if (this.subscribedPackage[0]?.currency == 'inr') {
 
       this.indiaPayment = true
@@ -112,6 +116,7 @@ export class PaymentComponent implements OnInit {
       this.indiaPayment = false
 
     }
+    this.activePlan = this.subscribedPackage[0]?.subscription_name
     // this.commonService.getCountryUsingIp().subscribe(data => {
     //   // console.log(data)
     //   if (data.country_name == 'India') {
