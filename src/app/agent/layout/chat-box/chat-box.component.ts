@@ -96,7 +96,11 @@ export class ChatBoxComponent implements OnInit {
       } else if (res.type === 'banuser') {
         this.toast.success(res?.payload?.msg);
         this.closeChat();
-      } else {
+      }else if(res.type === 'botattachment'){
+        this.getChatHistory();
+        setTimeout(() => this.scrollToElement(), 500);
+      } 
+      else {
         console.log(res);
         this.scrollToElement();
       }
