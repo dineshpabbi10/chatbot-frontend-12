@@ -6,6 +6,8 @@ import { CommonService } from '../../../services/common.service';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { ToastrService } from 'ngx-toastr'
 import { CompanyService } from '../../../company/services/company.service'
+import { IPayPalConfig, ICreateOrderRequest } from 'ngx-paypal';
+import { PrimeNGConfig } from 'primeng/api';
 
 
 @Component({
@@ -15,33 +17,31 @@ import { CompanyService } from '../../../company/services/company.service'
 })
 export class PaymentComponent implements OnInit {
 
+  public payPalConfig: any;
+
+
   subscribedPackage: any
   activePlan: string = ''
   rzp1: any
   options = {
     "key": "rzp_test_5uyAHqJ3Z953zX", // Enter the Key ID generated from the Dashboard
-    "amount": "5000", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+    "amount": "", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
     "currency": "INR",
-    "name": "Acme Corp",
+    "name": "Chatbot by Urbanwhizz Enterprises",
     "description": "Test Transaction",
     "image": "https://example.com/your_logo",
     "order_id": "", //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
-    // "callback_url": "https://eneqd3r9zrjok.x.pipedream.net/",
     "handler": function (response: any) {
       console.log(response)
-    },
-    "prefill": {
-      "name": "Gaurav Kumar",
-      "email": "gaurav.kumar@example.com",
-      "contact": "9999999999"
     },
     "notes": {
       "address": "Razorpay Corporate Office"
     },
     "theme": {
-      "color": "#3399cc"
+      "color": "#a733bb"
     }
   };
+  displayBasic: boolean;
   @ViewChild(StripeCardComponent) card: StripeCardComponent;
   countryData: any
   indiaPayment: Boolean = false
@@ -74,8 +74,9 @@ export class PaymentComponent implements OnInit {
   userData: any
 
   stripeTest: FormGroup | any;
-
-  constructor(private fb: FormBuilder, private stripeService: StripeService, private commonService: CommonService, private toastr: ToastrService, private ngxService: NgxUiLoaderService, private companyService: CompanyService) {
+  billingMonthly = true
+  cost: number = 0.00
+  constructor(private fb: FormBuilder, private stripeService: StripeService, private commonService: CommonService, private toastr: ToastrService, private ngxService: NgxUiLoaderService, private companyService: CompanyService, private primengConfig: PrimeNGConfig) {
 
   }
 
@@ -87,6 +88,10 @@ export class PaymentComponent implements OnInit {
     this.formInitalization()
     this.getPlans()
     this.invokeStripe();
+    this.primengConfig.ripple = true;
+
+
+
   }
 
   // createToken(): void {
@@ -117,6 +122,7 @@ export class PaymentComponent implements OnInit {
 
     }
     this.activePlan = this.subscribedPackage[0]?.subscription_name
+    this.cost = this.subscribedPackage[0]?.price_monthly
     // this.commonService.getCountryUsingIp().subscribe(data => {
     //   // console.log(data)
     //   if (data.country_name == 'India') {
@@ -192,13 +198,91 @@ export class PaymentComponent implements OnInit {
     }
   }
 
-  payWithRazorpay() {
+  payWithRazorpay(cost: number) {
+    this.options.amount = (this.cost * 100).toString();
     this.rzp1 = new this.companyService.nativeWindow.Razorpay(this.options)
     this.rzp1.open()
   }
 
-  changePlan() {
+  changePlan(planClicked: any) {
+    console.log(planClicked)
+  }
+
+  onBillingPatternChange(type: any) {
+    if (type == "annually") {
+      this.billingMonthly = false;
+      this.cost = this.subscribedPackage[0].price_yearly
+    }
+    else {
+      this.billingMonthly = true
+      this.cost = this.subscribedPackage[0].price_monthly
+
+    }
+  }
+
+  recordPayment(response: any) {
 
   }
+
+
+  showBasicDialog() {
+    console.log(this.cost)
+    this.payPalConfig = {
+      currency: "USD",
+      clientId: "AYvU7p49APJ3TWCP7EPq6Z1Sm7LijDirPdDI-G6DjNasJ2tyIVCwb0IZL1v5cKy_tw7qPr_2ybS62gCR",
+      createOrder: (data: any) =>
+        <ICreateOrderRequest>{
+          intent: "CAPTURE",
+          purchase_units: [
+            {
+              amount: {
+                currency_code: "USD",
+                value: (this.cost).toString()
+              }
+            }
+          ]
+        },
+      advanced: {
+        commit: "true"
+      },
+      style: {
+        label: "paypal",
+        layout: "vertical"
+      },
+      onApprove: (data: any, actions: any) => {
+        console.log(
+          "onApprove - transaction was approved, but not authorized",
+          data,
+          actions
+        );
+        actions.order.get().then((details: any) => {
+          console.log(
+            "onApprove - you can get full order details inside onApprove: ",
+            details
+          );
+        });
+      },
+      onClientAuthorization: (data: any) => {
+        console.log(
+          "onClientAuthorization - you should probably inform your server about completed transaction at this point",
+          data
+        );
+      },
+      onCancel: (data: any, actions: any) => {
+        console.log("OnCancel", data, actions);
+      },
+      onError: (err: any) => {
+        console.log("OnError", err);
+      },
+      onClick: (data: any, actions: any) => {
+        console.log("onClick", data, actions);
+      }
+    };
+
+    this.displayBasic = true
+  }
+
+
+
 
 }

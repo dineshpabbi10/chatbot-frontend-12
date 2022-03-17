@@ -10,7 +10,7 @@
       </div> -->
       <div class="d-flex pr-flexer ">
 
-        <div class="c-flex plan-1" *ngFor="let plan of plans" (click)="changePlan()">
+        <div class="c-flex plan-1" *ngFor="let plan of plans" (click)="changePlan(plan)">
           <span class="plan-active" *ngIf="activePlan==plan.subscription_name">current plan</span>
           <span class="info-1">{{ plan.subscription_name }}</span>
           <ng-container *ngIf="plan.price_monthly==0; else otherPlans">
@@ -18,6 +18,7 @@
             <a class="button" [routerLink]="['/contact-us']">Contact Us</a>
           </ng-container>
           <ng-template #otherPlans>
+
             <h4 class="prce">
 
               <sup *ngIf="indiaPayment">
@@ -92,12 +93,14 @@
                 <td>Billing Cycle</td>
                 <td class="text-right">
                   <div class="custom-control custom-radio custom-control-inline">
-                    <input type="radio" class="custom-control-input" id="customRadio1" selected="true" name="example1">
+                    <input type="radio" class="custom-control-input" id="customRadio1" [checked]="true"
+                      name="billing_type" (change)="onBillingPatternChange('monthly')">
                     <label class="custom-control-label" for="customRadio1">Monthly</label>
                   </div>
                   <div class="custom-control custom-radio custom-control-inline">
-                    <input type="radio" class="custom-control-input" id="customRadio2" name="example1">
-                    <label class="custom-control-label" for="customRadio2">Annual (Save 15%)</label>
+                    <input type="radio" class="custom-control-input" id="customRadio2" name="billing_type"
+                      (change)="onBillingPatternChange('annually')">
+                    <label class="custom-control-label" for="customRadio2">Annually (Save 15%)</label>
                   </div>
                 </td>
               </tr>
@@ -106,16 +109,37 @@
                   Total Price
                 </td>
                 <td class="text-right">
-                  <h3 class="clr">$1512</h3>
+                  <h3 class="clr">
+                    <sup *ngIf="indiaPayment">
+                      ₹
+                    </sup>
+                    <sup *ngIf="nonIndianPayment">
+                      $
+                    </sup>
+                    <span *ngIf="activePlan">
+                      <ng-container *ngIf="billingMonthly==true; else annuallyBillingBlock">
+                        {{subscribedPackage[0]?.price_monthly}}
+                      </ng-container>
+                      <ng-template #annuallyBillingBlock>
+                        {{subscribedPackage[0]?.price_yearly}}
+                      </ng-template>
+
+                    </span>
+                  </h3>
                 </td>
               </tr>
               <tr>
                 <td class="no-brdr">
-                  <button type="submit" class="button" (click)="initializePayment(.2)" *ngIf="nonIndianPayment">
+                  <!-- <button type="submit" class="button" (click)="initializePayment(50)" *ngIf="nonIndianPayment">
                     Go to checkout
-                  </button>
+                  </button> -->
 
-                  <button type="submit" class="button" id="rzp-button1" (click)="payWithRazorpay()"
+
+                  <p-button (click)="showBasicDialog()" *ngIf="nonIndianPayment" label="Pay"></p-button>
+                  <!-- <ngx-paypal [config]="payPalConfig">
+                  </ngx-paypal> -->
+
+                  <button type="submit" class="button" id="rzp-button1" (click)="payWithRazorpay(cost)"
                     *ngIf="indiaPayment">
                     Pay
                   </button>
@@ -153,4 +177,18 @@
       </div>
     </div>
   </div>
+
 </div>
+
+<p-dialog header="Pay With PayPal Secure Payment Gateway" [(visible)]="displayBasic" [style]="{width: '50vw'}"
+  [baseZIndex]="10000">
+  <p>
+    <ngx-paypal [config]="payPalConfig">
+    </ngx-paypal>
+  </p>
+  <!--<ng-template pTemplate="footer">
+     <p-button icon="pi pi-check" (click)="displayBasic=false" label="Yes" styleClass="p-button-text">
+    </p-button>
+    <p-button icon="pi pi-times" (click)="displayBasic=false" label="No"></p-button>
+  </ng-template> -->
+</p-dialog>
