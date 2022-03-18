@@ -630,3 +630,118 @@ footer.education .social-icone ul li a {
 .breadcrumb-item.active{
     color:#a733bb;
 }
+/*karamcsscustom*/
+/*.p-dialog-mask{
+background: rgba(0,0,0,0.35);
+}*/
+
+.p-dialog {
+    min-width: 600px;
+}
+.p-fileupload-buttonbar .p-button {
+    color: #ffffff;
+    background: #800080;
+    border: 1px solid #800080;
+    padding: 0px 12px;
+    font-size: 1rem;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+    border-radius: 5px;
+}
+
+.p-fileupload-buttonbar .p-fileupload-choose:not(.p-disabled):hover,
+.p-fileupload-buttonbar .p-fileupload-choose:not(.p-disabled):active,
+.p-fileupload-buttonbar .p-fileupload-choose:not(.p-disabled):focus{
+    background: #800080;
+    color: #ffffff;
+    border-color: #800080;
+}
+
+.p-dialog-content button.p-button {
+    color: #ffffff;
+    background: #800080!important;
+    border: 1px solid #9c27b0!important;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+    border-radius: 3px;
+   min-width: 200px;
+   display: block;
+   margin:0 auto;
+}
+.p-fileupload-row button{
+	 min-width: 40px!important;
+    height: 40px;
+    padding: 0px!important;
+}
+.p-fileupload-row img{
+	width: 145px;
+    height: 80px;
+    object-fit: contain;
+    border: 1px solid #efefef;
+    padding: 5px;
+}
+.p-fileupload .p-fileupload-row  div {
+     padding:0em!important;
+     text-align: center!important; 
+}
+.p-fileupload-row>div {
+    flex: 1 1 auto;
+    width: auto!important;
+}
+.chat-list-search span{
+	width: 100%!important;
+	display: block!important;
+}
+.chat-list-search input{
+	width: 92%!important;
+}
+.chat-list-search span i{
+	left:22px!important;
+	top:22px;
+}
+
+.bottom-actions .p-button.p-button-help, .p-buttonset.p-button-help > .p-button, .p-splitbutton.p-button-help > .p-button {
+    color: #ffffff;
+    background: #800080;
+    border: 1px solid #800080;
+}
+#img-agent img{
+    width: 40px!important;
+    height: 40px!important;
+    object-fit: cover!important;
+    display: block;
+    margin:0 auto;
+    margin-bottom: 10px;
+}
+.p-divider.p-divider-horizontal:before {
+    border-top: 1px #444444;
+}
+.p-button:focus {
+    outline: 0 none!important;
+    outline-offset: 0!important;
+    box-shadow: none!important;
+}
+.data_send button{
+	border-color:#fff!important;
+	border-radius:5px!important;
+}
+.p-dropdown{
+	width: 100%;
+}
+.p-fileupload .p-fileupload-buttonbar {
+    background: #f8f9fa;
+    padding: 1rem;
+    border: 1px solid #dee2e6;
+    color: #495057;
+    border-bottom: 0 none;
+    border-top-right-radius: 3px;
+    border-top-left-radius: 3px;
+    display: flex;
+    justify-content: space-between;
+}
+.p-fileupload-content .p-button-label{
+	display: none;
+}
+{
+	margin:0px 12px!important;
+}
