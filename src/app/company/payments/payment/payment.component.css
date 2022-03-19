@@ -150,18 +150,23 @@
  	border-top: transparent;
  }
 
-.plan-active{
-border: 1.5px solid #a733bb!important;
-position: relative;
-}
-.plan-active::after{
-	content: "Current Plan";
-	position: absolute;
-	width: 100%;
-	padding:4px 0px;
-	z-index: 1;
-	top:0;
-	left:0;
-	 background: #a733bb;
-	 color:#fff;
-}
+ .plan-active {
+ 	/* border: 1.5px solid #a733bb !important; */
+ 	position: relative;
+ 	width: 100%;
+ 	background: #a733bb;
+ 	color: #fff;
+ 	top: 0;
+ }
+
+ .plan-active::after {
+ 	/* content: "Current Plan"; */
+ 	position: absolute;
+ 	width: 100%;
+ 	padding: 4px 0px;
+ 	z-index: 1;
+
+ 	left: 0;
+ 	background: #a733bb;
+ 	color: #fff;
+ }
