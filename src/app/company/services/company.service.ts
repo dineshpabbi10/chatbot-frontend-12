@@ -264,6 +264,14 @@ export class CompanyService {
     }
   }
 
+  getDashboardPieData() {
+    return this.httpClient.get<any>(environment.endPoint + "api/piechart").pipe();
+  }
+
+  getDashboardGraphData() {
+    return this.httpClient.get<any>(environment.endPoint + "api/graph").pipe()
+  }
+
 
 
 }
