@@ -64,3 +64,9 @@
 .domainName-warning{
   margin-top: 10px;
 }
+.btn-theme{
+  background-color: #9c27b0!important;
+    color:#fff!important;
+    border: 1px solid #9c27b0!important;
+
+}

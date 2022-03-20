@@ -1,45 +1,51 @@
-<div class="row">
-  <div class="col-md-11">
-    <div class="card">
-      <div class="card-body">
-        <div class="card-title">Add Domains</div>
-        <!-- Form -->
-        <div class="row">
-          <div class="col-md-1"></div>
-          <div class="col-md-7">
-            <p
-              class="btn btn-secondary btn-style"
-              [routerLink]="['/company/domain/create']"
-              [routerLinkActive]="'active'"
-            >
-              <span class="fa fa-plus btn-padding"></span>Create Domain
-            </p>
+<div class="container-fluid vh-cstm">
+  <br><br>
+  <div class="row">
+      <div class="col-md-11">
+        <div class="card">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-lg-7">
+                 <div class="card-title">Add Domains</div>
+              </div>
+              <div class="col-lg-5">
+                  <div class="text-right">
+                             <p
+                      class="btn btn-secondary btn-style"
+                      [routerLink]="['/company/domain/create']"
+                      [routerLinkActive]="'active'"
+                    >
+                      <span class="fa fa-plus btn-padding"></span>Create Domain
+                    </p>
 
-            <p
-              [routerLink]="['/company/intents']"
-              [routerLinkActive]="'active'"
-              class="btn btn-secondary btn-style"
-              style="margin-left: 20px"
-            >
-              <span class="fa fa-eye btn-padding"></span>View Intents
-            </p>
+                    <p
+                      [routerLink]="['/company/intents']"
+                      [routerLinkActive]="'active'"
+                      class="btn btn-secondary btn-style"
+                      style="margin-left: 20px"
+                    >
+                      <span class="fa fa-eye btn-padding"></span>View Intents
+                    </p>
+                  </div>
+              </div>
+            </div>
+           
+            <!-- Form -->
+            <!-- Table -->
+            <app-generic-table [cols]="cols" [data]="domainsList" component="domain" [showDelete]="true" [showEdit]="true"></app-generic-table>
+            <p-confirmDialog header="Do you want to delete selected records?" icon="pi pi-exclamation-triangle"></p-confirmDialog>
+            <app-generic-edit-modal header="Update Domain" [data]="updatePayload" component="domain" >
+              <span style="margin-top: 20px;" class="p-float-label">
+                <input id="float-input" type="text" [value]="selectedRow.domain" pInputText readonly> 
+                <label for="float-input">Old Domain Name</label>
+              </span>
+              <span style="margin-top: 20px;" class="p-float-label">
+                <input id="float-input" [formControl]="newDomainName" type="text" pInputText> 
+                <label for="float-input">New Domain Name</label>
+              </span>
+            </app-generic-edit-modal>
           </div>
         </div>
-
-        <!-- Table -->
-        <app-generic-table [cols]="cols" [data]="domainsList" component="domain" [showDelete]="true" [showEdit]="true"></app-generic-table>
-        <p-confirmDialog header="Do you want to delete selected records?" icon="pi pi-exclamation-triangle"></p-confirmDialog>
-        <app-generic-edit-modal header="Update Domain" [data]="updatePayload" component="domain" >
-          <span style="margin-top: 20px;" class="p-float-label">
-            <input id="float-input" type="text" [value]="selectedRow.domain" pInputText readonly> 
-            <label for="float-input">Old Domain Name</label>
-          </span>
-          <span style="margin-top: 20px;" class="p-float-label">
-            <input id="float-input" [formControl]="newDomainName" type="text" pInputText> 
-            <label for="float-input">New Domain Name</label>
-          </span>
-        </app-generic-edit-modal>
       </div>
-    </div>
-  </div>
-</div>
+  </div>   
+</div> 
