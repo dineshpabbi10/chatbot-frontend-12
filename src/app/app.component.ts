@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireMessaging } from '@angular/fire/compat/messaging';
-import { mergeMapTo } from 'rxjs/operators';
+import { of } from 'rxjs';
+import { catchError, mergeMapTo } from 'rxjs/operators';
 import { CommonService } from './services/common.service';
 
 @Component({
@@ -18,7 +19,18 @@ export class AppComponent implements OnInit{
     this.afMessaging.requestPermission
       .pipe(mergeMapTo(this.afMessaging.tokenChanges))
       .subscribe(
-        (token) => { console.log('Permission granted! Save to the server!', token); },
+        (token) => { 
+            // Send token to backend
+            console.log(token);
+            this.commonService.sendNotificationToken(token)
+            .pipe(catchError(err=>{
+              return of(err)
+            }))
+            .subscribe(res=>{
+              console.log(res);
+            })
+
+        },
         (error) => { console.error(error); },  
       );
   }

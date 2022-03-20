@@ -47,6 +47,7 @@ export class ChatListComponent implements OnInit {
     });
 
     this.commonService.notificationSubject$.subscribe(()=>{
+      this.toast.info("New Notitifications received !");
       this.getChatListWithoutLoader(this.selectedChatCode,false);
     });
 
