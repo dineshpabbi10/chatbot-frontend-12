@@ -272,6 +272,10 @@ export class CompanyService {
     return this.httpClient.get<any>(environment.endPoint + "api/graph").pipe()
   }
 
+  getNumberData() {
+    return this.httpClient.get<any>(environment.endPoint + "api/number").pipe()
+  }
+
 
 
 }

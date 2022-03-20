@@ -14,12 +14,15 @@
               </svg>
             </div>
             <div class="col-md-8">
-              <p class="card-text">20 online<br />10 offline</p>
+              <p class="card-text">
+                {{ numbersData?.used_agents }} Agents made out of
+                {{ numbersData?.total_allowed_agents }} Total Agents
+              </p>
             </div>
           </div>
         </div>
         <div class="card-footer">
-          <small class="text-muted">Last updated 3 mins ago</small>
+          <small class="text-muted">Agents</small>
         </div>
       </div>
     </div>
@@ -27,7 +30,7 @@
     <div class="col-xl-3 col-lg-6 col-md-6 col-xs-12">
       <div class="card">
         <div class="card-body">
-          <p class="card-title">Speed of Response</p>
+          <p class="card-title">Quicklinks</p>
           <div class="row">
             <div class="col-lg-4 col-md-4 col-xs-4">
               <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-speedometer2 card-icon-yellow"
@@ -40,19 +43,20 @@
             </div>
             <div class="col-lg-8 col-md-8 col-xs-8">
               <p class="card-text">
-                1.0722 - <b>First Response </b><br />
-
-                0 - <b>Response Time</b><br />
-
-                0 - <b>Resolution Time</b><br />
-
-                0 - <b>Wait Time</b><br />
+                <ng-container *ngIf="numbersData?.used_quicklinks; else noQuicklink">
+                  {{ numbersData?.used_quicklinks}}
+                </ng-container>
+                <ng-template #noQuicklink>
+                  No
+                </ng-template>
+                quicklinks made out of
+                {{ numbersData?.total_allowed_quicklinks }} total quicklinks
               </p>
             </div>
           </div>
         </div>
         <div class="card-footer">
-          <small class="text-muted">Last updated 3 mins ago</small>
+          <small class="text-muted">Quicklinks</small>
         </div>
       </div>
     </div>
@@ -60,7 +64,7 @@
     <div class="col-xl-3 col-lg-6 col-md-6 col-xs-12">
       <div class="card">
         <div class="card-body">
-          <p class="card-title">Incoming Conversations</p>
+          <p class="card-title">Domain</p>
           <div class="row">
             <div class="col-md-4 col-xs-4">
               <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor"
@@ -70,12 +74,19 @@
               </svg>
             </div>
             <div class="col-md-8 col-xs-8">
-              <img class="img-fluid" src="../../../assets/images/download.png" />
+              <ng-container *ngIf="numbersData?.used_domains; else noDomains">
+                {{ numbersData?.used_domains}}
+              </ng-container>
+              <ng-template #noDomains>
+                No
+              </ng-template>
+              domain's made out of
+              {{ numbersData?.total_allowed_domains }} total domains
             </div>
           </div>
         </div>
         <div class="card-footer">
-          <small class="text-muted">Last updated 3 mins ago</small>
+          <small class="text-muted">Domains</small>
         </div>
       </div>
     </div>
@@ -83,7 +94,7 @@
     <div class="col-xl-3 col-lg-6 col-md-6 col-xs-12">
       <div class="card">
         <div class="card-body">
-          <p class="card-title">Up Time</p>
+          <p class="card-title">Blocked Users</p>
           <div class="row">
             <div class="col-md-4 col-xs-4">
               <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-clock card-icon-orange"
@@ -94,14 +105,13 @@
             </div>
             <div class="col-md-8 col-xs-8">
               <p class="card-text">
-                2021-1-02 - <b>Last Downtime</b><br />
-                99.8% - <b>Uptime Percentage</b>
+                {{numbersData?.banned_user}} user's has been blocked by agents till now.
               </p>
             </div>
           </div>
         </div>
         <div class="card-footer">
-          <small class="text-muted">Last updated 3 mins ago</small>
+          <small class="text-muted">Blocked Users</small>
         </div>
       </div>
     </div>
@@ -114,7 +124,8 @@
         <div class="card-body">
           <p class="class-title">First Response Time</p>
           <div class="card-text">
-            <img class="img-fluid" src="../../../assets/images/placeholder_graph_2.png" />
+            <p-chart type="doughnut" [data]="activeAgentPie" *ngIf="success" [style]="{'width': '40%'}"></p-chart>
+
           </div>
         </div>
         <div class="card-footer">
@@ -152,15 +163,29 @@
     </div> -->
 
   </div>
+
+  <!--Graphs-->
   <div class="row row-content">
-    <div class="col-md-12 col-xs-12">
+    <div class="col-md-6 col-xs-6">
       <div class="card">
         <div class="card-body">
-          <p class="class-title">Response Graph</p>
+          <p class="class-title">First Response Graph</p>
           <div class="card-text">
-            <p-chart type="line" [data]="validChatsPie" *ngIf="success" [style]="{'width': '40%'}"></p-chart>
+            <p-chart type="line" [data]="responseResolutionData" *ngIf="success" [style]="{'width': '40%'}"></p-chart>
+          </div>
+        </div>
+        <div class="card-footer">
+          <small class="text-muted">Last updated 3 mins ago</small>
+        </div>
+      </div>
+    </div>
 
-            <img class="img-fluid" src="../../../assets/images/placeholder_graph.png" />
+    <div class="col-md-6 col-xs-6">
+      <div class="card">
+        <div class="card-body">
+          <p class="class-title">Chat Resolution Graph</p>
+          <div class="card-text">
+            <p-chart type="line" [data]="chatResolutionData" *ngIf="success" [style]="{'width': '40%'}"></p-chart>
           </div>
         </div>
         <div class="card-footer">

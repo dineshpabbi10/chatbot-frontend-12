@@ -6,31 +6,18 @@
 
         <label for="basic-url">Enter Domain</label>
         <div class="input-group mb-3">
-          <input
-            type="text"
-            class="form-control"
-            id="basic-url"
-            aria-describedby="basic-addon3"
-            placeholder="Example : Insurance, Health"
-            [formControl]="domainName"
-          />
+          <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3"
+            placeholder="Example : Insurance, Health" [formControl]="domainName" />
 
           <div class="input-group-append">
-          <button
-            [disabled]="domainName.invalid"
-            (click)="createDomain()"
-            type="button"
-            class="btn btn-success"
-          >
-            Submit
-          </button>
-        </div>
+            <button [disabled]="domainName.invalid" (click)="createDomain()" type="button" class="btn btn-success">
+              Submit
+            </button>
+          </div>
         </div>
 
-        <div
-          *ngIf="domainName.invalid && (domainName.dirty || domainName.touched)"
-          class="col-xs-12 col-md-12 alert alert-danger domainName-warning"
-        >
+        <div *ngIf="domainName.invalid && (domainName.dirty || domainName.touched)"
+          class="col-xs-12 col-md-12 alert alert-danger domainName-warning">
           <div *ngIf="domainName.errors?.['required']">
             Domain Name field is required
           </div>
