@@ -742,6 +742,97 @@ background: rgba(0,0,0,0.35);
 .p-fileupload-content .p-button-label{
 	display: none;
 }
-{
-	margin:0px 12px!important;
+.p-button.p-button-icon-only{
+  margin:0px!important;
+  border-bottom-left-radius: 0px!important;
+  border-top-left-radius: 0px!important;
+  background: #9C27B0;
+  border-color: #9C27B0;
+}
+.p-input-icon-left > .p-inputtext {
+    padding-left: 2rem;
+    border-bottom-right-radius: 0px!important;
+  border-top-right-radius: 0px!important;
+}
+.p-button.p-button-icon-only:focus,
+.p-button.p-button-icon-only:hover,
+.p-button.p-button-icon-only:active{
+	 background: #9C27B0!important;
+  border-color: #9C27B0!important;
+	box-shadow: none!important;
+}
+
+.p-checkbox{
+  transform: translate(0px, -5px)!important;
+}
+.p-column-filter-overlay {
+
+    min-width: 350px!important;
+}
+.p-column-filter-buttonbar button{
+	width:45%!important;
+	margin:0px 10px!important; 
+}
+.p-column-filter-add-button{
+	color:#9c27b0!important;
+}
+.p-paginator-bottom button.p-ripple:hover,
+.p-paginator-bottom button.p-ripple:active,
+.p-paginator-bottom button.p-ripple:focus{
+	background: transparent!important;
+	border:transparent!important;
+}
+.p-paginator-bottom button.p-ripple,
+.p-paginator-bottom button.p-ripple:hover{
+	color:#9C27B0!important;
+}
+.p-column-filter-buttonbar button.p-element{
+	background-color: #9c27b0!important;
+    color:#fff!important;
+    border: 1px solid #9c27b0!important;
+}
+.p-column-filter-buttonbar button.p-button-outlined,
+.p-column-filter-buttonbar button.p-button-outlined:hover,
+.p-column-filter-buttonbar button.p-button-outlined:active,
+.p-column-filter-buttonbar button.p-button-outlined:focus{
+	background-color: transparent!important;
+    color: #9c27b0!important;
+    border: 1px solid #9c27b0!important;
+}
+.p-paginator-rpp-options span.p-element{
+	line-height: 20px;
+}
+.p-checkbox .p-checkbox-box.p-highlight {
+    border-color: #9c27b0!important;
+    background: #9c27b0!important;
+    
+}
+.p-checkbox:not(.p-checkbox-disabled) .p-checkbox-box:hover {
+    border-color: #9c27b0!important;
+}
+#cstm-div button{
+	border-radius: 5px!important;
+	width: 49%;
+}
+#cstm-div button:nth-child(1){
+	margin-right: 5px!important;
+}
+#cstm-div button:nth-child(2){
+	margin-right: 5px!important;
+}
+.p-float-label input{
+	width: 100%;
+	margin-bottom: 10px;
+}
+.p-button:enabled:hover,
+.p-button:enabled:focus,
+.p-button:enabled:active{
+	background: #a733bb!important;
+    color: #ffffff!important;
+    border-color: #a733bb!important;
+}
+.btn-theme {
+    background-color: #9c27b0!important;
+    color: #fff!important;
+    border: 1px solid #9c27b0!important;
 }
