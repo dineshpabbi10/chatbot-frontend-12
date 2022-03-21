@@ -836,3 +836,12 @@ background: rgba(0,0,0,0.35);
     color: #fff!important;
     border: 1px solid #9c27b0!important;
 }
+
+ .whitesmoke{
+    height:initial!important;
+    padding-bottom: 5rem;
+  }
+  #data-tabcstm .p-datatable .p-datatable-thead > tr > th {
+  text-align: left;
+  padding: 1rem 0rem!important;
+}

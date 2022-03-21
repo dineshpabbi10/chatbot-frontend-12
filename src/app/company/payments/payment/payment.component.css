@@ -29,6 +29,7 @@
  	flex: 1 0;
  	height: 285px;
  	transition: 300ms ease-in;
+ 	position: relative;
  }
 
  #cr-1 {
@@ -152,7 +153,7 @@
 
  .plan-active {
  	/* border: 1.5px solid #a733bb !important; */
- 	position: relative;
+ 	position: absolute;
  	width: 100%;
  	background: #a733bb;
  	color: #fff;
@@ -170,3 +171,6 @@
  	background: #a733bb;
  	color: #fff;
  }
+#cntct-us a.button{
+	transform: scale(0.70);
+}
