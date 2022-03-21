@@ -2,7 +2,7 @@ name: Deploy Dev
 on:
   push:
     branches:
-      - dev
+      - no-branch-pipeline
 jobs:
   deploy-front-end:
     runs-on: ubuntu-latest
