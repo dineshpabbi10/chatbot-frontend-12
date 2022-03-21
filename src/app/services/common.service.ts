@@ -80,5 +80,9 @@ export class CommonService {
     return this.httpClient.get<any>('https://ipapi.co/json/');
   }
 
+  sendNotificationToken(token:string|null):Observable<any>{
+    return this.httpClient.post<any>(environment.endPoint+"pushnotification",{"device_token":token})
+  }
+
 
 }
