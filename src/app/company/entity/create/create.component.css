@@ -1,3 +1,6 @@
+.divvv{
+  height: 100%;
+}
 .row {
     margin: 10px;
     justify-content: center;
@@ -33,7 +36,7 @@
   
   #quicklinks-list {
     overflow-y: scroll;
-    height: 70px;
+    height: 40px;
     border: 1px solid lightgray;
     border-radius: 5px;
     display: flex;

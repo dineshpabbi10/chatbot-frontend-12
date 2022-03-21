@@ -8,7 +8,7 @@
           Subscribe now to keep on using chatbot without interruption.
         </p>
       </div> -->
-      <div class="d-flex pr-flexer ">
+      <div class="d-flex pr-flexer " id="cntct-us">
 
         <div class="c-flex plan-1" *ngFor="let plan of plans" (click)="changePlan(plan)">
           <span class="plan-active" *ngIf="activePlan==plan.subscription_name">current plan</span>

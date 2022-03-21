@@ -1,24 +1,32 @@
+<br>
+<div class="divvv">
 <div class="row">
   <div class="col-md-11">
     <div class="card">
       <div class="card-body">
-        <div class="card-title">
-          Creating New Entity<br />
-          <small id="title-small-text">
-            Entities are knowledge repositories used by the bot to provide
+        <div class="row">
+           <div class="col-md-10">
+               <div class="card-title">
+                 Creating New Entity
+                </div>
+            </div>
+            <div class="col-md-2 text-right">
+               <button
+                  type="button"
+                  class="btn btn-theme"
+                  data-toggle="modal"
+                  data-target="#exampleModal"
+                >
+                  Help
+                </button>
+            </div>
+            <div class="col-md-12">
+                <small id="title-small-text">
+                   Entities are knowledge repositories used by the bot to provide
             personalized and accurate responses
-          </small>
-          <br />
-          <button
-            type="button"
-            class="btn btn-primary"
-            data-toggle="modal"
-            data-target="#exampleModal"
-          >
-            Help
-          </button>
+                </small>
+            </div>
         </div>
-
         <!-- Form -->
         <div class="row">
           <!-- Intent Name -->
@@ -57,7 +65,7 @@
                   <button
                     (click) ="addEntityWord()"
                     [disabled]="entityWord.invalid"
-                    class="btn btn-success"
+                    class="btn btn-theme"
                     type="button"
                   >
                     Add
@@ -149,7 +157,7 @@
               <select
                 [formControl]="selectedIntent"
                 class="custom-select"
-                size="3"
+                
               >
                 <option
                   *ngFor="let intentsVar of intentList"
@@ -163,7 +171,7 @@
 
           <div class="col-xs-4 col-md-3 col-lg-2">
             <div class="form-group">
-              <button [disabled]="form.invalid" (click)="submitForm()" type="button" class="btn btn-success">Submit</button>
+              <button [disabled]="form.invalid" (click)="submitForm()" type="button" class="btn btn-theme">Submit</button>
             </div>
           </div>
         </div>
@@ -171,7 +179,7 @@
     </div>
   </div>
 </div>
-
+</div>
 <!-- Modal -->
 <div
   class="modal fade"
@@ -180,8 +188,7 @@
   tabindex="-1"
   role="dialog"
   aria-labelledby="exampleModalLabel"
-  aria-hidden="true"
->
+  aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
