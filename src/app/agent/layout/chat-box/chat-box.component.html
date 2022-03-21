@@ -54,9 +54,10 @@
     <ng-template pTemplate="header">
         Upload File
     </ng-template>
-    <p-fileUpload [showCancelButton]="false" #form [fileLimit]="1" name="myfile[]" [customUpload]="true" (uploadHandler)="myUploader($event,form)"></p-fileUpload>
+    <p-fileUpload [showCancelButton]="false" #form [fileLimit]="1" name="myfile[]" [customUpload]="true" [showUploadButton]="false" (onClear)="clearFile()" (onRemove)="clearFile()" (onSelect)="myUploader($event)"></p-fileUpload>
     <ng-template pTemplate="footer">
-        <button pButton type="button" (click)="closeDialog()" label="Cancel" style="background-color: purple;" ></button>
+        <button pButton type="button" (click)="closeDialog()" label="Cancel" style="background-color: purple;" icon="pi pi-check"></button>
+        <button [disabled]="selectedFile === null" pButton type="button" (click)="uploadFile()" label="Submit" style="background-color: purple;" icon="pi pi-check"></button>
     </ng-template>
 </p-dialog>
 

@@ -1,13 +1,16 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpEventType, HttpRequest, HttpErrorResponse, HttpEvent } from '@angular/common/http';
 import { environment } from '../../environments/environment.prod';
-import { Observable, throwError } from 'rxjs';
+import { Observable, Subject, throwError } from 'rxjs';
 import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CommonService {
+
+  public notificationSubject : Subject<any> = new Subject();
+  public notificationSubject$ = this.notificationSubject.asObservable();
 
   constructor(private httpClient: HttpClient) { }
 
@@ -75,6 +78,10 @@ export class CommonService {
 
   getCountryUsingIp(): Observable<any> {
     return this.httpClient.get<any>('https://ipapi.co/json/');
+  }
+
+  sendNotificationToken(token:string|null):Observable<any>{
+    return this.httpClient.post<any>(environment.endPoint+"pushnotification",{"device_token":token})
   }
 
 

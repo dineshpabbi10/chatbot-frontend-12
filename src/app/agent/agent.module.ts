@@ -21,6 +21,8 @@ import { DialogModule } from 'primeng/dialog';
 import { DropdownModule } from 'primeng/dropdown';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { ChipModule } from 'primeng/chip';
+import {CardModule} from 'primeng/card';
+
 
 
 @NgModule({
@@ -48,7 +50,8 @@ import { ChipModule } from 'primeng/chip';
     DialogModule,
     DropdownModule,
     OverlayPanelModule,
-    ChipModule
+    ChipModule,
+    CardModule
   ]
 })
 export class AgentModule { }
