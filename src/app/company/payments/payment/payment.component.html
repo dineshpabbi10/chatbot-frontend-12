@@ -182,10 +182,8 @@
 
 <p-dialog header="Pay With PayPal Secure Payment Gateway" [(visible)]="displayBasic" [style]="{width: '50vw'}"
   [baseZIndex]="10000">
-  <p>
-    <ngx-paypal [config]="payPalConfig">
-    </ngx-paypal>
-  </p>
+
+  <div #paypal></div>
   <!--<ng-template pTemplate="footer">
      <p-button icon="pi pi-check" (click)="displayBasic=false" label="Yes" styleClass="p-button-text">
     </p-button>

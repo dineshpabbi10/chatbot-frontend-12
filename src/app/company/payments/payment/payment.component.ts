@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { StripeService, StripeCardComponent } from 'ngx-stripe';
 import { StripeCardElementOptions, StripeElementsOptions } from '@stripe/stripe-js';
@@ -9,6 +9,7 @@ import { CompanyService } from '../../../company/services/company.service'
 import { IPayPalConfig, ICreateOrderRequest } from 'ngx-paypal';
 import { PrimeNGConfig } from 'primeng/api';
 
+declare var paypal: any;
 
 @Component({
   selector: 'app-payment',
@@ -16,6 +17,7 @@ import { PrimeNGConfig } from 'primeng/api';
   styleUrls: ['./payment.component.css']
 })
 export class PaymentComponent implements OnInit {
+  @ViewChild('paypal', { static: true }) paypalElement: ElementRef
 
   public payPalConfig: any;
 
@@ -76,6 +78,10 @@ export class PaymentComponent implements OnInit {
   stripeTest: FormGroup | any;
   billingMonthly = true
   cost: number = 0.00
+  product = {
+    price: 777.77,
+    description: 'Paypal'
+  }
   constructor(private fb: FormBuilder, private stripeService: StripeService, private commonService: CommonService, private toastr: ToastrService, private ngxService: NgxUiLoaderService, private companyService: CompanyService, private primengConfig: PrimeNGConfig) {
 
   }
@@ -87,31 +93,17 @@ export class PaymentComponent implements OnInit {
     // console.log(this.subscribedPackage)
     this.formInitalization()
     this.getPlans()
-    this.invokeStripe();
+    // this.invokeStripe();
     this.primengConfig.ripple = true;
 
 
 
   }
 
-  // createToken(): void {
-  //   const name = 'Vikas Arora';
-  //   this.stripeService
-  //     .createToken(this.card.element, { name })
-  //     .subscribe((result) => {
-  //       if (result.token) {
-  //         // Use the token
-  //         console.log(result.token.id);
-  //       } else if (result.error) {
-  //         // Error creating the token
-  //         console.log(result.error.message);
-  //       }
-  //     });
-  // }
 
   getCountryDetails(): void {
 
-    if (this.subscribedPackage[0]?.currency == 'inr') {
+    if (this.subscribedPackage[0]?.currency == 'INR') {
 
       this.indiaPayment = true
       this.nonIndianPayment = false
@@ -227,57 +219,86 @@ export class PaymentComponent implements OnInit {
 
   showBasicDialog() {
     console.log(this.cost)
-    this.payPalConfig = {
-      currency: "USD",
-      clientId: "AYvU7p49APJ3TWCP7EPq6Z1Sm7LijDirPdDI-G6DjNasJ2tyIVCwb0IZL1v5cKy_tw7qPr_2ybS62gCR",
-      createOrder: (data: any) =>
-        <ICreateOrderRequest>{
-          intent: "CAPTURE",
-          purchase_units: [
-            {
-              amount: {
-                currency_code: "USD",
-                value: (this.cost).toString()
+    paypal
+      .Buttons({
+        createOrder: (data: any, actions: any) => {
+          return actions.order.create({
+            purchase_units: [
+              {
+                description: this.product.description,
+                amount: {
+                  currency_code: 'USD',
+                  value: this.cost
+                }
               }
-            }
-          ]
+            ]
+          });
         },
-      advanced: {
-        commit: "true"
-      },
-      style: {
-        label: "paypal",
-        layout: "vertical"
-      },
-      onApprove: (data: any, actions: any) => {
-        console.log(
-          "onApprove - transaction was approved, but not authorized",
-          data,
-          actions
-        );
-        actions.order.get().then((details: any) => {
-          console.log(
-            "onApprove - you can get full order details inside onApprove: ",
-            details
-          );
-        });
-      },
-      onClientAuthorization: (data: any) => {
-        console.log(
-          "onClientAuthorization - you should probably inform your server about completed transaction at this point",
-          data
-        );
-      },
-      onCancel: (data: any, actions: any) => {
-        console.log("OnCancel", data, actions);
-      },
-      onError: (err: any) => {
-        console.log("OnError", err);
-      },
-      onClick: (data: any, actions: any) => {
-        console.log("onClick", data, actions);
-      }
-    };
+        onApprove: async (data: any, actions: any) => {
+          const order = await actions.order.capture();
+
+          console.log(order);
+        },
+        onError: (err: any) => {
+          console.log(err);
+        }
+      })
+      .render(this.paypalElement.nativeElement);
+    // this.payPalConfig = {
+    //   currency: "USD",
+    //   clientId: "AYvU7p49APJ3TWCP7EPq6Z1Sm7LijDirPdDI-G6DjNasJ2tyIVCwb0IZL1v5cKy_tw7qPr_2ybS62gCR",
+    //   createOrder: (data: any) => {
+
+    //     <ICreateOrderRequest>{
+    //       intent: "CAPTURE",
+    //       purchase_units: [
+    //         {
+    //           amount: {
+    //             currency_code: "USD",
+    //             value: (this.cost).toString()
+    //           }
+    //         }
+    //       ]
+    //     }
+    //   },
+    //   advanced: {
+    //     commit: "true"
+    //   },
+    //   style: {
+    //     label: "paypal",
+    //     layout: "vertical"
+    //   },
+
+    //   onApprove: (data: any, actions: any) => {
+    //     console.log(
+    //       "onApprove - transaction was approved, but not authorized",
+    //       data,
+    //       actions
+    //     );
+    //     actions.order.get().then((details: any) => {
+    //       console.log(
+    //         "onApprove - you can get full order details inside onApprove: ",
+    //         details
+    //       );
+    //     });
+    //   },
+    //   onClientAuthorization: (data: any) => {
+    //     console.log(this.payPalConfig)
+    //     console.log(
+    //       "onClientAuthorization - you should probably inform your server about completed transaction at this point",
+    //       data
+    //     );
+    //   },
+    //   onCancel: (data: any, actions: any) => {
+    //     console.log("OnCancel", data, actions);
+    //   },
+    //   onError: (err: any) => {
+    //     console.log("OnError", err);
+    //   },
+    //   onClick: (data: any, actions: any) => {
+    //     console.log("onClick", data, actions);
+    //   }
+    // };
 
     this.displayBasic = true
   }
