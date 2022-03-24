@@ -19,6 +19,10 @@ declare var paypal: any;
 export class PaymentComponent implements OnInit {
   @ViewChild('paypal', { static: true }) paypalElement: ElementRef
 
+  constructor(private fb: FormBuilder, private stripeService: StripeService, private commonService: CommonService, private toastr: ToastrService, private ngxService: NgxUiLoaderService, private companyService: CompanyService, private primengConfig: PrimeNGConfig) {
+
+  }
+
   public payPalConfig: any;
 
 
@@ -33,9 +37,7 @@ export class PaymentComponent implements OnInit {
     "description": "Test Transaction",
     "image": "https://example.com/your_logo",
     "order_id": "", //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
-    "handler": function (response: any) {
-      console.log(response)
-    },
+    "handler": this.savePaymentResponse.bind(this),
     "notes": {
       "address": "Razorpay Corporate Office"
     },
@@ -83,9 +85,7 @@ export class PaymentComponent implements OnInit {
     price: 777.77,
     description: 'Paypal'
   }
-  constructor(private fb: FormBuilder, private stripeService: StripeService, private commonService: CommonService, private toastr: ToastrService, private ngxService: NgxUiLoaderService, private companyService: CompanyService, private primengConfig: PrimeNGConfig) {
 
-  }
 
   ngOnInit(): void {
     this.userData = JSON.parse(localStorage.getItem('data') || '{}')
@@ -239,15 +239,17 @@ export class PaymentComponent implements OnInit {
         },
         onApprove: async (data: any, actions: any) => {
           const order = await actions.order.capture();
+          this.savePaymentResponse(order)
 
           console.log(order);
         },
         onClientAuthorization: (data: any) => {
-          console.log(this.payPalConfig)
-          console.log(
-            "onClientAuthorization - you should probably inform your server about completed transaction at this point",
-            data
-          );
+          // console.log(this.payPalConfig)
+          // console.log(
+          //   "onClientAuthorization - you should probably inform your server about completed transaction at this point",
+          //   data
+          // );
+          // this.savePaymentResponse(data)
         },
         onCancel: (data: any, actions: any) => {
           console.log("OnCancel", data, actions);
@@ -317,6 +319,28 @@ export class PaymentComponent implements OnInit {
     this.displayBasic = true
   }
 
+
+  savePaymentResponse(body: any) {
+
+    const payLoad = {
+      "trans_payload": body,
+      "currency": this.currency
+    }
+    console.log(payLoad)
+    this.ngxService.start()
+    this.companyService.payment(payLoad).subscribe(data => {
+      if (data.status) {
+        this.ngxService.stop()
+        return true;
+      }
+      else {
+        this.ngxService.stop()
+
+        return false
+
+      }
+    })
+  }
 
 
 
