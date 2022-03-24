@@ -78,6 +78,7 @@ export class PaymentComponent implements OnInit {
   stripeTest: FormGroup | any;
   billingMonthly = true
   cost: number = 0.00
+  currency: string = ""
   product = {
     price: 777.77,
     description: 'Paypal'
@@ -115,6 +116,7 @@ export class PaymentComponent implements OnInit {
     }
     this.activePlan = this.subscribedPackage[0]?.subscription_name
     this.cost = this.subscribedPackage[0]?.price_monthly
+    this.currency = this.subscribedPackage[0]?.currency
     // this.commonService.getCountryUsingIp().subscribe(data => {
     //   // console.log(data)
     //   if (data.country_name == 'India') {
@@ -197,7 +199,8 @@ export class PaymentComponent implements OnInit {
   }
 
   changePlan(planClicked: any) {
-    console.log(planClicked)
+    // console.log(planClicked)
+    this.subscribedPackage[0] = planClicked
   }
 
   onBillingPatternChange(type: any) {
@@ -227,7 +230,7 @@ export class PaymentComponent implements OnInit {
               {
                 description: this.product.description,
                 amount: {
-                  currency_code: 'USD',
+                  currency_code: this.currency,
                   value: this.cost
                 }
               }
@@ -239,9 +242,20 @@ export class PaymentComponent implements OnInit {
 
           console.log(order);
         },
+        onClientAuthorization: (data: any) => {
+          console.log(this.payPalConfig)
+          console.log(
+            "onClientAuthorization - you should probably inform your server about completed transaction at this point",
+            data
+          );
+        },
+        onCancel: (data: any, actions: any) => {
+          console.log("OnCancel", data, actions);
+        },
         onError: (err: any) => {
-          console.log(err);
-        }
+          console.log("OnError", err);
+        },
+
       })
       .render(this.paypalElement.nativeElement);
     // this.payPalConfig = {

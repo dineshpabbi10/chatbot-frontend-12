@@ -25,7 +25,7 @@
                 ₹
               </sup>
               <sup *ngIf="nonIndianPayment">
-                $
+                {{plan.currency}}
               </sup>
 
               {{plan.price_monthly}}
@@ -37,7 +37,7 @@
                 ₹
               </sup>
               <sup *ngIf="nonIndianPayment">
-                $
+                {{plan.currency}}
               </sup>
               {{plan.price_yearly}} per year
             </span>
@@ -184,9 +184,5 @@
   [baseZIndex]="10000">
 
   <div #paypal></div>
-  <!--<ng-template pTemplate="footer">
-     <p-button icon="pi pi-check" (click)="displayBasic=false" label="Yes" styleClass="p-button-text">
-    </p-button>
-    <p-button icon="pi pi-times" (click)="displayBasic=false" label="No"></p-button>
-  </ng-template> -->
+
 </p-dialog>
