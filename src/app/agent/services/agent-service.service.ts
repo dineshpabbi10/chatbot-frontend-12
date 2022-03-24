@@ -54,15 +54,35 @@ export class AgentServiceService {
   updateAgentDetails(data:any):Observable<any>{
     // Build Form Data
     const formData = new FormData();
-    formData.append('profile_pic', data.profile_pic);
+    if(data.profile_pic){
+      formData.append('profile_pic', data.profile_pic);
+    }
     formData.append('first_name',data.first_name);
     formData.append('last_name',data.last_name);
     formData.append('mobile_no',data.mobile_no);
+
+    console.log(data);
 
     // Set headers
     let headers = new HttpHeaders();
     headers.set('Accept', "multipart/form-data");
     return this.httpClient.post(environment.endPoint+"userprofile",formData,{headers});
+  }
+
+
+  getNotifications(){
+    return this.httpClient.get(environment.endPoint+"notifications");
+  }
+
+  clearAllNotification(){
+    return this.httpClient.post(environment.endPoint+"notifications",{"clear_all":true})
+  }
+
+  clearNotificationById(id:any){
+    return this.httpClient.post(environment.endPoint+"notifications",{
+      "clear_all":false,
+      "id":id
+    })
   }
 
 

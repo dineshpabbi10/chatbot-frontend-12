@@ -1,3 +1,7 @@
+::ng-deep .p-card{
+        margin-bottom: 10px;
+}
+
 .agent-sidebar{
     width: 250px;
     height: 100%;
@@ -20,12 +24,19 @@
     padding: 0px;
     outline: none;
     border: none;
-    color: #fff;
+    color: black;
+    overflow: initial;
+}
+
+.notification-button:hover{
+    background-color: transparent !important;
+    color: purple !important;
 }
 
 .edit-header-button{
     height: 30px;
     margin-top: 5px;
+    width: 100%;
     background: transparent;
     color: black;
     outline: none;
@@ -40,6 +51,7 @@
 }
 
 .edit-header-button:hover{
+    width: 100%;
     background: transparent;
     color: blueviolet;
 }
@@ -182,4 +194,40 @@ box-shadow: none;
 }
 #top-header button.btn-2{
     right: 32px!important;
+}
+
+/* Notification CSS */
+
+.notif-container{
+    overflow-y: scroll;
+    min-height: 400px;
+    max-height: 500px;
+    min-width: 300px;
+    max-width: 400px;
+    padding: 20px;
+    background-color: rgb(245, 245, 245);
+    border-radius: 15px;
+}
+::-webkit-scrollbar {
+    width: 5px;  /* Remove scrollbar space */
+    background: white;  /* Optional: just make scrollbar invisible */
+}
+
+  
+::-webkit-scrollbar-thumb {
+    background: gray;
+}
+.notif-title{
+    display: inline-block;
+    color: purple;
+    width: 100%;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+.notif-actions{
+    color: purple;
+    text-align: center;
+    width: 100%;
+    cursor: pointer;
 }

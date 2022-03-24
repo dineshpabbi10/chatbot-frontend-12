@@ -9,6 +9,7 @@ import { environment } from 'src/environments/environment.prod';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CommonService } from '../../../services/common.service'
+import { AngularFireMessaging } from '@angular/fire/compat/messaging';
 
 @Component({
   selector: 'app-sidebar',
@@ -33,6 +34,7 @@ export class SidebarComponent implements OnInit {
   );
   public baseUrl = environment.endPoint;
   public hasFileSelected = false;
+  public notificationsList : any[] = [];
 
   @ViewChild("profilePicUpload")
   private profilePicUpload: any;
@@ -42,7 +44,8 @@ export class SidebarComponent implements OnInit {
     public loader: NgxUiLoaderService,
     public toast: ToastrService,
     public CommonService: CommonService,
-    public router: Router
+    public router: Router,
+    private afMessaging:AngularFireMessaging
   ) { }
 
   ngOnInit(): void {
@@ -52,6 +55,19 @@ export class SidebarComponent implements OnInit {
     }
 
     this.fetchAgentDetails();
+    this.fetchNotifications(true);
+
+    // Check for notifications from firebase
+    this.afMessaging.messages.subscribe((_messaging:any) => {
+      _messaging.onBackgroundMessage = _messaging?.onBackgroundMessage?.bind(_messaging); 
+      
+      // Send A message using a subject to refetch chatlist and notification
+      this.CommonService.notificationSubject.next({
+        received:true
+      });
+
+      this.fetchNotifications(false);
+  })
 
     // listen for page changes
     this.agentService.chatSubject$.subscribe((page) => {
@@ -97,7 +113,7 @@ export class SidebarComponent implements OnInit {
       .subscribe((res) => {
         if (res.status) {
           this.agentDetails = res.data;
-          this.agentDetailForm.setValue(this.agentDetails);
+          this.agentDetailForm.setValue({...this.agentDetails,'profile_pic':null});
         }
       })
   }
@@ -119,7 +135,7 @@ export class SidebarComponent implements OnInit {
     this.agentService.updateAgentDetails(this.agentDetailForm.value)
       .pipe(catchError(err => {
         this.toast.error(err.message);
-        return of(err);
+        return of(err.message);
       }))
       .subscribe(res => {
         if (res.status) {
@@ -152,6 +168,55 @@ export class SidebarComponent implements OnInit {
         this.toast.error(data.message, 'ERROR')
       }
       this.loader.stop()
+    })
+  }
+
+  fetchNotifications(withLoader:Boolean){
+    if(withLoader){
+      this.loader.start();
+    }
+
+    this.agentService.getNotifications().pipe(catchError(err => {
+      this.toast.error(err.message);
+      return of(err.message);
+    }))
+    .subscribe(res => {
+      if (res.status) {
+        this.notificationsList = res.data;
+      }
+      if(withLoader){
+        this.loader.stop();
+      }
+    })
+  }
+
+  markAllRead(){
+    this.loader.start();
+    this.agentService.clearAllNotification().pipe(catchError(err => {
+      this.toast.error(err.message);
+      return of(err.message);
+    }))
+    .subscribe(res => {
+      if (res.status) {
+        this.toast.success(res.message);
+        this.fetchNotifications(true);
+      }
+      this.loader.stop();
+    })
+  }
+
+  markAsRead(id:any){
+    this.loader.start();
+    this.agentService.clearNotificationById(id).pipe(catchError(err => {
+      this.toast.error(err.message);
+      return of(err.message);
+    }))
+    .subscribe(res => {
+      if (res.status) {
+        this.toast.success(res.message);
+        this.fetchNotifications(true);
+      }
+      this.loader.stop();
     })
   }
 
