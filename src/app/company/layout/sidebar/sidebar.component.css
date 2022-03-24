@@ -23,16 +23,19 @@
 }
 
 .brand::after{
-    content: "";
+   content: "";
     position: absolute;
     height: 1px;
-    width: 70%;
-    background-color: darkslategray;
-    top:50px;
+    width: 85%;
+    background-color: white;
+    top: 60px;
     opacity: 0.4;
-    left: 15%;
+    left: 8%;
 }
-
+.img-logo{
+    width: 145px;
+    height: auto;
+}
 .nav-container{
   /*  margin-top: 30px;*/
    /* width: 70%;*/

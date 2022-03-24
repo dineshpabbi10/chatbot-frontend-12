@@ -845,3 +845,8 @@ background: rgba(0,0,0,0.35);
   text-align: left;
   padding: 1rem 0rem!important;
 }
+#pad-merge th,
+#pad-merge td{
+  padding-left:5px!important;
+  padding-right:5px!important; 
+}
