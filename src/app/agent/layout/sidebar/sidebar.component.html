@@ -1,16 +1,14 @@
 <div class="agent-sidebar p-grid">
     <div class="p-col-12 agent-name" id="img-agent">
         
-        <div class="" id="top-header">
-            <img src="https://cdn.iconscout.com/icon/free/png-256/avatar-370-456322.png">
-           <!--  <p-avatar *ngIf="agentDetails === null" label="PT" shape="circle" styleClass="avatar-label"></p-avatar>
-            <p-avatar *ngIf="agentDetails !== null" [image]="baseUrl + agentDetails?.profile_pic?.substring(1)" shape="circle"></p-avatar> -->
-           <span class="agent-vinod"> &nbsp;{{agentDetails?.first_name}} {{agentDetails?.last_name}}  &nbsp; </span>
-            <button class="notification-button btn-1" pButton icon="pi pi-bell"></button>
-            <button  class="notification-button btn-2" pButton icon="pi pi-pencil" (click)="openEditPopup()"></button>
-            
-            
-        </div>
+        <h3 class="p-col-9 p-md-9 header-info-container">
+            <p-avatar *ngIf="agentDetails === null" label="PT" shape="circle" styleClass="avatar-label"></p-avatar>
+            <p-avatar *ngIf="agentDetails !== null" [image]="agentDetails?.profile_pic" shape="circle"></p-avatar>
+            &nbsp;{{agentDetails?.first_name}} {{agentDetails?.last_name}} 
+            &nbsp; <button class="notification-button"  pBadge [value]="notificationsList.length.toString()" (click)="op.toggle($event)" pButton icon="pi pi-bell"></button>
+            <br/>
+            <button pButton class="edit-header-button" (click)="openEditPopup()" label="Edit" ></button>
+        </h3>
     </div>
 
     <p-divider></p-divider>
@@ -234,7 +232,25 @@
         <p-fileUpload #profilePicUpload [multiple]="false" [showUploadButton]="false" [showCancelButton]="false" name="myfile[]" [customUpload]="true" (onClear)="onClearFile()" (onRemove)="onClearFile()" (onSelect)="setFile($event)"></p-fileUpload>
         <br/>
 
-        <button [disabled]="!hasFileSelected" type="button" (click)="updateAgentData()" pButton label="Submit"></button>
+        <button type="button" (click)="updateAgentData()" pButton label="Submit"></button>
     </form>
 
 </p-dialog>
+
+
+<!-- Notification Tray -->
+<p-overlayPanel #op>
+    <ng-template pTemplate>
+        <span class="notif-title">Notifications</span>
+        <div class="notif-container">
+            <div class="notif-cards">
+                <p-card [title]="notitication?.notification_head" *ngFor="let notitication of notificationsList">
+                    {{notitication?.notification_message}} <i pTooltip="Mark as read" (click)="markAsRead(notitication?.id)" class="pi pi-check notif-actions"></i>
+                </p-card>
+            </div>
+        </div>
+        <div pTooltip="Mark all as Read" class="notif-actions" (click)="markAllRead()">
+            Mark all as read <i class="pi pi-check"></i>
+        </div>
+    </ng-template>
+</p-overlayPanel>
