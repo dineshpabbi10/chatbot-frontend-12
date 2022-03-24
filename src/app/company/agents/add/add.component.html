@@ -1,21 +1,22 @@
+<br>
 <div class="row">
     <div class="col-md-11">
       <div class="card" id="add-agent-card">
         <div class="right">
           <div class="card" id="container-card-right">
-            <form [formGroup]="form">
-            <div class="card-body">
+            <form [formGroup]="form" class="form-new">
+           
                 
-              <div class="card-title">
-                Create Agent
-              </div>
+            
               <!-- Form -->
-            </div>
+         
 
                 <!-- Form -->
                 <div class="row">
                     <!-- First Name -->
-                    
+                    <div class="col-xs-12 col-md-12 form-group">
+                        Create Agent
+                      </div>
                     <div class="col-xs-12 col-md-6 form-group">
                         <label for="exampleFormControlInput1">First Name*</label>
                         <input formControlName="first_name" type="text" class="form-control" placeholder="first name">
@@ -65,7 +66,7 @@
                 
 
                     <!-- Phone -->
-                    <button (click)="submitForm()" [disabled]="form.invalid" type="button" class="btn btn-success">Submit</button>
+                    <button (click)="submitForm()" [disabled]="form.invalid" type="button" class="btn btn-theme">Submit</button>
                 </div>
             </form>
                 <!-- Form Ends -->
