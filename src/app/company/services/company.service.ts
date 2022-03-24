@@ -150,7 +150,7 @@ export class CompanyService {
   }
 
   deleteWebLinToken(token: string): Observable<any> {
-    return this.httpClient.delete<any>(environment.endPoint + "domainTokens/" + token);
+    return this.httpClient.delete<any>(environment.endPoint + "domaintokens/" + token);
   }
 
   changePassword(body: any): Observable<any> {
