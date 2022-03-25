@@ -87,6 +87,7 @@ export class PaymentComponent implements OnInit {
   }
 
 
+
   ngOnInit(): void {
     this.userData = JSON.parse(localStorage.getItem('data') || '{}')
     // this.subscribedPackage = userData.subscription_name
@@ -192,8 +193,11 @@ export class PaymentComponent implements OnInit {
     }
   }
 
-  payWithRazorpay(cost: number) {
+  payWithRazorpay() {
+    // console.log(cost)
+    console.log(this.cost)
     this.options.amount = (this.cost * 100).toString();
+    // console.log(this.options)
     this.rzp1 = new this.companyService.nativeWindow.Razorpay(this.options)
     this.rzp1.open()
   }
@@ -201,9 +205,17 @@ export class PaymentComponent implements OnInit {
   changePlan(planClicked: any) {
     // console.log(planClicked)
     this.subscribedPackage[0] = planClicked
+    if (this.billingMonthly) {
+      this.cost = planClicked.price_monthly
+    }
+    else {
+      this.cost = planClicked.price_yearly
+
+    }
   }
 
   onBillingPatternChange(type: any) {
+
     if (type == "annually") {
       this.billingMonthly = false;
       this.cost = this.subscribedPackage[0].price_yearly
@@ -221,7 +233,7 @@ export class PaymentComponent implements OnInit {
 
 
   showBasicDialog() {
-    console.log(this.cost)
+    // console.log(this.cost)
     paypal
       .Buttons({
         createOrder: (data: any, actions: any) => {
@@ -260,61 +272,7 @@ export class PaymentComponent implements OnInit {
 
       })
       .render(this.paypalElement.nativeElement);
-    // this.payPalConfig = {
-    //   currency: "USD",
-    //   clientId: "AYvU7p49APJ3TWCP7EPq6Z1Sm7LijDirPdDI-G6DjNasJ2tyIVCwb0IZL1v5cKy_tw7qPr_2ybS62gCR",
-    //   createOrder: (data: any) => {
 
-    //     <ICreateOrderRequest>{
-    //       intent: "CAPTURE",
-    //       purchase_units: [
-    //         {
-    //           amount: {
-    //             currency_code: "USD",
-    //             value: (this.cost).toString()
-    //           }
-    //         }
-    //       ]
-    //     }
-    //   },
-    //   advanced: {
-    //     commit: "true"
-    //   },
-    //   style: {
-    //     label: "paypal",
-    //     layout: "vertical"
-    //   },
-
-    //   onApprove: (data: any, actions: any) => {
-    //     console.log(
-    //       "onApprove - transaction was approved, but not authorized",
-    //       data,
-    //       actions
-    //     );
-    //     actions.order.get().then((details: any) => {
-    //       console.log(
-    //         "onApprove - you can get full order details inside onApprove: ",
-    //         details
-    //       );
-    //     });
-    //   },
-    //   onClientAuthorization: (data: any) => {
-    //     console.log(this.payPalConfig)
-    //     console.log(
-    //       "onClientAuthorization - you should probably inform your server about completed transaction at this point",
-    //       data
-    //     );
-    //   },
-    //   onCancel: (data: any, actions: any) => {
-    //     console.log("OnCancel", data, actions);
-    //   },
-    //   onError: (err: any) => {
-    //     console.log("OnError", err);
-    //   },
-    //   onClick: (data: any, actions: any) => {
-    //     console.log("onClick", data, actions);
-    //   }
-    // };
 
     this.displayBasic = true
   }
