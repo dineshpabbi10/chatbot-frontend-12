@@ -14,6 +14,9 @@ import {
   POSITION,
   PB_DIRECTION,
 } from "ngx-ui-loader";
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFireMessagingModule } from '@angular/fire/compat/messaging';
+import { environment } from 'src/environments/environment';
 
 @NgModule({
   declarations: [
@@ -26,7 +29,8 @@ import {
     BrowserAnimationsModule,
     NgxUiLoaderModule,
     ToastrModule,
-    
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireMessagingModule
   ],
 
   providers: [UserInterceptor, { provide: HTTP_INTERCEPTORS, useClass: UserInterceptor, multi: true }, ToastrModule],

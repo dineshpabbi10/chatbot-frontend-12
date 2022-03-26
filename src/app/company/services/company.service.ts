@@ -276,6 +276,10 @@ export class CompanyService {
     return this.httpClient.get<any>(environment.endPoint + "api/number").pipe()
   }
 
+  payment(body: any) {
+    return this.httpClient.post<any>(environment.endPoint + "payment", body).pipe()
+  }
+
 
 
 }
