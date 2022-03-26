@@ -17,15 +17,28 @@
 }
 
 .agent-name h3 {
-    color: rgb(100, 98, 98);
+        color: rgb(255 255 255);
+    font-size: 18px;
 }
-
+.fl-1{
+    width: 100%;
+}
+.fl-1 button{
+        width: 60px;
+    display: block;
+    margin: 0 auto;
+    height: initial;
+    background: purple;
+    padding: 0px;
+    font-size: 14px;
+    margin-top: 5px; 
+}
 .notification-button {
     background: transparent;
     padding: 0px;
     outline: none;
     border: none;
-    color: black;
+    color: #fff;
     overflow: initial;
 }
 
@@ -246,4 +259,7 @@
     text-align: center;
     width: 100%;
     cursor: pointer;
+}
+.edit-header-button{
+    color:#fff;
 }

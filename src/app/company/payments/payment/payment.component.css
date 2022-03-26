@@ -56,7 +56,9 @@
  	border-right: 1px solid transparent;
  }
 
- .pr-flexer div:hover {
+ .pr-flexer div:hover,
+ .pr-flexer div:focus,
+ .pr-flexer div:active {
  	border: 1.5px solid #a733bb;
  	transition: 300ms ease-in;
  }

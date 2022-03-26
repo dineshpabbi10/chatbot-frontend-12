@@ -853,3 +853,6 @@ background: rgba(0,0,0,0.35);
 .bg-white{
 	background-color: #fff;
 }
+#tired:focus{
+	background-color: transparent!important;
+}
