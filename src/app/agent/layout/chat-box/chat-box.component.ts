@@ -159,6 +159,9 @@ export class ChatBoxComponent implements OnInit {
     fr.addEventListener("loadend", function () {
         let [type, extension] = file.type.split('/');
         // send the file over web sockets
+
+        let newData = {"room_name":component.chat_id,"attachment":fr.result,"from":"agent"};
+
         let data = {
             type: 'botattachment',
             from: 'agent',
@@ -169,12 +172,17 @@ export class ChatBoxComponent implements OnInit {
                 extension: extension,
             }
         }
-        // console.log('Sending message on socket', data);
-        // chatSocket.send(JSON.stringify(data));
+
         component.socketService.sendWebSocketMessage(data);
-        component.picUpload.clear();
-        component.closeDialog();
-        // setTimeout(()=>component.getChatHistory(),5000);
+        component.agentService.sendAttachment(newData)
+        .pipe(catchError(err=>{
+          return of(err);
+        }))
+        .subscribe(data=>{
+          component.getChatHistory();
+          component.picUpload.clear();
+          component.closeDialog();
+        })
     });
     fr.readAsDataURL(file);
   }
