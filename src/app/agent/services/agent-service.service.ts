@@ -85,6 +85,10 @@ export class AgentServiceService {
     })
   }
 
+  sendAttachment(data:any){
+    return this.httpClient.post(environment.endPoint+"api/attachment",data);
+  }
+
 
 
 }
