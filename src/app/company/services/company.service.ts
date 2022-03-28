@@ -280,6 +280,13 @@ export class CompanyService {
     return this.httpClient.post<any>(environment.endPoint + "payment", body).pipe()
   }
 
+  getBotSetting(device_token: string) {
+    return this.httpClient.get<any>(environment.endPoint + "api/botcustom?token=" + device_token).pipe()
+  }
+
+  updateBotSettings(body: any) {
+    return this.httpClient.post<any>(environment.endPoint + "api/botcustom", body).pipe()
+  }
 
 
 }

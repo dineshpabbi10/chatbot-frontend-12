@@ -26,6 +26,7 @@ const routes: Routes = [
       { path: 'invoices', loadChildren: () => import("./payments/invoices/invoices.module").then(m => m.InvoicesModule) },
       { path: 'profile', loadChildren: () => import("./profile/profile.module").then(m => m.ProfileModule) },
       { path: 'settings', loadChildren: () => import("./settings/settings.module").then(m => m.SettingsModule) },
+      { path: 'bot-settings/:token', loadChildren: () => import("./bot-settings/bot-settings.module").then(m => m.BotSettingsModule) },
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
     ]
   }
