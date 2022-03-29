@@ -17,76 +17,76 @@ export class AgentServiceService {
   public transferSuccess = new Subject();
   public transferSuccess$ = this.transferSuccess.asObservable();
 
-  constructor(private httpClient : HttpClient) { }
+  constructor(private httpClient: HttpClient) { }
 
-  getAllChats():Observable<any>{
-    return this.httpClient.get(environment.endPoint+"api/agentchats");
+  getAllChats(): Observable<any> {
+    return this.httpClient.get(environment.endPoint + "api/agentchats");
   }
 
-  getAllAssignedChats(type:string):Observable<any>{
-    return this.httpClient.get(environment.endPoint+"api/smsalert?type="+type);
+  getAllAssignedChats(type: string): Observable<any> {
+    return this.httpClient.get(environment.endPoint + "api/smsalert?type=" + type);
   }
 
-  getMessageOfConversation():Observable<any>{
-    return this.httpClient.get(environment.endPoint+"message");
+  getMessageOfConversation(): Observable<any> {
+    return this.httpClient.get(environment.endPoint + "message");
   }
 
-  getOldConversations():Observable<any>{
-    return this.httpClient.get(environment.endPoint+"api/agentchats");
+  getOldConversations(): Observable<any> {
+    return this.httpClient.get(environment.endPoint + "api/agentchats");
   }
 
-  getAllAgentsList():Observable<any>{
-    return this.httpClient.get(environment.endPoint+"api/human-agents");
+  getAllAgentsList(): Observable<any> {
+    return this.httpClient.get(environment.endPoint + "api/human-agents");
   }
 
-  sendChatPageInfo(page:string){
+  sendChatPageInfo(page: string) {
     this.chatSubject.next(page);
   }
 
-  transferChat(data:any):Observable<any>{
-    return this.httpClient.post(environment.endPoint+"api/transfer",data);
+  transferChat(data: any): Observable<any> {
+    return this.httpClient.post(environment.endPoint + "api/transfer", data);
   }
 
-  getAgentDetails():Observable<any>{
-    return this.httpClient.get(environment.endPoint+"userprofile");
+  getAgentDetails(): Observable<any> {
+    return this.httpClient.get(environment.endPoint + "userprofile");
   }
 
-  updateAgentDetails(data:any):Observable<any>{
+  updateAgentDetails(data: any): Observable<any> {
     // Build Form Data
     const formData = new FormData();
-    if(data.profile_pic){
+    if (data.profile_pic) {
       formData.append('profile_pic', data.profile_pic);
     }
-    formData.append('first_name',data.first_name);
-    formData.append('last_name',data.last_name);
-    formData.append('mobile_no',data.mobile_no);
+    formData.append('first_name', data.first_name);
+    formData.append('last_name', data.last_name);
+    formData.append('mobile_no', data.mobile_no);
 
-    console.log(data);
+    // console.log(data);
 
     // Set headers
     let headers = new HttpHeaders();
     headers.set('Accept', "multipart/form-data");
-    return this.httpClient.post(environment.endPoint+"userprofile",formData,{headers});
+    return this.httpClient.post(environment.endPoint + "userprofile", formData, { headers });
   }
 
 
-  getNotifications(){
-    return this.httpClient.get(environment.endPoint+"notifications");
+  getNotifications() {
+    return this.httpClient.get(environment.endPoint + "notifications");
   }
 
-  clearAllNotification(){
-    return this.httpClient.post(environment.endPoint+"notifications",{"clear_all":true})
+  clearAllNotification() {
+    return this.httpClient.post(environment.endPoint + "notifications", { "clear_all": true })
   }
 
-  clearNotificationById(id:any){
-    return this.httpClient.post(environment.endPoint+"notifications",{
-      "clear_all":false,
-      "id":id
+  clearNotificationById(id: any) {
+    return this.httpClient.post(environment.endPoint + "notifications", {
+      "clear_all": false,
+      "id": id
     })
   }
 
-  sendAttachment(data:any){
-    return this.httpClient.post(environment.endPoint+"api/attachment",data);
+  sendAttachment(data: any) {
+    return this.httpClient.post(environment.endPoint + "api/attachment", data);
   }
 
 
