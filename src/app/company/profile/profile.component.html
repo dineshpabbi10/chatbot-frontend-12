@@ -11,14 +11,13 @@
             </div>
           </div>
         <div class="" id="container-card-right">
-          <form class="bg-white">
+          <form [formGroup] = "userDetailForm" class="bg-white">
             <!-- Form -->
             <div class="row">
               <!-- First Name -->
-             
               <div class="col-xs-12 col-md-12 form-group">
                 <div class="img-wrap">
-                  <img src="https://media.istockphoto.com/photos/businessman-silhouette-as-avatar-or-default-profile-picture-picture-id476085198?b=1&k=20&m=476085198&s=170667a&w=0&h=Ct4e1kIOdCOrEgvsQg4A1qeuQv944pPFORUQcaGw4oI=">
+                  <img [src]="userDetails?.profile_pic ? userDetails?.profile_pic : 'https://media.istockphoto.com/photos/businessman-silhouette-as-avatar-or-default-profile-picture-picture-id476085198?b=1&k=20&m=476085198&s=170667a&w=0&h=Ct4e1kIOdCOrEgvsQg4A1qeuQv944pPFORUQcaGw4oI='">
                   <div class="uploder">
                     
 
@@ -64,40 +63,41 @@
 </g>
 </svg>
 
-                     <input type="file">
+                     <input (change)="setFile($event)" type="file">
                   </div>
                  
                 </div>
               <!--   <label for="exampleFormControlInput1">Profile Pic</label> -->
                 
               </div>
+              <div class="file-name-container" *ngIf="fileName !== null"><b>Selected File :</b> {{fileName}}</div>
 
               <!-- First Name -->
               <div class="col-xs-12 col-md-6 form-group">
                 <label for="exampleFormControlInput1">First Name*</label>
-                <input type="text" class="form-control" placeholder="First Name">
+                <input type="text" formControlName="first_name" class="form-control" placeholder="First Name">
               </div>
 
               <!-- Last Name -->
               <div class="col-xs-12 col-md-6 form-group">
                 <label for="exampleFormControlInput1">Last Name*</label>
-                <input type="text" class="form-control" placeholder="Last Name">
+                <input type="text" formControlName="last_name" class="form-control" placeholder="Last Name">
               </div>
 
               <!-- Email -->
               <div class="col-xs-12 col-md-6 form-group">
                 <label for="exampleFormControlInput1">Email*</label>
-                <input type="text" class="form-control" placeholder="Last Name">
+                <input type="text" formControlName="email" class="form-control" placeholder="Last Name">
               </div>
 
               <!-- Phone -->
               <div class="col-xs-12 col-md-6 form-group">
                 <label for="exampleFormControlInput1">Phone Number*</label>
-                <input type="text" class="form-control" placeholder="Phone Number">
+                <input type="text" formControlName="mobile_no" class="form-control" placeholder="Phone Number">
               </div>
 
               <div class="col-xs-12 col-md-12 col-sm-12">
-                <button type="button" class="btn btn-theme">Submit</button>&nbsp;&nbsp;
+                <button type="button" (click)="updateUserData()" class="btn btn-theme">Submit</button>&nbsp;&nbsp;
                 <button type="button" class="btn btn-theme">Cancel</button>
               </div>
             </div>
