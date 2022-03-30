@@ -38,7 +38,7 @@
 
 #quicklinks-list {
   overflow-y: scroll;
-  height: 70px;
+  height: 40px;
   border: 1px solid lightgray;
   border-radius: 5px;
   display: flex;
@@ -68,4 +68,7 @@
 #quicklinksTagContainer{
   max-height: 500px;
   overflow-y: scroll;
+}
+.mg-auto button{
+  margin: 0px 3px;
 }

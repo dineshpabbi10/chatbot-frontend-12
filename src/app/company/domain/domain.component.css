@@ -4,7 +4,7 @@
 }
 
 .row {
-  margin: 10px;
+
   justify-content: center;
 }
 
@@ -138,7 +138,6 @@
   top: 56px;
   left: 12px;
 }
-
 
 @keyframes lds-roller {
   0% {

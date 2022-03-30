@@ -2,13 +2,16 @@
   <div class="col-md-11">
     <div class="card">
       <div class="card-body">
-        <div class="card-title">Add Quicklinks</div>
+        
         <!-- Form -->
         <div class="row">
-          <div class="col-md-6">
+          <div class="col-md-12">
+            <div class="card-title">Add Quicklinks</div>
+          </div>
+          <div class="col-md-5">
             <div class="form-group">
               <label for="domain-select">Select Domain Name*</label>
-              <select *ngIf="domains.length > 0 ; else showNoDomainsAdded" [formControl] = "selectedDomain" class="custom-select" id="domain-select" size="3">
+              <select *ngIf="domains.length > 0 ; else showNoDomainsAdded" [formControl] = "selectedDomain" class="custom-select" id="domain-select">
                 <option *ngFor="let domain of domains" [ngValue]="domain.domain">{{domain.domain}}</option>
               </select>
               <ng-template #showNoDomainsAdded>
@@ -24,28 +27,45 @@
               </ng-template>
               <small id="emailHelp" class="form-text text-muted">Select one domain from the domain dropdown*</small>
             </div>
+          </div>
+          <div class="col-md-7">
+           
+              
+              <div class="form-group">
+              <label for="quicklinks">QuickLinks*</label>
+              <div class="d-flex mg-auto">
+                <input type="text" class="form-control" id="quicklinks" [formControl]="quickLinkText"
+                aria-describedby="emailHelp" placeholder="Quicklink" />
 
+
+                 <button [disabled]="quickLinkText.invalid" (click)="addQuickLink()" class="btn btn-theme">
+                <span class="p-button-icon p-button-icon-left pi pi-plus" aria-hidden="true"></span>
+              </button>
+              <button  (click)="companyService.clearQuickLink()" class="btn btn-theme">
+                <span class="p-button-icon p-button-icon-left pi pi-times" aria-hidden="true"></span>
+              </button>
+              </div>
+              
+              <small id="emailHelp" class="form-text text-muted">Example: how are glacier caves formed?</small>
+             
+            </div>
+             
+             
+           
+          </div>
+
+          <div class="col-md-6">
+            
             <div class="form-group">
               <label for="message-input">Message*</label>
               <input [formControl]="message" type="text" class="form-control" id="message-input" aria-describedby="emailHelp"
                 placeholder="Message" />
               <small id="emailHelp" class="form-text text-muted">Example: how are glacier caves formed?</small>
             </div>
-          </div>
-          <div class="col-md-6">
-            <div class="form-group">
-              <label for="quicklinks">QuickLinks*</label>
-              <input type="text" class="form-control" id="quicklinks" [formControl]="quickLinkText"
-                aria-describedby="emailHelp" placeholder="Quicklink" />
-              <small id="emailHelp" class="form-text text-muted">Example: how are glacier caves formed?</small>
-              <button [disabled]="quickLinkText.invalid" (click)="addQuickLink()" class="btn btn-success">
-                Add
-              </button>
-              <button style="margin-left: 5px" (click)="companyService.clearQuickLink()" class="btn btn-success">
-                Clear All
-              </button>
-            </div>
 
+          </div>
+
+          <div class="col-md-6">
             <div class="form-group">
               <label for="message-input">Added Quicklinks</label>
               <div id="quicklinks-list">
@@ -61,7 +81,7 @@
                         d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
                       <path fill-rule="evenodd"
                         d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
-                      `
+                      
                     </svg>
                   </div>
                 </div>
@@ -69,7 +89,8 @@
             </div>
           </div>
 
-          <button [disabled]="form.invalid" (click)="submitForm()" class="btn btn-primary">Submit</button>
+
+          <button [disabled]="form.invalid" (click)="submitForm()" class="btn btn-theme">Submit</button>
         </div>
 
         <!-- Table -->

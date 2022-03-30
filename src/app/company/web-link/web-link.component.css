@@ -23,3 +23,9 @@
 }
 
 thead tr:nth-child(1) th{background: white; position: sticky;top: -20px;z-index: 10;}
+#cstm-h input{
+  height: 38px;
+}
+.pd-0{
+  padding:0px; 
+}
