@@ -282,7 +282,8 @@ export class PaymentComponent implements OnInit {
 
     const payLoad = {
       "trans_payload": body,
-      "currency": this.currency
+      "currency": this.currency,
+      "amount": this.cost
     }
     console.log(payLoad)
     this.ngxService.start()

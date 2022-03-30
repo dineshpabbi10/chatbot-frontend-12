@@ -288,5 +288,9 @@ export class CompanyService {
     return this.httpClient.post<any>(environment.endPoint + "api/botcustom", body).pipe()
   }
 
+  getTransactions() {
+    return this.httpClient.get<any>(environment.endPoint + "api/transactions").pipe()
+  }
+
 
 }
