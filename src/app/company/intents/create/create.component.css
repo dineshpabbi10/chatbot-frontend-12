@@ -33,7 +33,7 @@
 
 #quicklinks-list {
   overflow-y: scroll;
-  height: 70px;
+  min-height: 40px;
   border: 1px solid lightgray;
   border-radius: 5px;
   display: flex;

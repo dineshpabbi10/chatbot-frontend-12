@@ -49,3 +49,11 @@
   outline: none;
   border: none;
 }
+#left-container-edit,
+#right-container-edit{
+  width: 50%;
+  padding: 5px;
+}
+#edit-form{
+  padding: 0px!important;
+}

@@ -1,39 +1,53 @@
-::ng-deep .p-card{
-        margin-bottom: 10px;
+::ng-deep .p-card {
+    margin-bottom: 10px;
 }
 
-.agent-sidebar{
+.agent-sidebar {
     width: 250px;
     height: 100%;
     float: left;
     padding: 10px;
+    background-color: #162137;
 }
 
-.agent-name{
+.agent-name {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.agent-name h3{
-    color: rgb(100, 98, 98);
+.agent-name h3 {
+        color: rgb(255 255 255);
+    font-size: 18px;
 }
-
-.notification-button{
+.fl-1{
+    width: 100%;
+}
+.fl-1 button{
+        width: 60px;
+    display: block;
+    margin: 0 auto;
+    height: initial;
+    background: purple;
+    padding: 0px;
+    font-size: 14px;
+    margin-top: 5px; 
+}
+.notification-button {
     background: transparent;
     padding: 0px;
     outline: none;
     border: none;
-    color: black;
+    color: #fff;
     overflow: initial;
 }
 
-.notification-button:hover{
+.notification-button:hover {
     background-color: transparent !important;
     color: purple !important;
 }
 
-.edit-header-button{
+.edit-header-button {
     height: 30px;
     margin-top: 5px;
     width: 100%;
@@ -43,40 +57,40 @@
     border: none;
 }
 
-.header-info-container{
+.header-info-container {
     display: flex;
     flex-wrap: wrap;
     align-items: flex-start;
     justify-content: space-around;
 }
 
-.edit-header-button:hover{
+.edit-header-button:hover {
     width: 100%;
     background: transparent;
     color: blueviolet;
 }
 
-.edit-header-button:active{
+.edit-header-button:active {
     outline: none;
     border: none;
 }
 
-.avatar-label{
+.avatar-label {
     height: 1.5rem !important;
     width: 1.5rem !important;
 }
 
-.menu-items{
+.menu-items {
     padding: 0 10px;
 }
 
-.menu-item{
+.menu-item {
     padding: 0 0 1rem;
     display: flex;
     flex-direction: column;
 }
 
-.menu-item a{
+.menu-item a {
     padding-left: 15px;
     padding-top: 5px;
     padding-bottom: 5px;
@@ -84,17 +98,17 @@
     cursor: pointer;
 }
 
-.menu-active{
+.menu-active {
     background-color: purple;
     color: white !important;
     border-radius: 5px;
 }
 
-.menu-item a svg{
+.menu-item a svg {
     margin-right: 5px;
 }
 
-.menu-category{
+.menu-category {
     display: block;
     color: var(--text-color-secondary);
     font-weight: 600;
@@ -104,7 +118,7 @@
     text-transform: uppercase;
 }
 
-.bottom-actions{
+.bottom-actions {
     position: absolute;
     bottom: 10px;
     display: flex;
@@ -113,9 +127,103 @@
     width: 230px;
 }
 
+.notification-button {
+    border-radius: 100%;
+}
+
+.notification-button:enabled:hover,
+.notification-button:enabled:ative,
+.notification-button:enabled:focus {
+    background: #800080;
+    color: #ffffff;
+    border-color: #9c27b0;
+    border-radius: 100%;
+    box-shadow: none;
+    outline: none;
+}
+
+.menu-item-link svg {
+    fill: lightslategray;
+    width: 20px;
+    height: 20px;
+    float: right;
+    margin-top: 8px;
+    margin-right: 14px !important;
+}
+
+.menu-item-link.menu-active svg {
+    fill: #fff;
+    width: 20px;
+    height: 20px;
+    float: right;
+    margin-top: 8px;
+    margin-right: 14px !important;
+}
+
+.button-cstm {
+    background: transparent;
+    border: transparent;
+    font-size: 12px;
+    padding: 5px 15px;
+    height: initial;
+    line-height: initial;
+    box-shadow: none;
+
+}
+
+.button-cstm:hover,
+.button-cstm:ative,
+.button-cstm:focus {
+    background: transparent;
+    border: transparent;
+    font-size: 12px;
+    padding: 5px 15px;
+    height: initial;
+    line-height: initial;
+    border-color: purple;
+    box-shadow: none;
+}
+
+.p-button:enabled:hover,
+.p-button:enabled:active,
+.p-button:enabled:focus {
+    background: transparent;
+    color: #ffffff;
+    border-color: transparent;
+    box-shadow: none;
+}
+
+.p-dialog {
+    min-width: 500px;
+}
+
+.agent-vinod {
+    color: #fff !important;
+    display: block;
+    font-size: 16px;
+}
+
+#top-header {
+    position: relative;
+    display: block;
+    width: 100%;
+    text-align: center;
+}
+
+#top-header button {
+    position: absolute;
+    right: 0;
+    top: 5px;
+    z-index: 1;
+}
+
+#top-header button.btn-2 {
+    right: 32px !important;
+}
+
 /* Notification CSS */
 
-.notif-container{
+.notif-container {
     overflow-y: scroll;
     min-height: 400px;
     max-height: 500px;
@@ -125,16 +233,20 @@
     background-color: rgb(245, 245, 245);
     border-radius: 15px;
 }
+
 ::-webkit-scrollbar {
-    width: 5px;  /* Remove scrollbar space */
-    background: white;  /* Optional: just make scrollbar invisible */
+    width: 5px;
+    /* Remove scrollbar space */
+    background: white;
+    /* Optional: just make scrollbar invisible */
 }
 
-  
+
 ::-webkit-scrollbar-thumb {
     background: gray;
 }
-.notif-title{
+
+.notif-title {
     display: inline-block;
     color: purple;
     width: 100%;
@@ -142,9 +254,12 @@
     margin-bottom: 10px;
 }
 
-.notif-actions{
+.notif-actions {
     color: purple;
     text-align: center;
     width: 100%;
     cursor: pointer;
+}
+.edit-header-button{
+    color:#fff;
 }

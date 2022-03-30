@@ -1,15 +1,19 @@
+<br>
 <div class="row">
-  <div class="col-md-11">
+  <div class="col-md-12">
     <div class="card">
-      <form [formGroup]="uploadForm">
-      <div class="card-body">
-        <div class="card-title">Generate Chatbot Link</div>
+      <form [formGroup]="uploadForm" class="pd-0">
+      <div class="">
+        
         <!-- Form -->
         <div class="row">
+          <div class="col-md-12">
+            <div class="card-title">Generate Chatbot Link</div>
+          </div>
           <div class="col-md-6 col-xs-12">
             <div class="form-group">
               <label for="domain-select">Select Domain Name*</label>
-              <select formControlName="selectedDomain" class="custom-select" id="domain-select" size="3">
+              <select formControlName="selectedDomain" class="custom-select" id="domain-select" >
                 <option *ngFor="let domains of domainsList" [ngValue]="domains.domain">{{domains.domain}}</option>
               </select>
               <small id="emailHelp" class="form-text text-muted"
@@ -20,11 +24,11 @@
 
           <div class="col-md-6 col-xs-12">
             <label for="domain-select">Your Website domain*</label>
-              <div class="input-group mb-3">
+              <div class="input-group" id="cstm-h">
                 <div class="input-group-prepend">
                   <span class="input-group-text" id="basic-addon1">Website</span>
-                </div>
-                <input
+                </div> 
+                <input 
                   type="text"
                   class="form-control"
                   placeholder="www.<domain>.com"
@@ -53,7 +57,7 @@
           </div>
 
           <div class="col-xs-12 col-md-12 col-lg-12">
-            <button [disabled]="uploadForm.invalid" (click)="onSubmit()" class="btn btn-success">
+            <button [disabled]="uploadForm.invalid" (click)="onSubmit()" class="btn btn-theme">
               Submit
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -73,11 +77,18 @@
               </svg>
             </button>
           </div>
+         <div class="col-xs-12 col-md-12 col-lg-12">
+           <br>
+         </div>
+          <div class="col-xs-12 col-md-12 col-lg-12" id="pad-merge">
+            <app-generic-table [cols]="cols" [data]="websiteList" component="web-link" [showDelete]="true" [showEdit]="true"></app-generic-table>
+          <p-confirmDialog header="Do you want to delete selected records?" icon="pi pi-exclamation-triangle"></p-confirmDialog>
+          </div>
+
         </div>
       </div>
           <!-- Table -->
-          <app-generic-table [cols]="cols" [data]="websiteList" component="web-link" [showDelete]="true" [showEdit]="true"></app-generic-table>
-          <p-confirmDialog header="Do you want to delete selected records?" icon="pi pi-exclamation-triangle"></p-confirmDialog>
+          
 
       </form>
     </div>

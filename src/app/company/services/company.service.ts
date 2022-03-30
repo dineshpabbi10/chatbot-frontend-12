@@ -8,6 +8,9 @@ import { environment } from '../../../environments/environment.prod';
 import { Observable, Subject, throwError } from 'rxjs';
 import { AbstractControl, FormControl, ValidatorFn } from '@angular/forms';
 
+function _window(): any {
+  return window;
+}
 @Injectable({
   providedIn: 'root',
 })
@@ -51,6 +54,12 @@ export class CompanyService {
     }
     // Return an observable with a user-facing error message.
     return throwError('Something bad happened; please try again later.');
+  }
+
+
+
+  get nativeWindow(): any {
+    return _window();
   }
 
   getDomainList(): Observable<any> {
@@ -141,14 +150,14 @@ export class CompanyService {
   }
 
   deleteWebLinToken(token: string): Observable<any> {
-    return this.httpClient.delete<any>(environment.endPoint + "domainTokens/" + token);
+    return this.httpClient.delete<any>(environment.endPoint + "domaintokens/" + token);
   }
 
   changePassword(body: any): Observable<any> {
     return this.httpClient.post<any>(environment.endPoint + "changepass", body);
   }
 
-  
+
 
 
 
@@ -254,6 +263,23 @@ export class CompanyService {
       return isValid ? null : { confirmPasswordError: true };
     }
   }
+
+  getDashboardPieData() {
+    return this.httpClient.get<any>(environment.endPoint + "api/piechart").pipe();
+  }
+
+  getDashboardGraphData() {
+    return this.httpClient.get<any>(environment.endPoint + "api/graph").pipe()
+  }
+
+  getNumberData() {
+    return this.httpClient.get<any>(environment.endPoint + "api/number").pipe()
+  }
+
+  payment(body: any) {
+    return this.httpClient.post<any>(environment.endPoint + "payment", body).pipe()
+  }
+
 
 
 }
