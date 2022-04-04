@@ -8,7 +8,6 @@ import { FooterComponent } from './layout/footer/footer.component';
 import { CommonImport } from '../common.imports';
 import { GenericTableModule } from './generic-table/generic-table.module';
 
-
 @NgModule({
   declarations: [
     CompanyComponent,

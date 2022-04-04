@@ -31,7 +31,7 @@ export class InvoicesComponent implements OnInit {
   funcGetTransactions() {
     this.loader.start();
     this.companyService.getTransactions().subscribe(data => {
-      console.log(data)
+      // console.log(data)
       if (data.status) {
         this.transactionList = data.data
       }
