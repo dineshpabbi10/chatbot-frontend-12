@@ -314,5 +314,9 @@ export class CompanyService {
     return this.httpClient.get(environment.endPoint+"userprofile");
   }
 
+  trainBot(token:any){
+    return this.httpClient.get(environment.endPoint+"intenttrain?token="+token);
+  }
+
 
 }
