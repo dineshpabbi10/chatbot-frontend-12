@@ -21,12 +21,12 @@
                     </form>
                 </div>
                 <div class="col-lg-7 col-md-12 col-sm-12 text-right">
-                    <img class="img-fluid banner-img" src="../../../assets/images/banner/banner-img.png" alt="image">
+                    <img class="img-fluid banner-img" src="../../../assets/images/banner/front_slider_light.png" alt="image">
                 </div>
             </div>
         </div>
     </div>
-    <img class="img-fluid banner-after" src="../../../assets/images/banner/banner-after.png" alt="image">
+    <img class="img-fluid banner-after" src="../../../assets/images/banner/banner_footer_design.png" alt="image">
 </div>
 <!--=================================
                Banner -->
@@ -367,81 +367,19 @@
                     </div>
                 </div>
             </div>
-            <div class="owl-carousel mt-4" data-autoplay="true" data-loop="true" data-nav="false" data-dots="true"
+            <!-- <div class="owl-carousel mt-4" data-autoplay="true" data-loop="true" data-nav="false" data-dots="true"
                 data-items="5" data-items-laptop="5" data-items-tab="4" data-items-mobile="2" data-items-mobile-sm="1">
-                <div class="item">
-                    <div class="clients-box text-center">
-                        <a href="#"><img class="img-fluid" src="../../../assets/images/clients/clients-img1.png" alt="image"
-                                data-toggle="tooltip" title="HTML"> </a>
+             -->
+            <p-carousel [value]="clients" [numVisible]="4" [numScroll]="1" [responsiveOptions]="responsiveOptions">
+                <ng-template let-client pTemplate="item">
+                    <div class="item">
+                        <div class="clients-box text-center">
+                            <a href="{{client.web_url}}" target="m1"><img class="img-fluid" src="{{client.image_url}}" alt="image"
+                                    data-toggle="tooltip" title="HTML"> </a>
+                        </div>
                     </div>
-                </div>
-                <div class="item">
-                    <div class="clients-box text-center">
-                        <a href="#"><img class="img-fluid" src="../../../assets/images/clients/clients-img2.png" alt="image"
-                                data-toggle="tooltip" title="Wordpress"></a>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="clients-box text-center">
-                        <a href="#"><img class="img-fluid" src="../../../assets/images/clients/clients-img3.png" alt="image"
-                                data-toggle="tooltip" title="Shopify"></a>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="clients-box text-center">
-                        <a href="#"><img class="img-fluid" src="../../../assets/images/clients/clients-img4.png" alt="image"
-                                data-toggle="tooltip" title="CSS"></a>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="clients-box text-center">
-                        <a href="#"><img class="img-fluid" src="../../../assets/images/clients/clients-img5.png" alt="image"
-                                data-toggle="tooltip" title="Jquery"></a>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="clients-box text-center">
-                        <a href="#"> <img class="img-fluid" src="../../../assets/images/clients/clients-img6.png" alt="image"
-                                data-toggle="tooltip" title="Bootstrap"></a>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="clients-box text-center">
-                        <a href="#"><img class="img-fluid" src="../../../assets/images/clients/clients-img1.png" alt="image"
-                                data-toggle="tooltip" title="HTML"> </a>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="clients-box text-center">
-                        <a href="#"><img class="img-fluid" src="../../../assets/images/clients/clients-img2.png" alt="image"
-                                data-toggle="tooltip" title="Wordpress"></a>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="clients-box text-center">
-                        <a href="#"><img class="img-fluid" src="../../../assets/images/clients/clients-img3.png" alt="image"
-                                data-toggle="tooltip" title="Shopify"></a>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="clients-box text-center">
-                        <a href="#"><img class="img-fluid" src="../../../assets/images/clients/clients-img4.png" alt="image"
-                                data-toggle="tooltip" title="CSS"></a>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="clients-box text-center">
-                        <a href="#"><img class="img-fluid" src="../../../assets/images/clients/clients-img5.png" alt="image"
-                                data-toggle="tooltip" title="Jquery"></a>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="clients-box text-center">
-                        <a href="#"> <img class="img-fluid" src="../../../assets/images/clients/clients-img6.png" alt="image"
-                                data-toggle="tooltip" title="Bootstrap"></a>
-                    </div>
-                </div>
-            </div>
+                </ng-template>
+            </p-carousel>
         </div>
     </section>
     <!--=================================

@@ -36,10 +36,6 @@ export class PricingComponent implements OnInit {
   }
 
   choosePackage(planDetails: any) {
-
-
-
-
     this.ngxService.start()
     var userLoggedIn: any
     userLoggedIn = localStorage.getItem('data')
@@ -67,8 +63,9 @@ export class PricingComponent implements OnInit {
     // this.ngxService.stop()
     this.CommonService.subscribeaPlan(body).subscribe(data => {
       if (data.status) {
-        console.log(data)
+        // console.log(data)
         userLoggedIn.subscribed = data.data.valid
+        userLoggedIn.subscription_name = planDetails.subscription_name
         userLoggedIn.valid = data.data.valid
         if (data.data.is_trial) {
           userLoggedIn.trial = data.data.is_trial
@@ -77,6 +74,7 @@ export class PricingComponent implements OnInit {
         console.log(userLoggedIn)
         localStorage.setItem('data', JSON.stringify(userLoggedIn))
         this.toastr.success(data.message, 'SUCCESS')
+        // return
         this.router.navigate(['/company'])
       }
       else {

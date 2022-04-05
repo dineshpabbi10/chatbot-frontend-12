@@ -8,6 +8,7 @@
     transition: all 0.5s;
     transform: translateX(-260px);
     z-index: 10;
+    background-color: #162137;
 }
 
 .brand{
@@ -22,54 +23,85 @@
 }
 
 .brand::after{
-    content: "";
+   content: "";
     position: absolute;
     height: 1px;
-    width: 70%;
-    background-color: darkslategray;
-    top:50px;
+    width: 85%;
+    background-color: white;
+    top: 60px;
     opacity: 0.4;
-    left: 15%;
+    left: 8%;
 }
-
+.img-logo{
+    width: 145px;
+    height: auto;
+}
 .nav-container{
-    margin-top: 30px;
-    width: 70%;
-    margin-left: 15%;
+  /*  margin-top: 30px;*/
+   /* width: 70%;*/
+   /* margin-left: 15%;*/
     font-weight: lighter;
     list-style-type: none;
-    color: #66615b;
-    opacity: 0.8;
+   /* color: #66615b;
+    opacity: 0.8;*/
+    margin-top: 20px;
 }
 
 .nav-container li{
     text-decoration: none;
     transition: all 0.3s;
     cursor:pointer;
-    margin-bottom: 10px;
+   
     font-size: large;
 }
 
 .nav-container span{
     transition: all 0.3s;
+    color: #fff;
+    display: block;
+    width: 100%;
+    padding:10px 15px;
+    opacity: 0.5;
+    font-size: 16px;
+    font-weight: initial;
+    border-left:4px solid transparent;
 }
-
 .nav-container span:hover{
-    color: purple;
-    opacity: 1;
+    transition: all 0.3s;
+    color:  #fff;
+   opacity: 1;
+  border-left:4px solid #a733bb;
+
+}
+.nav-container span svg{
+    margin-right: 15px;
+}
+.nav-container span.active{
+      transition: all 0.3s;
+    color:  #fff;
+   opacity: 1;
+  border-left:4px solid #a733bb;
 }
 
 .nav-container-child{
-    padding-left: 40px;
+    padding-left: 70px;
 }
 
 .nav-container-child li{
     list-style-type: disc;
+    color: #fff;
+    opacity: 0.5;
 }
 
-.active{
-    color:purple;
+.nav-container-child li:hover{
+    opacity: 1;
 }
+.nav-container-child li.active{
+    list-style-type: disc;
+    color: #fff;
+    opacity: 1;
+}
+
 .active::after{
     content: "";
     position: absolute;
@@ -78,7 +110,7 @@
     width: 15px;
     right: -7px;
     margin-top: 6px;
-    background-color: whitesmoke;
+    background-color: #a733bb;
 }
 
 .navbar-open{
@@ -86,5 +118,20 @@
     transform: translateX(0px);
 }
 
-
-
+.nav-container svg{
+    fill:#fff;
+    width: 22px;
+}
+.svg-up{
+    width: 10px;
+    height: 10px;
+    float: right;
+margin-top: 12px;
+}
+.svg-down{
+     width: 10px;
+    height: 10px;
+    transform: rotate(182deg);
+    float: right;
+margin-top: 12px;
+}

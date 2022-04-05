@@ -7,6 +7,68 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
+  clients = [
+    {
+      "image_url": "../../../assets/images/clients/clients-img1.png",
+      "alt_text": "client_1",
+      "title": 'Client 1',
+      "web_url": "https://client_1.com"
+    },
+    {
+      "image_url": "../../../assets/images/clients/clients-img1.png",
+      "alt_text": "client_1",
+      "title": 'Client 1',
+      "web_url": "https://client_1.com"
+    },
+    {
+      "image_url": "../../../assets/images/clients/clients-img1.png",
+      "alt_text": "client_1",
+      "title": 'Client 1',
+      "web_url": "https://client_1.com"
+    },
+    {
+      "image_url": "../../../assets/images/clients/clients-img1.png",
+      "alt_text": "client_1",
+      "title": 'Client 1',
+      "web_url": "https://client_1.com"
+    },
+    {
+      "image_url": "../../../assets/images/clients/clients-img1.png",
+      "alt_text": "client_1",
+      "title": 'Client 1',
+      "web_url": "https://client_1.com"
+    },
+    {
+      "image_url": "../../../assets/images/clients/clients-img1.png",
+      "alt_text": "client_1",
+      "title": 'Client 1',
+      "web_url": "https://client_1.com"
+    },
+    {
+      "image_url": "../../../assets/images/clients/clients-img1.png",
+      "alt_text": "client_1",
+      "title": 'Client 1',
+      "web_url": "https://client_1.com"
+    }
+  ]
+
+  responsiveOptions = [
+    {
+      breakpoint: '1024px',
+      numVisible: 3,
+      numScroll: 3,
+    },
+    {
+      breakpoint: '768px',
+      numVisible: 2,
+      numScroll: 2,
+    },
+    {
+      breakpoint: '560px',
+      numVisible: 1,
+      numScroll: 1,
+    },
+  ];
   constructor() { }
 
   ngOnInit(): void {

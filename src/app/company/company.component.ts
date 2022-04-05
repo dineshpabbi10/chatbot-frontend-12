@@ -12,7 +12,7 @@ import { NgxUiLoaderService } from 'ngx-ui-loader';
 export class CompanyComponent implements OnInit {
 
   public sidebarOpen = true;
-  public smallScreen:boolean = false;
+  public smallScreen: boolean = false;
   constructor(private CommonService: CommonService, private toastr: ToastrService, private ngxService: NgxUiLoaderService, public router: Router) { }
 
   ngOnInit(): void {
@@ -40,19 +40,21 @@ export class CompanyComponent implements OnInit {
       return "Intents"
     } else if (this.router.url == "/company/intents/create") {
       return "Create Intents"
-    } else if(this.router.url == "/company/faq-upload"){
+    } else if (this.router.url == "/company/faq-upload") {
       return "Upload FAQ"
-    } else if(this.router.url == "/company/web-link"){
+    } else if (this.router.url == "/company/web-link") {
       return "Web Link Integration"
-    }else if(this.router.url == "/company/agents/add"){
+    } else if (this.router.url == "/company/agents/add") {
       return "Add New Agent"
-    }else if(this.router.url == "/company/agents"){
+    } else if (this.router.url == "/company/agents") {
       return "View Agents"
-    }else if (this.router.url == "/company/entities") {
+    } else if (this.router.url == "/company/entities") {
       return "View Entities"
     } else if (this.router.url == "/company/entities/create") {
       return "Create Entities"
-    } 
+    } else if (this.router.url == "/company/payment") {
+      return "Payments"
+    }
 
     return "Not Found";
   }

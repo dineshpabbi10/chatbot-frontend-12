@@ -36,11 +36,12 @@
 }
 
 #chat-type{
-    color: rgb(113, 241, 113);
-    border: 1px solid rgb(113, 241, 113);
+   color: rgb(93 171 88);
+    border: 1px solid rgb(29 241 16);
     border-radius: 5px;
-    padding: 3px;
+    padding: 3px 10px;
     display: inline-block;
+    background: #effff1;
 }
 
 .sticky-header{
@@ -244,3 +245,10 @@
 }
 
 /* Copied CSS Ends */
+#transchat{
+background: purple;
+    border-radius: 5px;
+    margin-left: 10px;
+    padding: 4px 12px;
+    border: none;
+}

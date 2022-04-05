@@ -238,7 +238,7 @@ export class ChatBoxComponent implements OnInit {
   }
 
   myUploader(event: any) {
-    console.log(event.files);
+    // console.log(event.files);
     let file = event.files[0];
     this.selectedFile = file;
     // this.sendAttachment(file,form);

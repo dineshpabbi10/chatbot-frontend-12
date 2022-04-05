@@ -1,83 +1,188 @@
-<div class="row">
-  <div class="col-md-12">
+<div class="wrappwer">
 
-    <div class="card" id="add-agent-card">
-      <div class="right">
-        <div class="card">
-          <div class="row">
+  <div class="" id="add-agent-card">
+    <div class="right">
+      <!-- <div class="card" id="cr-1">
+        <p class="text-center pt">
+          Your current plan: <b>Starter</b>, end in <b>6 days</b>.<br />
+          Subscribe now to keep on using chatbot without interruption.
+        </p>
+      </div> -->
+      <div class="d-flex pr-flexer " id="cntct-us" >
 
-            <p>
-              Your current plan: starter, end in 6 days.<br />
-              Subscribe now to keep on using chatbot without interruption.
-            </p>
-          </div>
+        <div tabindex="1" class="c-flex plan-1" *ngFor="let plan of plans" (click)="changePlan(plan)">
+          <span class="plan-active" *ngIf="activePlan==plan.subscription_name">current plan</span>
+          <span class="info-1">{{ plan.subscription_name }}</span>
+          <ng-container *ngIf="plan.price_monthly==0; else otherPlans">
+            Individual contract with included custom bot building process
+            <a class="button" [routerLink]="['/contact-us']">Contact Us</a>
+          </ng-container>
+          <ng-template #otherPlans>
+
+            <h4 class="prce">
+
+              <sup *ngIf="indiaPayment">
+                ₹
+              </sup>
+              <sup *ngIf="nonIndianPayment">
+                {{plan.currency}}
+              </sup>
+
+              {{plan.price_monthly}}
+            </h4>
+            <span>per month</span>
+
+            <span>
+              <sup *ngIf="indiaPayment">
+                ₹
+              </sup>
+              <sup *ngIf="nonIndianPayment">
+                {{plan.currency}}
+              </sup>
+              {{plan.price_yearly}} per year
+            </span>
+
+          </ng-template>
         </div>
-        <div class="card">
-          <div class="row">
-
-            <div class="col-md-3" style="border: 1px solid black; text-align: center;">
-
-              <span>Started</span>
-              <h4>$42</h4>
-              <span>12000 chats/year</span>
-
-            </div>
-            <div class="col-md-3" style="border: 1px solid black; text-align: center;">
-              <span>Started</span>
-              <h4>$42</h4>
-              <span>12000 chats/year</span>
-            </div>
-            <div class="col-md-3" style="border: 1px solid black; text-align: center;">
-              <span>Started</span>
-              <h4>$42</h4>
-              <span>12000 chats/year</span>
-            </div>
-            <div class="col-md-3" style="border: 1px solid black; text-align: center;">
-              <span>Started</span>
-              <h4>$42</h4>
-              <span>12000 chats/year</span>
-            </div>
-          </div>
+        <!-- <div class="c-flex plan-1">
+          <span class="info-1">Team</span>
+          <h4 class="prce"><sup>$</sup>42</h4>
+          <span>12000 chats/year</span>
         </div>
-        <div class="card" id="container-card-right">
+        <div class="c-flex plan-1">
+          <span class="info-1">Business</span>
+          <h4 class="prce"><sup>$</sup>42</h4>
+          <span>12000 chats/year</span>
+        </div>-->
+        <!-- <div class="c-flex">
+          <span class="info-1">Enterprise</span>
+          <h4 class="prce"></h4>
+          <span>Individual contract with included custom bot building process</span>
+        </div> -->
+      </div>
+      <div class="card" id="container-card-right" id="cr-2">
+        <!-- <div class="" *ngIf="nonIndianPayment"> -->
+        <div class="row">
+          <div class="col-lg-5">
+            <div class="points">
 
-          <div class="card-body">
 
-            <!-- <div class="card-title">
-                Payment
-              </div> -->
-            <!-- Form -->
+
+              <!-- <mat-icon>pie_chart</mat-icon> -->
+              <b>WHAT YOU HAVE:</b>
+              <ul *ngIf="activePlan">
+                <li *ngFor="let feature of subscribedPackage[0].features">
+                  <ng-container *ngIf="feature.value">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                      <path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z" />
+                    </svg>
+                    <!-- <span *ngIf="feature.value === 'int'">
+                      {{feature.value}}
+                    </span> -->
+                    {{feature.key}}
+
+                  </ng-container>
+                </li>
+
+              </ul>
+            </div>
           </div>
-          <h2></h2>
+          <div class="col-lg-7">
+            <table class="table">
+              <tr>
+                <td>Billing Cycle</td>
+                <td class="text-right">
+                  <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" class="custom-control-input" id="customRadio1" [checked]="true"
+                      name="billing_type" (change)="onBillingPatternChange('monthly')">
+                    <label class="custom-control-label" for="customRadio1">Monthly</label>
+                  </div>
+                  <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" class="custom-control-input" id="customRadio2" name="billing_type"
+                      (change)="onBillingPatternChange('annually')">
+                    <label class="custom-control-label" for="customRadio2">Annually (Save 15%)</label>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  Total Price
+                </td>
+                <td class="text-right">
+                  <h3 class="clr">
+                    <sup *ngIf="indiaPayment">
+                      ₹
+                    </sup>
+                    <sup *ngIf="nonIndianPayment">
+                      $
+                    </sup>
+                    <span *ngIf="activePlan">
+                      <ng-container *ngIf="billingMonthly==true; else annuallyBillingBlock">
+                        {{subscribedPackage[0]?.price_monthly}}
+                      </ng-container>
+                      <ng-template #annuallyBillingBlock>
+                        {{subscribedPackage[0]?.price_yearly}}
+                      </ng-template>
 
-          <!-- <div class="" *ngIf="nonIndianPayment"> -->
-          <form novalidate (ngSubmit)="createToken()" [formGroup]="stripeTest">
-            <div class="form-group">
-              <input type="text" formControlName="name" placeholder="Jane Doe">
+                    </span>
+                  </h3>
+                </td>
+              </tr>
+              <tr>
+                <td class="no-brdr">
+                  <!-- <button type="submit" class="button" (click)="initializePayment(50)" *ngIf="nonIndianPayment">
+                    Go to checkout
+                  </button> -->
 
-            </div>
-            <div class="form-group">
-              <input type="text" formControlName="name" placeholder="1000">
 
-            </div>
-            <div class="form-group">
+                  <p-button (click)="showBasicDialog()" *ngIf="nonIndianPayment" label="Pay"></p-button>
+                  <!-- <ngx-paypal [config]="payPalConfig">
+                  </ngx-paypal> -->
 
-              <ngx-stripe-card [options]="cardOptions" [elementsOptions]="elementsOptions"></ngx-stripe-card>
-            </div>
-            <div class="form-group">
-              <input type="checkbox" formControlName="recurring" /> Recurring payment
+                  <button type="submit" class="button" id="rzp-button1" (click)="payWithRazorpay()"
+                    *ngIf="indiaPayment">
+                    Pay
+                  </button>
+                </td>
 
-            </div>
-            <button type="submit">
-              Submit
-            </button>
-          </form>
-          <!-- </div>
+              </tr>
+            </table>
+          </div>
+          <!--  <form novalidate (ngSubmit)="createToken()" [formGroup]="stripeTest">
+              <div class="form-group">
+                <input type="text" formControlName="name" placeholder="Jane Doe" class="inpt">
+
+              </div>
+              <div class="form-group">
+                <input type="text" formControlName="name" placeholder="1000" class="inpt">
+
+              </div>
+              <div class="form-group">
+
+                <ngx-stripe-card [options]="cardOptions" [elementsOptions]="elementsOptions"></ngx-stripe-card>
+              </div>
+              <div class="form-group">
+                <input type="checkbox" formControlName="recurring" /> Recurring payment
+
+              </div>
+              <button type="submit" class="button">
+                Submit
+              </button>
+            </form> -->
+        </div>
+        <!-- </div>
                    
           Form Ends -->
 
-        </div>
       </div>
     </div>
   </div>
+
 </div>
+
+<p-dialog header="Pay With PayPal Secure Payment Gateway" [(visible)]="displayBasic" [style]="{width: '50vw'}"
+  [baseZIndex]="10000">
+
+  <div #paypal></div>
+
+</p-dialog>

@@ -1,0 +1,48 @@
+.card-title {
+  padding-bottom: 15px;
+  border-bottom: 1px solid #e1e1e1;
+}
+.img-wrap{
+	width: 150px;
+    height: 150px;
+    background: rebeccapurple;
+    margin: 0 auto;
+    margin-bottom: 15px;
+    border-radius: 100%;
+    position: relative;
+}
+.img-wrap img{
+	width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 100%;
+    border:2px solid #a136bd;
+
+}
+.uploder{
+	position: absolute;
+    width: 30px;
+    height: 30px;
+    background: #a24cbf;
+    border-radius: 100%;
+    border: 2px solid #fff;
+    right: 0;
+    text-align: center;
+    line-height: 20px;
+    bottom: 18px;
+    overflow: hidden;
+}
+.uploder svg{
+	fill: #fff;
+    width: 16px;
+    height: 16px;
+}
+.uploder input{
+	position: absolute;
+    left: 0;
+    width: 22px;
+    height: 22px;
+    z-index: 1;
+    top: 0;
+    opacity: 0;
+    cursor: pointer;}

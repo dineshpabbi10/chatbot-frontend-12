@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { CompanyService } from '../services/company.service';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-generic-table',
@@ -9,8 +11,9 @@ import { CompanyService } from '../services/company.service';
 })
 export class GenericTableComponent implements OnInit {
 
-  public selectedRows:any[]=[];
-  
+  public selectedRows: any[] = [];
+
+
   @Input('cols')
   public cols: any[];
 
@@ -18,15 +21,15 @@ export class GenericTableComponent implements OnInit {
   public products: any[];
 
   @Input('component')
-  public component:string = '';
+  public component: string = '';
 
   @Input('showDelete')
-  public showDelete:boolean = false;
+  public showDelete: boolean = false;
 
   @Input('showEdit')
-  public showEdit:boolean = false;
+  public showEdit: boolean = false;
 
-  constructor(private companyService:CompanyService, private toast:ToastrService) {
+  constructor(private companyService: CompanyService, private toast: ToastrService, private router: Router) {
     this.cols = [];
     this.products = [];
   }
@@ -34,35 +37,36 @@ export class GenericTableComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  submitEditRecords(){
-    if(this.selectedRows.length > 1){
+  submitEditRecords() {
+    if (this.selectedRows.length > 1) {
       this.toast.error("Cannot edit more than 1 record at a time. Please select only one record");
     }
-    else if(this.selectedRows.length === 0){
+    else if (this.selectedRows.length === 0) {
       this.toast.error("No records selected for editing");
     }
-    else{
+    else {
       // Use RxJs to communicate based on component
-      this.companyService.sendSelectedRecord(this.component,"edit",this.selectedRows);
+      this.companyService.sendSelectedRecord(this.component, "edit", this.selectedRows);
     }
   }
 
-  submitDeleteRecords(){
-    if(this.selectedRows.length === 0){
+  submitDeleteRecords() {
+    if (this.selectedRows.length === 0) {
       this.toast.error("No records selected for deletion");
     }
-    else if(this.selectedRows.length > 1){
+    else if (this.selectedRows.length > 1) {
       this.toast.error("Cannot delete more than 1 record at a time. Please select only one record");
-    }else{
+    } else {
       // Use RxJs to communicate based on component
-      this.companyService.sendSelectedRecord(this.component,"delete",this.selectedRows);
+      this.companyService.sendSelectedRecord(this.component, "delete", this.selectedRows);
     }
-  
+
   }
 
 
   // Function to view script
-  printDiv(token:string) {
+  printDiv(token: string) {
+    // console.log(token)
     const uri = '<script data-id="chatbox">';
     const encoded = encodeURIComponent(uri);
     var val1 = "&lt;script data-id='chatbox' &gt;";
@@ -93,6 +97,11 @@ export class GenericTableComponent implements OnInit {
     a?.document.write(val2);
     a?.document.write("</body></html>");
     a?.document.close();
+  }
+
+  redirectToBotSettings(data: any) {
+    console.log(data)
+    this.router.navigate(['/company/bot-settings/' + data.token])
   }
 
 }

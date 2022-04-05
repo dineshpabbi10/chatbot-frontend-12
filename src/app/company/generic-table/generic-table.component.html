@@ -1,17 +1,22 @@
-<p-table #dt1 [columns]="cols" [value]="products" [paginator]="true" [rows]="5" [showCurrentPageReport]="true" responsiveLayout="scroll"
-currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[5,10,25,50]"
-selectionMode="multiple" [(selection)]="selectedRows"
->
+<p-table #dt1 [columns]="cols" [value]="products" [paginator]="true" [rows]="5" [showCurrentPageReport]="true"
+    responsiveLayout="scroll" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+    [rowsPerPageOptions]="[5,10,25,50]" selectionMode="multiple" [(selection)]="selectedRows">
     <ng-template pTemplate="caption">
         <div class="p-d-flex">
             <span class="p-input-icon-left p-ml-auto">
                 <i class="pi pi-search"></i>
-                <input #searchText pInputText type="text" value="" (input)="dt1.filterGlobal(searchText.value, 'contains')" placeholder="Search keyword" />
+                <input #searchText pInputText type="text" value=""
+                    (input)="dt1.filterGlobal(searchText.value, 'contains')" placeholder="Search keyword" />
             </span>
 
-            <button type="button" pButton pRipple icon="pi pi-file-o" style="margin-left: 10px; margin-top: 10px;" (click)="dt1.exportCSV()" class="p-mr-2" pTooltip="CSV" tooltipPosition="bottom"></button>
-            <button *ngIf="showEdit" (click)="submitEditRecords()" style="margin-left: 10px; margin-top: 10px;" class="p-button-help p-button-rounded" icon="pi pi-pencil" pButton type="button" label="Edit Record" ></button>
-            <button *ngIf="showDelete" (click)="submitDeleteRecords()" style="margin-left: 10px;margin-top: 10px" class="p-button-help p-button-rounded" icon="pi pi-times" pButton type="button" label="Delete Record" ></button>
+            <button type="button" pButton pRipple icon="pi pi-file-o" style="margin-left: 10px; margin-top: 10px;"
+                (click)="dt1.exportCSV()" class="p-mr-2" pTooltip="CSV" tooltipPosition="bottom"></button>
+            <button *ngIf="showEdit" (click)="submitEditRecords()" style="margin-left: 10px; margin-top: 10px;"
+                class="p-button-help p-button-rounded" icon="pi pi-pencil" pButton type="button"
+                label="Edit Record"></button>
+            <button *ngIf="showDelete" (click)="submitDeleteRecords()" style="margin-left: 10px;margin-top: 10px"
+                class="p-button-help p-button-rounded" icon="pi pi-times" pButton type="button"
+                label="Delete Record"></button>
 
         </div>
     </ng-template>
@@ -27,6 +32,7 @@ selectionMode="multiple" [(selection)]="selectedRows"
                     <p-columnFilter type="text" [field]="col.field" display="menu"></p-columnFilter>
                 </div>
             </th>
+            <th *ngIf="component=='web-link'">Settings</th>
         </tr>
     </ng-template>
     <ng-template pTemplate="body" let-rowData let-columns="columns" let-rowIndex="rowIndex">
@@ -35,13 +41,20 @@ selectionMode="multiple" [(selection)]="selectedRows"
                 <p-tableCheckbox [value]="rowData"></p-tableCheckbox>
             </td>
             <td *ngFor="let col of columns">
-     
-                <button *ngIf="col.header === 'View Script'; else normalField" (click)="printDiv(rowData[col.field])" style="margin-left: 10px; margin-top: 10px;" class="p-button-help" icon="pi pi-sun" pButton type="button" label="View Script" ></button>
-                
+
+                <button *ngIf="col.header === 'View Script'; else normalField" (click)="printDiv(rowData[col.field])"
+                    style="margin-left: 10px; margin-top: 10px;" class="p-button-help" icon="pi pi-sun" pButton
+                    type="button"></button>
+
                 <ng-template #normalField>
                     {{rowData[col.field]}}
                 </ng-template>
             </td>
+            <td *ngIf="component=='web-link'" style="text-align: center;">
+                <span class="pi pi-cog" (click)="redirectToBotSettings(rowData)" style="cursor: pointer;"></span>
+            </td>
+
+
         </tr>
     </ng-template>
     <ng-template pTemplate="paginatorleft">

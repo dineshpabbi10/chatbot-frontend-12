@@ -211,7 +211,7 @@ textarea:hover {
   /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#7d4ac7', endColorstr='#a733bb', GradientType=1);
   /* IE6-9 */
-  color: #ffffff;
+  color: #ffffff !important;
   padding: 10px 35px;
   display: inline-block;
   text-decoration: none !important;

@@ -13,12 +13,14 @@ export class SidebarComponent implements OnInit {
   public entityOpen: boolean = false;
   public agentsOpen: boolean = false;
   public paymentsOpen: boolean = false
+  public botsOpen: boolean = false
 
   public domainClass: boolean = false;
   public intentsClass: boolean = false;
   public entityClass: boolean = false;
   public agentsClass: boolean = false;
   public paymentClass: boolean = false
+  public botClass: boolean = false
 
   @Input()
   sidebarOpen: boolean = false;
@@ -44,16 +46,19 @@ export class SidebarComponent implements OnInit {
 
   toggleDomainOpen(event: MouseEvent, type: string) {
     event.preventDefault();
+    // console.log(type)
     if (type === "domain") {
       this.domainOpen = !this.domainOpen;
-    } else if (type === "intents") {
+    } else if (type === "bots") {
       this.intentsOpen = !this.intentsOpen;
     } else if (type === "entity") {
       this.entityOpen = !this.entityOpen;
     } else if (type === "agents") {
       this.agentsOpen = !this.agentsOpen;
-    } else if (type == "payments") {
+    } else if (type === "payments") {
       this.paymentsOpen = !this.paymentsOpen
+    } else if (type === "integration") {
+      this.botsOpen = !this.botsOpen
     }
 
   }
@@ -65,6 +70,7 @@ export class SidebarComponent implements OnInit {
       this.intentsClass = false;
       this.agentsClass = false;
       this.paymentClass = false
+      this.botClass = false
 
     } else if (url.includes("company/intents")) {
       this.domainClass = false;
@@ -72,6 +78,7 @@ export class SidebarComponent implements OnInit {
       this.intentsClass = true;
       this.agentsClass = false;
       this.paymentClass = false
+      this.botClass = false
 
     } else if (url.includes("company/entities")) {
       this.domainClass = false;
@@ -79,6 +86,7 @@ export class SidebarComponent implements OnInit {
       this.intentsClass = false;
       this.agentsClass = false;
       this.paymentClass = false
+      this.botClass = false
 
     } else if (url.includes("company/agents")) {
       this.domainClass = false;
@@ -86,18 +94,32 @@ export class SidebarComponent implements OnInit {
       this.intentsClass = false;
       this.agentsClass = true;
       this.paymentClass = false
+      this.botClass = false
+
     } else if (url.includes("company/payments")) {
       this.paymentClass = true
       this.domainClass = false;
       this.entityClass = false;
       this.intentsClass = false;
       this.agentsClass = false
-    } else {
+      this.botClass = false
+    } else if (url.includes("company/weblink")) {
+      this.botClass = true
+      this.paymentClass = false
+      this.domainClass = false;
+      this.entityClass = false;
+      this.intentsClass = false;
+      this.agentsClass = false
+    }
+
+    else {
       this.paymentClass = false
       this.domainClass = false;
       this.entityClass = false;
       this.intentsClass = false;
       this.agentsClass = false;
+      this.botClass = false
+
     }
   }
 

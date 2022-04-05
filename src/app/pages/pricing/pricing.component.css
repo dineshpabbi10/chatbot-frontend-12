@@ -1,18 +1,70 @@
-#price-listing{
-    min-width: 0px;
-    text-align: start !important;
+#price-listing {
+	min-width: 0px;
+	text-align: start !important;
 }
 
-#price-listing-container{
-    display: flex;
-    justify-content: center;
+#price-listing-container {
+	display: flex;
+	justify-content: center;
 }
 
-.price{
-    text-align: center;
+.price {
+	text-align: center;
 }
 
-#choose-plan-button{
-    display: flex;
-    justify-content: center;
+#choose-plan-button {
+	display: flex;
+	justify-content: center;
+}
+
+.price-head {
+	margin: 0px !important;
+	padding: 10px;
+	text-align: center;
+	text-transform: uppercase;
+	border: 3px solid #a534bb;
+	border-bottom: transparent;
+}
+
+.listing {
+	border: 1px solid #aaa;
+	border-top-color: rgb(170, 170, 170);
+	border-top-style: solid;
+	border-top-width: 1px;
+	border-top: transparent;
+}
+
+.pricing-box {
+	transition: 300ms;
+	transform: scale(0.90);
+}
+
+.pricing-box:hover {
+	transition: 300ms;
+	box-shadow: -1px 7px 20px -7px rgba(0, 0, 0, 0.75);
+	-webkit-box-shadow: -1px 7px 20px -7px rgba(0, 0, 0, 0.75);
+	-moz-box-shadow: -1px 7px 20px -7px rgba(0, 0, 0, 0.75);
+	transform: scale(0.91);
+}
+
+.ul-list {
+	width: 100%;
+	margin: 15px 0px;
+}
+
+.ul-list svg {
+	width: 15px;
+	height: 15px;
+	fill: #a534bb;
+}
+
+.button.grey {
+	margin-top: 15px;
+}
+
+.custom_plan_button {
+	border: 1px solid #eee;
+	padding: 10px 25px;
+	color: white;
+	border-radius: 2px;
 }

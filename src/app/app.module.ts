@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+
 import {
   NgxUiLoaderModule,
   NgxUiLoaderConfig,
