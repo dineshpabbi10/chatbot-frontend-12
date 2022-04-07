@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { TrainingRoutingModule } from './training-routing.module';
 import { TrainingComponent } from './training.component';
 import { CommonImport } from 'src/app/common.imports';
+import { GenericTableModule } from '../generic-table/generic-table.module';
 
 
 @NgModule({
@@ -12,7 +13,8 @@ import { CommonImport } from 'src/app/common.imports';
   imports: [
     CommonModule,
     TrainingRoutingModule,
-    CommonImport
+    CommonImport,
+    GenericTableModule
   ]
 })
 export class TrainingModule { }

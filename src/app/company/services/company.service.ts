@@ -158,7 +158,9 @@ export class CompanyService {
   }
 
 
-
+  getTrainHistory(){
+    return this.httpClient.get<any>(environment.endPoint+"trainstatus");
+  }
 
 
   addQuickLink(link: string): void {
@@ -312,6 +314,10 @@ export class CompanyService {
 
   getCompanyUserDetails():Observable<any>{
     return this.httpClient.get(environment.endPoint+"userprofile");
+  }
+
+  trainBot(token:any){
+    return this.httpClient.get(environment.endPoint+"intenttrain?token="+token);
   }
 
 
