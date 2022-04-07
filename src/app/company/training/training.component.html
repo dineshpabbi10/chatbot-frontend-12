@@ -1,7 +1,21 @@
 <div class="container-fluid">
-    <div class="card">
-        <div class="card-body">
-          <div class="card-title">Training</div>
-        </div>
+  <div class="card">
+    <div class="card-body">
+      <div class="card-title training-title">
+        {{ trainingTitle }}
+        <div
+          [ngClass]="{
+            blink_me: isTraining,
+            'completed-training': !isTraining
+          }"
+        ></div>
+        <button (click)="startTraining()" class="btn btn-success btn-train">Train</button>
       </div>
+      
+
+      <app-generic-table [cols]="cols" [data]="trainingHistory" component="training" [showDelete]="false" [showEdit]="false"></app-generic-table>
+
+      
+    </div>
+  </div>
 </div>

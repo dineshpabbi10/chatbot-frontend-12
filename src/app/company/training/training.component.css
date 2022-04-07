@@ -1,37 +1,71 @@
-.card{
-    box-shadow: 0 6px 10px -4px rgb(0 0 0 / 15%);
-    border-radius: 12px;
+.card {
+  box-shadow: 0 6px 10px -4px rgb(0 0 0 / 15%);
+  border-radius: 12px;
 }
 
-.row{
-    margin: 10px;
-    justify-content: center;
+.row {
+  margin: 10px;
+  justify-content: center;
 }
 
-.form-text{
-    text-align: justify;
+.form-text {
+  text-align: justify;
 }
 
-.card-title{
-    color: gray;
+.card-title {
+  color: gray;
 }
 
-.card-icon-purple{
-    color: rgb(187, 136, 187);
+.card-icon-purple {
+  color: rgb(187, 136, 187);
 }
 
-.card-icon-yellow{
-    color: rgb(240, 232, 118);
+.card-icon-yellow {
+  color: rgb(240, 232, 118);
 }
 
-.card-icon-orange{
-    color: rgb(206, 158, 131);
+.card-icon-orange {
+  color: rgb(206, 158, 131);
 }
 
-.card-icon-green{
-    color: rgb(136, 187, 144);
+.card-icon-green {
+  color: rgb(136, 187, 144);
 }
 
-#scrollable-card{
-    overflow-x: scroll;
+#scrollable-card {
+  overflow-x: scroll;
+}
+
+.blink_me {
+  background-color: orange;
+  animation: blinker 1s linear infinite;
+  width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  display: inline-block;
+  margin-left: 10px;
+}
+
+.btn-train{
+    margin-left: 10px;
+}
+
+.completed-training {
+    background-color: green;
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+    display: inline-block;
+    margin-left: 10px;
+  }
+
+.training-title{
+    display: flex;
+    align-items: center;
+}
+
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
 }

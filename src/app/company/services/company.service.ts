@@ -158,7 +158,9 @@ export class CompanyService {
   }
 
 
-
+  getTrainHistory(){
+    return this.httpClient.get<any>(environment.endPoint+"trainstatus");
+  }
 
 
   addQuickLink(link: string): void {
