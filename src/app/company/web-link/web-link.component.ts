@@ -53,16 +53,16 @@ export class WebLinkComponent implements OnInit {
           accept: () => {
             //Actual logic to perform a confirmation
             this.companyService.deleteWebLinToken(data.payload[0].token).
-            pipe(catchError(err=>{
-              this.toast.error(err.message);
-              return of(err.message)
-            }))
-            .subscribe((res)=>{
-              if(res.status){
-                this.toast.success("Record successfully deleted");
-              } 
-              this.getDomainList();
-            });
+              pipe(catchError(err => {
+                this.toast.error(err.message);
+                return of(err.message)
+              }))
+              .subscribe((res) => {
+                if (res.status) {
+                  this.toast.success("Record successfully deleted");
+                }
+                this.getDomainList();
+              });
           },
         });
       }
@@ -75,7 +75,7 @@ export class WebLinkComponent implements OnInit {
           message: 'Are you sure that you want to perform insert action?',
           accept: () => {
             //Actual logic to perform a confirmation
-           
+
           },
         });
       }
@@ -96,6 +96,7 @@ export class WebLinkComponent implements OnInit {
         })
       )
       .subscribe((data) => {
+        // console.log(data)
         if (data.status) {
           this.domainsList = data.data;
         }
@@ -114,6 +115,7 @@ export class WebLinkComponent implements OnInit {
         })
       )
       .subscribe((res) => {
+        // console.log(res)
         if (res.status) {
           this.websiteList = res.data;
         }
@@ -173,11 +175,11 @@ export class WebLinkComponent implements OnInit {
     a?.document.write('b = document.body;' + '<br>');
     a?.document.write(
       ' c.type = "text/javascript"; c.charset = "utf-8"; c.async = true;' +
-        '<br>'
+      '<br>'
     );
     a?.document.write(
       'c.src = "https://www.cybot.co/static/chatbox/static/loader.js"; s.parentNode.insertBefore(c, s);});' +
-        '<br>'
+      '<br>'
     );
     a?.document.write(val2);
     a?.document.write('</body></html>');

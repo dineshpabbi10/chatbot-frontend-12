@@ -1,0 +1,113 @@
+<br>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <div class="" id="add-agent-card">
+                <div class="right">
+                    <div class="">
+                        <div class="card-title">
+                            <h5>Customize Your Chatbot</h5>
+                        </div>
+                    </div>
+                    <div class="" id="container-card-right">
+                        <form [formGroup]="form" class="bg-white">
+                            <!-- Form -->
+                            <div class="row">
+                                <!-- First Name -->
+
+                                <div class="col-xs-12 col-md-12 form-group">
+                                    <div class="img-wrap">
+                                        <img
+                                            src="{{endpoint}}{{botIcon}}">
+                                        
+
+                                    </div>
+                                    <!--   <label for="exampleFormControlInput1">Profile Pic</label> -->
+
+                                </div>
+
+                                <!-- First Name -->
+                                <div class="col-xs-12 col-md-6 form-group">
+                                    <label for="exampleFormControlInput1">Chatbot Name*</label>
+                                    <input formControlName="chatbot_name" type="text" class="form-control"
+                                        placeholder="Chatbot Name">
+                                </div>
+
+                                
+                                <div class="col-xs-12 col-md-6 form-group">
+                                    <label for="exampleFormControlInput1">Color Pickr*</label>
+                                    <p-colorPicker formControlName="chatbot_color" (onChange)="colorChange($event)">
+                                    </p-colorPicker>
+                                    <input class="form-control" value="{{ botColor }}"
+                                        (change)="onManualColorChange($event)" />
+
+                                </div>
+
+                                <div class="col-xs-12 col-md-12 form-group">
+                                    <p-fileUpload accept="image/*" (onClear)="clearFile()" (onRemove)="clearFile()" (onSelect)="upload($event)" [showUploadButton]="false"></p-fileUpload>
+                                </div>
+
+
+
+                                <div class="col-xs-12 col-md-12 col-sm-12">
+                                    <button type="button" class="btn btn-theme" (click)="submit()"
+                                        [disabled]="form.invalid">Submit</button>&nbsp;&nbsp;
+                                    <button type="button" class="btn btn-theme">Cancel</button>
+                                </div>
+                            </div>
+                        </form>
+                        <!-- Form Ends -->
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- <br>
+<div class="container-fluid">
+
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <div class="card" id="add-agent-card">
+                <div class="right">
+                    <div class="">
+                        <div class="card-title">
+                            <h5>Customize Your Chatbot</h5>
+                        </div>
+                    </div>
+                    <div id="container-card-right">
+                        <form [formGroup]="form" class="form-new">
+                            <div class="row">
+
+                                <div class="col-xs-12 col-md-12 form-group">
+                                    Customize Your Chatbot
+                                </div>
+                                <div class="col-xs-12 col-md-6 form-group">
+                                    <label for="exampleFormControlInput1">ChatBot Name*</label>
+                                    <input formControlName="chatbot_name" type="text" class="form-control"
+                                        placeholder="Chatbot Name">
+                                </div>
+                                <div class="col-xs-12 col-md-6 form-group">
+                                    <label for="exampleFormControlInput1">Chabot Icon*</label>
+                                    <input formControlName="bot_icon" type="file" class="form-control"
+                                        placeholder="Chatbot Name">
+                                </div>
+                                <div class="col-xs-12 col-md-6 form-group">
+                                    <label for="exampleFormControlInput1">Color*</label>
+                                    <p-colorPicker formControlName="chatbot_color" class="form-control">
+                                    </p-colorPicker>
+
+                                </div>
+
+                                <button (click)="submit()" [disabled]="form.invalid" type="button"
+                                    class="btn btn-theme">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->

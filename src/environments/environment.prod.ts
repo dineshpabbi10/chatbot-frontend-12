@@ -6,12 +6,14 @@ export const env = {
 export interface Environment {
   endPoint: string;
   production: boolean;
-  firebase: any
+  firebase: any,
+  mediaEndPoint: string
 }
 
 
 export const DEV: Environment = {
   endPoint: 'http://34.131.139.183:8000/',
+  mediaEndPoint: 'http://34.131.139.183:8000',
   production: true,
   firebase: {
     apiKey: "AIzaSyB0jFiFcMCEZJiRxfoabVHRo_6yCVAHfWo",
