@@ -294,10 +294,12 @@ export class CompanyService {
     return this.httpClient.get<any>(environment.endPoint + "api/transactions").pipe()
   }
 
-<<<<<<< HEAD
+
   getMyPlan() {
     return this.httpClient.get<any>(environment.endPoint + "myplan").pipe()
-=======
+  }
+  
+
   updateCompanyUserDetails(data:any):Observable<any>{
     // Build Form Data
     const formData = new FormData();
@@ -322,7 +324,6 @@ export class CompanyService {
 
   trainBot(token:any){
     return this.httpClient.get(environment.endPoint+"intenttrain?token="+token);
->>>>>>> bc6635787e4852bb016fa6ce7843e82085e432c0
   }
 
 
