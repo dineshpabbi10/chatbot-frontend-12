@@ -158,7 +158,9 @@ export class CompanyService {
   }
 
 
-
+  getTrainHistory(){
+    return this.httpClient.get<any>(environment.endPoint+"trainstatus");
+  }
 
 
   addQuickLink(link: string): void {
@@ -292,8 +294,36 @@ export class CompanyService {
     return this.httpClient.get<any>(environment.endPoint + "api/transactions").pipe()
   }
 
+
   getMyPlan() {
     return this.httpClient.get<any>(environment.endPoint + "myplan").pipe()
+  }
+  
+  updateCompanyUserDetails(data:any):Observable<any>{
+    // Build Form Data
+    const formData = new FormData();
+    if(data.profile_pic){
+      formData.append('profile_pic', data.profile_pic);
+    }
+    formData.append('first_name',data.first_name);
+    formData.append('last_name',data.last_name);
+    formData.append('mobile_no',data.mobile_no);
+
+    console.log(data);
+
+    // Set headers
+    let headers = new HttpHeaders();
+    headers.set('Accept', "multipart/form-data");
+    return this.httpClient.post(environment.endPoint+"userprofile",formData,{headers});
+  }
+
+  getCompanyUserDetails():Observable<any>{
+    return this.httpClient.get(environment.endPoint+"userprofile");
+  }
+
+  trainBot(token:any){
+    return this.httpClient.get(environment.endPoint+"intenttrain?token="+token);
+
   }
 
 
