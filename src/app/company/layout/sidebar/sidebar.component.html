@@ -664,9 +664,14 @@
 
     <ul class="nav-container-child" *ngIf="paymentsOpen">
       <li [routerLinkActiveOptions]="{exact: true}" [routerLink]="['/company/invoices']" [routerLinkActive]="'active'">
-        Invoices</li>
+        Invoices
+      </li>
       <li [routerLinkActiveOptions]="{exact: true}" [routerLink]="['/company/payment']" [routerLinkActive]="'active'">
-        Payment</li>
+        Payment
+      </li>
+      <li [routerLinkActiveOptions]="{exact: true}" [routerLink]="['/company/my-plans']" [routerLinkActive]="'active'">
+        My Plans
+      </li>
     </ul>
 
     <li (click)="toggleDomainOpen($event,'integration')">
@@ -780,9 +785,11 @@
 
     <ul class="nav-container-child" *ngIf="botsOpen">
       <li [routerLinkActiveOptions]="{exact: true}" [routerLink]="['/company/training']" [routerLinkActive]="'active'">
-        Training</li>
+        Training
+      </li>
       <li [routerLinkActiveOptions]="{exact: true}" [routerLink]="['/company/web-link']" [routerLinkActive]="'active'">
-        Integration</li>
+        Integration
+      </li>
     </ul>
 
     <li>

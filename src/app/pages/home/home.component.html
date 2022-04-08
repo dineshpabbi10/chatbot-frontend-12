@@ -21,7 +21,8 @@
                     </form>
                 </div>
                 <div class="col-lg-7 col-md-12 col-sm-12 text-right">
-                    <img class="img-fluid banner-img" src="../../../assets/images/banner/front_slider_light.png" alt="image">
+                    <img class="img-fluid banner-img" src="../../../assets/images/banner/front_slider_light.png"
+                        alt="image">
                 </div>
             </div>
         </div>
@@ -218,7 +219,7 @@
                     <div class="mt-4">
                         <a class="button grey mt-2" href="#" role="button">Read More</a>
                     </div>
-                    <img class="img-fluid about-img mt-5" src="../../../assets/images/about/about-img.gif" alt="image">
+                    <img class="img-fluid about-img mt-5" src="../../../assets/images/home_bottom_gif.gif" alt="image">
                 </div>
             </div>
         </div>
@@ -239,7 +240,7 @@
             </div>
             <div class="owl-carousel mt-5" data-autoplay="true" data-loop="true" data-nav="false" data-dots="true"
                 data-items="2" data-items-laptop="2" data-items-tab="1" data-items-mobile="1" data-items-mobile-sm="1">
-                <div class="item">
+                <!-- <div class="item">
                     <div class="blog-box">
                         <div class="row no-gutters row-eq-height">
                             <div class="col-sm-6 iq-shadow">
@@ -265,8 +266,45 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="item">
+                </div> -->
+                <p-carousel [value]="clients" [numVisible]="2" [numScroll]="1" [responsiveOptions]="responsiveOptions">
+                    <ng-template let-client pTemplate="item">
+                        <div class="item">
+                            <div class="blog-box">
+                                <div class="row no-gutters row-eq-height">
+                                    <div class="col-sm-6 iq-shadow">
+                                        <div class="content">
+                                            <h5 class="mb-2"><a href="blog-detail.html">Established fact that a reader
+                                                    will
+                                                    be</a>
+                                            </h5>
+                                            <ul>
+                                                <li><span>By:</span> <a href="#">Admin</a></li>
+                                                <li>May 10, 2018</li>
+                                            </ul>
+                                            <p class="mt-4">Build virtual agents to automate business processes such as
+                                                front
+                                                desk
+                                                customer engagement.</p>
+                                            <ul class="iq-tag mt-4">
+                                                <li><a href="#">Design</a></li>
+                                                <li><a href="#">Style</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <img class="img-fluid" src="../../../assets/images/blog/blog-img1.jpg"
+                                            alt="image">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                    </ng-template>
+                </p-carousel>
+                <!-- <div class="item">
                     <div class="blog-box">
                         <div class="row no-gutters row-eq-height">
                             <div class="col-sm-6 iq-shadow">
@@ -346,7 +384,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
 
         </div>
@@ -374,8 +412,8 @@
                 <ng-template let-client pTemplate="item">
                     <div class="item">
                         <div class="clients-box text-center">
-                            <a href="{{client.web_url}}" target="m1"><img class="img-fluid" src="{{client.image_url}}" alt="image"
-                                    data-toggle="tooltip" title="HTML"> </a>
+                            <a href="{{client.web_url}}" target="m1"><img class="img-fluid" src="{{client.image_url}}"
+                                    alt="image" data-toggle="tooltip" title="HTML"> </a>
                         </div>
                     </div>
                 </ng-template>

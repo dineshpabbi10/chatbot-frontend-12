@@ -96,7 +96,7 @@ export class SidebarComponent implements OnInit {
       this.paymentClass = false
       this.botClass = false
 
-    } else if (url.includes("company/payments")) {
+    } else if (url.includes("company/payments") || url.includes("company/my-plans") || url.includes("company/invoices") ) {
       this.paymentClass = true
       this.domainClass = false;
       this.entityClass = false;

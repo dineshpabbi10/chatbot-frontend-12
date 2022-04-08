@@ -292,5 +292,9 @@ export class CompanyService {
     return this.httpClient.get<any>(environment.endPoint + "api/transactions").pipe()
   }
 
+  getMyPlan() {
+    return this.httpClient.get<any>(environment.endPoint + "myplan").pipe()
+  }
+
 
 }
