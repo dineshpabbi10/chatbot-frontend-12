@@ -299,6 +299,7 @@ export class CompanyService {
     return this.httpClient.get<any>(environment.endPoint + "myplan").pipe()
   }
   
+
   updateCompanyUserDetails(data:any):Observable<any>{
     // Build Form Data
     const formData = new FormData();
@@ -323,7 +324,6 @@ export class CompanyService {
 
   trainBot(token:any){
     return this.httpClient.get(environment.endPoint+"intenttrain?token="+token);
-
   }
 
 
