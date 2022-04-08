@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class CommonService {
 
-  public notificationSubject : Subject<any> = new Subject();
+  public notificationSubject: Subject<any> = new Subject();
   public notificationSubject$ = this.notificationSubject.asObservable();
 
   constructor(private httpClient: HttpClient) { }
@@ -72,6 +72,10 @@ export class CommonService {
     return this.httpClient.post<any>(environment.endPoint + 'api/subscription', body, this.httpOptions).pipe()
   }
 
+  subscribePlanWithPayment(body: any) {
+    return this.httpClient.put<any>(environment.endPoint + "api/subscription", body, this.httpOptions).pipe()
+  }
+
   contactUs(body: any) {
     return this.httpClient.post<any>(environment.endPoint + 'contactus', body).pipe()
   }
@@ -80,8 +84,8 @@ export class CommonService {
     return this.httpClient.get<any>('https://ipapi.co/json/');
   }
 
-  sendNotificationToken(token:string|null):Observable<any>{
-    return this.httpClient.post<any>(environment.endPoint+"pushnotification",{"device_token":token})
+  sendNotificationToken(token: string | null): Observable<any> {
+    return this.httpClient.post<any>(environment.endPoint + "pushnotification", { "device_token": token })
   }
 
 
