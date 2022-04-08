@@ -856,3 +856,15 @@ background: rgba(0,0,0,0.35);
 #tired:focus{
 	background-color: transparent!important;
 }
+#tired span.p-badge{
+	width: 20px!important;
+    height: 20px!important;
+    min-width: 20px!important;
+    top: 5px;
+    left: 2px;
+    line-height: 17px;
+    color: white;
+    background: purple;
+    font-weight: normal;
+    text-align: center;
+}
