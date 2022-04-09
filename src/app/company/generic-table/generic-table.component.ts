@@ -29,7 +29,7 @@ export class GenericTableComponent implements OnInit {
   @Input('showEdit')
   public showEdit: boolean = false;
 
-  constructor(private companyService: CompanyService, private toast: ToastrService, private router: Router, private loader: NgxUiLoaderModule) {
+  constructor(private companyService: CompanyService, private toast: ToastrService, private router: Router, private loader: NgxUiLoaderService) {
     this.cols = [];
     this.products = [];
   }
