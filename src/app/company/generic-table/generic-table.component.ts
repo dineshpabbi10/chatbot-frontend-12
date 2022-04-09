@@ -104,4 +104,8 @@ export class GenericTableComponent implements OnInit {
     this.router.navigate(['/company/bot-settings/' + data.token])
   }
 
+  downloadInvoice(data: any) {
+    console.log(data)
+  }
+
 }
