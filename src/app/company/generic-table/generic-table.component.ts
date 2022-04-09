@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { CompanyService } from '../services/company.service';
 import { Router } from '@angular/router';
-
+import { NgxUiLoaderService } from 'ngx-ui-loader';
 
 @Component({
   selector: 'app-generic-table',
@@ -29,7 +29,7 @@ export class GenericTableComponent implements OnInit {
   @Input('showEdit')
   public showEdit: boolean = false;
 
-  constructor(private companyService: CompanyService, private toast: ToastrService, private router: Router) {
+  constructor(private companyService: CompanyService, private toast: ToastrService, private router: Router, private loader: NgxUiLoaderModule) {
     this.cols = [];
     this.products = [];
   }
@@ -105,7 +105,9 @@ export class GenericTableComponent implements OnInit {
   }
 
   downloadInvoice(data: any) {
+    // this.loader.start()
     console.log(data)
+    // this.companyService.downloadInvoice()
   }
 
 }
