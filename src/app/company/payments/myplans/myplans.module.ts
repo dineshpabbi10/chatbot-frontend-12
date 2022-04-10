@@ -4,6 +4,9 @@ import { MyplansRoutingModule } from './myplans-routing.module';
 import { MyplansComponent } from './myplans.component'
 import { CommonImport } from 'src/app/common.imports';
 import { GenericTableModule } from '../../generic-table/generic-table.module';
+import { DialogModule } from 'primeng/dialog';
+import { ButtonModule } from 'primeng/button';
+
 
 @NgModule({
   declarations: [
@@ -13,7 +16,9 @@ import { GenericTableModule } from '../../generic-table/generic-table.module';
     CommonModule,
     MyplansRoutingModule,
     CommonImport,
-    GenericTableModule
+    GenericTableModule,
+    DialogModule,
+    ButtonModule
   ]
 })
 export class MyplansModule { }

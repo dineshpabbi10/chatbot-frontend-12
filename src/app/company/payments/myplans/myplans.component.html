@@ -1,14 +1,58 @@
 <br>
 <div class="row">
-    <div class="col-md-11">
-        <div class="card" id="add-agent-card">
-            <div class="right">
-                <div class="card" id="container-card-right">
+  <div class="col-md-11">
+    <div class="row">
 
-                    <app-generic-table [cols]="cols" [data]="myPlansList" component="my-plans" ></app-generic-table>
+      <div class="col-md-4" *ngFor="let myplan of myPlansList">
+        <div class="card" style="width: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title">{{ myplan.subscription_name }}
+              <ng-container *ngIf="myplan?.active; else planNotActive">
+                <span class="active-plan">Active</span>
+              </ng-container>
+              <ng-template #planNotActive>
+                <span class="inactive-plan">In-active</span>
+              </ng-template>
+            </h5>
+            <ng-container *ngIf="myplan.active;else inactivePlanDetails">
 
-                </div>
-            </div>
+              <p><b>Subscription Date:</b> {{ myplan.subscription_date }}</p>
+              <p><b>Expiry Date:</b> {{ myplan.expiry_date }}</p>
+
+            </ng-container>
+            <ng-template #inactivePlanDetails>
+              <br /><br />
+            </ng-template>
+            <ng-container *ngIf="!myplan.active">
+              <span class="btn btn-primary" style="float: right;" (click)="triggerWarning(myplan)">Turn on</span>
+            </ng-container>
+
+          </div>
         </div>
+      </div>
+
     </div>
+
+
+  </div>
 </div>
+
+
+<p-dialog [(visible)]="warningMsg" [style]="{width: '50vw'}" [baseZIndex]="10000">
+  <ng-template pTemplate="header">
+    Are you sure?
+  </ng-template>
+  If you choose to switch the plan
+  <ul>
+    <li>Case 1: if plan is upgraded, your services will be continued</li>
+    <li>Case 2: if plan is downgraded, your services will be adjusted accordingly.</li>
+  </ul>
+
+  <ng-template pTemplate="footer">
+    <p-button (click)="closeModal()">Cancel</p-button>
+    <p-button (click)="changePlan()">Submit</p-button>
+
+  </ng-template>
+
+
+</p-dialog>

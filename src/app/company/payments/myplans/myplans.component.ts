@@ -11,13 +11,8 @@ import { CompanyService } from '../../services/company.service';
 export class MyplansComponent implements OnInit {
 
   public myPlansList: any[] = []
-  public cols = [
-    { field: 'subscription_name', header: 'Plan Name' },
-    { field: 'transaction_date', header: 'Purchase Date' },
-    { field: 'valid', header: 'Valid' },
-    { field: 'active', header: 'Active' }
-  ]
-
+  public warningMsg: boolean = false
+  public upComingPlan: any
 
   constructor(private companyService: CompanyService, private loader: NgxUiLoaderService, private toastr: ToastrService) { }
 
@@ -37,6 +32,24 @@ export class MyplansComponent implements OnInit {
       }
       this.loader.stop()
     })
+  }
+
+  changePlan() {
+
+    console.log(this.upComingPlan)
+
+  }
+
+  triggerWarning(planDetail: any) {
+
+    this.upComingPlan = planDetail
+    this.warningMsg = true
+
+  }
+
+  closeModal() {
+    this.upComingPlan = {}
+    this.warningMsg = false
   }
 
 }
