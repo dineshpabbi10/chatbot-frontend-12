@@ -96,6 +96,7 @@ export class TrainingComponent implements OnInit {
     .subscribe((res) => {
       if (res.status) {
         this.toaster.success("Training started successfully");
+        this.getTrainHistory();
       }
       this.loader.stop();
     });
