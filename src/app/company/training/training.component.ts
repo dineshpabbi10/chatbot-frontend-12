@@ -19,10 +19,8 @@ export class TrainingComponent implements OnInit {
   public domainToken : any  = null;
   public SOCKET_URL = 'wss://34.131.139.183:4444/ws/chatroom/';
   public cols = [
-    { field: 'id', header: 'ID' },
     { field: 'datetime', header: 'Training Date' },
     { field: 'status', header: 'Training Status' },
-    { field: 'user', header: 'User' },
   ];
   public trainingHistory :any[] = []
 
