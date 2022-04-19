@@ -8,6 +8,7 @@ import { ToastrService } from 'ngx-toastr'
 import { CompanyService } from '../../../company/services/company.service'
 import { IPayPalConfig, ICreateOrderRequest } from 'ngx-paypal';
 import { PrimeNGConfig } from 'primeng/api';
+import { NavigationEnd, Router, RouterEvent } from '@angular/router';
 
 declare var paypal: any;
 
@@ -19,7 +20,7 @@ declare var paypal: any;
 export class PaymentComponent implements OnInit {
   @ViewChild('paypal', { static: true }) paypalElement: ElementRef
 
-  constructor(private fb: FormBuilder, private stripeService: StripeService, private commonService: CommonService, private toastr: ToastrService, private ngxService: NgxUiLoaderService, private companyService: CompanyService, private primengConfig: PrimeNGConfig) {
+  constructor(private fb: FormBuilder, private stripeService: StripeService, private commonService: CommonService, private toastr: ToastrService, private ngxService: NgxUiLoaderService, private companyService: CompanyService, private primengConfig: PrimeNGConfig, private router: Router) {
 
   }
 
@@ -283,17 +284,21 @@ export class PaymentComponent implements OnInit {
     const payLoad = {
       "trans_payload": body,
       "currency": this.currency,
-      "amount": this.cost
+      "amount": this.cost,
+      "upcomming": this.userData.subscription_name == this.subscribedPackage[0]?.subscription_name ? true : false
     }
-    console.log(payLoad)
+    // console.log(payLoad)
     this.ngxService.start()
     this.companyService.payment(payLoad).subscribe(data => {
       if (data.status) {
         this.ngxService.stop()
+        this.toastr.success(data.message, 'SUCCESS')
+        this.router.navigate(['/company/invoices'])
         return true;
       }
       else {
         this.ngxService.stop()
+        this.toastr.error(data.message, 'ERROR')
 
         return false
 

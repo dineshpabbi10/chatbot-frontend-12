@@ -33,6 +33,7 @@
                 </div>
             </th>
             <th *ngIf="component=='web-link'">Settings</th>
+            <th *ngIf="component=='my-plans'">Actions</th>
         </tr>
     </ng-template>
     <ng-template pTemplate="body" let-rowData let-columns="columns" let-rowIndex="rowIndex">
@@ -54,6 +55,9 @@
             </td>
             <td *ngIf="component=='web-link'" style="text-align: center;">
                 <span class="pi pi-cog" (click)="redirectToBotSettings(rowData)" style="cursor: pointer;"></span>
+            </td>
+            <td *ngIf="component=='my-plans'">
+                <span class="pi pi-cog" style="cursor: pointer;"></span>
             </td>
 
 

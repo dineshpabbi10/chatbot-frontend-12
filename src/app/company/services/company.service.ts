@@ -294,6 +294,12 @@ export class CompanyService {
     return this.httpClient.get<any>(environment.endPoint + "api/transactions").pipe()
   }
 
+
+  getMyPlan() {
+    return this.httpClient.get<any>(environment.endPoint + "myplan").pipe()
+  }
+  
+
   updateCompanyUserDetails(data:any):Observable<any>{
     // Build Form Data
     const formData = new FormData();
