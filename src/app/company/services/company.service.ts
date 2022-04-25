@@ -319,7 +319,7 @@ export class CompanyService {
   }
 
   getCompanyUserDetails(): Observable<any> {
-    return this.httpClient.get(environment.endPoint + "userprofile");
+    return this.httpClient.get(environment.endPoint + "userprofile").pipe();
   }
 
   trainBot(token: any) {
@@ -328,8 +328,11 @@ export class CompanyService {
 
 
   downloadInvoice(transactionId: any) {
-    return this.httpClient.get(environment.endPoint + "invoice?transaction=" + transactionId)
+    return this.httpClient.get(environment.endPoint + "invoice?transaction=" + transactionId).pipe()
   }
 
+  switchPlan(body: any) {
+    return this.httpClient.post(environment.endPoint + "switch/plan", body).pipe()
+  }
 
 }

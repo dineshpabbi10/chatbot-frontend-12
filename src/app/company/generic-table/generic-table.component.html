@@ -54,7 +54,7 @@
             <td *ngIf="component=='web-link'" style="text-align: center;">
                 <span class="pi pi-cog" (click)="redirectToBotSettings(rowData)" style="cursor: pointer;"></span>
             </td>
-            
+
 
             <td *ngIf="component=='invoices'">
                 <span class="pi pi-cloud-download" (click)="downloadInvoice(rowData)" style="cursor: pointer;"></span>
@@ -70,3 +70,8 @@
         <p-button type="button" icon="pi pi-cloud" styleClass="p-button-text"></p-button>
     </ng-template>
 </p-table>
+
+<p-dialog header="Invoice" [(visible)]="display_invoice_dialog">
+    <a href="{{pdfUrl}}" target="m1" class="btn btn-primary">View Invoice</a>&nbsp;
+    <span class="btn btn-secondary">Cancel</span>
+</p-dialog>

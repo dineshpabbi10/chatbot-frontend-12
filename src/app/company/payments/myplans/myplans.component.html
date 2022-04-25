@@ -38,10 +38,8 @@
 </div>
 
 
-<p-dialog [(visible)]="warningMsg" [style]="{width: '50vw'}" [baseZIndex]="10000">
-  <ng-template pTemplate="header">
-    Are you sure?
-  </ng-template>
+<p-dialog header="Are you sure?" [(visible)]="warningMsg" [style]="{width: '50vw'}" [baseZIndex]="10000">
+  
   If you choose to switch the plan
   <ul>
     <li>Case 1: if plan is upgraded, your services will be continued</li>

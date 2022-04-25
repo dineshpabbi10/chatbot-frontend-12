@@ -12,7 +12,8 @@ import { NgxUiLoaderService } from 'ngx-ui-loader';
 export class GenericTableComponent implements OnInit {
 
   public selectedRows: any[] = [];
-
+  pdfUrl = ''
+  display_invoice_dialog: Boolean = false
 
   @Input('cols')
   public cols: any[];
@@ -105,9 +106,18 @@ export class GenericTableComponent implements OnInit {
   }
 
   downloadInvoice(data: any) {
-    // this.loader.start()
-    console.log(data)
-    // this.companyService.downloadInvoice()
+    this.loader.start()
+    console.log(data.id)
+    this.companyService.downloadInvoice(data.id).subscribe((invoiceData: any) => {
+      if (invoiceData.status) {
+        this.display_invoice_dialog = true;
+        this.pdfUrl = invoiceData.data.url
+      }
+      else {
+
+      }
+      this.loader.stop()
+    })
   }
 
 }
