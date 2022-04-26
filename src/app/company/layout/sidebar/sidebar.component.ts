@@ -49,7 +49,7 @@ export class SidebarComponent implements OnInit {
     // console.log(type)
     if (type === "domain") {
       this.domainOpen = !this.domainOpen;
-    } else if (type === "bots") {
+    } else if (type === "intents") {
       this.intentsOpen = !this.intentsOpen;
     } else if (type === "entity") {
       this.entityOpen = !this.entityOpen;

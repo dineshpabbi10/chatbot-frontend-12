@@ -34,22 +34,22 @@
     <div id="edit-container">
       <div id="left-container-edit">
         <span style="margin-top: 20px;" class="p-float-label">
-          <input id="float-input" type="text" [value]="selectedRow?.intent" pInputText readonly> 
+          <input id="float-input" type="text" [value]="selectedRow?.entity_name" pInputText readonly> 
           <label for="float-input">Old Entity Name</label> <br/>
         </span>
   
         <span style="margin-top: 20px;" class="p-float-label">
-          <input id="float-usersay" type="text" [value]="selectedRow?.user_say" pInputText readonly> 
+          <input id="float-usersay" type="text" [value]="selectedRow?.entity_word" pInputText readonly> 
           <label for="float-usersay">Old Entity Word</label> <br/>
         </span>
   
         <span style="margin-top: 20px;" class="p-float-label">
-          <input id="float-response" type="text" [value]="selectedRow?.response" pInputText readonly> 
+          <input id="float-response" type="text" [value]="selectedRow?.message" pInputText readonly> 
           <label for="float-response">Old Message</label> <br/>
         </span>
   
         <span style="margin-top: 20px;" class="p-float-label">
-          <input id="float-domain" type="text" [value]="selectedRow?.domain" pInputText readonly> 
+          <input id="float-domain" type="text" [value]="selectedRow?.response" pInputText readonly> 
           <label for="float-domain">Old Response</label> <br/>
         </span>
       </div>
@@ -57,17 +57,17 @@
       <div id="right-container-edit">
         <form id="edit-form" [formGroup]="form">
           <span style="margin-top: 20px;" class="p-float-label">
-            <input id="float-input" type="text" formControlName="newIntent" pInputText> 
+            <input id="float-input" type="text" formControlName="newEntityName" pInputText> 
             <label for="float-input">New Entity Name</label> <br/>
           </span>
     
           <span style="margin-top: 20px;" class="p-float-label">
-            <input id="float-usersay" type="text" formControlName="newUserSay"  pInputText> 
+            <input id="float-usersay" type="text" formControlName="newEntityWords"  pInputText> 
             <label for="float-usersay">New Entity Words (separated by semicolon)</label> <br/>
           </span>
     
           <span style="margin-top: 20px;" class="p-float-label">
-            <input id="float-response" type="text" formControlName="newResponse" pInputText> 
+            <input id="float-response" type="text" formControlName="newMessage" pInputText> 
             <label for="float-response">New Message</label> <br/>
           </span>
 

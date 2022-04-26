@@ -54,6 +54,8 @@ export class CompanyComponent implements OnInit {
       return "Create Entities"
     } else if (this.router.url == "/company/payment") {
       return "Payments"
+    } else if (this.router.url == "/company/training") {
+      return "Training"
     }
 
     return "Not Found";

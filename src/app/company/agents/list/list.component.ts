@@ -14,11 +14,9 @@ import { CompanyService } from '../../services/company.service';
 export class ListComponent implements OnInit {
   public agentList: any[] = [];
   public cols = [
-    { field: 'human_agent', header: 'Name' },
-    { field: 'company', header: 'Company' },
+    { field: 'name', header: 'Name' },
     { field: 'no_of_chats', header: 'No. Of Chats' },
     { field: 'online', header: 'Online' },
-    { field: 'chat_history', header: 'Chat History' },
   ];
 
   constructor(
@@ -66,7 +64,7 @@ export class ListComponent implements OnInit {
       )
       .subscribe((res) => {
         if (res.status) {
-          this.agentList = res.data;
+          this.agentList = res.data.allagent;
         }
         this.loader.stop();
       });
