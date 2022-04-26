@@ -29,7 +29,7 @@ export class ViewComponent implements OnInit {
     newEntityName : new FormControl('',[Validators.required,this.companyService.noWhitespaceValidator]),
     newEntityWords : new FormControl('',[Validators.required,this.companyService.noWhitespaceValidator]),
     newMessage : new FormControl('',[Validators.required,this.companyService.noWhitespaceValidator]),
-    newReponse : new FormControl('',[Validators.required,this.companyService.noWhitespaceValidator]),
+    newResponse : new FormControl('',[Validators.required,this.companyService.noWhitespaceValidator]),
   });
 
 
@@ -75,6 +75,7 @@ export class ViewComponent implements OnInit {
     this.companyService.selectedRecord$.subscribe((data) => {
       if (data.component === 'entity' && data.action === 'edit') {
         this.selectedRow = data.payload[0];
+        console.log(this.selectedRow);
       }
     });
 

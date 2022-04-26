@@ -71,7 +71,7 @@ export class FaqUploadComponent implements OnInit {
     formData.append('trainfile', this.uploadForm.get('file')?.value);
     formData.append("domain",this.uploadForm.get('selectedDomain')?.value);
     if (
-      this.uploadForm.get('file')?.value.type === '.csv' ||
+      this.uploadForm.get('file')?.value.type === 'text/csv' ||
       this.uploadForm.get('file')?.value.type ===
         'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' ||
       this.uploadForm.get('file')?.value.type === 'application/vnd.ms-excel'

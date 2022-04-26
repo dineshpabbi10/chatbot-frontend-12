@@ -104,8 +104,8 @@ export class CreateComponent implements OnInit {
     ) {
       this.companyService.createIntent({
         "intent":this.intentName.value,
-        "user_say":this.companyService.getUserMessages().join(";"),
-        "response":this.companyService.getResponseMessages().join(";"),
+        "user_say":this.companyService.getUserMessages(),
+        "response":this.companyService.getResponseMessages(),
         "domain":this.selectedDomain.value
       }).pipe(catchError(err=>of("error")))
       .subscribe(res=>{
@@ -119,6 +119,7 @@ export class CreateComponent implements OnInit {
         this.loader.stop("submitForm");
       })
     }else{
+      this.loader.stop("submitForm");
       this.toaster.error("Error sending request, Data entered in form invalid or missing");
     }
   }

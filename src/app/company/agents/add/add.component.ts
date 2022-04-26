@@ -44,8 +44,7 @@ export class AddComponent implements OnInit {
       "last_name": this.form.get('last_name')?.value,
       "username": this.form.get('username')?.value,
       "email": this.form.get('email')?.value,
-      "password1": this.form.get('password1')?.value,
-      "password2": this.form.get('password2')?.value,
+      "password": this.form.get('password1')?.value,
       "mobile_no": this.form.get('mobile_no')?.value
     }).pipe(
       catchError(err => {
@@ -53,6 +52,7 @@ export class AddComponent implements OnInit {
       })
     ).subscribe(res => {
       if (res.status) {
+        this.form.reset();
         this.toast.success(res.message);
       } else {
         this.toast.error(res.message);
