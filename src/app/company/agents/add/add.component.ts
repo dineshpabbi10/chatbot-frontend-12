@@ -14,12 +14,12 @@ import { CompanyService } from '../../services/company.service';
 export class AddComponent implements OnInit {
 
   public form: FormGroup = new FormGroup({
-    "first_name": new FormControl('', [Validators.required, this.companyService.noWhitespaceValidator]),
-    "last_name": new FormControl('', [Validators.required, this.companyService.noWhitespaceValidator]),
-    "username": new FormControl('', [Validators.required, this.companyService.noWhitespaceValidator]),
-    "email": new FormControl('', [Validators.required, this.companyService.noWhitespaceValidator]),
-    "password1": new FormControl('', [Validators.required, this.companyService.noWhitespaceValidator]),
-    "password2": new FormControl('', [Validators.required, this.companyService.noWhitespaceValidator]),
+    "first_name": new FormControl('', [Validators.required,Validators.pattern('[a-zA-Z ]*'), this.companyService.noWhitespaceValidator]),
+    "last_name": new FormControl('', [Validators.required,Validators.pattern('[a-zA-Z ]*'), this.companyService.noWhitespaceValidator]),
+    "username": new FormControl('', [Validators.required,Validators.pattern('[a-zA-Z0-9]*'), this.companyService.noWhitespaceValidator]),
+    "email": new FormControl('', [Validators.required,Validators.email, this.companyService.noWhitespaceValidator]),
+    "password1": new FormControl('', [Validators.required,Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}'), this.companyService.noWhitespaceValidator]),
+    "password2": new FormControl('', [Validators.required,Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}'), this.companyService.noWhitespaceValidator]),
     "mobile_no": new FormControl('', [Validators.required])
   }, {
     validators: [this.companyService.passwordMatchValidator()]

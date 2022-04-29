@@ -8,6 +8,7 @@
 
     <div *ngIf="selectedChatList !== 'Resolved Chat' else incomingChatDiv" class="chat-list-chats">
 
+        <span style="width: 100%;display: inline-block;text-align: center;" *ngIf="chatlist.length === 0">No Chats Available</span>
         <div (click)="setSelectedRoom(chat?.room_code);sendSelectedRoom(chat?.room_code);setSelectedClient(chat?.username)" *ngFor="let chat of chatlist" [ngClass]="{'card-active':chat.room_code === selectedChat,'card':chat.room_code !== selectedChat}">
             <div class="message-header">
             <div  pBadge
@@ -29,6 +30,7 @@
     </div>
 
     <ng-template #incomingChatDiv>
+        <span style="width: 100%;display: inline-block;text-align: center;" *ngIf="chatlist.length === 0">No Chats Available</span>
       <div (click)="setSelectedRoom(chat?.id);sendSelectedRoom(chat?.user_id.split('-').join(''));setSelectedClient(chat?.client)" *ngFor="let chat of chatlist" [ngClass]="{'card-active':chat.id === selectedChat,'card':chat.id !== selectedChat}">
             <div class="message-header">
                 <div
