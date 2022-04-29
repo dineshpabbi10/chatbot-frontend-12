@@ -20,7 +20,7 @@ export class ChatBoxComponent implements OnInit {
   public chatInput = new FormControl('', [Validators.required]);
   public chatList: any[] | null = null;
   public clientName: any = '';
-  @ViewChild('target') private chatListContainer: ElementRef;
+  @ViewChild('target') private chatListContainer: ElementRef | any;
   public selectedChatList: string = '';
   public file: File | null = null;
   public display = false;
