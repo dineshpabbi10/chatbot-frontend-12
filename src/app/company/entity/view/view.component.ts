@@ -87,8 +87,8 @@ export class ViewComponent implements OnInit {
         "response":this.selectedRow.response,
         "newentity_name":this.form.get('newEntityName')?.value,
         "newentity_word":this.form.get('newEntityWords')?.value,
-        "newmessage":this.form.get('newEntityMessage')?.value,
-        "newresponse":this.form.get('newEntityResponse')?.value,
+        "newmessage":this.form.get('newMessage')?.value,
+        "newresponse":this.form.get('newResponse')?.value,
         "intent":this.selectedRow.intent,
         "intent_id":this.selectedRow.intent_id
     }
