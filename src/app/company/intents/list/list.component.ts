@@ -25,8 +25,8 @@ export class ListComponent implements OnInit {
   public cols = [
     { field: 'domain', header: 'Domain' },
     { field: 'intent', header: 'Intent' },
-    { field: 'response', header: 'Response' },
     { field: 'user_say', header: 'User Response' },
+    { field: 'response', header: 'Response' },
   ];
  
   constructor(

@@ -33,7 +33,7 @@ export class AddDomainComponent implements OnInit {
     .subscribe(res=>{
       if(res !== "error"){
         this.toastNotification.success("Domain Created Successfully !");  
-        this.domainName.setValue('');
+        this.domainName.reset();
       }  
       this.loader.stop("createDomain");
     })

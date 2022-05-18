@@ -63,9 +63,12 @@
                         <label for="exampleFormControlInput1">Password Match Confirmation</label>
                         <input readonly type="text" class="form-control" id="statusInput" placeholder="" [ngClass]="{'orange':form.errors?.confirmPasswordError , 'green':!form.errors?.confirmPasswordError}" [value]="form.errors?.confirmPasswordError ? 'Passwords Do Not Match' : 'Passwords Match'">
                     </div>
-                
 
-                    <!-- Phone -->
+                    <div class="alert alert-primary" role="alert">
+                      Password should be of min length : 8 characters and contain atleast 1 uppercase,1 lowercase , 1 special character and 1 number.
+                    </div>
+
+                    <!-- Submit -->
                     <button (click)="submitForm()" [disabled]="form.invalid" type="button" class="btn btn-theme">Submit</button>
                 </div>
             </form>

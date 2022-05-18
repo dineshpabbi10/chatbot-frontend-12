@@ -60,6 +60,7 @@ export class GenericTableComponent implements OnInit {
     } else {
       // Use RxJs to communicate based on component
       this.companyService.sendSelectedRecord(this.component, "delete", this.selectedRows);
+      this.selectedRows = [];
     }
 
   }

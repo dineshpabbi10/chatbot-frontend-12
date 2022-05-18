@@ -29,7 +29,7 @@ export class ViewComponent implements OnInit {
     newEntityName : new FormControl('',[Validators.required,this.companyService.noWhitespaceValidator]),
     newEntityWords : new FormControl('',[Validators.required,this.companyService.noWhitespaceValidator]),
     newMessage : new FormControl('',[Validators.required,this.companyService.noWhitespaceValidator]),
-    newReponse : new FormControl('',[Validators.required,this.companyService.noWhitespaceValidator]),
+    newResponse : new FormControl('',[Validators.required,this.companyService.noWhitespaceValidator]),
   });
 
 
@@ -75,6 +75,7 @@ export class ViewComponent implements OnInit {
     this.companyService.selectedRecord$.subscribe((data) => {
       if (data.component === 'entity' && data.action === 'edit') {
         this.selectedRow = data.payload[0];
+        console.log(this.selectedRow);
       }
     });
 
@@ -86,8 +87,8 @@ export class ViewComponent implements OnInit {
         "response":this.selectedRow.response,
         "newentity_name":this.form.get('newEntityName')?.value,
         "newentity_word":this.form.get('newEntityWords')?.value,
-        "newmessage":this.form.get('newEntityMessage')?.value,
-        "newresponse":this.form.get('newEntityResponse')?.value,
+        "newmessage":this.form.get('newMessage')?.value,
+        "newresponse":this.form.get('newResponse')?.value,
         "intent":this.selectedRow.intent,
         "intent_id":this.selectedRow.intent_id
     }
