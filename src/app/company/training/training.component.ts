@@ -18,7 +18,7 @@ export class TrainingComponent implements OnInit {
   public isTraining = false;
   public domainToken: any = null;
   public userId: any = null;
-  public SOCKET_URL_BASE = 'wss://34.131.139.183:4444/ws/chatroom/';
+  public SOCKET_URL_BASE = environment.socketBase || 'wss://34.131.3.178:4444/ws/chatroom/';
   public SOCKET_URL = '';
   public cols = [
     { field: 'datetime', header: 'Training Date' },
@@ -46,6 +46,7 @@ export class TrainingComponent implements OnInit {
       .subscribe((res) => {
         if (res.status) {
           this.userId = res.data.userID;
+          console.log(this.userId);
           this.SOCKET_URL = this.SOCKET_URL_BASE + this.userId + '/'
           this.companySocketService.openWebSocketConnection(
             this.SOCKET_URL

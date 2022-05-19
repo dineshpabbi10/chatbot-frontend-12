@@ -5,6 +5,7 @@ import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { MenuItem } from 'primeng/api';
 import { of } from 'rxjs';
 import { catchError, takeLast } from 'rxjs/operators';
+import { environment } from 'src/environments/environment.prod';
 import { AgentServiceService } from '../../services/agent-service.service';
 import { WebSocketService } from '../../services/web-socket.service';
 
@@ -15,8 +16,8 @@ import { WebSocketService } from '../../services/web-socket.service';
 })
 export class ChatBoxComponent implements OnInit {
   public chat_id = '';
-  public SOCKET_URL_BASE = 'wss://34.131.139.183:4444/ws/chatroom/';
-  public SOCKET_URL = 'wss://34.131.139.183:4444/ws/chatroom/';
+  public SOCKET_URL_BASE = environment.socketBase || 'wss://34.131.3.178:4444/ws/chatroom/';
+  public SOCKET_URL =environment.socketBase || 'wss://34.131.3.178:4444/ws/chatroom/';
   public chatInput = new FormControl('', [Validators.required]);
   public chatList: any[] | null = null;
   public clientName: any = '';
