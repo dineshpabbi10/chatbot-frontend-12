@@ -116,6 +116,7 @@ export class CompanyComponent implements OnInit {
     .subscribe((res:any) => {
       if (res.status) {
         this.notificationsList = res.data;
+        this.notificationsList = this.notificationsList.filter((elem:any)=>elem.read !== true)
       }
       if(withLoader){
         this.ngxService.stop();

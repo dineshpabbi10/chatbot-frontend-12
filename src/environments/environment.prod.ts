@@ -27,5 +27,3 @@ export const DEV: Environment = {
 }
 
 export const environment: Environment = DEV;
-
-
