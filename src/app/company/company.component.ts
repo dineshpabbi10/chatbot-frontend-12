@@ -1,8 +1,12 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { CommonService } from '../services/common.service';
 import { ToastrService } from 'ngx-toastr'
 import { NgxUiLoaderService } from 'ngx-ui-loader';
+import { catchError } from 'rxjs/operators';
+import { of } from 'rxjs';
+import { CompanyService } from './services/company.service';
+import { CommonService } from '../services/common.service';
+import { AngularFireMessaging } from '@angular/fire/compat/messaging';
 
 @Component({
   selector: 'app-company',
@@ -13,10 +17,28 @@ export class CompanyComponent implements OnInit {
 
   public sidebarOpen = true;
   public smallScreen: boolean = false;
-  constructor(private CommonService: CommonService, private toastr: ToastrService, private ngxService: NgxUiLoaderService, public router: Router) { }
+  public notificationsList:any[] = [];
+  constructor(private afMessaging : AngularFireMessaging,private companyService: CompanyService,private CommonService: CommonService, private toastr: ToastrService, private ngxService: NgxUiLoaderService, public router: Router) { }
 
   ngOnInit(): void {
     this.smallScreen = window.innerWidth < 601;
+    this.fetchNotifications(true);
+
+    // Check for notifications from firebase
+    this.afMessaging.messages.subscribe((_messaging:any) => {
+      _messaging.onBackgroundMessage = _messaging?.onBackgroundMessage?.bind(_messaging); 
+      
+      // Send A message using a subject to refetch chatlist and notification
+      this.CommonService.notificationSubject.next({
+        received:true
+      });
+
+      this.fetchNotifications(false);
+    });
+
+    this.CommonService.notificationSubject$.subscribe(()=>{
+      this.toastr.info("New Notitifications received !");
+    });
   }
 
   toggleSidebar() {
@@ -63,7 +85,7 @@ export class CompanyComponent implements OnInit {
 
   logout() {
     this.ngxService.start()
-    this.CommonService.logout(null).subscribe(data => {
+    this.CommonService.logout(null).subscribe((data:any) => {
       if (data.status) {
         localStorage.removeItem('company_token')
         localStorage.removeItem('data')
@@ -80,6 +102,55 @@ export class CompanyComponent implements OnInit {
   @HostListener('window:resize', ['$event'])
   onResize() {
     this.smallScreen = window.innerWidth < 600;
+  }
+
+  fetchNotifications(withLoader:Boolean){
+    if(withLoader){
+      this.ngxService.start();
+    }
+
+    this.companyService.getNotifications().pipe(catchError(err => {
+      this.toastr.error(err.message);
+      return of(err.message);
+    }))
+    .subscribe((res:any) => {
+      if (res.status) {
+        this.notificationsList = res.data;
+      }
+      if(withLoader){
+        this.ngxService.stop();
+      }
+    })
+  }
+
+  markAllRead(){
+    this.ngxService.start();
+    this.companyService.clearAllNotification().pipe(catchError(err => {
+      this.toastr.error(err.message);
+      return of(err.message);
+    }))
+    .subscribe((res:any) => {
+      if (res.status) {
+        this.toastr.success(res.message);
+        this.fetchNotifications(true);
+      }
+      this.ngxService.stop();
+    })
+  }
+
+  markAsRead(id:any){
+    this.ngxService.start();
+    this.companyService.clearNotificationById(id).pipe(catchError(err => {
+      this.toastr.error(err.message);
+      return of(err.message);
+    }))
+    .subscribe((res:any) => {
+      if (res.status) {
+        this.toastr.success(res.message);
+        this.fetchNotifications(true);
+      }
+      this.ngxService.stop();
+    })
   }
 
 }

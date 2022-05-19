@@ -326,5 +326,20 @@ export class CompanyService {
     return this.httpClient.get(environment.endPoint+"intenttrain?token="+token);
   }
 
+  getNotifications() {
+    return this.httpClient.get(environment.endPoint + "notifications");
+  }
+
+  clearAllNotification() {
+    return this.httpClient.post(environment.endPoint + "notifications", { "clear_all": true })
+  }
+
+  clearNotificationById(id: any) {
+    return this.httpClient.post(environment.endPoint + "notifications", {
+      "clear_all": false,
+      "id": id
+    })
+  }
+
 
 }
