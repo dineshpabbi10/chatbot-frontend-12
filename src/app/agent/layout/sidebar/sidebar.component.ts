@@ -183,6 +183,7 @@ export class SidebarComponent implements OnInit {
     .subscribe(res => {
       if (res.status) {
         this.notificationsList = res.data;
+        this.notificationsList = this.notificationsList.filter((elem:any)=>elem.read !== true);
       }
       if(withLoader){
         this.loader.stop();
