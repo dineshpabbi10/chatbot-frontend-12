@@ -46,8 +46,8 @@ export class ChatListComponent implements OnInit {
         this.selectedChatCode = selectedChatList;
     });
 
-    this.commonService.notificationSubject$.subscribe(()=>{
-      this.toast.info("New Notitifications received !");
+    this.commonService.notificationSubject$.subscribe((data:any)=>{
+      this.toast.info(data.body);
       this.getChatListWithoutLoader(this.selectedChatCode,false);
     });
 

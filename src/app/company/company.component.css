@@ -1,3 +1,12 @@
+::ng-deep .p-card .p-card-content{
+    padding: 7px 10px !important;
+}
+
+::ng-deep .p-card .p-card-body{
+    padding: 0px !important;
+    margin: 8px !important;
+}
+
 .notif-container {
     overflow-y: scroll;
     min-height: 400px;
