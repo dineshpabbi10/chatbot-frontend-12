@@ -35,8 +35,7 @@
 }
 
 .navbar-open-button{
-    color: black !important;
-    background-color: white !important;
+    background-color: #162137 !important;
 }
 
 
@@ -53,12 +52,11 @@
     border: none;
     outline: none;
     background-color: #7d4ac7;
-    width: 50px;
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
     cursor: pointer;
     transition: transform 0.3s;
-   
+    z-index: 99;
     transition: all 0.5s;
     
 }
@@ -69,7 +67,8 @@
     transform: scale(0.8);
 }
 .navbar-toggle svg{
-        width: 30px;
+    width: 20px;
+    height: 15px;
     fill: #fff;
 }
 .title-bar{
