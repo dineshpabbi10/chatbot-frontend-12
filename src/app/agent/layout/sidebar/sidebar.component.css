@@ -1,5 +1,10 @@
-::ng-deep .p-card {
-    margin-bottom: 10px;
+::ng-deep .notif-cards .p-card .p-card-content{
+    padding: 7px 10px !important;
+}
+
+::ng-deep .notif-cards .p-card .p-card-body{
+    padding: 0px !important;
+    margin: 8px !important;
 }
 
 .agent-sidebar {
