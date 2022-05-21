@@ -6,7 +6,6 @@ import { CommonService } from '../../../services/common.service';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { ToastrService } from 'ngx-toastr'
 import { CompanyService } from '../../../company/services/company.service'
-import { IPayPalConfig, ICreateOrderRequest } from 'ngx-paypal';
 import { PrimeNGConfig } from 'primeng/api';
 import { NavigationEnd, Router, RouterEvent } from '@angular/router';
 
@@ -47,7 +46,7 @@ export class PaymentComponent implements OnInit {
     }
   };
   displayBasic: boolean;
-  @ViewChild(StripeCardComponent) card: StripeCardComponent;
+  
   countryData: any
   indiaPayment: Boolean = false
   nonIndianPayment: Boolean = false
@@ -157,42 +156,42 @@ export class PaymentComponent implements OnInit {
     });
   }
 
-  initializePayment(amount: number) {
-    const paymentHandler = (<any>window).StripeCheckout.configure({
-      key: 'pk_test_51KcmDpSH2WHHeQYxOZNe4Wf3tmteDLlV1tE15akGDwqzFRRW86ZRzQEBc7PTE2papE6In0ZOqTpp5kvQu12y93xp00iFcY2ZsL',
-      locale: 'auto',
-      token: function (stripeToken: any) {
-        console.log(stripeToken)
-        alert('Stripe token generated!');
-      }
-    });
+  // initializePayment(amount: number) {
+  //   const paymentHandler = (<any>window).StripeCheckout.configure({
+  //     key: 'pk_test_51KcmDpSH2WHHeQYxOZNe4Wf3tmteDLlV1tE15akGDwqzFRRW86ZRzQEBc7PTE2papE6In0ZOqTpp5kvQu12y93xp00iFcY2ZsL',
+  //     locale: 'auto',
+  //     token: function (stripeToken: any) {
+  //       console.log(stripeToken)
+  //       alert('Stripe token generated!');
+  //     }
+  //   });
 
-    paymentHandler.open({
-      name: 'FreakyJolly',
-      description: 'Buying a Hot Coffee',
-      amount: amount * 100
-    });
-  }
+  //   paymentHandler.open({
+  //     name: 'FreakyJolly',
+  //     description: 'Buying a Hot Coffee',
+  //     amount: amount * 100
+  //   });
+  // }
 
-  invokeStripe() {
-    if (!window.document.getElementById('stripe-script')) {
-      const script = window.document.createElement("script");
-      script.id = "stripe-script";
-      script.type = "text/javascript";
-      script.src = "https://checkout.stripe.com/checkout.js";
-      script.onload = () => {
-        this.paymentHandler = (<any>window).StripeCheckout.configure({
-          key: 'sk_test_51KcmDpSH2WHHeQYxfyPuFqnI6Ui529xrebQ3XmasiWllKHrOYBlxuubMNjONynJ0pLGZgsAcniosQGsTcDyGY23900LSwbzVcO',
-          locale: 'auto',
-          token: function (stripeToken: any) {
-            console.log(stripeToken)
-            alert('Payment has been successfull!');
-          }
-        });
-      }
-      window.document.body.appendChild(script);
-    }
-  }
+  // invokeStripe() {
+  //   if (!window.document.getElementById('stripe-script')) {
+  //     const script = window.document.createElement("script");
+  //     script.id = "stripe-script";
+  //     script.type = "text/javascript";
+  //     script.src = "https://checkout.stripe.com/checkout.js";
+  //     script.onload = () => {
+  //       this.paymentHandler = (<any>window).StripeCheckout.configure({
+  //         key: 'sk_test_51KcmDpSH2WHHeQYxfyPuFqnI6Ui529xrebQ3XmasiWllKHrOYBlxuubMNjONynJ0pLGZgsAcniosQGsTcDyGY23900LSwbzVcO',
+  //         locale: 'auto',
+  //         token: function (stripeToken: any) {
+  //           console.log(stripeToken)
+  //           alert('Payment has been successfull!');
+  //         }
+  //       });
+  //     }
+  //     window.document.body.appendChild(script);
+  //   }
+  // }
 
   payWithRazorpay() {
     // console.log(cost)
