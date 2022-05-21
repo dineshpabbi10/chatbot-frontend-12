@@ -13,8 +13,8 @@ export interface Environment {
 
 
 export const DEV: Environment = {
-  endPoint: 'http://34.131.3.178:8000/',
-  mediaEndPoint: 'http://34.131.3.178:8000',
+  endPoint: 'https://34.131.3.178:9000/',
+  mediaEndPoint: 'https://34.131.3.178:9000',
   socketBase:'wss://34.131.3.178:4444/ws/chatroom/',
   production: true,
   firebase: {
