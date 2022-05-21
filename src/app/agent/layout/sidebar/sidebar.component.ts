@@ -63,7 +63,9 @@ export class SidebarComponent implements OnInit {
       
       // Send A message using a subject to refetch chatlist and notification
       this.CommonService.notificationSubject.next({
-        received:true
+        received:true,
+        title:_messaging.notification.title,
+        body: _messaging.notification.body,
       });
 
       this.fetchNotifications(false);
