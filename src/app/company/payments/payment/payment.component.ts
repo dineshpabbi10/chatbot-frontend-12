@@ -80,7 +80,7 @@ export class PaymentComponent implements OnInit {
   stripeTest: FormGroup | any;
   billingMonthly = true
   cost: number = 0.00
-  currency: string = ""
+  currency: string = "CAD"
   product = {
     price: 777.77,
     description: 'Paypal'
@@ -118,6 +118,7 @@ export class PaymentComponent implements OnInit {
     this.activePlan = this.subscribedPackage[0]?.subscription_name
     this.cost = this.subscribedPackage[0]?.price_monthly
     this.currency = this.subscribedPackage[0]?.currency
+    this.createScript(`https://www.paypal.com/sdk/js?currency=${this.currency}&client-id=AYvU7p49APJ3TWCP7EPq6Z1Sm7LijDirPdDI-G6DjNasJ2tyIVCwb0IZL1v5cKy_tw7qPr_2ybS62gCR&disable-funding=credit`)
     // this.commonService.getCountryUsingIp().subscribe(data => {
     //   // console.log(data)
     //   if (data.country_name == 'India') {
@@ -322,6 +323,13 @@ export class PaymentComponent implements OnInit {
 
 
 
+  }
+
+  createScript(url:string){
+    const node = document.createElement('script');
+    node.src = url;
+    node.type = 'text/javascript';
+    document.getElementsByTagName('head')[0].appendChild(node);
   }
 
 
