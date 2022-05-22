@@ -1,0 +1,15 @@
+.col-lg-6 h4, p {
+    text-align: center;
+}
+
+.image-verified {
+    width: 100%;
+}
+
+.image-not-verified {
+    margin-left: 20%;
+}
+
+.btn-center {
+    text-align: center;
+}

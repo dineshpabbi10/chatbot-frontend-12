@@ -88,5 +88,13 @@ export class CommonService {
     return this.httpClient.post<any>(environment.endPoint + "pushnotification", { "device_token": token })
   }
 
+  requestForEmailVerification(userId: string, confirmationToken: string) {
+    return this.httpClient.get<any>(environment.endPoint + 'activate?user_id=' + userId + '&confirmation_token=' + confirmationToken);
+  }
+
+  resendEmailVerificationLink(body: any) {
+    return this.httpClient.post<any>(environment.endPoint + "resend_confirmation", body)
+  }
+
 
 }

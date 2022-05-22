@@ -20,8 +20,6 @@
     </div>
 </section>
 
-
-
 <div class="main-content">
     <!--================================
                               Login -->
@@ -30,24 +28,17 @@
             <div class="row align-items-center">
                 <div class="col-lg-3"></div>
                 <div class="col-lg-6 col-md-12 col-sm-12 r-mt3">
-                    <ng-container *ngIf="isEmailVerified==true; else emailNotVerfiedBlock">
-                        <h4>Your Email Has Been Verified Successfully</h4>
-                        <p>{{message}}</p>
-                        <img src="../../../../assets/images/email_verified.jpg" class="image-verified" />
-                    </ng-container>
-                    <ng-template #emailNotVerfiedBlock>
-                        <h4>Your Email Has Not Been Verified Successfully</h4>
-                        <p>{{message}}</p>
-                        <div class="btn-center">
-                            <img src="../../../../assets/images/email_not_verified.png" />
-                            <br />
-
-                            <button (click)="resendEmailVeriLink()" class="btn btn-primary">Resend Verification
-                                Link</button>
-
+                    <form [formGroup]="resendVerificationLinkForm">
+                        <div class="form-group">
+                            <label class="mb-0" for="username">Email Address</label>
+                            <input type="email" class="form-control" formControlName="email" id="email" placeholder="Email">
                         </div>
+                        <div class="form-group text-center">
+                            <button class="btn btn-primary" [disabled]="resendVerificationLinkForm.invalid"
+                                (click)="submit()">Resend Verification Link</button>
+                        </div>
+                    </form>
 
-                    </ng-template>
                 </div>
             </div>
         </div>

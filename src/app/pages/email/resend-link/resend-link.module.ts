@@ -1,19 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { VerifyRoutingModule } from './verify-routing.module';
-import { VerifyComponent } from './verify.component';
+import { ResendLinkRoutingModule } from './resend-link-routing.module';
+import { ResendLinkComponent } from './resend-link.component';
 import { CommonImport } from '../../../common.imports'
+
 
 @NgModule({
   declarations: [
-    VerifyComponent
+    ResendLinkComponent
   ],
   imports: [
     CommonModule,
-    VerifyRoutingModule,
+    ResendLinkRoutingModule,
     CommonImport
-
   ]
 })
-export class VerifyModule { }
+export class ResendLinkModule { }

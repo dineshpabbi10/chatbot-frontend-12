@@ -28,7 +28,7 @@ export class UserInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
 
     // console.log(this.router.url)
-    if (this.router.url == "/login" || this.router.url == "/register" || this.router.url == "/pricing" || this.router.url == "/password/forget" || this.router.url.includes("/password/reset")) {
+    if (this.router.url == "/login" || this.router.url == "/register" || this.router.url == "/pricing" || this.router.url == "/password/forget" || this.router.url.includes("/password/reset") || this.router.url.includes('email/verify') || this.router.url.includes('email/verify/resend')) {
       return next.handle(request);
     }
 
