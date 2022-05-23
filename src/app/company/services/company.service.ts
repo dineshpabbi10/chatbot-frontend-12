@@ -96,6 +96,10 @@ export class CompanyService {
     return this.httpClient.get<any>(environment.endPoint + 'intent');
   }
 
+  getIntentListDropdown(): Observable<any> {
+    return this.httpClient.get<any>(environment.endPoint + 'intentlist');
+  }
+
   createIntent(data: any): Observable<any> {
     return this.httpClient.post<any>(environment.endPoint + 'intent', data);
   }
