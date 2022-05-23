@@ -78,7 +78,7 @@ export class ChatListComponent implements OnInit {
             this.sendSelectedRoom(
               this.chatlist[0]?.user_id?.split('-')?.join('')
             );
-            this.setSelectedClient(this.chatlist[0].client);
+            this.setSelectedClient(this.chatlist[0].user_info);
             }
           }
           this.setPage(chatType);
@@ -101,7 +101,7 @@ export class ChatListComponent implements OnInit {
             this.sendSelectedRoom(
               this.chatlist[0]?.user_id?.split('-')?.join('')
             );
-            this.setSelectedClient(this.chatlist[0].client);
+            this.setSelectedClient(this.chatlist[0].user_info);
             }
           }
           this.setPage(chatType);
@@ -152,7 +152,7 @@ export class ChatListComponent implements OnInit {
             this.sendSelectedRoom(
               this.chatlist[0]?.user_id?.split('-')?.join('')
             );
-            this.setSelectedClient(this.chatlist[0].client);
+            this.setSelectedClient(this.chatlist[0].user_info);
             }
           }
           this.setPage(chatType);
@@ -174,7 +174,7 @@ export class ChatListComponent implements OnInit {
             this.sendSelectedRoom(
               this.chatlist[0]?.user_id?.split('-')?.join('')
             );
-            this.setSelectedClient(this.chatlist[0].client);
+            this.setSelectedClient(this.chatlist[0].user_info);
             }
           }
           this.setPage(chatType);

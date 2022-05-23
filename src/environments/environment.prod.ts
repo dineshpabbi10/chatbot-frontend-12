@@ -8,11 +8,13 @@ export interface Environment {
   production: boolean;
   firebase: any,
   mediaEndPoint: string,
-  socketBase : string
+  socketBase : string,
+  scriptUrl: string
 }
 
 
 export const DEV: Environment = {
+  scriptUrl:"https://34.131.3.178:9000",
   endPoint: 'https://34.131.3.178:9000/',
   mediaEndPoint: 'https://34.131.3.178:9000',
   socketBase:'wss://34.131.3.178:4444/ws/chatroom/',
