@@ -1,0 +1,55 @@
+<section class="iq-breadcrumb-five main-bg">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-md-12">
+                <div class="mb-0">
+                    <h2 class="title">Email Verification</h2>
+                    <nav aria-label="breadcrumb" class="">
+                        <ol class="breadcrumb main-bg">
+                            <li class="breadcrumb-item">
+                                <a href="/">
+                                    <i class="fa fa-home" aria-hidden="true"></i>Home
+                                </a>
+                            </li>
+                            <li class="breadcrumb-item active">Email Verification</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<div class="main-content">
+    <!--================================
+                              Login -->
+    <section class="iq-login-regi">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-3"></div>
+                <div class="col-lg-6 col-md-12 col-sm-12 r-mt3">
+                    <ng-container *ngIf="isEmailVerified==true; else emailNotVerfiedBlock">
+                        <h4>Your Email Has Been Verified Successfully</h4>
+                        <p>{{message}}</p>
+                        <img src="../../../../assets/images/email_verified.jpg" class="image-verified" />
+                    </ng-container>
+                    <ng-template #emailNotVerfiedBlock>
+                        <h4>Your Email Has Not Been Verified Successfully</h4>
+                        <p>{{message}}</p>
+                        <div class="btn-center">
+                            <img src="../../../../assets/images/email_not_verified.png" />
+                            <br />
+
+                            <button (click)="resendEmailVeriLink()" class="btn btn-primary">Resend Verification
+                                Link</button>
+
+                        </div>
+
+                    </ng-template>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

@@ -1,82 +1,79 @@
 <br>
 <div class="row">
-    <div class="col-md-11">
-      <div class="card" id="add-agent-card">
-        <div class="right">
-          <div class="card" id="container-card-right">
-            <form [formGroup]="form" class="form-new">
-           
-                
-            
-              <!-- Form -->
-         
+  <div class="col-md-11">
+    <div class="card" id="add-agent-card">
+      <div class="right">
+        <div class="card" id="container-card-right">
+          <form [formGroup]="form" class="form-new">
+            <!-- Form -->
+            <div class="row">
+              <!-- First Name -->
+              <div class="col-xs-12 col-md-12 form-group">
+                Create Agent
+              </div>
+              <div class="col-xs-12 col-md-6 form-group">
+                <label for="exampleFormControlInput1">First Name*</label>
+                <input formControlName="first_name" type="text" class="form-control" placeholder="first name">
+              </div>
 
-                <!-- Form -->
-                <div class="row">
-                    <!-- First Name -->
-                    <div class="col-xs-12 col-md-12 form-group">
-                        Create Agent
-                      </div>
-                    <div class="col-xs-12 col-md-6 form-group">
-                        <label for="exampleFormControlInput1">First Name*</label>
-                        <input formControlName="first_name" type="text" class="form-control" placeholder="first name">
-                    </div>
+              <!-- Last Name -->
+              <div class="col-xs-12 col-md-6 form-group">
+                <label for="exampleFormControlInput1">Last Name*</label>
+                <input formControlName="last_name" type="text" class="form-control" placeholder="Last Name">
+              </div>
 
-                    <!-- Last Name -->
-                    <div class="col-xs-12 col-md-6 form-group">
-                        <label for="exampleFormControlInput1">Last Name*</label>
-                        <input formControlName="last_name" type="text" class="form-control" placeholder="Last Name">
-                    </div>
+              <!-- User Name -->
+              <div class="col-xs-12 col-md-6 form-group">
+                <label for="exampleFormControlInput1">User Name*</label>
+                <input formControlName="username" type="text" class="form-control" placeholder="User Name">
+              </div>
 
-                    <!-- User Name -->
-                    <div class="col-xs-12 col-md-6 form-group">
-                        <label for="exampleFormControlInput1">User Name*</label>
-                        <input formControlName="username" type="text" class="form-control" placeholder="User Name">
-                    </div>
+              <!-- Email -->
+              <div class="col-xs-12 col-md-6 form-group">
+                <label for="exampleFormControlInput1">Email address*</label>
+                <input formControlName="email" type="email" class="form-control" placeholder="name@example.com">
+              </div>
 
-                    <!-- Email -->
-                    <div class="col-xs-12 col-md-6 form-group">
-                        <label for="exampleFormControlInput1">Email address*</label>
-                        <input formControlName="email" type="email" class="form-control"  placeholder="name@example.com">
-                    </div>
+              <!-- Password -->
+              <div class="col-xs-12 col-md-6 form-group">
+                <label for="exampleFormControlInput1">Password*</label>
+                <input formControlName="password1" type="password" class="form-control" placeholder="Password">
+              </div>
 
-                    <!-- Password -->
-                    <div class="col-xs-12 col-md-6 form-group">
-                        <label for="exampleFormControlInput1">Password*</label>
-                        <input formControlName="password1" type="password" class="form-control"  placeholder="Password">
-                    </div>
+              <!-- Confirm Password -->
+              <div class="col-xs-12 col-md-6 form-group">
+                <label for="exampleFormControlInput1">Confirm Password*</label>
+                <input formControlName="password2" type="password" class="form-control" placeholder="Confirm Password">
+              </div>
 
-                    <!-- Confirm Password -->
-                    <div class="col-xs-12 col-md-6 form-group">
-                        <label for="exampleFormControlInput1">Confirm Password*</label>
-                        <input formControlName="password2" type="password" class="form-control" placeholder="Confirm Password">
-                    </div>
+              <!-- Phone -->
+              <div class="col-xs-12 col-md-6 form-group">
+                <label for="exampleFormControlInput1">Phone Number*</label>
+                <input formControlName="mobile_no" type="number" class="form-control" placeholder="Phone number">
+              </div>
 
-                    <!-- Phone -->
-                    <div class="col-xs-12 col-md-6 form-group">
-                        <label for="exampleFormControlInput1">Phone Number*</label>
-                        <input formControlName="mobile_no" type="number" class="form-control" placeholder="Phone number">
-                    </div>
+              <!-- Password Match -->
+              <div class="col-xs-12 col-md-6 form-group">
+                <label for="exampleFormControlInput1">Password Match Confirmation</label>
+                <input readonly type="text" class="form-control" id="statusInput" placeholder=""
+                  [ngClass]="{'orange':form.errors?.confirmPasswordError , 'green':!form.errors?.confirmPasswordError}"
+                  [value]="form.errors?.confirmPasswordError ? 'Passwords Do Not Match' : 'Passwords Match'">
+              </div>
 
-                    <!-- Password Match -->
-                    <div class="col-xs-12 col-md-6 form-group">
-                        <label for="exampleFormControlInput1">Password Match Confirmation</label>
-                        <input readonly type="text" class="form-control" id="statusInput" placeholder="" [ngClass]="{'orange':form.errors?.confirmPasswordError , 'green':!form.errors?.confirmPasswordError}" [value]="form.errors?.confirmPasswordError ? 'Passwords Do Not Match' : 'Passwords Match'">
-                    </div>
+              <div class="alert alert-primary" role="alert">
+                Password should be of min length : 8 characters and contain atleast 1 uppercase,1 lowercase , 1 special
+                character and 1 number.
+              </div>
 
-                    <div class="alert alert-primary" role="alert">
-                      Password should be of min length : 8 characters and contain atleast 1 uppercase,1 lowercase , 1 special character and 1 number.
-                    </div>
+              <!-- Submit -->
+              <button (click)="submitForm()" [disabled]="form.invalid" type="button"
+                class="btn btn-theme">Submit</button>
+            </div>
+          </form>
+          <!-- Form Ends -->
 
-                    <!-- Submit -->
-                    <button (click)="submitForm()" [disabled]="form.invalid" type="button" class="btn btn-theme">Submit</button>
-                </div>
-            </form>
-                <!-- Form Ends -->
-
-          </div>
         </div>
       </div>
     </div>
   </div>
-  
+</div>

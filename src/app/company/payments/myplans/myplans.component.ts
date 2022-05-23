@@ -11,13 +11,8 @@ import { CompanyService } from '../../services/company.service';
 export class MyplansComponent implements OnInit {
 
   public myPlansList: any[] = []
-  public cols = [
-    { field: 'subscription_name', header: 'Plan Name' },
-    { field: 'transaction_date', header: 'Purchase Date' },
-    { field: 'valid', header: 'Valid' },
-    { field: 'active', header: 'Active' }
-  ]
-
+  public warningMsg: boolean = false
+  public upComingPlan: any
 
   constructor(private companyService: CompanyService, private loader: NgxUiLoaderService, private toastr: ToastrService) { }
 
@@ -37,6 +32,54 @@ export class MyplansComponent implements OnInit {
       }
       this.loader.stop()
     })
+  }
+
+  changePlan() {
+
+    this.warningMsg = false
+    this.loader.start()
+
+    var userLoggedIn: any
+    userLoggedIn = localStorage.getItem('data')
+    userLoggedIn = JSON.parse(userLoggedIn)
+    this.companyService.switchPlan(null).subscribe((data: any) => {
+      
+      if(data.status){
+        userLoggedIn.subscribed = data.data.valid
+        userLoggedIn.subscription_name = this.upComingPlan.subscription_name
+        userLoggedIn.valid = data.data.valid
+        
+        userLoggedIn.expiry = data.data.expiry_date
+        localStorage.setItem('data', JSON.stringify(userLoggedIn))
+        
+        this.toastr.success(data.data.message, 'SUCCESS')
+        this.loader.stop()
+
+      }
+      else{
+        this.toastr.error(data?.data.message, "Error")
+        this.loader.stop()
+      }
+      // if (data.data.status) {
+      //   this.toastr.success(data?.data.message, 'SUCCESS')
+      // }
+      // else {
+      //   this.toastr.error(data?.data.message, "Error")
+      // }
+    })
+
+  }
+
+  triggerWarning(planDetail: any) {
+
+    this.upComingPlan = planDetail
+    this.warningMsg = true
+
+  }
+
+  closeModal() {
+    this.upComingPlan = {}
+    this.warningMsg = false
   }
 
 }
