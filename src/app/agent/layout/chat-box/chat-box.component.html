@@ -3,13 +3,8 @@
         <span id="customer-name">{{clientName}}</span>
         <!-- <span id="chat-id">#1007</span> -->
         <span id="chat-type">{{selectedChatList}}</span>
-        <button id="transchat" pTooltip="Transfer Chat to other Agents"
-            *ngIf="chatList !== null && selectedChatList !== 'Resolved Chat'" (click)="openTransferAgent()"
-            label="Transfer Chat" type="button" pButton icon="pi pi-directions"></button>
-        <button pTooltip="Open Agent Actions" *ngIf="chatList !== null && selectedChatList === 'Live Chat'"
-            (click)="op.toggle($event)" type="button"
-            style="padding: 2px; margin-left: 5px; background-color: white;border: none;outline: none;color: black;position: absolute;right: 10px;"
-            pButton icon="pi pi-ellipsis-v"></button>
+        <button pTooltip="Transfer Chat to other Agents" *ngIf="chatList !== null && selectedChatList === 'Live Chat'" (click)="openTransferAgent()" label="Transfer Chat" type="button" style="padding: 2px; margin-left: 5px; background-color: purple;" pButton icon="pi pi-directions"></button>
+        <button pTooltip="Open Agent Actions" *ngIf="chatList !== null && selectedChatList !== 'Resolved Chat'" (click)="op.toggle($event)" type="button" style="padding: 2px; margin-left: 5px; background-color: white;border: none;outline: none;color: black;position: absolute;right: 10px;" pButton icon="pi pi-ellipsis-v"></button>
     </div>
 
     <div class="container">
@@ -86,23 +81,11 @@
 <p-overlayPanel #op>
     <ng-template pTemplate>
         <div style="display: flex; flex-direction: column;">
-            <button *ngIf="selectedChatList === 'Live Chat'" pButton type="button" (click)="banUser()" label="Ban User"
-                pTooltip="Ban User For inappropriate behavior"
-                style="outline: none;border: none;background-color: white;color: black; padding: 4px; margin: 3px;"
-                icon="pi pi-ban"></button>
-            <button *ngIf="selectedChatList === 'Live Chat'" pButton type="button" (click)="createHold()" label="Hold Chat" pTooltip="Put User On Hold"
-                style="outline: none;border: none;background-color: white; padding: 4px;color: black; margin: 3px;"
-                icon="pi pi-pause"></button>
-            <button *ngIf="selectedChatList === 'Live Chat'" pButton type="button" (click)="createUnHold()" label="Un-Hold Chat" pTooltip="Remove User from Hold"
-                style="outline: none;border: none;background-color: white;color: black; padding: 4px; margin: 3px;"
-                icon="pi pi-play"></button>
-            <button *ngIf="selectedChatList === 'Live Chat'" pButton type="button" (click)="closeChat()" label="Close Chat" pTooltip="Close Chat"
-                style="outline: none;border: none;background-color: white;color: black; padding: 4px; margin: 3px;"
-                icon="pi pi-stop"></button>
-            <button pTooltip="Scroll to bottom of the chat" (click)="scrollToElement()" label="Scroll Bottom"
-                type="button"
-                style="outline: none;border: none;background-color: white;color: black; padding: 4px; margin: 3px;"
-                pButton icon="pi pi-angle-double-down"></button>
+            <button pButton type="button" *ngIf="selectedChatList === 'Live Chat'" (click)="banUser()" label="Ban User" pTooltip="Ban User For inappropriate behavior" style="outline: none;border: none;background-color: white;color: black; padding: 4px; margin: 3px;" icon="pi pi-ban"></button>
+            <button pButton type="button" *ngIf="selectedChatList === 'Live Chat'" (click)="createHold()" label="Hold Chat" pTooltip="Put User On Hold" style="outline: none;border: none;background-color: white; padding: 4px;color: black; margin: 3px;" icon="pi pi-pause"></button>
+            <button pButton type="button" *ngIf="selectedChatList === 'Live Chat'" (click)="createUnHold()" label="Un-Hold Chat" pTooltip="Remove User from Hold" style="outline: none;border: none;background-color: white;color: black; padding: 4px; margin: 3px;" icon="pi pi-play"></button>
+            <button pButton type="button" *ngIf="selectedChatList === 'Live Chat'" (click)="closeChat()" label="Close Chat" pTooltip="Close Chat" style="outline: none;border: none;background-color: white;color: black; padding: 4px; margin: 3px;" icon="pi pi-stop"></button>
+            <button pTooltip="Scroll to bottom of the chat" (click)="scrollToElement()" label="Scroll Bottom" type="button" style="outline: none;border: none;background-color: white;color: black; padding: 4px; margin: 3px;" pButton icon="pi pi-angle-double-down"></button>
         </div>
     </ng-template>
 </p-overlayPanel>

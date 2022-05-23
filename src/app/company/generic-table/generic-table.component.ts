@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { CompanyService } from '../services/company.service';
 import { Router } from '@angular/router';
-
+import { NgxUiLoaderService } from 'ngx-ui-loader';
 
 @Component({
   selector: 'app-generic-table',
@@ -12,7 +12,8 @@ import { Router } from '@angular/router';
 export class GenericTableComponent implements OnInit {
 
   public selectedRows: any[] = [];
-
+  pdfUrl = ''
+  display_invoice_dialog: Boolean = false
 
   @Input('cols')
   public cols: any[];
@@ -29,7 +30,7 @@ export class GenericTableComponent implements OnInit {
   @Input('showEdit')
   public showEdit: boolean = false;
 
-  constructor(private companyService: CompanyService, private toast: ToastrService, private router: Router) {
+  constructor(private companyService: CompanyService, private toast: ToastrService, private router: Router, private loader: NgxUiLoaderService) {
     this.cols = [];
     this.products = [];
   }
@@ -103,6 +104,21 @@ export class GenericTableComponent implements OnInit {
   redirectToBotSettings(data: any) {
     console.log(data)
     this.router.navigate(['/company/bot-settings/' + data.token])
+  }
+
+  downloadInvoice(data: any) {
+    this.loader.start()
+    console.log(data.id)
+    this.companyService.downloadInvoice(data.id).subscribe((invoiceData: any) => {
+      if (invoiceData.status) {
+        this.display_invoice_dialog = true;
+        this.pdfUrl = invoiceData.data.url
+      }
+      else {
+
+      }
+      this.loader.stop()
+    })
   }
 
 }
