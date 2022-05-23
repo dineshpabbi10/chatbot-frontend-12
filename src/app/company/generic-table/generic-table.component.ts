@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { CompanyService } from '../services/company.service';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment.prod';
 
 
 @Component({
@@ -92,7 +93,7 @@ export class GenericTableComponent implements OnInit {
       "<br>"
     );
     a?.document.write(
-      'c.src = "https://www.cybot.co/static/chatbox/static/loader.js"; s.parentNode.insertBefore(c, s);});' +
+      `c.src = "${environment.scriptUrl}/static/chatbox/static/loader.js"; s.parentNode.insertBefore(c, s);});` +
       "<br>"
     );
     a?.document.write(val2);

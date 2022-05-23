@@ -4,6 +4,7 @@
 
 export const environment = {
   production: false,
+  scriptUrl:"https://34.131.3.178:9000",
   firebase: {
     apiKey: "AIzaSyD6_cEhjYmGtA5XoW3PhPQaoFqUEEZw99Q",
     authDomain: "elasbotchatbot.firebaseapp.com",
