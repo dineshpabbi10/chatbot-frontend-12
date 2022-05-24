@@ -81,6 +81,8 @@ export class CompanyComponent implements OnInit {
       return "Payments"
     } else if (this.router.url == "/company/training") {
       return "Training"
+    } else if(this.router.url == "/company/my-plans"){
+      return "My Plans"
     }
 
     return "Not Found";
@@ -94,11 +96,13 @@ export class CompanyComponent implements OnInit {
         localStorage.removeItem('data')
         this.toastr.success(data.message, 'SUCCESS')
         this.router.navigate(['/'])
+        this.ngxService.stop()
+
       }
       else {
         this.toastr.error(data.message, 'ERROR')
+        this.ngxService.stop()
       }
-      this.ngxService.stop()
     })
   }
 
