@@ -51,7 +51,7 @@ export class CreateComponent implements OnInit {
 
   ngOnInit(): void {
     this.loader.start("getIntentList");
-    this.companyService.getIntentList()
+    this.companyService.getIntentListDropdown()
     .pipe(
       catchError(err=>{
         this.toast.error(err.message);
@@ -99,7 +99,6 @@ export class CreateComponent implements OnInit {
         "message":this.userMessage.value.trim(),
         "response":this.responseMessage.value.trim(),
         "intent":this.selectedIntent.value,
-        "intent_id": this.intentList.filter(elem=>elem.intent === this.selectedIntent.value)[0]["id"]
     })
     .pipe(
       catchError(err=>{
