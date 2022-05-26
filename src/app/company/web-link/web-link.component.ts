@@ -10,6 +10,7 @@ import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { ConfirmationService } from 'primeng/api';
 import { of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { environment } from 'src/environments/environment.prod';
 import { CompanyService } from '../services/company.service';
 
 @Component({
@@ -178,7 +179,7 @@ export class WebLinkComponent implements OnInit {
       '<br>'
     );
     a?.document.write(
-      'c.src = "https://www.cybot.co/static/chatbox/static/loader.js"; s.parentNode.insertBefore(c, s);});' +
+      `c.src = "${environment.scriptUrl}/static/chatbox/static/loader.js"; s.parentNode.insertBefore(c, s);});` +
       '<br>'
     );
     a?.document.write(val2);

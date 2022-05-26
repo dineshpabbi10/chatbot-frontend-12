@@ -115,7 +115,8 @@ export class SidebarComponent implements OnInit {
       .subscribe((res) => {
         if (res.status) {
           this.agentDetails = res.data;
-          this.agentDetailForm.setValue({...this.agentDetails,'profile_pic':null});
+          this.agentDetailForm.patchValue({...this.agentDetails,'profile_pic':null});
+          console.log(this.agentDetailForm.value);
         }
       })
   }
@@ -145,6 +146,8 @@ export class SidebarComponent implements OnInit {
           this.fetchAgentDetails();
           this.closeEditPopup();
           this.profilePicUpload.clear();
+        }else{
+          this.toast.error(res.message + res?.data?.profile_pic[0]);
         }
         this.loader.stop();
       })
