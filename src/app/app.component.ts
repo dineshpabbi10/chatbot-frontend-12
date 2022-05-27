@@ -25,6 +25,9 @@ export class AppComponent implements OnInit{
         this.commonService.getSeo(event.url)
         .subscribe((res:any)=>{
           this.titleService.setTitle(res.data.title);
+          this.metaService.removeTag("name='description'");
+          this.metaService.removeTag("name='keywords'");
+          this.metaService.removeTag("name='slug'");
           this.metaService.addTags([
             {name:'description',content:res.data.description},
             {name:'keywords',content:res.data.keywords},
