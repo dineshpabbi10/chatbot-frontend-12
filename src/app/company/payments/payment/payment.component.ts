@@ -254,7 +254,7 @@ export class PaymentComponent implements OnInit {
           const order = await actions.order.capture();
           this.savePaymentResponse(order)
 
-          console.log(order);
+
         },
         onClientAuthorization: (data: any) => {
           // console.log(this.payPalConfig)

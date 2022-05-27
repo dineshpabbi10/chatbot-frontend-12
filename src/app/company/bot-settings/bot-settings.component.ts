@@ -60,7 +60,6 @@ export class BotSettingsComponent implements OnInit {
   }
 
   upload(event: any) {
-    console.log(event.files[0])
     let file = event.files[0]
     this.selectedFile = file
 
@@ -68,7 +67,6 @@ export class BotSettingsComponent implements OnInit {
 
   getBotSettings(token: string) {
     this.companyService.getBotSetting(token).subscribe(data => {
-      console.log(data)
       if (data.status) {
         this.form.patchValue({
           chatbot_name: data.data.chatbot_name,
@@ -88,7 +86,6 @@ export class BotSettingsComponent implements OnInit {
 
 
   colorChange(evt: any) {
-    console.log(evt.value)
     this.botColor = evt.value
     this.form.patchValue({ chatbot_color: evt.value })
   }

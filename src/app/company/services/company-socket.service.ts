@@ -24,11 +24,9 @@ export class CompanySocketService {
         status: 200,
         message: "Success"
       });
-      console.log("CONNECTION OPENED");
     }
 
     this.webSocket.close = (event) => {
-      console.log("Connection stoped with Socket");
     }
 
     this.webSocket.onmessage = (event) => {
@@ -40,7 +38,6 @@ export class CompanySocketService {
         status: 404,
         message: "Success"
       });
-      console.log("Error occured while processing Socket Request");
     }
 
     return this.webSocket;

@@ -256,7 +256,6 @@ export class CompanyService {
   arraySizeValidator(): ValidatorFn {
     return (control: AbstractControl) => {
       let isValid = control.value.length > 0 ? true : false;
-      console.log(isValid);
       return isValid ? null : { arraySize: true };
     }
   };
@@ -313,8 +312,6 @@ export class CompanyService {
     formData.append('first_name', data.first_name);
     formData.append('last_name', data.last_name);
     formData.append('mobile_no', data.mobile_no);
-
-    console.log(data);
 
     // Set headers
     let headers = new HttpHeaders();

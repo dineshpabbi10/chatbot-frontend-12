@@ -30,7 +30,6 @@ export class ResendLinkComponent implements OnInit {
     }
     this.ngxService.start()
     this.CommonService.resendEmailVerificationLink(this.resendVerificationLinkForm.value).subscribe(data => {
-      console.log(data)
       if (data.status) {
         this.toastr.success(data.message, 'SUCCESS')
         this.router.navigate(['/login'])

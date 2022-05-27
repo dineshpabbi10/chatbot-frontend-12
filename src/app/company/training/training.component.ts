@@ -46,7 +46,6 @@ export class TrainingComponent implements OnInit {
       .subscribe((res) => {
         if (res.status) {
           this.userId = res.data.userID;
-          console.log(this.userId);
           this.SOCKET_URL = this.SOCKET_URL_BASE + this.userId + '/'
           this.companySocketService.openWebSocketConnection(
             this.SOCKET_URL
@@ -55,7 +54,6 @@ export class TrainingComponent implements OnInit {
       });
 
     this.companySocketService.socketCloseSubject$.subscribe((error) => {
-      console.log('RECONNECTING');
       setTimeout(() => {
         this.companySocketService.openWebSocketConnection(this.SOCKET_URL);
       }, 10000);
@@ -83,7 +81,6 @@ export class TrainingComponent implements OnInit {
     });
 
     this.companySocketService.socketResponseSubject$.subscribe((data: any) => {
-      console.log(data);
     });
 
     this.getDomains();
@@ -157,7 +154,6 @@ export class TrainingComponent implements OnInit {
       type: 'train_status',
       from: 'agent',
     };
-    console.log('GETTING MESSAGE');
     this.companySocketService.sendWebSocketMessage(data);
   }
 }

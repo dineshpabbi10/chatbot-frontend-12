@@ -61,7 +61,6 @@ export class ChatBoxComponent implements OnInit {
     });
 
     this.socketService.socketCloseSubject$.subscribe((error) => {
-      console.log('RECONNECTING');
       setTimeout(() => {
         this.socketService.openWebSocketConnection(this.SOCKET_URL);
       }, 10000);
@@ -72,7 +71,6 @@ export class ChatBoxComponent implements OnInit {
       this.chat_id = index;
       if(index !== undefined){
         this.SOCKET_URL = this.SOCKET_URL_BASE + this.chat_id + '/';
-        console.log('OPENING CONNECTION AT ', this.SOCKET_URL);
         this.socketService.openWebSocketConnection(this.SOCKET_URL);
       }else{
         this.chatList = [];
@@ -102,7 +100,6 @@ export class ChatBoxComponent implements OnInit {
         setTimeout(() => this.scrollToElement(), 500);
       } 
       else {
-        console.log(res);
         this.scrollToElement();
       }
       this.loader.stop();
@@ -123,7 +120,6 @@ export class ChatBoxComponent implements OnInit {
       type: 'botquery',
       from: 'agent',
     };
-    console.log('GETTING MESSAGE');
     this.socketService.sendWebSocketMessage(data);
     this.chatInput.setValue('');
   }
@@ -137,7 +133,6 @@ export class ChatBoxComponent implements OnInit {
       from: 'agent',
       to: 'user',
     };
-    console.log('GETTING HISTORY');
     this.socketService.sendWebSocketMessage(data);
   }
 
@@ -239,7 +234,6 @@ export class ChatBoxComponent implements OnInit {
   }
 
   myUploader(event: any) {
-    // console.log(event.files);
     let file = event.files[0];
     this.selectedFile = file;
     // this.sendAttachment(file,form);
@@ -273,7 +267,6 @@ export class ChatBoxComponent implements OnInit {
       payload: { agent_email: this.agentEmail },
       from: 'agent',
     };
-    console.log('SENDING LIVE CHAT MESSAGE');
     this.socketService.sendWebSocketMessage(data);
   }
 
@@ -295,7 +288,6 @@ export class ChatBoxComponent implements OnInit {
           this.agentList = res?.data?.online.map((elem: any) => {
             return { name: elem?.name, code: elem?.username };
           });
-          console.log(this.agentList);
         }
       });
   }
@@ -310,7 +302,6 @@ export class ChatBoxComponent implements OnInit {
       new_agent: this.selectedAgent.value?.code,
       message: 'transfer msg by agent',
     };
-    console.log(data);
     this.agentService.transferChat(data).
     pipe(
       catchError(err=>{
