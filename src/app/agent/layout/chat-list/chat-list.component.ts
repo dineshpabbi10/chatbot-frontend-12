@@ -52,14 +52,12 @@ export class ChatListComponent implements OnInit {
     });
 
     this.agentService.transferSuccess$.subscribe(data=>{
-      console.log(data);
       this.getChatList(this.selectedChatCode,false);
     })
 
   }
 
   getChatList(chatType: string,withChatSelect:boolean) {
-    console.log("CALLING",chatType);
     this.loader.start();
     if (chatType === 'resolved-chats') {
       this.agentService
@@ -235,7 +233,6 @@ export class ChatListComponent implements OnInit {
       payload: { agent_email: this.agentEmail },
       from: 'agent',
     };
-    console.log('SENDING LIVE CHAT MESSAGE');
     this.socketService.sendWebSocketMessage(data);
   }
 }

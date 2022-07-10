@@ -26,7 +26,6 @@ export class VerifyComponent implements OnInit {
     this.ngxService.start()
     this.route.queryParams
       .subscribe(params => {
-        console.log(params);
         if (!params.user_id) {
           this.toastr.error('Invalid Request!', 'ERROR')
           this.router.navigate(['/login'])

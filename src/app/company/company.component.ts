@@ -26,7 +26,6 @@ export class CompanyComponent implements OnInit {
 
     // Check for notifications from firebase
     this.afMessaging.messages.subscribe((_messaging:any) => {
-      console.log(_messaging);
       _messaging.onBackgroundMessage = _messaging?.onBackgroundMessage?.bind(_messaging); 
       
       // Send A message using a subject to refetch chatlist and notification

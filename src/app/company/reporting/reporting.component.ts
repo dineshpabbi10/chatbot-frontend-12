@@ -44,7 +44,7 @@ export class ReportingComponent implements OnInit {
           message: 'Are you sure that you want to perform this action?',
           accept: () => {
             //Actual logic to perform a confirmation
-            console.log(data);
+
           },
         });
       }
@@ -57,7 +57,7 @@ export class ReportingComponent implements OnInit {
           message: 'Are you sure that you want to perform insert action?',
           accept: () => {
             //Actual logic to perform a confirmation
-            console.log(data);
+
           },
         });
       }

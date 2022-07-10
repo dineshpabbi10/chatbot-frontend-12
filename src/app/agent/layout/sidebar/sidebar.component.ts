@@ -116,7 +116,6 @@ export class SidebarComponent implements OnInit {
         if (res.status) {
           this.agentDetails = res.data;
           this.agentDetailForm.patchValue({...this.agentDetails,'profile_pic':null});
-          console.log(this.agentDetailForm.value);
         }
       })
   }
@@ -156,7 +155,6 @@ export class SidebarComponent implements OnInit {
   logout() {
     this.loader.start()
     this.CommonService.logout(null).subscribe(data => {
-      console.log(data)
       if (data.status) {
         localStorage.removeItem('company_token')
         localStorage.removeItem('data')

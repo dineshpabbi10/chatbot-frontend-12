@@ -23,7 +23,6 @@ export class DashboardComponent implements OnInit {
     this.updateData()
     this.getGraphData()
     this.getDashboardNumberData()
-    console.log(this.validChatsPie.datasets)
   }
 
   updateData() {

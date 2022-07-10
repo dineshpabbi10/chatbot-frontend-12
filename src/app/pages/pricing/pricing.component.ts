@@ -71,7 +71,6 @@ export class PricingComponent implements OnInit {
           userLoggedIn.trial = data.data.is_trial
         }
 
-        console.log(userLoggedIn)
         localStorage.setItem('data', JSON.stringify(userLoggedIn))
         this.toastr.success(data.message, 'SUCCESS')
         // return

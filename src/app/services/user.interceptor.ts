@@ -21,7 +21,6 @@ export class UserInterceptor implements HttpInterceptor {
   constructor(private router: Router) { }
 
   handleError(error: HttpErrorResponse) {
-    console.log(error);
     return throwError(error);
   }
 

@@ -96,5 +96,9 @@ export class CommonService {
     return this.httpClient.post<any>(environment.endPoint + "resend_confirmation", body)
   }
 
+  getSeo(route:any){
+    return this.httpClient.get<any>(environment.endPoint +"seo?key="+route)
+  }
+
 
 }

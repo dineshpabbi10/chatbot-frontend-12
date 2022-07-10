@@ -62,13 +62,10 @@ export class ProfileComponent implements OnInit {
   }
 
   setFile(event: any) {
-    console.log(this.userDetailForm.value);
     this.userDetailForm.patchValue({
       profile_pic: event.target.files[0]
     });
-    console.log(this.userDetailForm.value);
     this.fileName = event.target.files[0].name;
-    console.log(this.fileName);
   }
 
 }

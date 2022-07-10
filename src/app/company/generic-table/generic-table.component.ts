@@ -103,13 +103,11 @@ export class GenericTableComponent implements OnInit {
   }
 
   redirectToBotSettings(data: any) {
-    console.log(data)
     this.router.navigate(['/company/bot-settings/' + data.token])
   }
 
   downloadInvoice(data: any) {
     this.loader.start()
-    console.log(data.id)
     this.companyService.downloadInvoice(data.id).subscribe((invoiceData: any) => {
       if (invoiceData.status) {
         this.display_invoice_dialog = true;

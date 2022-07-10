@@ -48,7 +48,6 @@ export class ViewComponent implements OnInit {
           message: 'Are you sure that you want to perform this action?',
           accept: () => {
             //Actual logic to perform a confirmation
-            console.log(data.payload[0]);
             this.companyService.deleteEntity(data.payload[0]).
             pipe(catchError(err=>{
               this.toast.error(err.message);
@@ -75,7 +74,6 @@ export class ViewComponent implements OnInit {
     this.companyService.selectedRecord$.subscribe((data) => {
       if (data.component === 'entity' && data.action === 'edit') {
         this.selectedRow = data.payload[0];
-        console.log(this.selectedRow);
       }
     });
 
