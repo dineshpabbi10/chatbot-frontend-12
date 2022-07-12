@@ -95,7 +95,7 @@ export class CompanyComponent implements OnInit {
         localStorage.removeItem('company_token')
         localStorage.removeItem('data')
         this.toastr.success(data.message, 'SUCCESS')
-        this.router.navigate(['/'])
+        this.router.navigate(['/login'])
         this.ngxService.stop()
 
       }

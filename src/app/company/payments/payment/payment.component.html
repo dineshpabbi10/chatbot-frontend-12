@@ -13,7 +13,7 @@
         <div tabindex="1" class="c-flex plan-1" *ngFor="let plan of plans" (click)="changePlan(plan)">
           <span class="plan-active" *ngIf="activePlan==plan.subscription_name">current plan</span>
           <span class="info-1">{{ plan.subscription_name }}</span>
-          <ng-container *ngIf="plan.price_monthly==0; else otherPlans">
+          <ng-container *ngIf="plan.subscription_name=='Custom'; else otherPlans">
             Individual contract with included custom bot building process
             <a class="button" [routerLink]="['/contact-us']">Contact Us</a>
           </ng-container>

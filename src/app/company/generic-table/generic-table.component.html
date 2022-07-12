@@ -52,6 +52,7 @@
                 <ng-template #normalField>
                     <span *ngIf="col.header !== 'Training Date'" >{{rowData[col.field]}}</span>
                 </ng-template>
+                
             </td>
             <td *ngIf="component=='web-link'" style="text-align: center;">
                 <span class="pi pi-cog" (click)="redirectToBotSettings(rowData)" style="cursor: pointer;"></span>
@@ -61,6 +62,8 @@
             <td *ngIf="component=='invoices'">
                 <span class="pi pi-cloud-download" (click)="downloadInvoice(rowData)" style="cursor: pointer;"></span>
             </td>
+
+            
 
 
         </tr>

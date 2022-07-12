@@ -17,13 +17,8 @@
 
                                 <div class="col-xs-12 col-md-12 form-group">
                                     <div class="img-wrap">
-                                        <img
-                                            src="{{endpoint}}{{botIcon}}">
-                                        
-
+                                        <img src="{{endpoint}}{{botIcon}}">
                                     </div>
-                                    <!--   <label for="exampleFormControlInput1">Profile Pic</label> -->
-
                                 </div>
 
                                 <!-- First Name -->
@@ -33,9 +28,9 @@
                                         placeholder="Chatbot Name">
                                 </div>
 
-                                
+
                                 <div class="col-xs-12 col-md-6 form-group">
-                                    <label for="exampleFormControlInput1">Color Pickr*</label>
+                                    <label for="exampleFormControlInput1">Background Color*</label>
                                     <p-colorPicker formControlName="chatbot_color" (onChange)="colorChange($event)">
                                     </p-colorPicker>
                                     <input class="form-control" value="{{ botColor }}"
@@ -43,8 +38,26 @@
 
                                 </div>
 
+                                <div class="col-xs-12 col-md-6 form-group">
+                                    <label for="exampleFormControlInput1">Chatbot Text Color*</label>
+                                    <p-colorPicker formControlName="chatbot_text"
+                                        (onChange)="onTextColorChange($event)">
+                                    </p-colorPicker>
+                                    <input class="form-control" value="{{ textColor }}"
+                                        (change)="onManualTextColorChange($event)" />
+                                </div>
+
+                                <div class="col-xs-12 col-md-6 form-group">
+                                    <label for="chatbot_position">Chatbot Position</label>
+                                    <select class="form-control">
+                                        <option type="left">Left</option>
+                                        <option type="right">Right</option>
+                                    </select>
+                                </div>
+
                                 <div class="col-xs-12 col-md-12 form-group">
-                                    <p-fileUpload accept="image/*" (onClear)="clearFile()" (onRemove)="clearFile()" (onSelect)="upload($event)" [showUploadButton]="false"></p-fileUpload>
+                                    <p-fileUpload accept="image/*" (onClear)="clearFile()" (onRemove)="clearFile()"
+                                        (onSelect)="upload($event)" [showUploadButton]="false"></p-fileUpload>
                                 </div>
 
 

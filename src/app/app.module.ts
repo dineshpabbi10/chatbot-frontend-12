@@ -30,7 +30,8 @@ import { environment } from 'src/environments/environment';
     NgxUiLoaderModule,
     ToastrModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFireMessagingModule
+    AngularFireMessagingModule,
+    // Hashlocationstrategy RouterModule.forRoot(appRoutes, {useHash: true})
   ],
 
   providers: [UserInterceptor, { provide: HTTP_INTERCEPTORS, useClass: UserInterceptor, multi: true }, ToastrModule],

@@ -30,7 +30,7 @@ export class PaymentComponent implements OnInit {
   activePlan: string = ''
   rzp1: any
   options = {
-    "key": "rzp_test_5uyAHqJ3Z953zX", // Enter the Key ID generated from the Dashboard
+    "key": "rzp_live_hlMhXnzdxbQbv1", // Enter the Key ID generated from the Dashboard
     "amount": "", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
     "currency": "INR",
     "name": "Chatbot by Urbanwhizz Enterprises",

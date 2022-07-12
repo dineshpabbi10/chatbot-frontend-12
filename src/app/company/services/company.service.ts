@@ -354,4 +354,8 @@ export class CompanyService {
     return this.httpClient.post(environment.endPoint + "switch/plan", body).pipe()
   }
 
+  suspendHumanAgent(body: any) {
+    return this.httpClient.post(environment.endPoint + "suspend/agent", body).pipe()
+  }
+
 }

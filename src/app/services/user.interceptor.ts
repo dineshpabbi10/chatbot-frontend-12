@@ -53,12 +53,6 @@ export class UserInterceptor implements HttpInterceptor {
         }
         return throwError(error);
       })
-      // if (evt.status == 401) {
-      //   localStorage.removeItem('company_token')
-      //   localStorage.removeItem('agent_token')
-      //   localStorage.removeItem('data')
-      //   this.router.navigateByUrl('/login');
-      // }
     )
   }
 }

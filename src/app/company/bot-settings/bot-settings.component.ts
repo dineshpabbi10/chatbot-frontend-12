@@ -14,6 +14,7 @@ import { environment } from '../../../environments/environment.prod';
 export class BotSettingsComponent implements OnInit {
 
   botColor: string
+  textColor: string
   domain_token: string = ''
   public selectedFile: any = null;
   endpoint = ''
@@ -23,7 +24,9 @@ export class BotSettingsComponent implements OnInit {
     "chatbot_name": new FormControl(''),
     "chatbot_color": new FormControl(''),
     "bot_icon": new FormControl(''),
-    "domain_token": new FormControl('')
+    "domain_token": new FormControl(''),
+    "chatbot_text": new FormControl(''),
+    "position": new FormControl('Left')
   });
 
 
@@ -49,12 +52,19 @@ export class BotSettingsComponent implements OnInit {
     }
     formData.append('chatbot_color', this.botColor)
     formData.append('chatbot_name', this.form.get('chatbot_name')?.value)
+    formData.append('chatbot_text', this.textColor)
+    formData.append('position', this.form.get('position')?.value)
     this.form.patchValue({ domain_token: this.domain_token, bot_icon: this.selectedFile })
 
 
     this.loader.start()
     this.companyService.updateBotSettings(formData).subscribe(data => {
       // console.log(data)
+      if (data.status) {
+        this.toastr.success(data.message, 'SUCCESS')
+      } else {
+        this.toastr.error(data.message, 'ERROR')
+      }
       this.loader.stop()
     })
   }
@@ -68,12 +78,14 @@ export class BotSettingsComponent implements OnInit {
 
   getBotSettings(token: string) {
     this.companyService.getBotSetting(token).subscribe(data => {
-      console.log(data)
+      // console.log(data)
       if (data.status) {
         this.form.patchValue({
           chatbot_name: data.data.chatbot_name,
           chatbot_color: data.data.chatbot_color,
-          bot_icon: data.data.bot_icon
+          bot_icon: data.data.bot_icon,
+          chatbot_text: data.data.chatbot_text,
+          position: data.data.position
         })
         this.botIcon = data.data.bot_icon
         this.botColor = data.data.chatbot_color
@@ -88,17 +100,25 @@ export class BotSettingsComponent implements OnInit {
 
 
   colorChange(evt: any) {
-    console.log(evt.value)
+    // console.log(evt.value)
     this.botColor = evt.value
     this.form.patchValue({ chatbot_color: evt.value })
   }
 
   onManualColorChange(evt: any) {
-
     this.form.patchValue({ chatbot_color: evt.target.value })
+  }
+
+  onManualTextColorChange(evt: any) {
+    this.form.patchValue({ chatbot_text: evt.target.value })
   }
 
   clearFile() {
     this.selectedFile = null
+  }
+
+  onTextColorChange(evt: any) {
+    this.textColor = evt.value
+    this.form.patchValue({ chatbot_text: evt.value })
   }
 }

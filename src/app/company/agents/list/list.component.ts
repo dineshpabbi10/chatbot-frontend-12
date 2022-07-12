@@ -15,8 +15,10 @@ export class ListComponent implements OnInit {
   public agentList: any[] = [];
   public cols = [
     { field: 'name', header: 'Name' },
+    { field: 'username', header: 'Email' },
     { field: 'no_of_chats', header: 'No. Of Chats' },
     { field: 'online', header: 'Online' },
+    { field: 'suspended', header: 'Is Suspended' }
   ];
 
   constructor(
@@ -24,7 +26,7 @@ export class ListComponent implements OnInit {
     private loader: NgxUiLoaderService,
     private toast: ToastrService,
     private confirmationService: ConfirmationService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     // Delete button clicked in generic table
@@ -34,7 +36,7 @@ export class ListComponent implements OnInit {
           message: 'Are you sure that you want to delete this record?',
           accept: () => {
             //Actual logic to perform a confirmation
-            console.log(data);
+            // console.log(data);
           },
         });
       }
@@ -47,7 +49,7 @@ export class ListComponent implements OnInit {
           message: 'Are you sure that you want to perform insert action?',
           accept: () => {
             //Actual logic to perform a confirmation
-            console.log(data);
+            // console.log(data);
           },
         });
       }
@@ -68,5 +70,27 @@ export class ListComponent implements OnInit {
         }
         this.loader.stop();
       });
+  }
+
+  suspendToggle(email: any, status: string) {
+    this.loader.start();
+    let d = false
+    if (status == "activate") {
+      d = true
+    }
+    var body = {
+      "agent_email": email,
+      "activate": d
+    }
+    this.companyService.suspendHumanAgent(body).subscribe((res: any) => {
+      if (res.status) {
+        this.toast.success(res.message, 'SUCCESS')
+        this.ngOnInit()
+      }
+      this.loader.stop()
+    })
+
+    console.log(email)
+    console.log(status)
   }
 }

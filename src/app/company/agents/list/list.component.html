@@ -1,44 +1,71 @@
 <br>
 <div class="row">
-    <div class="col-md-11">
-      <div class="card" id="add-agent-card">
-        <div class="right">
-          <div class="card" id="container-card-right">
-            <div class="">
-              <div class="row">
-                <div class="col-lg-4 pd-left">
-                  All Agents
-                 
-                </div>
-                
-                <div class="col-lg-8 text-right">
-                    <div class="d-flex ht-wrap">
-                        <a href="" class="btn btn-theme ht-45">Download Chat History</a>&nbsp;&nbsp;&nbsp;
-                        <div id="btn-group-container">
-                            <div class="dropdown">
-                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                              Agent Type
-                            </button>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                              <a class="dropdown-item" href="#">All Agent</a>
-                              <a class="dropdown-item" href="#">Invited Agent</a>
-                            </div>
-                          </div>
-                        </div>
-                        </div>
-               
-                </div>
+  <div class="col-md-11">
+    <div class="card" id="add-agent-card">
+      <div class="right">
+        <div class="card" id="container-card-right">
+          <div class="">
+            <div class="row">
+              <div class="col-lg-4 pd-left">
+                All Agents
+
               </div>
-            
-              <!-- Form -->
+
+              <div class="col-lg-8 text-right">
+                <div class="d-flex ht-wrap">
+                  <a href="" class="btn btn-theme ht-45">Download Chat History</a>&nbsp;&nbsp;&nbsp;
+                  <div id="btn-group-container">
+                    <div class="dropdown">
+                      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Agent Type
+                      </button>
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="#">All Agent</a>
+                        <a class="dropdown-item" href="#">Invited Agent</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
             </div>
 
-            <!-- Table -->
-            <app-generic-table [cols]="cols" [data]="agentList" component="agents" ></app-generic-table>
-            <p-confirmDialog header="Do you want to delete selected records?" icon="pi pi-exclamation-triangle"></p-confirmDialog>
+            <!-- Form -->
           </div>
+
+          <!-- Table -->
+          <p-table [value]="agentList">
+            <ng-template pTemplate="header">
+              <tr>
+                <th *ngFor="let col of cols">
+                  {{col.header}}
+                </th>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-agent>
+              <tr>
+                <td>{{agent.name}}</td>
+                <td>{{agent.username}}</td>
+                <td>{{agent.no_of_chats}}</td>
+                <td>{{agent.online}}</td>
+                <td>
+                  <ng-container *ngIf="agent.suspended==true; else notSuspended">
+                    <p-button label="Activate" (click)="suspendToggle(agent.username,'activate')"></p-button>
+                  </ng-container>
+                  <ng-template #notSuspended>
+                    <p-button label="Suspend" class="p-button-danger" (click)="suspendToggle(agent.username,'suspend')">
+                    </p-button>
+                  </ng-template>
+                </td>
+              </tr>
+            </ng-template>
+
+          </p-table>
+          <!-- <app-generic-table [cols]="cols" [data]="agentList" component="agents" ></app-generic-table>
+            <p-confirmDialog header="Do you want to delete selected records?" icon="pi pi-exclamation-triangle"></p-confirmDialog> -->
         </div>
       </div>
     </div>
   </div>
-  
+</div>

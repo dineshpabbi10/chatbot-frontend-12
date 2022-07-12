@@ -45,12 +45,11 @@
         <div class="col-lg-3 col-sm-12" *ngFor="let plan of plans">
           <div class="pricing-box">
             <div class="price-head">{{ plan['subscription_name']}}</div>
-            <ng-container *ngIf="plan['price_monthly']==0; else otherPlans">
+            <ng-container *ngIf="plan['subscription_name']=='Custom'; else otherPlans">
               <div class="price-blog pt-4 pb-4">
                 <div class="price">
-                  <a href="" class="custom_plan_button">Contact Us</a>
                   <span>Fixed-price contract with annual billing</span>
-
+                  
                 </div>
               </div>
               <div id="price-listing-container" class="listing">
@@ -79,11 +78,22 @@
                 </ul>
               </div>
 
+              <div id="choose-plan-button">
+                <a [routerLink]="['/contact-us']" class="button grey">Contact Us</a><br/>
+                
+              </div>
+
             </ng-container>
             <ng-template #otherPlans>
               <div class="price-blog pt-4 pb-4">
                 <div class="price">
-                  <span class="currency">$</span>
+                  <ng-container *ngIf="plan['currency']=='INR'; else notIndian">
+                    <span class="currency">₹</span>
+                  </ng-container>
+                  <ng-template #notIndian>
+                    <span class="currency">$</span>
+
+                  </ng-template>
                   <strong>
                     {{ plan['price_monthly'] }}/
                   </strong>

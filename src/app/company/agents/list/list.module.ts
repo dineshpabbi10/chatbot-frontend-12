@@ -3,9 +3,10 @@ import { CommonModule } from '@angular/common';
 
 import { ListRoutingModule } from './list-routing.module';
 import { ListComponent } from './list.component';
-import { GenericTableModule } from '../../generic-table/generic-table.module';
+// import { GenericTableModule } from '../../generic-table/generic-table.module';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmationService } from 'primeng/api';
+import {TableModule} from 'primeng/table';
 
 
 @NgModule({
@@ -15,8 +16,9 @@ import { ConfirmationService } from 'primeng/api';
   imports: [
     CommonModule,
     ListRoutingModule,
-    GenericTableModule,
-    ConfirmDialogModule
+    // GenericTableModule,
+    ConfirmDialogModule,
+    TableModule
   ],
   providers:[
     ConfirmationService

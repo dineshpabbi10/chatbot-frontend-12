@@ -59,3 +59,9 @@
 .pd-left{
     padding-left: 0px;
 }
+
+.p-button.p-button-danger{
+    color: #ffffff;
+    background: #EF4444;
+    border: 1px solid #EF4444;
+}
