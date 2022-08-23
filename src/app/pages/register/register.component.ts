@@ -57,7 +57,7 @@ export class RegisterComponent implements OnInit {
     this.CommonService.signup(this.registrationForm.value).subscribe(data => {
       if (data.status) {
         this.toastr.success(data.message, 'SUCCESS')
-        this.router.navigate(['/'])
+        this.router.navigate(['/login'])
 
       }
       else {

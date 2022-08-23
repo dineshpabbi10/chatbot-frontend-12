@@ -8,16 +8,16 @@ export interface Environment {
   production: boolean;
   firebase: any,
   mediaEndPoint: string,
-  socketBase : string,
+  socketBase: string,
   scriptUrl: string
 }
 
 
 export const DEV: Environment = {
-  scriptUrl:"https://elasbot.com",
-  endPoint: 'https://elasbot.com/',
-  mediaEndPoint: 'https://elasbot.com',
-  socketBase:'wss://elasbot.com:4444/ws/chatroom/',
+  scriptUrl: "https://216.48.178.203",
+  endPoint: 'https://216.48.178.203/',
+  mediaEndPoint: 'https://216.48.178.203',
+  socketBase: 'wss://216.48.178.203:4444/ws/chatroom/',
   production: true,
   firebase: {
     apiKey: "AIzaSyD6_cEhjYmGtA5XoW3PhPQaoFqUEEZw99Q",

@@ -14,20 +14,21 @@
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav ml-auto">
               <li class="nav-item">
-                <a class="nav-link"  href="https://elasbot.com/">Home</a>
+                <a class="nav-link" href="https://elasbot.com/">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="https://elasbot.com/pricing">Pricing</a>
+                <a class="nav-link" [routerLinkActiveOptions]="{exact: true}" [routerLink]="['/pricing']"
+                  [routerLinkActive]="'active'">Pricing</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link"  href="https://elasbot.com/about_us">About
+                <a class="nav-link" href="https://elasbot.com/about-us">About
                   Us</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link"  href="https://elasbot.com/features">Features</a>
+                <a class="nav-link" href="https://elasbot.com/features">Features</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link"  href="https://elasbot.com/contact_us">Contact</a>
+                <a class="nav-link" href="https://elasbot.com/contact-us">Contact</a>
               </li>
               <!-- <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
