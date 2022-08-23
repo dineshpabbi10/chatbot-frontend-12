@@ -36,21 +36,5 @@ export class AppComponent implements OnInit{
         })
       }
     })
-    // Messaging Subscription
-    this.afMessaging.requestPermission
-      .pipe(mergeMapTo(this.afMessaging.tokenChanges))
-      .subscribe(
-        (token) => { 
-            // Send token to backend
-            this.commonService.sendNotificationToken(token)
-            .pipe(catchError(err=>{
-              return of(err)
-            }))
-            .subscribe(res=>{
-            })
-
-        },
-        (error) => { console.error(error); },  
-      );
   }
 }
