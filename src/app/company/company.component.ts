@@ -2,7 +2,7 @@ import { Component, HostListener, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr'
 import { NgxUiLoaderService } from 'ngx-ui-loader';
-import { catchError } from 'rxjs/operators';
+import { catchError, mergeMapTo } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { CompanyService } from './services/company.service';
 import { CommonService } from '../services/common.service';
@@ -18,11 +18,28 @@ export class CompanyComponent implements OnInit {
   public sidebarOpen = true;
   public smallScreen: boolean = false;
   public notificationsList:any[] = [];
-  constructor(private afMessaging : AngularFireMessaging,private companyService: CompanyService,private CommonService: CommonService, private toastr: ToastrService, private ngxService: NgxUiLoaderService, public router: Router) { }
+  constructor(private commonService:CommonService,private afMessaging : AngularFireMessaging,private companyService: CompanyService,private CommonService: CommonService, private toastr: ToastrService, private ngxService: NgxUiLoaderService, public router: Router) { }
 
   ngOnInit(): void {
     this.smallScreen = window.innerWidth < 601;
     this.fetchNotifications(true);
+
+    // Messaging Subscription
+    this.afMessaging.requestPermission
+      .pipe(mergeMapTo(this.afMessaging.tokenChanges))
+      .subscribe(
+        (token) => { 
+            // Send token to backend
+            this.commonService.sendNotificationToken(token)
+            .pipe(catchError(err=>{
+              return of(err)
+            }))
+            .subscribe(res=>{
+            })
+
+        },
+        (error) => { console.error(error); },  
+    );
 
     // Check for notifications from firebase
     this.afMessaging.messages.subscribe((_messaging:any) => {
